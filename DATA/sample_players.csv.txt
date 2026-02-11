@@ -1,0 +1,6 @@
+player,player_id,role,age,nationality,salary
+Rohit Sharma,1,BAT,36,India,2000000
+Jasprit Bumrah,2,BOWL,30,India,1800000
+Ben Stokes,3,AR,33,England,2200000
+MS Dhoni,4,WK,42,India,1500000
+Suryakumar Yadav,5,BAT,34,India,1700000

@@ -1,0 +1,21 @@
+player,player_id,role,age,nationality
+Rohit Sharma,1,BAT,36,India
+Virat Kohli,2,BAT,35,India
+Shubman Gill,3,BAT,25,India
+Suryakumar Yadav,4,BAT,34,India
+David Warner,5,BAT,38,Australia
+MS Dhoni,6,WK,42,India
+Rishabh Pant,7,WK,28,India
+Jos Buttler,8,WK,34,England
+Hardik Pandya,9,AR,32,India
+Ben Stokes,10,AR,33,England
+Ravindra Jadeja,11,AR,36,India
+Andre Russell,12,AR,36,West Indies
+Jasprit Bumrah,13,BOWL,30,India
+Mohammed Shami,14,BOWL,35,India
+Rashid Khan,15,BOWL,27,Afghanistan
+Trent Boult,16,BOWL,35,New Zealand
+Pat Cummins,17,BOWL,32,Australia
+Kagiso Rabada,18,BOWL,30,South Africa
+Yuzvendra Chahal,19,BOWL,35,India
+Kuldeep Yadav,20,BOWL,30,India
