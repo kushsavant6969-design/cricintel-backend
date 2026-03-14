@@ -20,23 +20,19 @@ st.set_page_config(
 )
 
 # ─────────────────────────────────────────────
-# GLOBAL CSS  — dark premium look
+# GLOBAL CSS
 # ─────────────────────────────────────────────
 st.markdown("""
 <style>
-/* Base */
 html, body, [class*="css"] { font-family: 'Inter', sans-serif; }
 .block-container { padding-top: 1.5rem; padding-bottom: 2rem; }
 
-/* Sidebar */
 section[data-testid="stSidebar"] {
     background: linear-gradient(180deg, #0a0f1e 0%, #0d1b2a 100%);
     border-right: 1px solid #1e3a5f;
 }
 section[data-testid="stSidebar"] * { color: #e0e6ef !important; }
-section[data-testid="stSidebar"] .stRadio label { font-size: 0.95rem; }
 
-/* Title banner */
 .cricintel-banner {
     background: linear-gradient(135deg, #0a0f1e 0%, #0d2137 60%, #061a30 100%);
     border: 1px solid #00d4ff33;
@@ -57,18 +53,6 @@ section[data-testid="stSidebar"] .stRadio label { font-size: 0.95rem; }
 }
 .cricintel-banner p { color: #7ba7c4; margin: 0.3rem 0 0; font-size: 0.95rem; }
 
-/* Metric cards */
-.metric-card {
-    background: linear-gradient(135deg, #0d1b2a, #0a1628);
-    border: 1px solid #1e3a5f;
-    border-radius: 10px;
-    padding: 1rem 1.2rem;
-    text-align: center;
-}
-.metric-card .val { font-size: 2rem; font-weight: 700; color: #00d4ff; }
-.metric-card .lbl { font-size: 0.78rem; color: #7ba7c4; text-transform: uppercase; letter-spacing: 0.08em; margin-top: 0.2rem; }
-
-/* Section headers */
 .section-header {
     background: linear-gradient(90deg, #00d4ff15, transparent);
     border-left: 3px solid #00d4ff;
@@ -81,34 +65,36 @@ section[data-testid="stSidebar"] .stRadio label { font-size: 0.95rem; }
     letter-spacing: 0.04em;
 }
 
-/* Role badge */
-.badge {
-    display: inline-block;
-    padding: 2px 10px;
-    border-radius: 20px;
-    font-size: 0.72rem;
-    font-weight: 600;
-    letter-spacing: 0.06em;
+.mapper-card {
+    background: #0d1b2a;
+    border: 1px solid #1e3a5f;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 0.8rem;
 }
+.mapper-card .mc-title { font-size: 0.85rem; font-weight: 600; color: #00d4ff; margin-bottom: 0.4rem; }
+.mapper-card .mc-sub { font-size: 0.75rem; color: #7ba7c4; }
+
+.confidence-high { color: #4ade80; font-weight: 600; }
+.confidence-med  { color: #fbbf24; font-weight: 600; }
+.confidence-low  { color: #f87171; font-weight: 600; }
+
+.badge { display:inline-block; padding:2px 10px; border-radius:20px; font-size:0.72rem; font-weight:600; letter-spacing:0.06em; }
 .badge-bat  { background:#1a3a2a; color:#4ade80; border:1px solid #4ade8044; }
 .badge-bowl { background:#1a1a3a; color:#818cf8; border:1px solid #818cf844; }
 .badge-ar   { background:#2a2a1a; color:#fbbf24; border:1px solid #fbbf2444; }
 .badge-wk   { background:#2a1a1a; color:#f87171; border:1px solid #f8717144; }
 
-/* Player card */
 .player-card {
     background: #0d1b2a;
     border: 1px solid #1e3a5f;
     border-radius: 10px;
     padding: 0.9rem 1.1rem;
     margin-bottom: 0.6rem;
-    transition: border-color 0.2s;
 }
-.player-card:hover { border-color: #00d4ff66; }
 .player-card .pname { font-size: 1rem; font-weight: 600; color: #e0e6ef; }
 .player-card .pstat { font-size: 0.8rem; color: #7ba7c4; margin-top: 0.2rem; }
 
-/* Explain card */
 .explain-card {
     background: #080f1a;
     border: 1px solid #1e3a5f;
@@ -121,10 +107,16 @@ section[data-testid="stSidebar"] .stRadio label { font-size: 0.95rem; }
 .explain-pos { color: #4ade80; font-size: 0.82rem; }
 .explain-neg { color: #f87171; font-size: 0.82rem; }
 
-/* Divider */
-.cricdiv { border: none; border-top: 1px solid #1e3a5f; margin: 1.2rem 0; }
+.filter-panel {
+    background: #080f1a;
+    border: 1px solid #1e3a5f;
+    border-radius: 10px;
+    padding: 1rem 1.2rem;
+    margin-bottom: 1rem;
+}
 
-/* Download button */
+.cricdiv { border:none; border-top:1px solid #1e3a5f; margin:1.2rem 0; }
+
 .stDownloadButton button {
     background: linear-gradient(135deg, #00d4ff22, #0066aa22) !important;
     border: 1px solid #00d4ff55 !important;
@@ -132,41 +124,279 @@ section[data-testid="stSidebar"] .stRadio label { font-size: 0.95rem; }
     border-radius: 8px !important;
     font-weight: 600 !important;
 }
-.stDownloadButton button:hover {
-    background: linear-gradient(135deg, #00d4ff33, #0066aa33) !important;
-    border-color: #00d4ff !important;
-}
-
-/* Tabs */
-.stTabs [data-baseweb="tab-list"] {
-    background: #0a0f1e;
-    border-radius: 8px;
-    padding: 4px;
-}
-.stTabs [data-baseweb="tab"] {
-    color: #7ba7c4 !important;
-    font-weight: 500;
-}
-.stTabs [aria-selected="true"] {
-    background: #0d2137 !important;
-    color: #00d4ff !important;
-    border-radius: 6px;
-}
-
-/* Info/warning/success */
-.stAlert { border-radius: 8px; }
+.stTabs [data-baseweb="tab-list"] { background:#0a0f1e; border-radius:8px; padding:4px; }
+.stTabs [data-baseweb="tab"] { color:#7ba7c4 !important; font-weight:500; }
+.stTabs [aria-selected="true"] { background:#0d2137 !important; color:#00d4ff !important; border-radius:6px; }
 </style>
 """, unsafe_allow_html=True)
 
 
-# ─────────────────────────────────────────────
-# HELPERS
-# ─────────────────────────────────────────────
-def nz(s, default=0.0):
-    if s is None:
-        return pd.Series(dtype=float)
-    return s.fillna(default)
+# ═══════════════════════════════════════════════════════
+# INTELLIGENT COLUMN MAPPER
+# ═══════════════════════════════════════════════════════
 
+# Known aliases for each internal field
+COLUMN_ALIASES = {
+    # Identity
+    "player_id":   ["player_id","id","player id","uid","player_uid","playerid","p_id","pid","player_no","number"],
+    "player":      ["player","name","player_name","full_name","fullname","playername","player name","cricket_name"],
+
+    # Role
+    "role":        ["role","position","player_role","type","player_type","category","playing_role","role_type"],
+
+    # Age
+    "age":         ["age","player_age","years","age_years","current_age"],
+
+    # Batting
+    "bat_hand":    ["bat_hand","batting_hand","hand","batting_style","dominant_hand","bat_style","batting_arm"],
+    "runs":        ["runs","total_runs","runs_scored","batting_runs","career_runs","run_total"],
+    "strike_rate": ["strike_rate","sr","batting_sr","bat_sr","strike rate","batting_strike_rate","sr_bat"],
+    "boundary_pct":["boundary_pct","boundary_percent","boundary_%","boundaries_pct","boundary_rate"],
+    "dot_ball_pct":["dot_ball_pct","dot_pct","dot_%","dot_ball_percent","dot_rate","dots_pct"],
+
+    # Bowling
+    "wickets":     ["wickets","wkts","total_wickets","bowling_wickets","career_wickets","wkt_total"],
+    "economy":     ["economy","eco","economy_rate","bowling_economy","econ","bowl_eco","er"],
+    "bowl_type":   ["bowl_type","bowling_type","bowling_style","bowl_style","bowling_arm_type","bowler_type"],
+
+    # Matches
+    "matches":     ["matches","games","total_matches","appearances","caps","career_matches","match_count"],
+
+    # Flags
+    "is_spinner":  ["is_spinner","spinner","spin_bowler","is_spin","spins"],
+    "is_pacer":    ["is_pacer","pacer","pace_bowler","is_pace","paces","fast_bowler"],
+    "is_overseas": ["is_overseas","overseas","foreign","international","is_foreign","non_domestic"],
+
+    # Phase stats
+    "pp_sr":       ["pp_sr","powerplay_sr","pp_strike_rate","powerplay_strike_rate","pp_batting_sr"],
+    "middle_sr":   ["middle_sr","middle_overs_sr","mid_sr","middle_strike_rate"],
+    "death_sr":    ["death_sr","death_overs_sr","death_strike_rate","finishing_sr"],
+    "pp_runs":     ["pp_runs","powerplay_runs","pp_batting_runs"],
+    "death_runs":  ["death_runs","death_overs_runs","finishing_runs"],
+    "pp_eco":      ["pp_eco","powerplay_economy","pp_economy","powerplay_eco"],
+    "middle_eco":  ["middle_eco","middle_economy","mid_eco","middle_overs_economy"],
+    "death_eco":   ["death_eco","death_economy","death_overs_economy","finishing_eco"],
+    "pp_wkts":     ["pp_wkts","powerplay_wickets","pp_wickets"],
+    "death_wkts":  ["death_wkts","death_wickets","death_overs_wickets"],
+
+    # Risk
+    "injury_risk": ["injury_risk","injury","risk","injury_score","fit_risk","physical_risk"],
+
+    # Format fit
+    "county_red_ball_fit":   ["county_red_ball_fit","red_ball_fit","red_ball","redball_fit","first_class_fit"],
+    "county_white_ball_fit": ["county_white_ball_fit","white_ball_fit","white_ball","whiteball_fit","limited_overs_fit"],
+    "format_specialism":     ["format_specialism","format","specialism","format_type","best_format"],
+
+    # Scouting
+    "scouting_grade":        ["scouting_grade","grade","scout_grade","talent_grade","rating_grade"],
+    "analyst_recommendation":["analyst_recommendation","recommendation","scout_recommendation","verdict","analyst_verdict"],
+
+    # Auction/contract
+    "current_salary_lakh":   ["current_salary_lakh","salary","wage","wages","annual_salary","base_price",
+                               "salary_lakh","contract_value","fee","annual_fee","price","current_price"],
+    "budget_lakh":           ["budget_lakh","budget","total_budget","squad_budget","purse","available_budget"],
+    "max_players":           ["max_players","squad_size","max_squad","squad_max","team_size"],
+    "min_bat":               ["min_bat","min_batters","min_batting","batters_min"],
+    "min_bowl":              ["min_bowl","min_bowlers","min_bowling","bowlers_min"],
+    "min_ar":                ["min_ar","min_allrounders","min_all_rounders","allrounders_min"],
+    "min_wk":                ["min_wk","min_keepers","min_wicketkeepers","keepers_min"],
+}
+
+# Role value standardisation
+ROLE_MAP = {
+    "bat": "BAT", "batter": "BAT", "batsman": "BAT", "batting": "BAT", "b": "BAT",
+    "bat/wk": "WK", "wk": "WK", "keeper": "WK", "wicketkeeper": "WK", "wk-bat": "WK",
+    "wicket keeper": "WK", "keeper-batsman": "WK", "wkt": "WK",
+    "bowl": "BOWL", "bowler": "BOWL", "bowling": "BOWL", "bwl": "BOWL",
+    "pace bowler": "BOWL", "spin bowler": "BOWL", "fast bowler": "BOWL",
+    "ar": "AR", "all-rounder": "AR", "allrounder": "AR", "all rounder": "AR",
+    "all_rounder": "AR", "batting allrounder": "AR", "bowling allrounder": "AR",
+}
+
+BAT_HAND_MAP = {
+    "l": "L", "lhb": "L", "left": "L", "left-hand": "L", "left hand": "L", "lh": "L",
+    "r": "R", "rhb": "R", "right": "R", "right-hand": "R", "right hand": "R", "rh": "R",
+}
+
+
+def fuzzy_match_column(col_name: str, aliases: list) -> float:
+    """Returns confidence score 0-1 for how well col_name matches aliases."""
+    col_clean = col_name.lower().strip().replace(" ", "_").replace("-", "_")
+    for alias in aliases:
+        alias_clean = alias.lower().strip().replace(" ", "_").replace("-", "_")
+        if col_clean == alias_clean:
+            return 1.0
+        if col_clean in alias_clean or alias_clean in col_clean:
+            return 0.8
+    return 0.0
+
+
+def auto_detect_columns(df: pd.DataFrame) -> dict:
+    """
+    Automatically detects which columns in df map to internal field names.
+    Returns: {internal_field: (detected_col, confidence)}
+    """
+    results = {}
+    df_cols = list(df.columns)
+
+    for field, aliases in COLUMN_ALIASES.items():
+        best_col = None
+        best_conf = 0.0
+        for col in df_cols:
+            conf = fuzzy_match_column(col, aliases)
+            if conf > best_conf:
+                best_conf = conf
+                best_col = col
+        if best_conf > 0:
+            results[field] = (best_col, best_conf)
+
+    return results
+
+
+def standardise_roles(series: pd.Series) -> pd.Series:
+    """Standardise role values to BAT/BOWL/AR/WK."""
+    def map_role(val):
+        if pd.isna(val):
+            return "BAT"
+        v = str(val).lower().strip()
+        return ROLE_MAP.get(v, "BAT")
+    return series.apply(map_role)
+
+
+def standardise_bat_hand(series: pd.Series) -> pd.Series:
+    """Standardise batting hand to L/R."""
+    def map_hand(val):
+        if pd.isna(val):
+            return "R"
+        v = str(val).lower().strip()
+        return BAT_HAND_MAP.get(v, "R")
+    return series.apply(map_hand)
+
+
+def apply_column_mapping(df: pd.DataFrame, mapping: dict) -> pd.DataFrame:
+    """
+    Renames detected columns to internal names.
+    mapping = {internal_field: source_col}
+    """
+    out = df.copy()
+    rename_map = {}
+    for internal, source in mapping.items():
+        if source and source in out.columns and source != internal:
+            rename_map[source] = internal
+    out = out.rename(columns=rename_map)
+
+    # Standardise role values
+    if "role" in out.columns:
+        out["role"] = standardise_roles(out["role"])
+
+    # Standardise bat_hand
+    if "bat_hand" in out.columns:
+        out["bat_hand"] = standardise_bat_hand(out["bat_hand"])
+
+    return out
+
+
+def render_mapping_summary(detected: dict, required_fields: list):
+    """Show a clean summary of what was detected."""
+    found = [f for f in required_fields if f in detected]
+    missing = [f for f in required_fields if f not in detected]
+    optional_found = [f for f in detected if f not in required_fields]
+
+    conf_levels = {"high": [], "medium": [], "low": []}
+    for f, (col, conf) in detected.items():
+        if conf >= 0.9:
+            conf_levels["high"].append(f)
+        elif conf >= 0.7:
+            conf_levels["medium"].append(f)
+        else:
+            conf_levels["low"].append(f)
+
+    total = len(required_fields)
+    found_n = len(found)
+    pct = int((found_n / total) * 100) if total > 0 else 0
+
+    if pct == 100:
+        conf_class = "confidence-high"
+        conf_label = "✅ All required fields detected"
+    elif pct >= 70:
+        conf_class = "confidence-med"
+        conf_label = f"⚠️ {found_n}/{total} required fields detected"
+    else:
+        conf_class = "confidence-low"
+        conf_label = f"❌ Only {found_n}/{total} required fields detected"
+
+    st.markdown(f"""
+    <div class="mapper-card">
+        <div class="mc-title">🧠 Intelligent Column Detection</div>
+        <div class="{conf_class}" style="font-size:0.9rem; margin-bottom:0.5rem;">{conf_label}</div>
+        <div class="mc-sub">
+            Required detected: <b>{found_n}/{total}</b> &nbsp;|&nbsp;
+            Optional detected: <b>{len(optional_found)}</b> &nbsp;|&nbsp;
+            Missing (will be inferred): <b>{len(missing)}</b>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    if missing:
+        with st.expander("ℹ️ Missing fields — will be inferred automatically"):
+            for m in missing:
+                st.markdown(f"• `{m}` — will be estimated from available data")
+
+    if conf_levels["medium"] or conf_levels["low"]:
+        with st.expander("⚠️ Low-confidence detections — verify these"):
+            for f in conf_levels["medium"] + conf_levels["low"]:
+                col, conf = detected[f]
+                st.markdown(f"• `{f}` ← mapped from `{col}` (confidence: {conf:.0%})")
+
+
+def smart_merge(players_df: pd.DataFrame, perf_df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Intelligently merges two dataframes by finding the common ID column.
+    """
+    # Detect ID columns in both
+    players_detected = auto_detect_columns(players_df)
+    perf_detected    = auto_detect_columns(perf_df)
+
+    p_id_col = players_detected.get("player_id", (None, 0))[0]
+    r_id_col = perf_detected.get("player_id", (None, 0))[0]
+
+    # If same column name found in both — use it directly
+    if p_id_col and r_id_col:
+        # Rename both to player_id for consistent merge
+        if p_id_col != "player_id":
+            players_df = players_df.rename(columns={p_id_col: "player_id"})
+        if r_id_col != "player_id":
+            perf_df = perf_df.rename(columns={r_id_col: "player_id"})
+        df = players_df.merge(perf_df, on="player_id", how="left", suffixes=("", "_perf"))
+    else:
+        # Try to find any common column
+        common = set(players_df.columns) & set(perf_df.columns)
+        if common:
+            join_col = list(common)[0]
+            df = players_df.merge(perf_df, on=join_col, how="left", suffixes=("", "_perf"))
+            df = df.rename(columns={join_col: "player_id"})
+        else:
+            # Last resort — join by index
+            st.warning("⚠️ No common ID column found. Joining by row order.")
+            df = pd.concat([players_df.reset_index(drop=True),
+                            perf_df.reset_index(drop=True)], axis=1)
+            df["player_id"] = df.index + 1
+
+    # Resolve age conflict
+    if "age" not in df.columns:
+        if "age_perf" in df.columns:
+            df["age"] = df["age_perf"]
+        elif "age" in perf_df.columns:
+            df["age"] = perf_df["age"].values[:len(df)]
+        else:
+            df["age"] = 25
+
+    return df
+
+
+# ═══════════════════════════════════════════════════════
+# HELPERS
+# ═══════════════════════════════════════════════════════
 def norm01(series: pd.Series) -> pd.Series:
     s = pd.to_numeric(series, errors="coerce").fillna(0).astype(float)
     mn, mx = s.min(), s.max()
@@ -191,183 +421,52 @@ def safe_numeric(df, cols, default=0.0):
         df[c] = pd.to_numeric(df[c], errors="coerce").fillna(default)
     return df
 
-def role_color(role):
-    return {"BAT": "#4ade80", "BOWL": "#818cf8", "AR": "#fbbf24", "WK": "#f87171"}.get(role, "#7ba7c4")
-
 def role_badge(role):
-    cls = {"BAT": "badge-bat", "BOWL": "badge-bowl", "AR": "badge-ar", "WK": "badge-wk"}.get(role, "badge-bat")
+    cls = {"BAT":"badge-bat","BOWL":"badge-bowl","AR":"badge-ar","WK":"badge-wk"}.get(role,"badge-bat")
     return f'<span class="badge {cls}">{role}</span>'
 
 def section(title, icon="▸"):
     st.markdown(f'<div class="section-header">{icon} {title}</div>', unsafe_allow_html=True)
 
-def metric_row(items: list):
-    """items = list of (label, value, delta=None)"""
-    cols = st.columns(len(items))
-    for col, (lbl, val, *rest) in zip(cols, items):
-        delta = rest[0] if rest else None
-        col.metric(lbl, val, delta)
-
 def cric_divider():
     st.markdown('<hr class="cricdiv">', unsafe_allow_html=True)
 
 
-# ─────────────────────────────────────────────
-# OPTIMISERS
-# ─────────────────────────────────────────────
-def optimize_squad_soft(df, budget_limit, max_players, min_role,
-                        price_col, extra_min_flags=None, extra_max_flags=None,
-                        lock_players=None, max_single_price=None,
-                        penalty_weight=2.5, price_concentration_penalty=0.0):
-    d = df.copy()
-    players_list = d["player"].tolist()
-    if not players_list:
-        return pd.DataFrame(), {"status": "empty"}
-
-    x = pl.LpVariable.dicts("pick", players_list, lowBound=0, upBound=1, cat="Binary")
-    prob = pl.LpProblem("SquadSoft", pl.LpMaximize)
-
-    slack = {}
-    if extra_min_flags:
-        for col, mn in extra_min_flags.items():
-            if col in d.columns and int(mn) > 0:
-                slack[col] = pl.LpVariable(f"slack_{col}", lowBound=0, cat="Continuous")
-
-    norm_price = norm01(d[price_col]).values
-
-    prob += (
-        pl.lpSum(d.loc[d.player == p, "objective_score"].values[0] * x[p] for p in players_list)
-        - float(penalty_weight) * pl.lpSum(slack[c] for c in slack)
-        - float(price_concentration_penalty) * pl.lpSum(norm_price[i] * x[p] for i, p in enumerate(players_list))
-    )
-
-    prob += pl.lpSum(d.loc[d.player == p, price_col].values[0] * x[p] for p in players_list) <= float(budget_limit)
-    prob += pl.lpSum(x[p] for p in players_list) <= int(max_players)
-
-    def role_count(code):
-        return pl.lpSum(x[p] for p in players_list if d.loc[d.player == p, "role"].values[0] == code)
-
-    for r, mn in min_role.items():
-        prob += role_count(r) >= int(mn)
-
-    if extra_min_flags:
-        for col, mn in extra_min_flags.items():
-            if col in d.columns and int(mn) > 0:
-                cnt = pl.lpSum(x[p] for p in players_list if int(d.loc[d.player == p, col].values[0]) == 1)
-                prob += cnt + slack[col] >= int(mn)
-
-    if extra_max_flags:
-        for col, mx in extra_max_flags.items():
-            if col in d.columns and mx is not None:
-                prob += pl.lpSum(x[p] for p in players_list if int(d.loc[d.player == p, col].values[0]) == 1) <= int(mx)
-
-    if max_single_price is not None:
-        for p in players_list:
-            prob += d.loc[d.player == p, price_col].values[0] * x[p] <= float(max_single_price)
-
-    if lock_players:
-        for lp in lock_players:
-            if lp in players_list:
-                prob += x[lp] == 1
-
-    prob.solve(pl.PULP_CBC_CMD(msg=False))
-
-    picked = [p for p in players_list if x[p].value() == 1]
-    squad = d[d.player.isin(picked)].copy()
-
-    violations = {}
-    for col in slack:
-        try:
-            violations[col] = float(slack[col].value())
-        except Exception:
-            violations[col] = None
-
-    metrics = {
-        "status": "ok" if len(squad) else "no_solution",
-        "count": int(len(squad)),
-        "spend": float(squad[price_col].sum()) if len(squad) else 0.0,
-        "objective": float(squad["objective_score"].sum()) if len(squad) else 0.0,
-        "violations": violations
-    }
-    for r in ["BAT", "BOWL", "AR", "WK"]:
-        metrics[r] = int((squad["role"] == r).sum()) if len(squad) else 0
-    return squad, metrics
-
-
-def pick_best_xi(squad, xi_size, xi_min_role, max_overseas_xi, enforce_left_in_top4):
-    if len(squad) == 0:
-        return pd.DataFrame(), {"status": "empty"}
-
-    d = squad.copy()
-    players_list = d["player"].tolist()
-
-    x = pl.LpVariable.dicts("xi", players_list, lowBound=0, upBound=1, cat="Binary")
-    prob = pl.LpProblem("BestXI", pl.LpMaximize)
-
-    prob += pl.lpSum(d.loc[d.player == p, "xi_score"].values[0] * x[p] for p in players_list)
-    prob += pl.lpSum(x[p] for p in players_list) == int(xi_size)
-
-    def role_count(code):
-        return pl.lpSum(x[p] for p in players_list if d.loc[d.player == p, "role"].values[0] == code)
-
-    for r, mn in xi_min_role.items():
-        prob += role_count(r) >= int(mn)
-
-    if max_overseas_xi is not None and "is_overseas" in d.columns:
-        prob += pl.lpSum(x[p] for p in players_list if int(d.loc[d.player == p, "is_overseas"].values[0]) == 1) <= int(max_overseas_xi)
-
-    if enforce_left_in_top4 and "bat_hand" in d.columns and "is_top4_candidate" in d.columns:
-        prob += pl.lpSum(
-            x[p] for p in players_list
-            if (int(d.loc[d.player == p, "is_top4_candidate"].values[0]) == 1 and
-                str(d.loc[d.player == p, "bat_hand"].values[0]) == "L")
-        ) >= 1
-
-    prob.solve(pl.PULP_CBC_CMD(msg=False))
-
-    picked = [p for p in players_list if x[p].value() == 1]
-    xi = d[d.player.isin(picked)].copy()
-    metrics = {"status": "ok" if len(xi) else "no_solution", "count": int(len(xi)),
-               "xi_score": float(xi["xi_score"].sum()) if len(xi) else 0.0}
-    return xi, metrics
-
-
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 # CORE DATA PIPELINE
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataFrame | None = None):
-    # ── merge ──────────────────────────────────────────────────────────────
-    df = players.merge(perf, on="player_id", how="left", suffixes=("", "_perf"))
-
-    # FIX: resolve age conflict — prefer players.csv age
-    if "age" not in df.columns:
-        if "age_perf" in df.columns:
-            df["age"] = df["age_perf"]
-        else:
-            df["age"] = 25  # safe fallback
+    # ── Smart merge ────────────────────────────────────────────────────────
+    df = smart_merge(players, perf)
 
     if contracts is not None:
-        df = df.merge(contracts, on="player_id", how="left")
+        c_detected = auto_detect_columns(contracts)
+        c_id = c_detected.get("player_id", (None, 0))[0]
+        if c_id and c_id != "player_id":
+            contracts = contracts.rename(columns={c_id: "player_id"})
+        df = df.merge(contracts, on="player_id", how="left", suffixes=("", "_contract"))
 
-    # ── required column validation ─────────────────────────────────────────
-    req_players = {"player", "player_id", "role", "age"}
-    req_perf    = {"player_id", "matches", "runs", "strike_rate", "wickets",
-                   "economy", "dot_ball_pct", "boundary_pct"}
+    # ── Apply intelligent column mapping ──────────────────────────────────
+    detected = auto_detect_columns(df)
+    mapping  = {field: col for field, (col, _) in detected.items()}
+    df = apply_column_mapping(df, mapping)
 
-    missing_p = req_players - set(df.columns)
-    missing_r = req_perf    - set(df.columns)
-    if missing_p:
-        st.error(f"❌ players.csv missing columns: {sorted(missing_p)}")
-        st.stop()
-    if missing_r:
-        st.error(f"❌ performance.csv missing columns: {sorted(missing_r)}")
-        st.stop()
+    # ── Required column check ─────────────────────────────────────────────
+    if "player" not in df.columns:
+        name_candidates = [c for c in df.columns if "name" in c.lower()]
+        if name_candidates:
+            df["player"] = df[name_candidates[0]]
+        else:
+            df["player"] = ["Player_" + str(i) for i in df.index]
 
-    # ── numeric safety ─────────────────────────────────────────────────────
+    if "player_id" not in df.columns:
+        df["player_id"] = df.index + 1
+
+    # ── Numeric safety ────────────────────────────────────────────────────
     df = safe_numeric(df, ["matches","runs","strike_rate","wickets","economy",
                            "dot_ball_pct","boundary_pct","age"], 0.0)
 
-    # ── optional phase cols ────────────────────────────────────────────────
+    # ── Optional phase columns ────────────────────────────────────────────
     for col in ["pp_sr","middle_sr","death_sr","pp_runs","death_runs",
                 "pp_eco","middle_eco","death_eco","pp_wkts","death_wkts",
                 "injury_risk","availability_risk"]:
@@ -379,38 +478,35 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
         if col not in df.columns:
             df[col] = 0
 
-    if "bat_hand" not in df.columns:
-        df["bat_hand"] = "R"
-    if "bowling_arm" not in df.columns:
-        df["bowling_arm"] = np.nan
-    if "spin_type" not in df.columns:
-        df["spin_type"] = np.nan
+    if "bat_hand"    not in df.columns: df["bat_hand"]    = "R"
+    if "bowling_arm" not in df.columns: df["bowling_arm"] = np.nan
+    if "spin_type"   not in df.columns: df["spin_type"]   = np.nan
 
-    # ── deterministic phase proxies ────────────────────────────────────────
+    # ── Phase proxies ─────────────────────────────────────────────────────
     noise = stable_noise(df["player_id"])
 
     if df["pp_sr"].isna().all():
-        df["pp_sr"]     = df["strike_rate"] + (-2 + 6*(noise - 0.5))
-        df["middle_sr"] = df["strike_rate"] + (-6 + 8*(noise - 0.5))
-        df["death_sr"]  = df["strike_rate"] + (8 + 10*(noise - 0.5))
-        df["pp_runs"]   = (df["runs"] * (0.33 + 0.06*(noise - 0.5))).astype(float)
-        df["death_runs"]= (df["runs"] * (0.23 + 0.06*(noise - 0.5))).astype(float)
+        df["pp_sr"]      = df["strike_rate"] + (-2  + 6*(noise-0.5))
+        df["middle_sr"]  = df["strike_rate"] + (-6  + 8*(noise-0.5))
+        df["death_sr"]   = df["strike_rate"] + (8   + 10*(noise-0.5))
+        df["pp_runs"]    = (df["runs"] * (0.33+0.06*(noise-0.5))).astype(float)
+        df["death_runs"] = (df["runs"] * (0.23+0.06*(noise-0.5))).astype(float)
 
     if df["pp_eco"].isna().all():
-        df["pp_eco"]    = df["economy"] + (-0.25 + 0.6*(noise - 0.5))
-        df["middle_eco"]= df["economy"] + (0.00  + 0.5*(noise - 0.5))
-        df["death_eco"] = df["economy"] + (0.55  + 0.8*(noise - 0.5))
-        df["pp_wkts"]   = (df["wickets"] * (0.33 + 0.05*(noise - 0.5))).astype(float)
-        df["death_wkts"]= (df["wickets"] * (0.23 + 0.05*(noise - 0.5))).astype(float)
+        df["pp_eco"]     = df["economy"] + (-0.25+0.6*(noise-0.5))
+        df["middle_eco"] = df["economy"] + (0.00 +0.5*(noise-0.5))
+        df["death_eco"]  = df["economy"] + (0.55 +0.8*(noise-0.5))
+        df["pp_wkts"]    = (df["wickets"]*(0.33+0.05*(noise-0.5))).astype(float)
+        df["death_wkts"] = (df["wickets"]*(0.23+0.05*(noise-0.5))).astype(float)
 
-    # ── role inference ─────────────────────────────────────────────────────
-    if "batting_role"  not in df.columns: df["batting_role"]  = "ANCHOR"
-    if "bowling_role"  not in df.columns: df["bowling_role"]  = "MIDDLE"
+    # ── Role inference ────────────────────────────────────────────────────
+    if "batting_role" not in df.columns: df["batting_role"] = "ANCHOR"
+    if "bowling_role" not in df.columns: df["bowling_role"] = "MIDDLE"
 
     is_bat  = df["role"].isin(["BAT","AR","WK"])
     is_bowl = df["role"].isin(["BOWL","AR"])
 
-    df.loc[is_bat, "batting_role"]  = "ANCHOR"
+    df.loc[is_bat, "batting_role"] = "ANCHOR"
     df.loc[is_bat & (df["pp_sr"]    >= df["pp_sr"].quantile(0.70)),    "batting_role"] = "OPENER"
     df.loc[is_bat & (df["death_sr"] >= df["death_sr"].quantile(0.75)), "batting_role"] = "FINISHER"
 
@@ -418,16 +514,16 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     df.loc[is_bowl & ((df["pp_wkts"]    >= df["pp_wkts"].quantile(0.65))    | (df["is_pp_bowler"].astype(int)==1)),    "bowling_role"] = "PP"
     df.loc[is_bowl & ((df["death_wkts"] >= df["death_wkts"].quantile(0.70)) | (df["is_death_bowler"].astype(int)==1)), "bowling_role"] = "DEATH"
 
-    df["is_opener"]       = (df["batting_role"]  == "OPENER").astype(int)
-    df["is_finisher"]     = (df["batting_role"]  == "FINISHER").astype(int)
-    df["is_death_bowler2"]= (df["bowling_role"]  == "DEATH").astype(int)
-    df["is_pp_bowler2"]   = (df["bowling_role"]  == "PP").astype(int)
-    df["is_top4_candidate"] = (
+    df["is_opener"]        = (df["batting_role"]=="OPENER").astype(int)
+    df["is_finisher"]      = (df["batting_role"]=="FINISHER").astype(int)
+    df["is_death_bowler2"] = (df["bowling_role"]=="DEATH").astype(int)
+    df["is_pp_bowler2"]    = (df["bowling_role"]=="PP").astype(int)
+    df["is_top4_candidate"]= (
         df["role"].isin(["BAT","WK","AR"]) &
         ((df["is_opener"]==1) | (df["runs"] >= df["runs"].quantile(0.60)))
     ).astype(int)
 
-    # ── bowling arm + spin type ────────────────────────────────────────────
+    # ── Bowling arm + spin type ───────────────────────────────────────────
     if df["bowling_arm"].isna().all():
         df["bowling_arm"] = np.where(noise < 0.28, "L", "R")
     df["bowling_arm"] = df["bowling_arm"].astype(str).str.upper()
@@ -435,8 +531,8 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
 
     if df["spin_type"].isna().all():
         df["spin_type"] = "NONE"
-        spin_mask = df["is_spinner"].astype(int) == 1
-        df.loc[spin_mask, "spin_type"] = np.where(noise[spin_mask] < 0.55, "OFF", "LEG")
+        spin_mask = df["is_spinner"].astype(int)==1
+        df.loc[spin_mask, "spin_type"] = np.where(noise[spin_mask]<0.55, "OFF", "LEG")
     df["spin_type"] = df["spin_type"].astype(str).str.upper()
 
     df["is_left_arm_spinner"]  = ((df["is_spinner"].astype(int)==1) & (df["bowling_arm"]=="L")).astype(int)
@@ -446,29 +542,23 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     df["is_left_arm_pacer"]    = ((df["is_pacer"].astype(int)==1)   & (df["bowling_arm"]=="L")).astype(int)
     df["is_right_arm_pacer"]   = ((df["is_pacer"].astype(int)==1)   & (df["bowling_arm"]=="R")).astype(int)
 
-    # ── risk model ─────────────────────────────────────────────────────────
+    # ── Risk model ────────────────────────────────────────────────────────
     if df["injury_risk"].isna().all():
-        workload = norm01(df["matches"])
-        df["injury_risk"] = clamp01(0.12 + 0.02*(df["age"]-df["age"].min()) + 0.20*workload + 0.10*df["is_pacer"].astype(float))
-
+        df["injury_risk"] = clamp01(0.12 + 0.02*(df["age"]-df["age"].min()) + 0.20*norm01(df["matches"]) + 0.10*df["is_pacer"].astype(float))
     if df["availability_risk"].isna().all():
         df["availability_risk"] = clamp01(0.08 + 0.15*df["is_overseas"].astype(float) + 0.10*norm01(df["matches"]))
-
     df["total_risk"] = clamp01(0.65*df["injury_risk"].astype(float) + 0.35*df["availability_risk"].astype(float))
+
     return df
 
 
-# ─────────────────────────────────────────────
-# SHARED PHASE SCORES
-# ─────────────────────────────────────────────
 def compute_phase_scores(df, w_pp=1.0, w_mid=1.0, w_death=1.2):
     pp_bat    = 0.6*norm01(df["pp_sr"])    + 0.4*norm01(df["pp_runs"])
     mid_bat   = norm01(df["middle_sr"])
     death_bat = 0.6*norm01(df["death_sr"]) + 0.4*norm01(df["death_runs"])
-
-    pp_bowl    = 0.6*norm01(df["pp_wkts"])    + 0.4*(1 - norm01(df["pp_eco"]))
-    mid_bowl   = 0.7*(1 - norm01(df["middle_eco"])) + 0.3*norm01(df["dot_ball_pct"])
-    death_bowl = 0.6*norm01(df["death_wkts"]) + 0.4*(1 - norm01(df["death_eco"]))
+    pp_bowl   = 0.6*norm01(df["pp_wkts"])  + 0.4*(1-norm01(df["pp_eco"]))
+    mid_bowl  = 0.7*(1-norm01(df["middle_eco"])) + 0.3*norm01(df["dot_ball_pct"])
+    death_bowl= 0.6*norm01(df["death_wkts"])+ 0.4*(1-norm01(df["death_eco"]))
 
     df["pp_bat_score"]    = pp_bat
     df["mid_bat_score"]   = mid_bat
@@ -483,134 +573,370 @@ def compute_phase_scores(df, w_pp=1.0, w_mid=1.0, w_death=1.2):
         (w_pp*pp_bat + w_mid*mid_bat + w_death*death_bat),
         (w_pp*pp_bowl + w_mid*mid_bowl + w_death*death_bowl)
     ):
-        if r == "BAT":   impact.append(b)
-        elif r == "BOWL":impact.append(w)
-        elif r == "AR":  impact.append(0.55*b + 0.45*w)
-        elif r == "WK":  impact.append(0.95*b + 0.05)
-        else:            impact.append(b)
+        if r=="BAT":   impact.append(b)
+        elif r=="BOWL":impact.append(w)
+        elif r=="AR":  impact.append(0.55*b+0.45*w)
+        elif r=="WK":  impact.append(0.95*b+0.05)
+        else:          impact.append(b)
 
     df["match_impact_score"] = norm01(pd.Series(impact, index=df.index))
     return df
 
 
-# ─────────────────────────────────────────────
-# SIMILARITY SEARCH  (FIXED)
-# ─────────────────────────────────────────────
-def get_similar_players(df_all: pd.DataFrame, target_name: str, top_k: int = 12):
-    trow = df_all[df_all["player"] == target_name].head(1)
-    if len(trow) == 0:
+# ═══════════════════════════════════════════════════════
+# SIMILARITY SEARCH
+# ═══════════════════════════════════════════════════════
+def get_similar_players(df_all, target_name, top_k=12):
+    trow = df_all[df_all["player"]==target_name].head(1)
+    if len(trow)==0:
         return pd.DataFrame()
 
-    feat_cols = [
+    feat_cols = [c for c in [
         "pp_bat_score","mid_bat_score","death_bat_score",
         "pp_bowl_score","mid_bowl_score","death_bowl_score",
         "strike_rate","economy","dot_ball_pct","boundary_pct",
         "match_impact_score","total_risk"
-    ]
-    feat_cols = [c for c in feat_cols if c in df_all.columns]
+    ] if c in df_all.columns]
 
-    # FIX: exclude target from candidate pool BEFORE computing similarity
-    candidates = df_all[df_all["player"] != target_name].copy()
-    t_vec = trow[feat_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).values
+    candidates = df_all[df_all["player"]!=target_name].copy()
+    t_vec = trow[feat_cols].apply(pd.to_numeric,errors="coerce").fillna(0.0).values
 
-    # FIX: scale features so no single column dominates
     scaler = StandardScaler()
-    cand_feats = candidates[feat_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).values
-    t_scaled   = scaler.fit_transform(np.vstack([cand_feats, t_vec]))
-    cand_scaled= t_scaled[:-1]
-    t_scaled   = t_scaled[-1].reshape(1, -1)
+    cand_feats = candidates[feat_cols].apply(pd.to_numeric,errors="coerce").fillna(0.0).values
+    scaled = scaler.fit_transform(np.vstack([cand_feats, t_vec]))
+    cand_s = scaled[:-1]
+    t_s    = scaled[-1].reshape(1,-1)
 
-    sims = cosine_similarity(cand_scaled, t_scaled).reshape(-1)
+    sims = cosine_similarity(cand_s, t_s).reshape(-1)
     candidates = candidates.copy()
     candidates["similarity"] = sims
 
-    # same-role first, then sorted by similarity
     target_role = trow["role"].values[0]
-    same_role   = candidates[candidates["role"] == target_role].sort_values("similarity", ascending=False).head(top_k)
-    return same_role
+    return candidates[candidates["role"]==target_role].sort_values("similarity",ascending=False).head(top_k)
 
 
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
+# OPTIMISERS
+# ═══════════════════════════════════════════════════════
+def optimize_squad_soft(df, budget_limit, max_players, min_role,
+                        price_col, extra_min_flags=None, extra_max_flags=None,
+                        lock_players=None, max_single_price=None,
+                        penalty_weight=2.5, price_concentration_penalty=0.0):
+    d = df.copy()
+    players_list = d["player"].tolist()
+    if not players_list:
+        return pd.DataFrame(), {"status":"empty"}
+
+    x = pl.LpVariable.dicts("pick", players_list, lowBound=0, upBound=1, cat="Binary")
+    prob = pl.LpProblem("SquadSoft", pl.LpMaximize)
+
+    slack = {}
+    if extra_min_flags:
+        for col, mn in extra_min_flags.items():
+            if col in d.columns and int(mn)>0:
+                slack[col] = pl.LpVariable(f"slack_{col}", lowBound=0, cat="Continuous")
+
+    norm_price = norm01(d[price_col]).values
+    prob += (
+        pl.lpSum(d.loc[d.player==p,"objective_score"].values[0]*x[p] for p in players_list)
+        - float(penalty_weight)*pl.lpSum(slack[c] for c in slack)
+        - float(price_concentration_penalty)*pl.lpSum(norm_price[i]*x[p] for i,p in enumerate(players_list))
+    )
+
+    prob += pl.lpSum(d.loc[d.player==p,price_col].values[0]*x[p] for p in players_list) <= float(budget_limit)
+    prob += pl.lpSum(x[p] for p in players_list) <= int(max_players)
+
+    def role_count(code):
+        return pl.lpSum(x[p] for p in players_list if d.loc[d.player==p,"role"].values[0]==code)
+    for r, mn in min_role.items():
+        prob += role_count(r) >= int(mn)
+
+    if extra_min_flags:
+        for col, mn in extra_min_flags.items():
+            if col in d.columns and int(mn)>0:
+                cnt = pl.lpSum(x[p] for p in players_list if int(d.loc[d.player==p,col].values[0])==1)
+                prob += cnt+slack[col] >= int(mn)
+
+    if extra_max_flags:
+        for col, mx in extra_max_flags.items():
+            if col in d.columns and mx is not None:
+                prob += pl.lpSum(x[p] for p in players_list if int(d.loc[d.player==p,col].values[0])==1) <= int(mx)
+
+    if max_single_price is not None:
+        for p in players_list:
+            prob += d.loc[d.player==p,price_col].values[0]*x[p] <= float(max_single_price)
+
+    if lock_players:
+        for lp in lock_players:
+            if lp in players_list:
+                prob += x[lp]==1
+
+    prob.solve(pl.PULP_CBC_CMD(msg=False))
+    picked = [p for p in players_list if x[p].value()==1]
+    squad  = d[d.player.isin(picked)].copy()
+
+    violations = {}
+    for col in slack:
+        try: violations[col] = float(slack[col].value())
+        except: violations[col] = None
+
+    metrics = {
+        "status":"ok" if len(squad) else "no_solution",
+        "count":int(len(squad)),
+        "spend":float(squad[price_col].sum()) if len(squad) else 0.0,
+        "objective":float(squad["objective_score"].sum()) if len(squad) else 0.0,
+        "violations":violations
+    }
+    for r in ["BAT","BOWL","AR","WK"]:
+        metrics[r] = int((squad["role"]==r).sum()) if len(squad) else 0
+    return squad, metrics
+
+
+def pick_best_xi(squad, xi_size, xi_min_role, max_overseas_xi, enforce_left_in_top4):
+    if len(squad)==0:
+        return pd.DataFrame(), {"status":"empty"}
+
+    d = squad.copy()
+    players_list = d["player"].tolist()
+    x = pl.LpVariable.dicts("xi", players_list, lowBound=0, upBound=1, cat="Binary")
+    prob = pl.LpProblem("BestXI", pl.LpMaximize)
+
+    prob += pl.lpSum(d.loc[d.player==p,"xi_score"].values[0]*x[p] for p in players_list)
+    prob += pl.lpSum(x[p] for p in players_list)==int(xi_size)
+
+    def role_count(code):
+        return pl.lpSum(x[p] for p in players_list if d.loc[d.player==p,"role"].values[0]==code)
+    for r, mn in xi_min_role.items():
+        prob += role_count(r) >= int(mn)
+
+    if max_overseas_xi is not None and "is_overseas" in d.columns:
+        prob += pl.lpSum(x[p] for p in players_list if int(d.loc[d.player==p,"is_overseas"].values[0])==1) <= int(max_overseas_xi)
+
+    if enforce_left_in_top4 and "bat_hand" in d.columns and "is_top4_candidate" in d.columns:
+        prob += pl.lpSum(
+            x[p] for p in players_list
+            if (int(d.loc[d.player==p,"is_top4_candidate"].values[0])==1 and
+                str(d.loc[d.player==p,"bat_hand"].values[0])=="L")
+        ) >= 1
+
+    prob.solve(pl.PULP_CBC_CMD(msg=False))
+    picked = [p for p in players_list if x[p].value()==1]
+    xi = d[d.player.isin(picked)].copy()
+    metrics = {"status":"ok" if len(xi) else "no_solution","count":int(len(xi)),
+               "xi_score":float(xi["xi_score"].sum()) if len(xi) else 0.0}
+    return xi, metrics
+
+
+# ═══════════════════════════════════════════════════════
 # SCOUT MODE
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 def run_scout_mode():
-    st.markdown('<div class="section-header">📁 Upload Data</div>', unsafe_allow_html=True)
-
+    section("Upload Data", "📁")
     c1, c2 = st.columns(2)
     with c1:
-        players_f    = st.file_uploader("players.csv", type="csv", key="sc_pl",
-                                         help="Required cols: player_id, player, role, age, bat_hand")
+        players_f    = st.file_uploader("Player data CSV", type="csv", key="sc_pl",
+                                         help="Any CSV with player names, roles, and basic info")
     with c2:
-        performance_f = st.file_uploader("performance.csv", type="csv", key="sc_pf",
-                                          help="Required cols: player_id, matches, runs, strike_rate, wickets, economy, dot_ball_pct, boundary_pct")
+        performance_f= st.file_uploader("Performance data CSV", type="csv", key="sc_pf",
+                                         help="Any CSV with batting/bowling stats")
 
     if not all([players_f, performance_f]):
-        st.info("👆 Upload both CSVs above to unlock Scout Mode.")
+        st.markdown("""
+        <div class="mapper-card">
+            <div class="mc-title">📋 What CSVs can I upload?</div>
+            <div class="mc-sub">
+                <b>Player data:</b> Any spreadsheet with player names and roles — 
+                column names like "name", "player", "full_name" all work automatically.<br><br>
+                <b>Performance data:</b> Any spreadsheet with batting/bowling stats — 
+                column names like "runs", "wickets", "strike_rate", "economy", "SR", "Econ" all work.<br><br>
+                <b>No reformatting needed.</b> CricIntel detects your columns automatically.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
         st.stop()
 
     players = pd.read_csv(players_f)
     perf    = pd.read_csv(performance_f)
-    df      = build_base_df(players, perf)
-    df      = compute_phase_scores(df)
+
+    # Show detection summary
+    cric_divider()
+    section("Column Detection", "🧠")
+
+    p_detected = auto_detect_columns(players)
+    r_detected = auto_detect_columns(perf)
+    all_detected = {**p_detected, **r_detected}
+
+    required = ["player","player_id","role","matches","runs","strike_rate","wickets","economy"]
+    render_mapping_summary(all_detected, required)
+
+    # Build
+    with st.spinner("Analysing your data..."):
+        df = build_base_df(players, perf)
+        df = compute_phase_scores(df)
 
     # ── SNAPSHOT ──────────────────────────────────────────────────────────
+    cric_divider()
     section("Squad Snapshot", "📊")
-    c1, c2, c3, c4, c5 = st.columns(5)
-    c1.metric("Total Players",  len(df))
-    c2.metric("Batters",        int((df["role"]=="BAT").sum()))
-    c3.metric("Bowlers",        int((df["role"]=="BOWL").sum()))
-    c4.metric("All-rounders",   int((df["role"]=="AR").sum()))
-    c5.metric("Wicketkeepers",  int((df["role"]=="WK").sum()))
+    c1,c2,c3,c4,c5 = st.columns(5)
+    c1.metric("Total Players", len(df))
+    c2.metric("Batters",       int((df["role"]=="BAT").sum()))
+    c3.metric("Bowlers",       int((df["role"]=="BOWL").sum()))
+    c4.metric("All-rounders",  int((df["role"]=="AR").sum()))
+    c5.metric("Wicketkeepers", int((df["role"]=="WK").sum()))
 
-    # ── ROLE DISTRIBUTION BAR ─────────────────────────────────────────────
+    # ── CHARTS ────────────────────────────────────────────────────────────
     cric_divider()
     section("Role & Nationality Breakdown", "🌍")
     t1, t2 = st.columns(2)
-
     with t1:
         role_counts = df["role"].value_counts().reset_index()
         role_counts.columns = ["Role","Count"]
         st.bar_chart(role_counts.set_index("Role"), color="#00d4ff")
-
     with t2:
         if "country" in df.columns:
-            country_counts = df["country"].value_counts().head(8).reset_index()
-            country_counts.columns = ["Country","Count"]
-            st.bar_chart(country_counts.set_index("Country"), color="#818cf8")
+            cc = df["country"].value_counts().head(8).reset_index()
+            cc.columns = ["Country","Count"]
+            st.bar_chart(cc.set_index("Country"), color="#818cf8")
+
+    # ── SMART FILTER PANEL ────────────────────────────────────────────────
+    cric_divider()
+    section("Smart Filter Panel", "🔎")
+
+    with st.expander("🔽 Open Filters", expanded=True):
+        st.markdown('<div class="filter-panel">', unsafe_allow_html=True)
+
+        f1, f2, f3 = st.columns(3)
+
+        # Role filter
+        role_options = ["All"] + sorted(df["role"].dropna().unique().tolist())
+        sel_role = f1.multiselect("Role", role_options[1:], default=[])
+
+        # Age filter
+        if df["age"].max() > 0:
+            age_min = int(df["age"].min()) if df["age"].min() > 0 else 15
+            age_max = int(df["age"].max()) if df["age"].max() > 0 else 45
+            sel_age = f2.slider("Age range", age_min, age_max, (age_min, age_max))
+        else:
+            sel_age = (15, 45)
+
+        # Batting hand
+        hand_options = ["All","Left (L)","Right (R)"]
+        sel_hand = f3.selectbox("Batting hand", hand_options)
+
+        f4, f5, f6 = st.columns(3)
+
+        # Bowling type
+        bowl_options = ["All","Spinner","Pacer"]
+        sel_bowl = f4.selectbox("Bowling type", bowl_options)
+
+        # Batting role
+        bat_role_opts = ["All"] + sorted(df["batting_role"].dropna().unique().tolist())
+        sel_bat_role = f5.selectbox("Batting role", bat_role_opts)
+
+        # Bowling role
+        bowl_role_opts = ["All"] + sorted(df["bowling_role"].dropna().unique().tolist())
+        sel_bowl_role = f6.selectbox("Bowling role", bowl_role_opts)
+
+        f7, f8, f9 = st.columns(3)
+
+        # Scouting grade filter
+        if "scouting_grade" in df.columns:
+            grade_opts = ["All"] + sorted(df["scouting_grade"].dropna().unique().tolist())
+            sel_grade = f7.selectbox("Scouting grade", grade_opts)
+        else:
+            sel_grade = "All"
+
+        # Format specialism
+        if "format_specialism" in df.columns:
+            fmt_opts = ["All"] + sorted(df["format_specialism"].dropna().unique().tolist())
+            sel_format = f8.selectbox("Format specialism", fmt_opts)
+        else:
+            sel_format = "All"
+
+        # Analyst recommendation
+        if "analyst_recommendation" in df.columns:
+            rec_opts = ["All"] + sorted(df["analyst_recommendation"].dropna().unique().tolist())
+            sel_rec = f9.selectbox("Analyst recommendation", rec_opts)
+        else:
+            sel_rec = "All"
+
+        # Impact score slider
+        fi1, fi2 = st.columns(2)
+        sel_impact = fi1.slider("Min impact score", 0.0, 1.0, 0.0, 0.05)
+        sel_risk   = fi2.slider("Max risk score",   0.0, 1.0, 1.0, 0.05)
+
+        # Overseas filter
+        sel_overseas = st.radio("Overseas status", ["All","Domestic only","Overseas only"], horizontal=True)
+
+        st.markdown('</div>', unsafe_allow_html=True)
+
+    # ── APPLY FILTERS ─────────────────────────────────────────────────────
+    filtered = df.copy()
+
+    if sel_role:
+        filtered = filtered[filtered["role"].isin(sel_role)]
+    if sel_age != (int(df["age"].min()) if df["age"].min()>0 else 15,
+                   int(df["age"].max()) if df["age"].max()>0 else 45):
+        filtered = filtered[(filtered["age"]>=sel_age[0]) & (filtered["age"]<=sel_age[1])]
+    if sel_hand == "Left (L)":
+        filtered = filtered[filtered["bat_hand"]=="L"]
+    elif sel_hand == "Right (R)":
+        filtered = filtered[filtered["bat_hand"]=="R"]
+    if sel_bowl == "Spinner":
+        filtered = filtered[filtered["is_spinner"].astype(int)==1]
+    elif sel_bowl == "Pacer":
+        filtered = filtered[filtered["is_pacer"].astype(int)==1]
+    if sel_bat_role != "All":
+        filtered = filtered[filtered["batting_role"]==sel_bat_role]
+    if sel_bowl_role != "All":
+        filtered = filtered[filtered["bowling_role"]==sel_bowl_role]
+    if sel_grade != "All" and "scouting_grade" in filtered.columns:
+        filtered = filtered[filtered["scouting_grade"]==sel_grade]
+    if sel_format != "All" and "format_specialism" in filtered.columns:
+        filtered = filtered[filtered["format_specialism"]==sel_format]
+    if sel_rec != "All" and "analyst_recommendation" in filtered.columns:
+        filtered = filtered[filtered["analyst_recommendation"]==sel_rec]
+    if sel_overseas == "Domestic only":
+        filtered = filtered[filtered["is_overseas"].astype(int)==0]
+    elif sel_overseas == "Overseas only":
+        filtered = filtered[filtered["is_overseas"].astype(int)==1]
+
+    filtered = filtered[filtered["match_impact_score"] >= sel_impact]
+    filtered = filtered[filtered["total_risk"] <= sel_risk]
+
+    st.caption(f"Showing **{len(filtered)}** of {len(df)} players")
 
     # ── TOP PROFILES TABLE ────────────────────────────────────────────────
     cric_divider()
     section("Top Profiles", "🏆")
 
-    show_cols = ["player","role","age","country","bat_hand","bowling_arm","spin_type",
-                 "batting_role","bowling_role","matches","runs","strike_rate",
-                 "wickets","economy","dot_ball_pct","boundary_pct",
-                 "match_impact_score","total_risk"]
-    show_cols = [c for c in show_cols if c in df.columns]
+    show_cols = [c for c in ["player","role","age","country","bat_hand","bowling_arm",
+                              "batting_role","bowling_role","matches","runs","strike_rate",
+                              "wickets","economy","dot_ball_pct","boundary_pct",
+                              "scouting_grade","format_specialism","analyst_recommendation",
+                              "match_impact_score","total_risk"] if c in filtered.columns]
 
-    top_df = df[show_cols].sort_values("match_impact_score", ascending=False).head(30)
-
-    # colour-code match_impact_score
     st.dataframe(
-        top_df.style.format({"match_impact_score": "{:.3f}", "total_risk": "{:.3f}",
-                     "strike_rate": "{:.1f}", "economy": "{:.2f}"}),
-        use_container_width=True,
-        height=420
+        filtered[show_cols].sort_values("match_impact_score",ascending=False).head(50).style.format(
+            {c:"{:.3f}" for c in ["match_impact_score","total_risk"] if c in show_cols} |
+            {"strike_rate":"{:.1f}","economy":"{:.2f}"}
+        ),
+        use_container_width=True, height=440
     )
 
     # ── SIMILARITY SEARCH ─────────────────────────────────────────────────
     cric_divider()
     section("Similarity Search", "🔍")
-    st.caption("Finds the closest stylistic matches to any player using phase profile + performance fingerprint.")
+    st.caption("Finds stylistically closest players using phase profile + performance fingerprint.")
 
     col_sel, col_k = st.columns([3,1])
-    target    = col_sel.selectbox("Select a player", df["player"].tolist(), index=0)
+    all_players = df["player"].tolist()
+    target    = col_sel.selectbox("Select a player", all_players, index=0)
     top_k_sim = col_k.number_input("Top K", min_value=5, max_value=25, value=10, step=1)
 
     sim = get_similar_players(df, target, top_k=int(top_k_sim))
 
     if len(sim):
-        # show target profile
         trow = df[df["player"]==target].iloc[0]
         st.markdown(f"""
         <div class="player-card">
@@ -625,16 +951,17 @@ def run_scout_mode():
         </div>
         """, unsafe_allow_html=True)
 
-        sim_show = sim[["player","role","batting_role","bowling_role",
-                         "similarity","match_impact_score","total_risk",
-                         "runs","strike_rate","wickets","economy"]].copy()
-        sim_show = sim_show.rename(columns={"similarity":"Similarity ↓"})
-
+        sim_cols = [c for c in ["player","role","batting_role","bowling_role",
+                                  "similarity","match_impact_score","total_risk",
+                                  "runs","strike_rate","wickets","economy",
+                                  "scouting_grade","analyst_recommendation"] if c in sim.columns]
+        sim_show = sim[sim_cols].rename(columns={"similarity":"Similarity ↓"})
         st.dataframe(
-            sim_show.style.format({"Similarity ↓": "{:.3f}", "match_impact_score": "{:.3f}",
-                         "total_risk": "{:.3f}", "strike_rate": "{:.1f}", "economy": "{:.2f}"}),
-            use_container_width=True,
-            height=380
+            sim_show.style.format(
+                {"Similarity ↓":"{:.3f}","match_impact_score":"{:.3f}",
+                 "total_risk":"{:.3f}","strike_rate":"{:.1f}","economy":"{:.2f}"}
+            ),
+            use_container_width=True, height=380
         )
     else:
         st.warning("No similar players found.")
@@ -642,109 +969,101 @@ def run_scout_mode():
     # ── GAP-FILL RECOMMENDER ──────────────────────────────────────────────
     cric_divider()
     section("Gap-Fill Recommender", "🧩")
-    st.caption("Select your current players in a role — get the best available replacements or additions.")
+    st.caption("Select your current players in a role — get the best available replacements.")
 
-    gap_options = [
-        "Pacer (any)","Left-arm Pacer","Right-arm Pacer",
-        "Spinner (any)","Left-arm Spinner","Right-arm Spinner",
-        "Off-spinner","Leg-spinner",
-        "Opener","Top-4 (anchor)","Finisher"
-    ]
+    gap_options = ["Pacer (any)","Left-arm Pacer","Right-arm Pacer",
+                   "Spinner (any)","Left-arm Spinner","Right-arm Spinner",
+                   "Off-spinner","Leg-spinner","Opener","Top-4 (anchor)","Finisher"]
 
     g1, g2 = st.columns([2,1])
-    gap_type   = g1.selectbox("Gap to fill", gap_options)
-    allow_small= g2.checkbox("Allow 2-player unit", value=True)
+    gap_type    = g1.selectbox("Gap to fill", gap_options)
+    allow_small = g2.checkbox("Allow 2-player unit", value=True)
 
     def gap_pool(d, gap):
         pools = {
-            "Pacer (any)":        d[d["is_pacer"].astype(int)==1],
-            "Left-arm Pacer":     d[d["is_left_arm_pacer"].astype(int)==1],
-            "Right-arm Pacer":    d[d["is_right_arm_pacer"].astype(int)==1],
-            "Spinner (any)":      d[d["is_spinner"].astype(int)==1],
-            "Left-arm Spinner":   d[d["is_left_arm_spinner"].astype(int)==1],
-            "Right-arm Spinner":  d[d["is_right_arm_spinner"].astype(int)==1],
-            "Off-spinner":        d[d["is_off_spinner"].astype(int)==1],
-            "Leg-spinner":        d[d["is_leg_spinner"].astype(int)==1],
-            "Opener":             d[d["is_opener"].astype(int)==1],
-            "Top-4 (anchor)":     d[d["is_top4_candidate"].astype(int)==1],
-            "Finisher":           d[d["is_finisher"].astype(int)==1],
+            "Pacer (any)":       d[d["is_pacer"].astype(int)==1],
+            "Left-arm Pacer":    d[d["is_left_arm_pacer"].astype(int)==1],
+            "Right-arm Pacer":   d[d["is_right_arm_pacer"].astype(int)==1],
+            "Spinner (any)":     d[d["is_spinner"].astype(int)==1],
+            "Left-arm Spinner":  d[d["is_left_arm_spinner"].astype(int)==1],
+            "Right-arm Spinner": d[d["is_right_arm_spinner"].astype(int)==1],
+            "Off-spinner":       d[d["is_off_spinner"].astype(int)==1],
+            "Leg-spinner":       d[d["is_leg_spinner"].astype(int)==1],
+            "Opener":            d[d["is_opener"].astype(int)==1],
+            "Top-4 (anchor)":    d[d["is_top4_candidate"].astype(int)==1],
+            "Finisher":          d[d["is_finisher"].astype(int)==1],
         }
         return pools.get(gap, d)
 
     pool_df = gap_pool(df, gap_type)
 
-    if len(pool_df) == 0:
-        st.warning("No players found for this gap type. Check your flag columns in the CSV.")
+    if len(pool_df)==0:
+        st.warning("No players found for this gap type.")
         st.stop()
 
     current_players = st.multiselect(
         f"Your current players ({gap_type})",
-        options=pool_df["player"].tolist(),
-        default=[]
+        options=pool_df["player"].tolist(), default=[]
     )
 
     n_sel = len(current_players)
-    if n_sel == 0:
+    if n_sel==0:
         st.info("Select at least 1 player to get recommendations.")
         st.stop()
-    elif n_sel == 1:
+    elif n_sel==1:
         st.info("**Mode: Player-style match** — finding closest stylistic alternatives.")
-    elif n_sel == 2 and not allow_small:
+    elif n_sel==2 and not allow_small:
         st.warning("Select 3+ for stable unit match, or enable 'Allow 2-player unit'.")
         st.stop()
-    elif n_sel == 2:
-        st.warning("**Mode: Small unit (2 players)** — less stable, use with caution.")
+    elif n_sel==2:
+        st.warning("**Mode: Small unit (2 players)** — less stable.")
     else:
         st.success(f"**Mode: Unit match ({n_sel} players)** — high confidence recommendations.")
 
     def feat_cols_for_gap(gap):
-        bowling_feats = ["pp_bowl_score","mid_bowl_score","death_bowl_score",
-                         "pp_eco","middle_eco","death_eco","pp_wkts","death_wkts",
-                         "economy","dot_ball_pct","match_impact_score","total_risk"]
-        batting_feats = ["pp_bat_score","mid_bat_score","death_bat_score",
-                         "pp_sr","middle_sr","strike_rate","pp_runs","runs",
-                         "boundary_pct","match_impact_score","total_risk"]
-        death_bat_feats = ["death_bat_score","death_sr","death_runs","strike_rate",
-                           "boundary_pct","match_impact_score","total_risk"]
+        bowl = ["pp_bowl_score","mid_bowl_score","death_bowl_score",
+                "pp_eco","middle_eco","death_eco","pp_wkts","death_wkts",
+                "economy","dot_ball_pct","match_impact_score","total_risk"]
+        bat  = ["pp_bat_score","mid_bat_score","death_bat_score",
+                "pp_sr","middle_sr","strike_rate","pp_runs","runs",
+                "boundary_pct","match_impact_score","total_risk"]
+        death= ["death_bat_score","death_sr","death_runs","strike_rate",
+                "boundary_pct","match_impact_score","total_risk"]
         if gap in ["Pacer (any)","Left-arm Pacer","Right-arm Pacer",
-                   "Spinner (any)","Left-arm Spinner","Right-arm Spinner",
-                   "Off-spinner","Leg-spinner"]:
-            return [c for c in bowling_feats if c in df.columns]
+                   "Spinner (any)","Left-arm Spinner","Right-arm Spinner","Off-spinner","Leg-spinner"]:
+            return [c for c in bowl if c in df.columns]
         if gap in ["Opener","Top-4 (anchor)"]:
-            return [c for c in batting_feats if c in df.columns]
-        if gap == "Finisher":
-            return [c for c in death_bat_feats if c in df.columns]
+            return [c for c in bat if c in df.columns]
+        if gap=="Finisher":
+            return [c for c in death if c in df.columns]
         return [c for c in ["match_impact_score","total_risk","strike_rate","economy"] if c in df.columns]
 
-    feat_cols = feat_cols_for_gap(gap_type)
-    base = df[df["player"].isin(current_players)].copy()
-    cand = pool_df[~pool_df["player"].isin(current_players)].copy()
+    feat_cols  = feat_cols_for_gap(gap_type)
+    base       = df[df["player"].isin(current_players)].copy()
+    cand       = pool_df[~pool_df["player"].isin(current_players)].copy()
 
-    if len(cand) == 0:
+    if len(cand)==0:
         st.warning("No candidates available.")
         st.stop()
 
-    # FIX: use StandardScaler for fair cosine comparison
-    scaler = StandardScaler()
-    all_feats = pd.concat([base[feat_cols], cand[feat_cols]]).apply(pd.to_numeric, errors="coerce").fillna(0.0)
-    scaled_all = scaler.fit_transform(all_feats.values)
-    base_scaled = scaled_all[:len(base)]
-    cand_scaled = scaled_all[len(base):]
+    scaler    = StandardScaler()
+    all_feats = pd.concat([base[feat_cols],cand[feat_cols]]).apply(pd.to_numeric,errors="coerce").fillna(0.0)
+    scaled    = scaler.fit_transform(all_feats.values)
+    base_s    = scaled[:len(base)]
+    cand_s    = scaled[len(base):]
 
-    centroid = base_scaled.mean(axis=0).reshape(1,-1)
-    sims = cosine_similarity(cand_scaled, centroid).reshape(-1)
-    cand = cand.copy()
+    centroid  = base_s.mean(axis=0).reshape(1,-1)
+    sims      = cosine_similarity(cand_s, centroid).reshape(-1)
+    cand      = cand.copy()
     cand["unit_fit_score"] = sims
-    cand["combined_reco"] = (
+    cand["combined_reco"]  = (
         0.70*cand["unit_fit_score"]
         + 0.30*norm01(cand["match_impact_score"])
         - 0.20*norm01(cand["total_risk"])
     )
 
-    rec = cand.sort_values("combined_reco", ascending=False).head(10)
-
-    # Unit profile
-    unit_avg = base[feat_cols].apply(pd.to_numeric, errors="coerce").fillna(0.0).mean()
+    rec      = cand.sort_values("combined_reco",ascending=False).head(10)
+    unit_avg = base[feat_cols].apply(pd.to_numeric,errors="coerce").fillna(0.0).mean()
 
     col_up, col_rec = st.columns([1,2])
     with col_up:
@@ -756,32 +1075,29 @@ def run_scout_mode():
 
     with col_rec:
         section("Top 10 Recommendations", "⭐")
-        show_rec = ["player","role","age","bat_hand","bowling_arm","spin_type",
-                    "batting_role","bowling_role","unit_fit_score","combined_reco",
-                    "match_impact_score","total_risk"]
-        show_rec = [c for c in show_rec if c in rec.columns]
+        show_rec = [c for c in ["player","role","age","bat_hand","bowling_arm",
+                                  "batting_role","bowling_role","unit_fit_score",
+                                  "combined_reco","match_impact_score","total_risk",
+                                  "scouting_grade","analyst_recommendation"] if c in rec.columns]
         st.dataframe(
-            rec[show_rec].style.format({"unit_fit_score":"{:.3f}","combined_reco":"{:.3f}",
-                         "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
-            use_container_width=True,
-            height=300
+            rec[show_rec].style.format(
+                {"unit_fit_score":"{:.3f}","combined_reco":"{:.3f}",
+                 "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
+            ),
+            use_container_width=True, height=300
         )
 
     # Explainability
     cric_divider()
     section("Explainability — Top 5", "🔬")
-    st.caption("Why each player was recommended vs your current unit.")
-
     for _, r in rec.head(5).iterrows():
         diffs = {}
         for c in feat_cols:
-            try:
-                diffs[c] = float(r[c]) - float(unit_avg.get(c, 0.0))
-            except Exception:
-                continue
+            try: diffs[c] = float(r[c]) - float(unit_avg.get(c,0.0))
+            except: continue
         ranked = sorted(diffs.items(), key=lambda kv: kv[1], reverse=True)
-        best  = ranked[:3]
-        worst = ranked[-1:] if ranked else []
+        best   = ranked[:3]
+        worst  = ranked[-1:] if ranked else []
 
         st.markdown(f"""
         <div class="explain-card">
@@ -789,7 +1105,6 @@ def run_scout_mode():
             <div class="escores">combined_reco: <b>{r.get('combined_reco',0):.3f}</b> &nbsp;|&nbsp; unit_fit: <b>{r.get('unit_fit_score',0):.3f}</b> &nbsp;|&nbsp; impact: <b>{r.get('match_impact_score',0):.3f}</b></div>
         </div>
         """, unsafe_allow_html=True)
-
         for k, v in best:
             st.markdown(f'<span class="explain-pos">▲ <b>{k}</b> better than unit avg ({v:+.3f})</span>', unsafe_allow_html=True)
         for k, v in worst:
@@ -798,23 +1113,36 @@ def run_scout_mode():
 
     # Downloads
     cric_divider()
-    d1, d2 = st.columns(2)
-    d1.download_button("⬇ Download Full Scout Table", to_csv_bytes(df), "scout_table.csv", "text/csv")
-    d2.download_button("⬇ Download Recommendations", to_csv_bytes(rec), "gap_fill_reco.csv", "text/csv")
+    d1, d2, d3 = st.columns(3)
+    d1.download_button("⬇ Full Scout Table",    to_csv_bytes(df),       "scout_full.csv",    "text/csv")
+    d2.download_button("⬇ Filtered Players",    to_csv_bytes(filtered), "scout_filtered.csv","text/csv")
+    d3.download_button("⬇ Recommendations",     to_csv_bytes(rec),      "gap_fill_reco.csv", "text/csv")
 
 
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 # AUCTION MODE
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 def run_auction_mode():
     section("Upload Data", "📁")
+
+    st.markdown("""
+    <div class="mapper-card">
+        <div class="mc-title">📋 Flexible CSV Upload</div>
+        <div class="mc-sub">
+            Upload any CSV format — CricIntel detects your columns automatically.<br>
+            <b>Contracts CSV:</b> needs a player ID + any salary/wage/price column.<br>
+            <b>Budget CSV:</b> needs a budget total + optional squad size settings.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
     c1, c2 = st.columns(2)
     with c1:
-        players_f    = st.file_uploader("players.csv",     type="csv", key="au_pl")
-        performance_f= st.file_uploader("performance.csv", type="csv", key="au_pf")
+        players_f    = st.file_uploader("Player data CSV",      type="csv", key="au_pl")
+        performance_f= st.file_uploader("Performance data CSV", type="csv", key="au_pf")
     with c2:
-        contracts_f  = st.file_uploader("contracts.csv",   type="csv", key="au_ct")
-        budget_f     = st.file_uploader("budget.csv",      type="csv", key="au_bd")
+        contracts_f  = st.file_uploader("Contracts / Salary CSV", type="csv", key="au_ct")
+        budget_f     = st.file_uploader("Budget CSV",             type="csv", key="au_bd")
 
     if not all([players_f, performance_f, contracts_f, budget_f]):
         st.info("👆 Upload all 4 CSVs to unlock Auction Mode.")
@@ -823,27 +1151,63 @@ def run_auction_mode():
     players   = pd.read_csv(players_f)
     perf      = pd.read_csv(performance_f)
     contracts = pd.read_csv(contracts_f)
-    budget_row= pd.read_csv(budget_f).iloc[0]
+    budget_df = pd.read_csv(budget_f)
 
-    req_contract = {"player_id","current_salary_lakh"}
-    if not req_contract.issubset(contracts.columns):
-        st.error(f"contracts.csv missing: {sorted(req_contract - set(contracts.columns))}")
+    # ── Auto-detect salary column ─────────────────────────────────────────
+    c_detected = auto_detect_columns(contracts)
+    salary_col = c_detected.get("current_salary_lakh", (None,0))[0]
+
+    if salary_col is None:
+        st.error("❌ Could not detect a salary/wage column in contracts CSV. Please ensure it has a column like 'salary', 'wage', 'base_price', or 'current_salary_lakh'.")
         st.stop()
 
-    contracts["current_salary_lakh"] = pd.to_numeric(contracts["current_salary_lakh"], errors="coerce").fillna(0.0)
-    df = build_base_df(players, perf, contracts=contracts)
-    df["current_salary_lakh"] = pd.to_numeric(df.get("current_salary_lakh", 0), errors="coerce").fillna(0.0)
+    if salary_col != "current_salary_lakh":
+        contracts = contracts.rename(columns={salary_col: "current_salary_lakh"})
+
+    contracts["current_salary_lakh"] = pd.to_numeric(contracts["current_salary_lakh"],errors="coerce").fillna(0.0)
+
+    # ── Auto-detect budget row ────────────────────────────────────────────
+    b_detected  = auto_detect_columns(budget_df)
+    budget_col  = b_detected.get("budget_lakh",  (None,0))[0]
+    maxpl_col   = b_detected.get("max_players",  (None,0))[0]
+    minbat_col  = b_detected.get("min_bat",       (None,0))[0]
+    minbowl_col = b_detected.get("min_bowl",      (None,0))[0]
+    minar_col   = b_detected.get("min_ar",        (None,0))[0]
+    minwk_col   = b_detected.get("min_wk",        (None,0))[0]
+
+    def get_budget_val(col, default):
+        if col and col in budget_df.columns:
+            return budget_df[col].iloc[0]
+        return default
+
+    default_budget = get_budget_val(budget_col,  10000)
+    default_maxpl  = get_budget_val(maxpl_col,   25)
+    default_minbat = get_budget_val(minbat_col,  8)
+    default_minbowl= get_budget_val(minbowl_col, 8)
+    default_minar  = get_budget_val(minar_col,   4)
+    default_minwk  = get_budget_val(minwk_col,   2)
+
+    # Show detection
+    cric_divider()
+    section("Column Detection", "🧠")
+    all_det = {**auto_detect_columns(players), **auto_detect_columns(perf), **c_detected, **b_detected}
+    req = ["player","player_id","role","matches","runs","strike_rate",
+           "wickets","economy","current_salary_lakh","budget_lakh"]
+    render_mapping_summary(all_det, req)
+
+    with st.spinner("Analysing your data..."):
+        df = build_base_df(players, perf, contracts=contracts)
+        df["current_salary_lakh"] = pd.to_numeric(df.get("current_salary_lakh",0),errors="coerce").fillna(0.0)
 
     # ── CONTEXT ───────────────────────────────────────────────────────────
     cric_divider()
     section("Match Context", "🏟️")
-    cc1, cc2, cc3, cc4 = st.columns(4)
-    pitch_type  = cc1.selectbox("Home pitch", ["Flat/True","Spin-friendly","Pace/Bounce"])
+    cc1,cc2,cc3,cc4 = st.columns(4)
+    pitch_type  = cc1.selectbox("Home pitch",      ["Flat/True","Spin-friendly","Pace/Bounce"])
     season_goal = cc2.selectbox("Season strategy", ["Balanced","Batting dominance","Bowling dominance"])
     risk_pref   = cc3.selectbox("Risk preference", ["Balanced","Risk-averse","High-upside"])
-    auction_mode= cc4.checkbox("Auction pricing", value=True)
+    auction_mode= cc4.checkbox("Auction pricing",  value=True)
 
-    # ── OPPONENT ──────────────────────────────────────────────────────────
     cric_divider()
     section("Opponent Profile", "🎯")
     opp_profiles = {
@@ -853,426 +1217,370 @@ def run_auction_mode():
         "Death-over specialists": {"spin":0.45,"pace":0.55,"death":0.90,"pp":0.45},
         "Powerplay smashers":     {"spin":0.45,"pace":0.55,"death":0.55,"pp":0.90},
     }
-    oc1, oc2 = st.columns([2,1])
+    oc1,oc2 = st.columns([2,1])
     opp_sel  = oc1.selectbox("Opponent type", list(opp_profiles.keys()))
     override = oc2.checkbox("Manual sliders", value=False)
-
     base_opp = opp_profiles[opp_sel]
     o1,o2,o3,o4 = st.columns(4)
-    opp_spin  = o1.slider("Spin threat",       0.0,1.0,float(base_opp["spin"]),  0.05, disabled=not override)
-    opp_pace  = o2.slider("Pace threat",        0.0,1.0,float(base_opp["pace"]),  0.05, disabled=not override)
-    opp_death = o3.slider("Death bowl strength",0.0,1.0,float(base_opp["death"]), 0.05, disabled=not override)
-    opp_pp    = o4.slider("PP aggressiveness",  0.0,1.0,float(base_opp["pp"]),    0.05, disabled=not override)
+    opp_spin  = o1.slider("Spin threat",        0.0,1.0,float(base_opp["spin"]),  0.05,disabled=not override)
+    opp_pace  = o2.slider("Pace threat",         0.0,1.0,float(base_opp["pace"]),  0.05,disabled=not override)
+    opp_death = o3.slider("Death bowl strength", 0.0,1.0,float(base_opp["death"]), 0.05,disabled=not override)
+    opp_pp    = o4.slider("PP aggressiveness",   0.0,1.0,float(base_opp["pp"]),    0.05,disabled=not override)
 
-    # ── AUCTION SETTINGS ──────────────────────────────────────────────────
     cric_divider()
     section("Auction Settings", "💰")
-    a1, a2, a3 = st.columns(3)
-    inflation     = a1.slider("Inflation multiplier", 1.0, 2.5, 1.35, 0.05, disabled=not auction_mode)
-    reserve_floor = a2.number_input("Reserve floor (₹ lakh)", value=120.0, step=10.0, disabled=not auction_mode)
-    budget_lakh   = a3.number_input("Budget (₹ lakh)", value=float(budget_row.get("budget_lakh", 10000)), step=100.0)
+    a1,a2,a3 = st.columns(3)
+    inflation     = a1.slider("Inflation multiplier", 1.0,2.5,1.35,0.05,disabled=not auction_mode)
+    reserve_floor = a2.number_input("Reserve floor (lakh)", value=120.0, step=10.0, disabled=not auction_mode)
+    budget_lakh   = a3.number_input("Budget (lakh)", value=float(default_budget), step=100.0)
 
-    # ── SQUAD CONSTRAINTS ─────────────────────────────────────────────────
     cric_divider()
     section("Squad Constraints", "⚙️")
     c5,c6,c7,c8 = st.columns(4)
-    max_players = c5.number_input("Max squad", value=int(budget_row.get("max_players",25)), step=1)
-    min_bat     = c6.number_input("Min BAT",   value=int(budget_row.get("min_bat",8)),      step=1)
-    min_bowl    = c7.number_input("Min BOWL",  value=int(budget_row.get("min_bowl",8)),     step=1)
-    min_ar      = c8.number_input("Min AR",    value=int(budget_row.get("min_ar",4)),       step=1)
-
+    max_players = c5.number_input("Max squad",  value=int(default_maxpl),   step=1)
+    min_bat     = c6.number_input("Min BAT",    value=int(default_minbat),  step=1)
+    min_bowl    = c7.number_input("Min BOWL",   value=int(default_minbowl), step=1)
+    min_ar      = c8.number_input("Min AR",     value=int(default_minar),   step=1)
     c9,c10 = st.columns(2)
-    min_wk            = c9.number_input("Min WK",           value=int(budget_row.get("min_wk",2)), step=1)
-    max_overseas_squad = c10.number_input("Max Overseas",   value=8, step=1)
+    min_wk             = c9.number_input("Min WK",        value=int(default_minwk), step=1)
+    max_overseas_squad = c10.number_input("Max Overseas", value=8, step=1)
     min_role = {"BAT":min_bat,"BOWL":min_bowl,"AR":min_ar,"WK":min_wk}
 
-    # ── BALANCE CONSTRAINTS ───────────────────────────────────────────────
     cric_divider()
     section("Balance Constraints", "⚖️")
     b1,b2,b3,b4 = st.columns(4)
-    min_spinners  = b1.number_input("Min Spinners",      value=3, step=1)
-    min_pacers    = b2.number_input("Min Pacers",        value=3, step=1)
-    min_death_bowl= b3.number_input("Min Death Bowlers", value=2, step=1)
-    min_death_hit = b4.number_input("Min Death Hitters", value=2, step=1)
-
+    min_spinners  = b1.number_input("Min Spinners",      value=3,step=1)
+    min_pacers    = b2.number_input("Min Pacers",        value=3,step=1)
+    min_death_bowl= b3.number_input("Min Death Bowlers", value=2,step=1)
+    min_death_hit = b4.number_input("Min Death Hitters", value=2,step=1)
     b5,b6,b7 = st.columns(3)
-    min_pp_bowl  = b5.number_input("Min PP Bowlers",  value=2, step=1)
-    min_openers  = b6.number_input("Min Openers",     value=2, step=1)
-    min_finishers= b7.number_input("Min Finishers",   value=2, step=1)
-
+    min_pp_bowl  = b5.number_input("Min PP Bowlers", value=2,step=1)
+    min_openers  = b6.number_input("Min Openers",    value=2,step=1)
+    min_finishers= b7.number_input("Min Finishers",  value=2,step=1)
     enforce_left = st.checkbox("Enforce left-right balance (≥1 lefty in top 4)", value=True)
 
-    # ── SOFT CONSTRAINTS ──────────────────────────────────────────────────
-    cric_divider()
-    section("Solver Settings", "🔧")
-    s1, s2 = st.columns(2)
-    soft_mode      = s1.checkbox("Soft constraints (always returns a squad)", value=True)
-    penalty_weight = s2.slider("Soft penalty (higher = stricter)", 0.5, 10.0, 2.5, 0.1, disabled=not soft_mode)
-
-    # ── RETENTIONS ────────────────────────────────────────────────────────
     cric_divider()
     section("Retentions / RTM", "🔒")
-    r1, r2 = st.columns([2,1])
-    retained_players  = r1.multiselect("Retained/locked players", df["player"].tolist(), default=[])
-    default_ret_cost  = r2.number_input("Default retained cost (₹ lakh)", value=600.0, step=50.0)
+    r1,r2 = st.columns([2,1])
+    retained_players = r1.multiselect("Retained/locked players", df["player"].tolist(), default=[])
+    default_ret_cost = r2.number_input("Default retained cost (lakh)", value=600.0, step=50.0)
 
     retained_costs = {}
     if retained_players:
-        st.write("Set retained cost per player:")
-        rc_cols = st.columns(min(len(retained_players), 4))
-        for i, p in enumerate(retained_players[:20]):
-            retained_costs[p] = rc_cols[i % 4].number_input(p, value=float(default_ret_cost), step=50.0, key=f"rc_{p}")
+        rc_cols = st.columns(min(len(retained_players),4))
+        for i,p in enumerate(retained_players[:20]):
+            retained_costs[p] = rc_cols[i%4].number_input(p, value=float(default_ret_cost), step=50.0, key=f"rc_{p}")
 
-    locked_set      = set(retained_players)
-    retained_total  = sum(retained_costs.get(p, default_ret_cost) for p in retained_players)
-    budget_after_ret= float(budget_lakh - retained_total)
-
+    locked_set       = set(retained_players)
+    retained_total   = sum(retained_costs.get(p,default_ret_cost) for p in retained_players)
+    budget_after_ret = float(budget_lakh - retained_total)
     st.metric("Budget after retentions", f"₹ {budget_after_ret:,.1f} lakh",
-              delta=f"-₹{retained_total:,.1f} lakh retained" if retained_total > 0 else None)
-
-    if budget_after_ret <= 0:
+              delta=f"-₹{retained_total:,.1f} retained" if retained_total>0 else None)
+    if budget_after_ret<=0:
         st.error("❌ Retentions exceed budget.")
         st.stop()
 
-    # ── PRICING ───────────────────────────────────────────────────────────
+    # ── Pricing ───────────────────────────────────────────────────────────
     df["auction_price_lakh"] = df["current_salary_lakh"].copy()
     if auction_mode:
-        df["auction_price_lakh"] = (df["current_salary_lakh"] * float(inflation)).clip(lower=float(reserve_floor))
-
+        df["auction_price_lakh"] = (df["current_salary_lakh"]*float(inflation)).clip(lower=float(reserve_floor))
     price_col = "auction_price_lakh" if auction_mode else "current_salary_lakh"
     df["price_used_lakh"] = df[price_col].copy()
     if retained_players:
         df["price_used_lakh"] = df["price_used_lakh"].astype(float)
         for p in retained_players:
-            df.loc[df["player"]==p, "price_used_lakh"] = float(retained_costs.get(p, default_ret_cost))
+            df.loc[df["player"]==p,"price_used_lakh"] = float(retained_costs.get(p,default_ret_cost))
     price_col = "price_used_lakh"
 
-    # ── RISK ADJUSTMENT ───────────────────────────────────────────────────
-    rp_map = {"Risk-averse":1.2, "High-upside":0.4, "Balanced":0.8}
-    df["risk_adjustment"] = (1 - rp_map[risk_pref] * df["total_risk"]).clip(lower=0.25, upper=1.05)
+    rp_map = {"Risk-averse":1.2,"High-upside":0.4,"Balanced":0.8}
+    df["risk_adjustment"] = (1-rp_map[risk_pref]*df["total_risk"]).clip(lower=0.25,upper=1.05)
 
-    # ── PITCH FIT ─────────────────────────────────────────────────────────
-    fit = np.ones(len(df), dtype=float)
-    if pitch_type == "Spin-friendly":
-        fit += 0.12*df["is_spinner"].astype(float) + 0.05*(df["batting_role"]=="ANCHOR").astype(float)
+    fit = np.ones(len(df),dtype=float)
+    if pitch_type=="Spin-friendly":
+        fit += 0.12*df["is_spinner"].astype(float)+0.05*(df["batting_role"]=="ANCHOR").astype(float)
         fit -= 0.04*df["is_pacer"].astype(float)
-    elif pitch_type == "Pace/Bounce":
-        fit += 0.12*df["is_pacer"].astype(float) + 0.05*norm01(df["pp_sr"])
+    elif pitch_type=="Pace/Bounce":
+        fit += 0.12*df["is_pacer"].astype(float)+0.05*norm01(df["pp_sr"])
         fit -= 0.04*df["is_spinner"].astype(float)
     else:
-        fit += 0.10*norm01(df["strike_rate"]) + 0.08*(df["batting_role"]=="FINISHER").astype(float)
-    df["pitch_fit"] = np.clip(fit, 0.80, 1.30)
+        fit += 0.10*norm01(df["strike_rate"])+0.08*(df["batting_role"]=="FINISHER").astype(float)
+    df["pitch_fit"] = np.clip(fit,0.80,1.30)
 
-    # ── PHASE WEIGHTS ─────────────────────────────────────────────────────
     cric_divider()
     section("Phase Importance", "⏱️")
     p1,p2,p3 = st.columns(3)
-    w_pp    = p1.slider("Powerplay weight",    0.0, 2.0, 1.0, 0.1)
-    w_mid   = p2.slider("Middle overs weight", 0.0, 2.0, 1.0, 0.1)
-    w_death = p3.slider("Death overs weight",  0.0, 2.0, 1.2, 0.1)
-
+    w_pp    = p1.slider("Powerplay weight",    0.0,2.0,1.0,0.1)
+    w_mid   = p2.slider("Middle overs weight", 0.0,2.0,1.0,0.1)
+    w_death = p3.slider("Death overs weight",  0.0,2.0,1.2,0.1)
     df = compute_phase_scores(df, w_pp, w_mid, w_death)
 
-    # ── OPPONENT FIT ──────────────────────────────────────────────────────
-    lefty      = (df["bat_hand"].astype(str)=="L").astype(float)
-    anchor     = (df["batting_role"]=="ANCHOR").astype(float)
-    opener     = (df["batting_role"]=="OPENER").astype(float)
-    pp_bowler  = (df["bowling_role"]=="PP").astype(float)
-    pacer      = df["is_pacer"].astype(float)
-    spinner    = df["is_spinner"].astype(float)
+    lefty   = (df["bat_hand"].astype(str)=="L").astype(float)
+    anchor  = (df["batting_role"]=="ANCHOR").astype(float)
+    opener  = (df["batting_role"]=="OPENER").astype(float)
+    pp_bowl = (df["bowling_role"]=="PP").astype(float)
+    pacer   = df["is_pacer"].astype(float)
+    spinner = df["is_spinner"].astype(float)
 
-    opp_mult = np.ones(len(df), dtype=float)
-    opp_mult += 0.10*opp_spin  * (0.9*lefty  + 0.6*anchor  + 0.6*spinner  + 0.2*df["mid_bat_score"])
-    opp_mult += 0.10*opp_pace  * (0.9*pacer  + 0.6*opener  + 0.5*pp_bowler + 0.2*df["pp_bat_score"])
-    opp_mult += 0.08*opp_death * (0.9*anchor + 0.4*df["mid_bat_score"])
-    opp_mult += 0.08*opp_pp    * (0.9*pp_bowler + 0.5*(1-norm01(df["pp_eco"])))
-    df["opponent_fit"] = np.clip(opp_mult, 0.85, 1.22)
+    opp_mult = np.ones(len(df),dtype=float)
+    opp_mult += 0.10*opp_spin *(0.9*lefty +0.6*anchor+0.6*spinner+0.2*df["mid_bat_score"])
+    opp_mult += 0.10*opp_pace *(0.9*pacer +0.6*opener+0.5*pp_bowl+0.2*df["pp_bat_score"])
+    opp_mult += 0.08*opp_death*(0.9*anchor+0.4*df["mid_bat_score"])
+    opp_mult += 0.08*opp_pp   *(0.9*pp_bowl+0.5*(1-norm01(df["pp_eco"])))
+    df["opponent_fit"] = np.clip(opp_mult,0.85,1.22)
 
-    # ── FAIR SALARY REGRESSION ────────────────────────────────────────────
-    cric_divider()
-    section("Fair Salary Regression", "💎")
     feat_pool = ["role","age","runs","wickets","matches","strike_rate","economy",
                  "dot_ball_pct","boundary_pct","match_impact_score"]
     X = df[[c for c in feat_pool if c in df.columns]].copy()
     y = df["current_salary_lakh"].copy()
-
     cat_cols = ["role"] if "role" in X.columns else []
-    ct    = ColumnTransformer([("ohe", OneHotEncoder(handle_unknown="ignore"), cat_cols)], remainder="passthrough")
+    ct    = ColumnTransformer([("ohe",OneHotEncoder(handle_unknown="ignore"),cat_cols)],remainder="passthrough")
     model = Pipeline([("prep",ct),("reg",Ridge(alpha=1.0))])
     model.fit(X, y)
-    df["fair_salary_lakh"] = np.clip(model.predict(X), 0, None)
+    df["fair_salary_lakh"] = np.clip(model.predict(X),0,None)
     df["value_gap"] = df["fair_salary_lakh"] - df["price_used_lakh"]
 
-    # ── FLEX SCORE ────────────────────────────────────────────────────────
     df["phase_versatility"] = (
-        0.5*((df["is_pp_batter"].astype(int)==1)|(df["is_pp_bowler"].astype(int)==1)).astype(float) +
+        0.5*((df["is_pp_batter"].astype(int)==1)|(df["is_pp_bowler"].astype(int)==1)).astype(float)+
         0.5*((df["is_death_hitter"].astype(int)==1)|(df["is_death_bowler"].astype(int)==1)).astype(float)
     )
-    df["flex_score"] = norm01(0.55*(df["role"].isin(["AR","WK"]).astype(float)) + 0.45*norm01(df["phase_versatility"]))
+    df["flex_score"] = norm01(0.55*(df["role"].isin(["AR","WK"]).astype(float))+0.45*norm01(df["phase_versatility"]))
 
-    # ── MULTI-OBJECTIVE WEIGHTS ───────────────────────────────────────────
     cric_divider()
     section("Auction Strategy & Objective Weights", "🎚️")
     s1,s2,s3 = st.columns(3)
-    strategy              = s1.selectbox("Squad style", ["Balanced","Star-heavy","Depth-heavy"])
-    max_single_pct        = s2.slider("Max single-player spend (%)", 10, 60, 30, 1)
-    price_conc_penalty    = s3.slider("Price concentration penalty", 0.0, 5.0, 1.0, 0.1)
-    max_single_price      = float(budget_after_ret) * (float(max_single_pct)/100.0)
+    strategy           = s1.selectbox("Squad style", ["Balanced","Star-heavy","Depth-heavy"])
+    max_single_pct     = s2.slider("Max single-player spend (%)",10,60,30,1)
+    price_conc_penalty = s3.slider("Price concentration penalty",0.0,5.0,1.0,0.1)
+    max_single_price   = float(budget_after_ret)*(float(max_single_pct)/100.0)
 
-    base_weights = {"value":1.0,"impact":1.2,"fit":1.0,"opp":1.0,"flex":0.8,"risk":1.0}
-    if strategy == "Star-heavy":
-        base_weights.update({"value":0.8,"impact":1.35,"fit":1.15,"opp":1.15})
-    elif strategy == "Depth-heavy":
-        base_weights.update({"value":1.25,"impact":1.10})
-        price_conc_penalty = max(price_conc_penalty, 1.5)
+    bw = {"value":1.0,"impact":1.2,"fit":1.0,"opp":1.0,"flex":0.8,"risk":1.0}
+    if strategy=="Star-heavy":   bw.update({"value":0.8,"impact":1.35,"fit":1.15,"opp":1.15})
+    elif strategy=="Depth-heavy":bw.update({"value":1.25,"impact":1.10})
 
     mw1,mw2,mw3,mw4,mw5,mw6 = st.columns(6)
-    w_value  = mw1.slider("Value gap",      0.0,2.0,base_weights["value"],  0.05)
-    w_impact = mw2.slider("Impact",         0.0,2.0,base_weights["impact"], 0.05)
-    w_fit    = mw3.slider("Pitch fit",      0.0,2.0,base_weights["fit"],    0.05)
-    w_opp    = mw4.slider("Opponent fit",   0.0,2.0,base_weights["opp"],    0.05)
-    w_flex   = mw5.slider("Flex",           0.0,2.0,base_weights["flex"],   0.05)
-    w_risk   = mw6.slider("Risk penalty",   0.0,2.0,base_weights["risk"],   0.05)
+    w_value  = mw1.slider("Value gap",    0.0,2.0,bw["value"],  0.05)
+    w_impact = mw2.slider("Impact",       0.0,2.0,bw["impact"], 0.05)
+    w_fit    = mw3.slider("Pitch fit",    0.0,2.0,bw["fit"],    0.05)
+    w_opp    = mw4.slider("Opponent fit", 0.0,2.0,bw["opp"],    0.05)
+    w_flex   = mw5.slider("Flex",         0.0,2.0,bw["flex"],   0.05)
+    w_risk   = mw6.slider("Risk penalty", 0.0,2.0,bw["risk"],   0.05)
 
-    # objective
     df["value_gap_norm"] = norm01(df["value_gap"])
     df["impact_norm"]    = norm01(df["match_impact_score"])
     df["fit_norm"]       = norm01(df["pitch_fit"])
     df["opp_norm"]       = norm01(df["opponent_fit"])
     df["risk_norm"]      = norm01(df["total_risk"])
 
-    df["objective_score_raw"] = (
+    df["objective_score"] = (
         w_value*df["value_gap_norm"] + w_impact*df["impact_norm"] +
         w_fit*df["fit_norm"] + w_opp*df["opp_norm"] +
         w_flex*df["flex_score"] - w_risk*df["risk_norm"]
-    )
-    df["objective_score"] = df["objective_score_raw"] * df["risk_adjustment"]
-    df["xi_score"] = (
-        0.28*df["impact_norm"] + 0.20*df["fit_norm"] + 0.22*df["opp_norm"] +
-        0.15*df["flex_score"]  + 0.15*df["value_gap_norm"]
     ) * df["risk_adjustment"]
 
-    # ── TOP PLAYER TABLE ──────────────────────────────────────────────────
+    df["xi_score"] = (
+        0.28*df["impact_norm"]+0.20*df["fit_norm"]+0.22*df["opp_norm"]+
+        0.15*df["flex_score"] +0.15*df["value_gap_norm"]
+    ) * df["risk_adjustment"]
+
     cric_divider()
     section("Top Player Rankings", "📊")
-    top_show = ["player","role","age","bat_hand","batting_role","bowling_role",
-                "is_spinner","is_pacer","is_overseas",
-                "price_used_lakh","fair_salary_lakh","value_gap",
-                "match_impact_score","pitch_fit","opponent_fit",
-                "flex_score","total_risk","objective_score"]
-    top_show = [c for c in top_show if c in df.columns]
+    top_show = [c for c in ["player","role","age","bat_hand","batting_role","bowling_role",
+                              "is_spinner","is_pacer","is_overseas","price_used_lakh",
+                              "fair_salary_lakh","value_gap","match_impact_score",
+                              "pitch_fit","opponent_fit","flex_score","total_risk",
+                              "objective_score"] if c in df.columns]
     st.dataframe(
-        df[top_show].sort_values("objective_score", ascending=False).head(50).style.format(
-            {"objective_score":"{:.3f}","value_gap":"{:.1f}",
-             "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
+        df[top_show].sort_values("objective_score",ascending=False).head(50).style.format(
+            {"objective_score":"{:.3f}","value_gap":"{:.1f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
+        ),
         use_container_width=True, height=420
     )
 
-    # ── OPTIMISE ──────────────────────────────────────────────────────────
     cric_divider()
     section("Optimised Squad Selection", "🤖")
-
     extra_min_flags = {
-        "is_spinner":       int(min_spinners),
-        "is_pacer":         int(min_pacers),
-        "is_death_bowler2": int(min_death_bowl),
-        "is_death_hitter":  int(min_death_hit),
-        "is_pp_bowler2":    int(min_pp_bowl),
-        "is_opener":        int(min_openers),
-        "is_finisher":      int(min_finishers),
+        "is_spinner":int(min_spinners),"is_pacer":int(min_pacers),
+        "is_death_bowler2":int(min_death_bowl),"is_death_hitter":int(min_death_hit),
+        "is_pp_bowler2":int(min_pp_bowl),"is_opener":int(min_openers),"is_finisher":int(min_finishers),
     }
-    extra_max_flags = {"is_overseas": int(max_overseas_squad)}
+    extra_max_flags = {"is_overseas":int(max_overseas_squad)}
+
+    soft_mode      = st.checkbox("Soft constraints", value=True)
+    penalty_weight = st.slider("Soft penalty", 0.5,10.0,2.5,0.1,disabled=not soft_mode)
 
     with st.spinner("Running squad optimiser..."):
         squad, sm = optimize_squad_soft(
-            df=df, budget_limit=float(budget_after_ret),
-            max_players=int(max_players), min_role=min_role,
-            price_col=price_col, extra_min_flags=extra_min_flags,
-            extra_max_flags=extra_max_flags,
+            df=df, budget_limit=float(budget_after_ret), max_players=int(max_players),
+            min_role=min_role, price_col=price_col,
+            extra_min_flags=extra_min_flags, extra_max_flags=extra_max_flags,
             lock_players=locked_set if locked_set else None,
-            max_single_price=max_single_price,
-            penalty_weight=float(penalty_weight),
+            max_single_price=max_single_price, penalty_weight=float(penalty_weight),
             price_concentration_penalty=float(price_conc_penalty),
         )
 
     s1,s2,s3,s4,s5,s6 = st.columns(6)
-    s1.metric("Players selected",  sm.get("count",0))
-    s2.metric("Spend (₹ lakh)",    f"{sm.get('spend',0):,.1f}")
-    s3.metric("Objective total",   f"{sm.get('objective',0):.2f}")
-    s4.metric("BAT",               sm.get("BAT",0))
-    s5.metric("BOWL",              sm.get("BOWL",0))
-    s6.metric("AR+WK",             (sm.get("AR",0)+sm.get("WK",0)))
+    s1.metric("Players",     sm.get("count",0))
+    s2.metric("Spend",       f"{sm.get('spend',0):,.1f}")
+    s3.metric("Objective",   f"{sm.get('objective',0):.2f}")
+    s4.metric("BAT",         sm.get("BAT",0))
+    s5.metric("BOWL",        sm.get("BOWL",0))
+    s6.metric("AR+WK",       sm.get("AR",0)+sm.get("WK",0))
 
     if sm.get("violations"):
         v = {k:round(v,2) for k,v in sm["violations"].items() if v and v>0.001}
-        if v:
-            st.warning(f"⚠️ Soft-constraint shortfalls: {v}")
+        if v: st.warning(f"⚠️ Soft shortfalls: {v}")
 
-    if len(squad) == 0:
-        st.error("❌ No squad returned. Check budget/constraints.")
+    if len(squad)==0:
+        st.error("❌ No squad returned.")
         st.stop()
 
-    squad_show = ["player","role","bat_hand","batting_role","bowling_role",
-                  "is_spinner","is_pacer","is_overseas",
-                  "price_used_lakh","fair_salary_lakh","value_gap",
-                  "match_impact_score","pitch_fit","opponent_fit",
-                  "flex_score","total_risk","objective_score"]
-    squad_show = [c for c in squad_show if c in squad.columns]
+    squad_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
+                               "is_spinner","is_pacer","is_overseas","price_used_lakh",
+                               "fair_salary_lakh","value_gap","match_impact_score",
+                               "pitch_fit","opponent_fit","flex_score","total_risk",
+                               "objective_score"] if c in squad.columns]
     st.dataframe(
-        squad[squad_show].sort_values("objective_score", ascending=False).style.format(
-            {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}"}),
+        squad[squad_show].sort_values("objective_score",ascending=False).style.format(
+            {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}"}
+        ),
         use_container_width=True, height=420
     )
 
-    # ── BEST XI ───────────────────────────────────────────────────────────
     cric_divider()
     section("Best Playing XI", "🏏")
     x1,x2,x3,x4 = st.columns(4)
-    xi_size     = x1.number_input("XI size",    value=11, step=1)
-    xi_min_bat  = x2.number_input("XI Min BAT", value=4,  step=1)
-    xi_min_bowl = x3.number_input("XI Min BOWL",value=4,  step=1)
-    xi_min_wk   = x4.number_input("XI Min WK",  value=1,  step=1)
+    xi_size      = x1.number_input("XI size",    value=11,step=1)
+    xi_min_bat   = x2.number_input("XI Min BAT", value=4, step=1)
+    xi_min_bowl  = x3.number_input("XI Min BOWL",value=4, step=1)
+    xi_min_wk    = x4.number_input("XI Min WK",  value=1, step=1)
     x5,x6 = st.columns(2)
-    xi_min_ar       = x5.number_input("XI Min AR",       value=1, step=1)
-    max_overseas_xi = x6.number_input("XI Max Overseas", value=4, step=1)
-
-    xi_min_role = {"BAT":xi_min_bat,"BOWL":xi_min_bowl,"AR":xi_min_ar,"WK":xi_min_wk}
+    xi_min_ar       = x5.number_input("XI Min AR",       value=1,step=1)
+    max_overseas_xi = x6.number_input("XI Max Overseas", value=4,step=1)
 
     with st.spinner("Picking best XI..."):
-        xi, xm = pick_best_xi(squad=squad, xi_size=int(xi_size), xi_min_role=xi_min_role,
-                              max_overseas_xi=int(max_overseas_xi), enforce_left_in_top4=enforce_left)
+        xi, xm = pick_best_xi(squad=squad, xi_size=int(xi_size),
+                               xi_min_role={"BAT":xi_min_bat,"BOWL":xi_min_bowl,"AR":xi_min_ar,"WK":xi_min_wk},
+                               max_overseas_xi=int(max_overseas_xi), enforce_left_in_top4=enforce_left)
 
-    if len(xi) == 0:
-        st.warning("⚠️ No feasible XI — relax XI constraints.")
+    if len(xi)==0:
+        st.warning("⚠️ No feasible XI — relax constraints.")
     else:
         st.metric("XI total score", f"{xm.get('xi_score',0):.3f}")
-        xi_show = ["player","role","bat_hand","batting_role","bowling_role",
-                   "is_spinner","is_pacer","is_overseas",
-                   "match_impact_score","pitch_fit","opponent_fit","flex_score","total_risk","xi_score"]
-        xi_show = [c for c in xi_show if c in xi.columns]
+        xi_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
+                                 "is_spinner","is_pacer","is_overseas","match_impact_score",
+                                 "pitch_fit","opponent_fit","flex_score","total_risk","xi_score"] if c in xi.columns]
         st.dataframe(
-            xi[xi_show].sort_values("xi_score", ascending=False).style.format(
-                {"xi_score":"{:.3f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
+            xi[xi_show].sort_values("xi_score",ascending=False).style.format(
+                {"xi_score":"{:.3f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
+            ),
             use_container_width=True, height=420
         )
 
-    # ── DOWNLOADS ─────────────────────────────────────────────────────────
     cric_divider()
     d1,d2,d3 = st.columns(3)
-    d1.download_button("⬇ Full Table",  to_csv_bytes(df),    "auction_full.csv",  "text/csv")
-    d2.download_button("⬇ Squad",       to_csv_bytes(squad), "auction_squad.csv", "text/csv")
-    d3.download_button("⬇ Best XI",     to_csv_bytes(xi) if len(xi) else b"", "auction_xi.csv", "text/csv")
+    d1.download_button("⬇ Full Table", to_csv_bytes(df),    "auction_full.csv",  "text/csv")
+    d2.download_button("⬇ Squad",      to_csv_bytes(squad), "auction_squad.csv", "text/csv")
+    d3.download_button("⬇ Best XI",    to_csv_bytes(xi) if len(xi) else b"", "auction_xi.csv","text/csv")
 
 
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 # HIGHLIGHTS GENERATOR
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
 def run_highlights_mode():
     section("Upload Source Video", "🎬")
 
     if "hl_video_path" not in st.session_state:
         st.session_state["hl_video_path"] = None
 
-    tab_file, tab_yt = st.tabs(["📂 Upload Video", "▶️ YouTube Link"])
+    tab_file, tab_yt = st.tabs(["📂 Upload Video","▶️ YouTube Link"])
 
     with tab_file:
-        vid = st.file_uploader("Upload video (mp4 / mov / mkv)", type=["mp4","mov","mkv"], key="hl_upload")
+        vid = st.file_uploader("Upload video (mp4/mov/mkv)", type=["mp4","mov","mkv"], key="hl_upload")
         if vid:
-            tmp_dir    = tempfile.mkdtemp()
-            video_path = os.path.join(tmp_dir, vid.name)
-            with open(video_path,"wb") as f:
-                f.write(vid.getbuffer())
-            st.session_state["hl_video_path"] = video_path
+            tmp_dir = tempfile.mkdtemp()
+            vpath   = os.path.join(tmp_dir, vid.name)
+            with open(vpath,"wb") as f: f.write(vid.getbuffer())
+            st.session_state["hl_video_path"] = vpath
             st.success("✅ Video uploaded")
-            st.video(video_path)
+            st.video(vpath)
 
     with tab_yt:
         yt_url = st.text_input("Paste YouTube URL", placeholder="https://www.youtube.com/watch?v=...", key="hl_yt")
         st.caption("Requires `yt-dlp` + `ffmpeg` on the server.")
-
         if yt_url and st.button("Fetch from YouTube", key="hl_fetch"):
             tmp_dir = tempfile.mkdtemp()
-            out_tpl = os.path.join(tmp_dir, "input.%(ext)s")
+            out_tpl = os.path.join(tmp_dir,"input.%(ext)s")
             try:
                 subprocess.check_call(["yt-dlp","-f","bv*+ba/b","-o",out_tpl,yt_url])
-                video_path = next((os.path.join(tmp_dir,f) for f in os.listdir(tmp_dir) if f.startswith("input.")), None)
-                if video_path and os.path.exists(video_path):
-                    st.session_state["hl_video_path"] = video_path
-                    st.success("✅ YouTube video downloaded")
-                    st.video(video_path)
+                vpath = next((os.path.join(tmp_dir,f) for f in os.listdir(tmp_dir) if f.startswith("input.")),None)
+                if vpath and os.path.exists(vpath):
+                    st.session_state["hl_video_path"] = vpath
+                    st.success("✅ Downloaded")
+                    st.video(vpath)
                 else:
-                    st.error("Download finished but file not found.")
+                    st.error("File not found after download.")
             except Exception as e:
                 st.error(f"Download failed: {e}")
 
     cric_divider()
     section("Generate Highlights Clip", "✂️")
+    c1,c2,c3 = st.columns(3)
+    start_sec = c1.number_input("Start time (seconds)", min_value=0, value=0, step=5)
+    clip_secs = c2.number_input("Clip length (seconds)", min_value=5, max_value=600, value=60, step=5)
+    out_name  = c3.text_input("Output filename", value="highlights.mp4")
 
-    c1, c2, c3 = st.columns(3)
-    start_sec  = c1.number_input("Start time (seconds)", min_value=0, value=0, step=5, key="hl_start")
-    clip_secs  = c2.number_input("Clip length (seconds)", min_value=5, max_value=600, value=60, step=5, key="hl_len")
-    out_name   = c3.text_input("Output filename", value="highlights.mp4", key="hl_out")
-
-    if st.button("⚡ Generate Highlights", type="primary", key="hl_process"):
-        video_path = st.session_state.get("hl_video_path")
-        if not video_path or not os.path.exists(video_path):
+    if st.button("⚡ Generate Highlights", type="primary"):
+        vpath = st.session_state.get("hl_video_path")
+        if not vpath or not os.path.exists(vpath):
             st.error("Upload a video first.")
             return
-
-        tmp_out = tempfile.mkdtemp()
-        out_path= os.path.join(tmp_out, out_name)
-
-        cmd = ["ffmpeg","-y","-i",video_path,
-               "-ss",str(int(start_sec)),"-t",str(int(clip_secs)),
-               "-c","copy", out_path]
+        tmp_out  = tempfile.mkdtemp()
+        out_path = os.path.join(tmp_out, out_name)
+        cmd = ["ffmpeg","-y","-i",vpath,"-ss",str(int(start_sec)),"-t",str(int(clip_secs)),"-c","copy",out_path]
         try:
-            with st.spinner("Processing..."):
-                subprocess.check_call(cmd)
-            st.success("✅ Highlights generated")
+            with st.spinner("Processing..."): subprocess.check_call(cmd)
+            st.success("✅ Done")
             st.video(out_path)
             with open(out_path,"rb") as f:
-                st.download_button("⬇ Download Highlights (MP4)", data=f.read(),
-                                   file_name=out_name, mime="video/mp4", key="hl_dl")
+                st.download_button("⬇ Download Highlights", data=f.read(), file_name=out_name, mime="video/mp4")
         except Exception as e:
             st.error(f"❌ ffmpeg failed: {e}")
-            st.info("Ensure ffmpeg is installed and in PATH.")
 
 
-# ─────────────────────────────────────────────
-# SIDEBAR + MAIN HEADER
-# ─────────────────────────────────────────────
+# ═══════════════════════════════════════════════════════
+# SIDEBAR + ROUTING
+# ═══════════════════════════════════════════════════════
 with st.sidebar:
     st.markdown("""
-    <div style='text-align:center; padding: 1.2rem 0 0.5rem;'>
+    <div style='text-align:center;padding:1.2rem 0 0.5rem;'>
         <div style='font-size:2rem;'>🏏</div>
-        <div style='font-size:1.4rem; font-weight:800; color:#00d4ff; letter-spacing:0.12em;'>CRICINTEL</div>
-        <div style='font-size:0.75rem; color:#4a7a9b; margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
+        <div style='font-size:1.4rem;font-weight:800;color:#00d4ff;letter-spacing:0.12em;'>CRICINTEL</div>
+        <div style='font-size:0.75rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
     </div>
-    <hr style='border-color:#1e3a5f; margin:1rem 0;'>
+    <hr style='border-color:#1e3a5f;margin:1rem 0;'>
     """, unsafe_allow_html=True)
 
     mode = st.radio(
         "Select Mode",
-        ["🔍 Scout Mode", "💰 Auction Mode", "🎬 Highlights Generator"],
+        ["🔍 Scout Mode","💰 Auction Mode","🎬 Highlights Generator"],
         index=0
     )
 
     st.markdown("""
-    <hr style='border-color:#1e3a5f; margin:1rem 0;'>
-    <div style='font-size:0.75rem; color:#4a7a9b; text-align:center; padding-bottom:1rem;'>
-        v2.0 &nbsp;|&nbsp; Built with Streamlit<br>
+    <hr style='border-color:#1e3a5f;margin:1rem 0;'>
+    <div style='font-size:0.75rem;color:#4a7a9b;text-align:center;padding-bottom:1rem;'>
+        v3.0 &nbsp;|&nbsp; Built with Streamlit<br>
         <span style='color:#1e3a5f;'>─────────────────</span><br>
-        Scout Mode: 2 CSVs<br>
-        Auction Mode: 4 CSVs<br>
-        Highlights: MP4 / YouTube
+        🧠 Intelligent column detection<br>
+        📊 Any CSV format supported<br>
+        🌍 Any team · Any format
     </div>
     """, unsafe_allow_html=True)
 
-# ── BANNER ────────────────────────────────────────────────────────────────────
 mode_labels = {
-    "🔍 Scout Mode":          ("🔍 Scout Mode",          "Talent identification · Similarity search · Gap-fill recommendations"),
-    "💰 Auction Mode":        ("💰 Auction Mode",         "Squad optimisation · Fair salary · Best XI selection"),
-    "🎬 Highlights Generator":("🎬 Highlights Generator", "Upload match video · Generate highlight clips"),
+    "🔍 Scout Mode":           ("🔍 Scout Mode",           "Talent identification · Similarity search · Gap-fill recommendations"),
+    "💰 Auction Mode":         ("💰 Auction Mode",          "Squad optimisation · Fair salary · Best XI selection"),
+    "🎬 Highlights Generator": ("🎬 Highlights Generator",  "Upload match video · Generate highlight clips"),
 }
 banner_title, banner_sub = mode_labels[mode]
 
@@ -1283,16 +1591,15 @@ st.markdown(f"""
         <p>{banner_sub}</p>
     </div>
     <div style='text-align:right;'>
-        <div style='font-size:1.1rem; font-weight:700; color:#00d4ff;'>{banner_title}</div>
-        <div style='font-size:0.78rem; color:#4a7a9b; margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
+        <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
+        <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
     </div>
 </div>
 """, unsafe_allow_html=True)
 
-# ── ROUTE ─────────────────────────────────────────────────────────────────────
-if mode == "🔍 Scout Mode":
+if mode=="🔍 Scout Mode":
     run_scout_mode()
-elif mode == "💰 Auction Mode":
+elif mode=="💰 Auction Mode":
     run_auction_mode()
 else:
     run_highlights_mode()
