@@ -592,10 +592,7 @@ def run_scout_mode():
 
     # colour-code match_impact_score
     st.dataframe(
-        top_df.style
-            .background_gradient(subset=["match_impact_score"], cmap="Blues")
-            .background_gradient(subset=["total_risk"], cmap="Reds")
-            .format({"match_impact_score": "{:.3f}", "total_risk": "{:.3f}",
+        top_df.style.format({"match_impact_score": "{:.3f}", "total_risk": "{:.3f}",
                      "strike_rate": "{:.1f}", "economy": "{:.2f}"}),
         use_container_width=True,
         height=420
@@ -634,9 +631,7 @@ def run_scout_mode():
         sim_show = sim_show.rename(columns={"similarity":"Similarity ↓"})
 
         st.dataframe(
-            sim_show.style
-                .background_gradient(subset=["Similarity ↓"], cmap="Greens")
-                .format({"Similarity ↓": "{:.3f}", "match_impact_score": "{:.3f}",
+            sim_show.style.format({"Similarity ↓": "{:.3f}", "match_impact_score": "{:.3f}",
                          "total_risk": "{:.3f}", "strike_rate": "{:.1f}", "economy": "{:.2f}"}),
             use_container_width=True,
             height=380
@@ -766,9 +761,7 @@ def run_scout_mode():
                     "match_impact_score","total_risk"]
         show_rec = [c for c in show_rec if c in rec.columns]
         st.dataframe(
-            rec[show_rec].style
-                .background_gradient(subset=["combined_reco"], cmap="Greens")
-                .format({"unit_fit_score":"{:.3f}","combined_reco":"{:.3f}",
+            rec[show_rec].style.format({"unit_fit_score":"{:.3f}","combined_reco":"{:.3f}",
                          "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
             use_container_width=True,
             height=300
@@ -1069,12 +1062,9 @@ def run_auction_mode():
                 "flex_score","total_risk","objective_score"]
     top_show = [c for c in top_show if c in df.columns]
     st.dataframe(
-        df[top_show].sort_values("objective_score", ascending=False).head(50).style
-            .background_gradient(subset=["objective_score"], cmap="Blues")
-            .background_gradient(subset=["value_gap"], cmap="RdYlGn")
-            .background_gradient(subset=["total_risk"], cmap="Reds")
-            .format({"objective_score":"{:.3f}","value_gap":"{:.1f}",
-                     "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
+        df[top_show].sort_values("objective_score", ascending=False).head(50).style.format(
+            {"objective_score":"{:.3f}","value_gap":"{:.1f}",
+             "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
         use_container_width=True, height=420
     )
 
@@ -1129,10 +1119,8 @@ def run_auction_mode():
                   "flex_score","total_risk","objective_score"]
     squad_show = [c for c in squad_show if c in squad.columns]
     st.dataframe(
-        squad[squad_show].sort_values("objective_score", ascending=False).style
-            .background_gradient(subset=["objective_score"], cmap="Blues")
-            .background_gradient(subset=["total_risk"], cmap="Reds")
-            .format({"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}"}),
+        squad[squad_show].sort_values("objective_score", ascending=False).style.format(
+            {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}"}),
         use_container_width=True, height=420
     )
 
@@ -1163,9 +1151,8 @@ def run_auction_mode():
                    "match_impact_score","pitch_fit","opponent_fit","flex_score","total_risk","xi_score"]
         xi_show = [c for c in xi_show if c in xi.columns]
         st.dataframe(
-            xi[xi_show].sort_values("xi_score", ascending=False).style
-                .background_gradient(subset=["xi_score"], cmap="Greens")
-                .format({"xi_score":"{:.3f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
+            xi[xi_show].sort_values("xi_score", ascending=False).style.format(
+                {"xi_score":"{:.3f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}),
             use_container_width=True, height=420
         )
 
