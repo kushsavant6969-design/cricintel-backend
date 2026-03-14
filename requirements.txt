@@ -5,4 +5,4 @@ scikit-learn
 pulp
 moviepy
 opencv-python
-
+matplotlib
