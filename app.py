@@ -367,6 +367,9 @@ def smart_merge(players_df: pd.DataFrame, perf_df: pd.DataFrame) -> pd.DataFrame
             players_df = players_df.rename(columns={p_id_col: "player_id"})
         if r_id_col != "player_id":
             perf_df = perf_df.rename(columns={r_id_col: "player_id"})
+        # FIX: cast both to string to avoid object vs int64 merge error
+        players_df["player_id"] = players_df["player_id"].astype(str)
+        perf_df["player_id"]    = perf_df["player_id"].astype(str)
         df = players_df.merge(perf_df, on="player_id", how="left", suffixes=("", "_perf"))
     else:
         # Try to find any common column
