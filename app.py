@@ -927,6 +927,141 @@ def run_scout_mode():
         use_container_width=True, height=440
     )
 
+    # ── PLAYER PROFILE CARD ───────────────────────────────────────────────
+    cric_divider()
+    section("Player Profile Card", "👤")
+    st.caption("Search any player to see their full breakdown and radar comparison vs similar players.")
+
+    search_col, _ = st.columns([2,1])
+    profile_player = search_col.selectbox(
+        "Search player name", ["— Select a player —"] + sorted(df["player"].tolist()),
+        index=0, key="profile_select"
+    )
+
+    if profile_player != "— Select a player —":
+        import math
+        import streamlit.components.v1 as components
+
+        prow = df[df["player"]==profile_player].iloc[0]
+        sim_for_radar = get_similar_players(df, profile_player, top_k=3)
+
+        # Header metrics
+        h1,h2,h3,h4,h5 = st.columns(5)
+        h1.metric("Role",     prow.get("role","—"))
+        h2.metric("Age",      int(prow.get("age",0)) if float(prow.get("age",0))>0 else "—")
+        h3.metric("Country",  prow.get("country","—") if "country" in df.columns else "—")
+        h4.metric("Bat Hand", prow.get("bat_hand","—"))
+        h5.metric("Matches",  int(prow.get("matches",0)))
+
+        st.markdown(f"""
+        <div class="player-card">
+            <div class="pname">🏏 {profile_player} {role_badge(prow["role"])}</div>
+            <div class="pstat">
+                Runs: <b>{int(prow.get("runs",0))}</b> &nbsp;|&nbsp;
+                SR: <b>{float(prow.get("strike_rate",0)):.1f}</b> &nbsp;|&nbsp;
+                Wickets: <b>{int(prow.get("wickets",0))}</b> &nbsp;|&nbsp;
+                Economy: <b>{float(prow.get("economy",0)):.2f}</b> &nbsp;|&nbsp;
+                Dot Ball%: <b>{float(prow.get("dot_ball_pct",0)):.1f}</b> &nbsp;|&nbsp;
+                Boundary%: <b>{float(prow.get("boundary_pct",0)):.1f}</b>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Scouting info
+        si1,si2,si3 = st.columns(3)
+        if "scouting_grade" in df.columns:
+            si1.metric("Scouting Grade", prow.get("scouting_grade","—"))
+        if "analyst_recommendation" in df.columns:
+            si2.metric("Recommendation", prow.get("analyst_recommendation","—"))
+        if "format_specialism" in df.columns:
+            si3.metric("Format Specialism", str(prow.get("format_specialism","—")))
+
+        # Format fit
+        if "county_red_ball_fit" in df.columns or "county_white_ball_fit" in df.columns:
+            ff1,ff2 = st.columns(2)
+            if "county_red_ball_fit" in df.columns:
+                ff1.metric("Red Ball Fit",   f"{float(prow.get('county_red_ball_fit',0)):.1f}/100")
+            if "county_white_ball_fit" in df.columns:
+                ff2.metric("White Ball Fit", f"{float(prow.get('county_white_ball_fit',0)):.1f}/100")
+
+        # Radar chart
+        st.markdown("**📡 Radar — Player vs Top 3 Similar Players**")
+
+        radar_axes = [c for c in [
+            "pp_bat_score","mid_bat_score","death_bat_score",
+            "pp_bowl_score","mid_bowl_score","death_bowl_score",
+            "match_impact_score"
+        ] if c in df.columns]
+
+        axis_labels = {
+            "pp_bat_score":"PP Bat","mid_bat_score":"Mid Bat","death_bat_score":"Death Bat",
+            "pp_bowl_score":"PP Bowl","mid_bowl_score":"Mid Bowl","death_bowl_score":"Death Bowl",
+            "match_impact_score":"Impact"
+        }
+        labels = [axis_labels.get(c,c) for c in radar_axes]
+        N = len(labels)
+        cx, cy, r = 300, 270, 190
+        colors = ["#00d4ff","#4ade80","#fbbf24","#f87171"]
+
+        def get_vals(row):
+            return [float(row.get(c,0)) for c in radar_axes]
+
+        players_data = [(profile_player, get_vals(prow), colors[0])]
+        for i, (_, srow) in enumerate(sim_for_radar.head(3).iterrows()):
+            players_data.append((srow["player"], get_vals(srow), colors[i+1]))
+
+        svg = ['<svg viewBox="0 0 600 570" xmlns="http://www.w3.org/2000/svg" style="background:#080f1a;border-radius:12px;border:1px solid #1e3a5f;width:100%;max-width:600px;">']
+
+        # Grid rings
+        for ring in [0.25,0.5,0.75,1.0]:
+            pts = []
+            for i in range(N):
+                angle = (i/N)*2*math.pi - math.pi/2
+                pts.append(f"{cx+ring*r*math.cos(angle):.1f},{cy+ring*r*math.sin(angle):.1f}")
+            svg.append(f'<polygon points="{" ".join(pts)}" fill="none" stroke="#1e3a5f" stroke-width="1"/>')
+
+        # Axes + labels
+        for i, label in enumerate(labels):
+            angle = (i/N)*2*math.pi - math.pi/2
+            x2 = cx+r*math.cos(angle)
+            y2 = cy+r*math.sin(angle)
+            svg.append(f'<line x1="{cx}" y1="{cy}" x2="{x2:.1f}" y2="{y2:.1f}" stroke="#1e3a5f" stroke-width="1"/>')
+            lx = cx+(r+30)*math.cos(angle)
+            ly = cy+(r+30)*math.sin(angle)
+            anchor = "middle" if abs(math.cos(angle))<0.3 else ("start" if math.cos(angle)>0 else "end")
+            svg.append(f'<text x="{lx:.1f}" y="{ly:.1f}" text-anchor="{anchor}" dominant-baseline="middle" font-size="11" fill="#7ba7c4" font-family="Inter,sans-serif">{label}</text>')
+
+        # Player polygons
+        for pname, vals, color in players_data:
+            pts = []
+            for i,v in enumerate(vals):
+                angle = (i/N)*2*math.pi - math.pi/2
+                rv = float(v)*r
+                pts.append(f"{cx+rv*math.cos(angle):.1f},{cy+rv*math.sin(angle):.1f}")
+            pts_str = " ".join(pts)
+            ri = int(color[1:3],16)
+            gi = int(color[3:5],16)
+            bi = int(color[5:7],16)
+            svg.append(f'<polygon points="{pts_str}" fill="rgba({ri},{gi},{bi},0.12)" stroke="{color}" stroke-width="2.5"/>')
+            for i,v in enumerate(vals):
+                angle = (i/N)*2*math.pi - math.pi/2
+                rv = float(v)*r
+                svg.append(f'<circle cx="{cx+rv*math.cos(angle):.1f}" cy="{cy+rv*math.sin(angle):.1f}" r="4" fill="{color}"/>')
+
+        # Legend
+        for i,(pname,_,color) in enumerate(players_data):
+            lx = 40 + i*145
+            short = pname[:15]+"…" if len(pname)>15 else pname
+            svg.append(f'<rect x="{lx}" y="525" width="12" height="12" fill="{color}" rx="2"/>')
+            svg.append(f'<text x="{lx+16}" y="535" font-size="10" fill="#c8e6f5" font-family="Inter,sans-serif">{short}</text>')
+
+        svg.append("</svg>")
+        components.html(f'<div style="background:#080f1a;padding:1rem;border-radius:12px;">{"".join(svg)}</div>', height=600)
+
+        ri1,ri2 = st.columns(2)
+        ri1.metric("Match Impact Score", f'{float(prow.get("match_impact_score",0)):.3f}')
+        ri2.metric("Total Risk Score",   f'{float(prow.get("total_risk",0)):.3f}', delta="Lower is better", delta_color="inverse")
+
     # ── SIMILARITY SEARCH ─────────────────────────────────────────────────
     cric_divider()
     section("Similarity Search", "🔍")
