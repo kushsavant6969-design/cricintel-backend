@@ -985,7 +985,7 @@ def run_scout_mode():
                 ff2.metric("White Ball Fit", f"{float(prow.get('county_white_ball_fit',0)):.1f}/100")
 
         # Radar chart
-        st.markdown("**📡 Radar — Player vs Top 3 Similar Players**")
+        st.markdown(f"**📡 {profile_player} — Radar vs Top 3 Similar Players**")
 
         radar_axes = [c for c in [
             "pp_bat_score","mid_bat_score","death_bat_score",
