@@ -842,10 +842,17 @@ def run_scout_mode():
 
         f7, f8, f9 = st.columns(3)
 
+        # Form trend filter
+        if "form_trend" in df.columns:
+            trend_opts = ["All"] + sorted(df["form_trend"].dropna().unique().tolist())
+            sel_trend = f7.selectbox("Form trend", trend_opts)
+        else:
+            sel_trend = "All"
+
         # Scouting grade filter
         if "scouting_grade" in df.columns:
             grade_opts = ["All"] + sorted(df["scouting_grade"].dropna().unique().tolist())
-            sel_grade = f7.selectbox("Scouting grade", grade_opts)
+            sel_grade = f8.selectbox("Scouting grade", grade_opts)
         else:
             sel_grade = "All"
 
@@ -893,6 +900,8 @@ def run_scout_mode():
         filtered = filtered[filtered["batting_role"]==sel_bat_role]
     if sel_bowl_role != "All":
         filtered = filtered[filtered["bowling_role"]==sel_bowl_role]
+    if sel_trend != "All" and "form_trend" in filtered.columns:
+        filtered = filtered[filtered["form_trend"]==sel_trend]
     if sel_grade != "All" and "scouting_grade" in filtered.columns:
         filtered = filtered[filtered["scouting_grade"]==sel_grade]
     if sel_format != "All" and "format_specialism" in filtered.columns:
@@ -913,9 +922,10 @@ def run_scout_mode():
     cric_divider()
     section("Top Profiles", "🏆")
 
-    show_cols = [c for c in ["player","role","age","country","bat_hand","bowling_arm",
+    show_cols = [c for c in ["player","form_trend","role","age","country","bat_hand","bowling_arm",
                               "batting_role","bowling_role","matches","runs","strike_rate",
                               "wickets","economy","dot_ball_pct","boundary_pct",
+                              "recent_matches","recent_sr","recent_economy","form_index",
                               "scouting_grade","format_specialism","analyst_recommendation",
                               "match_impact_score","total_risk"] if c in filtered.columns]
 
