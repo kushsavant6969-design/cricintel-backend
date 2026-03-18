@@ -927,6 +927,72 @@ def run_scout_mode():
         use_container_width=True, height=440
     )
 
+    # ── SHORTLIST FEATURE ─────────────────────────────────────────────────
+    cric_divider()
+    section("Shortlist", "📋")
+    st.caption("Add players to your shortlist for export and comparison.")
+
+    if "shortlist" not in st.session_state:
+        st.session_state["shortlist"] = []
+
+    all_player_names = filtered.sort_values("match_impact_score", ascending=False)["player"].tolist()
+
+    sl1, sl2 = st.columns([3,1])
+    add_players = sl1.multiselect(
+        "Add players to shortlist",
+        options=[p for p in all_player_names if p not in st.session_state["shortlist"]],
+        default=[],
+        key="shortlist_add"
+    )
+
+    if sl2.button("Add to Shortlist", type="primary"):
+        for p in add_players:
+            if p not in st.session_state["shortlist"]:
+                st.session_state["shortlist"].append(p)
+        st.rerun()
+
+    if len(st.session_state["shortlist"]) == 0:
+        st.info("No players shortlisted yet. Add players above.")
+    else:
+        st.markdown(f"**{len(st.session_state['shortlist'])} players shortlisted**")
+
+        shortlist_df = df[df["player"].isin(st.session_state["shortlist"])].copy()
+
+        sl_cols = [c for c in ["player","role","age","bat_hand","batting_role",
+                                "bowling_role","matches","runs","strike_rate",
+                                "wickets","economy","match_impact_score","total_risk"] if c in shortlist_df.columns]
+
+        st.dataframe(
+            shortlist_df[sl_cols].style.format(
+                {"match_impact_score":"{:.3f}","total_risk":"{:.3f}",
+                 "strike_rate":"{:.1f}","economy":"{:.2f}"}
+            ),
+            use_container_width=True,
+            height=min(100 + len(shortlist_df)*35, 400)
+        )
+
+        remove_col, clear_col, export_col = st.columns(3)
+        remove_player = remove_col.selectbox(
+            "Remove a player",
+            ["Select"] + st.session_state["shortlist"],
+            key="shortlist_remove"
+        )
+        if remove_col.button("Remove"):
+            if remove_player != "Select":
+                st.session_state["shortlist"].remove(remove_player)
+                st.rerun()
+
+        if clear_col.button("Clear All"):
+            st.session_state["shortlist"] = []
+            st.rerun()
+
+        export_col.download_button(
+            "Export Shortlist CSV",
+            to_csv_bytes(shortlist_df),
+            "cricintel_shortlist.csv",
+            "text/csv"
+        )
+
     # ── PLAYER PROFILE CARD ───────────────────────────────────────────────
     cric_divider()
     section("Player Profile Card", "👤")
