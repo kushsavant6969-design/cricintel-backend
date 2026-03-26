@@ -447,6 +447,9 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
         c_id = c_detected.get("player_id", (None, 0))[0]
         if c_id and c_id != "player_id":
             contracts = contracts.rename(columns={c_id: "player_id"})
+        # FIX: cast both to string to avoid type mismatch
+        df["player_id"] = df["player_id"].astype(str)
+        contracts["player_id"] = contracts["player_id"].astype(str)
         df = df.merge(contracts, on="player_id", how="left", suffixes=("", "_contract"))
 
     # ── Apply intelligent column mapping ──────────────────────────────────
