@@ -1767,6 +1767,96 @@ def run_highlights_mode():
 # ═══════════════════════════════════════════════════════
 # SIDEBAR + ROUTING
 # ═══════════════════════════════════════════════════════
+# ═══════════════════════════════════════════════════════
+# LOGIN SYSTEM
+# ═══════════════════════════════════════════════════════
+def check_login():
+    """Password gate using Render environment variable."""
+    
+    # Get password from environment variable
+    correct_password = os.environ.get("CRICINTEL_PASSWORD", "cricintel2024")
+    
+    # Init session state
+    if "authenticated" not in st.session_state:
+        st.session_state["authenticated"] = False
+    
+    if st.session_state["authenticated"]:
+        return True
+
+    # Login screen
+    st.markdown("""
+    <style>
+    .login-container {
+        max-width: 420px;
+        margin: 8vh auto;
+        background: linear-gradient(135deg, #0a0f1e, #0d2137);
+        border: 1px solid #00d4ff33;
+        border-radius: 16px;
+        padding: 2.5rem 2rem;
+        text-align: center;
+    }
+    .login-title {
+        font-size: 2.2rem;
+        font-weight: 800;
+        color: #00d4ff;
+        letter-spacing: 0.15em;
+        text-shadow: 0 0 20px #00d4ff66;
+        margin-bottom: 0.3rem;
+    }
+    .login-sub {
+        color: #7ba7c4;
+        font-size: 0.9rem;
+        margin-bottom: 1.8rem;
+    }
+    .login-badge {
+        display: inline-block;
+        background: #00d4ff22;
+        border: 1px solid #00d4ff44;
+        color: #00d4ff;
+        font-size: 0.72rem;
+        padding: 3px 12px;
+        border-radius: 20px;
+        margin-bottom: 1.5rem;
+        letter-spacing: 0.08em;
+    }
+    </style>
+    <div class="login-container">
+        <div class="login-title">🏏 CRICINTEL</div>
+        <div class="login-sub">AI Cricket Analytics Platform</div>
+        <div class="login-badge">PRIVATE BETA</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Center the login form
+    col1, col2, col3 = st.columns([1, 2, 1])
+    with col2:
+        st.markdown("####")
+        password = st.text_input(
+            "Access Code",
+            type="password",
+            placeholder="Enter your access code",
+            key="login_password"
+        )
+        login_btn = st.button("Access CricIntel →", type="primary", use_container_width=True)
+        st.markdown(
+            '<div style="text-align:center;margin-top:0.8rem;font-size:0.75rem;color:#4a7a9b;">'
+            'Request access: cricintel.net</div>',
+            unsafe_allow_html=True
+        )
+
+        if login_btn:
+            if password == correct_password:
+                st.session_state["authenticated"] = True
+                st.rerun()
+            else:
+                st.error("❌ Incorrect access code. Please try again.")
+
+    st.stop()
+    return False
+
+# Run login check — stops here if not authenticated
+check_login()
+
 with st.sidebar:
     st.markdown("""
     <div style='text-align:center;padding:1.2rem 0 0.5rem;'>
