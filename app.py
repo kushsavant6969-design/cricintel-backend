@@ -737,48 +737,8 @@ def pick_best_xi(squad, xi_size, xi_min_role, max_overseas_xi, enforce_left_in_t
 # SCOUT MODE
 # ═══════════════════════════════════════════════════════
 def run_scout_mode():
-    section("Upload Data", "📁")
-    c1, c2 = st.columns(2)
-    with c1:
-        players_f    = st.file_uploader("Player data CSV", type="csv", key="sc_pl",
-                                         help="Any CSV with player names, roles, and basic info")
-    with c2:
-        performance_f= st.file_uploader("Performance data CSV", type="csv", key="sc_pf",
-                                         help="Any CSV with batting/bowling stats")
-
-    if not all([players_f, performance_f]):
-        st.markdown("""
-        <div class="mapper-card">
-            <div class="mc-title">📋 What CSVs can I upload?</div>
-            <div class="mc-sub">
-                <b>Player data:</b> Any spreadsheet with player names and roles — 
-                column names like "name", "player", "full_name" all work automatically.<br><br>
-                <b>Performance data:</b> Any spreadsheet with batting/bowling stats — 
-                column names like "runs", "wickets", "strike_rate", "economy", "SR", "Econ" all work.<br><br>
-                <b>No reformatting needed.</b> CricIntel detects your columns automatically.
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.stop()
-
-    players = pd.read_csv(players_f)
-    perf    = pd.read_csv(performance_f)
-
-    # Show detection summary
-    cric_divider()
-    section("Column Detection", "🧠")
-
-    p_detected = auto_detect_columns(players)
-    r_detected = auto_detect_columns(perf)
-    all_detected = {**p_detected, **r_detected}
-
-    required = ["player","player_id","role","matches","runs","strike_rate","wickets","economy"]
-    render_mapping_summary(all_detected, required)
-
-    # Build
-    with st.spinner("Analysing your data..."):
-        df = build_base_df(players, perf)
-        df = compute_phase_scores(df)
+    # Read from unified session state
+    df = st.session_state["df_master"].copy()
 
     # ── SNAPSHOT ──────────────────────────────────────────────────────────
     cric_divider()
@@ -1340,35 +1300,38 @@ def run_scout_mode():
 # AUCTION MODE
 # ═══════════════════════════════════════════════════════
 def run_auction_mode():
-    section("Upload Data", "📁")
+    # Read from unified session state
+    df_base   = st.session_state["df_master"].copy()
+    players   = st.session_state.get("players_raw", pd.DataFrame())
+    perf      = st.session_state.get("perf_raw",    pd.DataFrame())
 
-    st.markdown("""
-    <div class="mapper-card">
-        <div class="mc-title">📋 Flexible CSV Upload</div>
-        <div class="mc-sub">
-            Upload any CSV format — CricIntel detects your columns automatically.<br>
-            <b>Contracts CSV:</b> needs a player ID + any salary/wage/price column.<br>
-            <b>Budget CSV:</b> needs a budget total + optional squad size settings.
+    # Check for contracts and budget
+    if "contracts_raw" not in st.session_state or "budget_raw" not in st.session_state:
+        st.markdown("""
+        <div class="mapper-card">
+            <div class="mc-title">💰 Auction Mode needs 2 more files</div>
+            <div class="mc-sub">
+                Your player data is already loaded. To use Auction Mode, also upload:<br><br>
+                <b>Contracts / Salary CSV:</b> player IDs + salary/wage/price column<br>
+                <b>Budget CSV:</b> total budget + squad size constraints
+            </div>
         </div>
-    </div>
-    """, unsafe_allow_html=True)
+        """, unsafe_allow_html=True)
+        ac1, ac2 = st.columns(2)
+        with ac1:
+            cf = st.file_uploader("Contracts / Salary CSV", type="csv", key="au_ct_late")
+        with ac2:
+            bf = st.file_uploader("Budget CSV", type="csv", key="au_bd_late")
+        if cf:
+            st.session_state["contracts_raw"] = pd.read_csv(cf)
+        if bf:
+            st.session_state["budget_raw"] = pd.read_csv(bf)
+        if "contracts_raw" not in st.session_state or "budget_raw" not in st.session_state:
+            st.info("Upload both files above to continue.")
+            st.stop()
 
-    c1, c2 = st.columns(2)
-    with c1:
-        players_f    = st.file_uploader("Player data CSV",      type="csv", key="au_pl")
-        performance_f= st.file_uploader("Performance data CSV", type="csv", key="au_pf")
-    with c2:
-        contracts_f  = st.file_uploader("Contracts / Salary CSV", type="csv", key="au_ct")
-        budget_f     = st.file_uploader("Budget CSV",             type="csv", key="au_bd")
-
-    if not all([players_f, performance_f, contracts_f, budget_f]):
-        st.info("👆 Upload all 4 CSVs to unlock Auction Mode.")
-        st.stop()
-
-    players   = pd.read_csv(players_f)
-    perf      = pd.read_csv(performance_f)
-    contracts = pd.read_csv(contracts_f)
-    budget_df = pd.read_csv(budget_f)
+    contracts = st.session_state["contracts_raw"].copy()
+    budget_df = st.session_state["budget_raw"].copy()
 
     # ── Auto-detect salary column ─────────────────────────────────────────
     c_detected = auto_detect_columns(contracts)
@@ -1412,7 +1375,8 @@ def run_auction_mode():
            "wickets","economy","current_salary_lakh","budget_lakh"]
     render_mapping_summary(all_det, req)
 
-    with st.spinner("Analysing your data..."):
+    # Merge contracts into master df
+    with st.spinner("Preparing auction data..."):
         df = build_base_df(players, perf, contracts=contracts)
         df["current_salary_lakh"] = pd.to_numeric(df.get("current_salary_lakh",0),errors="coerce").fillna(0.0)
 
@@ -1772,51 +1736,18 @@ def run_highlights_mode():
 # CUSTOM INTELLIGENCE MODE
 # ═══════════════════════════════════════════════════════
 def run_custom_intelligence():
-    section("Upload Your Data", "📁")
-    st.caption("Upload any CSV with any metrics. CricIntel adapts to your data.")
+    # Read from unified session state — use raw files for maximum column access
+    players = st.session_state.get("players_raw", pd.DataFrame())
+    perf    = st.session_state.get("perf_raw",    pd.DataFrame())
 
-    c1, c2 = st.columns(2)
-    with c1:
-        players_f = st.file_uploader("Player data CSV", type="csv", key="ci_pl",
-                                      help="Any CSV with player names and basic info")
-    with c2:
-        perf_f = st.file_uploader("Performance / Metrics CSV", type="csv", key="ci_pf",
-                                   help="Any CSV with your metrics — fitness, technical, match data, anything")
-
-    if not all([players_f, perf_f]):
-        st.markdown("""
-        <div class="mapper-card">
-            <div class="mc-title">🎯 What is Custom Intelligence?</div>
-            <div class="mc-sub">
-                Upload any CSV with any metrics — fitness scores, technical ratings, match stats, 
-                internal coaching assessments, anything.<br><br>
-                <b>Step 1:</b> Select which metrics to include in your analysis — no limit.<br>
-                <b>Step 2 (optional):</b> Pick up to 5 priority metrics and set their importance. 
-                All other metrics carry equal weight automatically.<br><br>
-                <b>Skip Step 2</b> and every metric carries equal weight. Simple.
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        st.stop()
-
-    players = pd.read_csv(players_f)
-    perf    = pd.read_csv(perf_f)
-
-    # ── DETECT COLUMNS ────────────────────────────────────────────────────
-    cric_divider()
-    section("Column Detection", "🧠")
-    all_detected = {**auto_detect_columns(players), **auto_detect_columns(perf)}
-    render_mapping_summary(all_detected, ["player","player_id","role","matches"])
-
-    # Merge
-    with st.spinner("Loading your data..."):
-        df = smart_merge(players, perf)
-        df = apply_column_mapping(df, {f: col for f, (col,_) in auto_detect_columns(df).items()})
-        if "player" not in df.columns:
-            name_candidates = [c for c in df.columns if "name" in c.lower()]
-            df["player"] = df[name_candidates[0]] if name_candidates else ["Player_"+str(i) for i in df.index]
-        if "player_id" not in df.columns:
-            df["player_id"] = df.index + 1
+    # Merge raw files to get ALL columns available
+    df = smart_merge(players, perf)
+    df = apply_column_mapping(df, {f: col for f, (col,_) in auto_detect_columns(df).items()})
+    if "player" not in df.columns:
+        name_candidates = [c for c in df.columns if "name" in c.lower()]
+        df["player"] = df[name_candidates[0]] if name_candidates else ["Player_"+str(i) for i in df.index]
+    if "player_id" not in df.columns:
+        df["player_id"] = df.index + 1
 
     # All numeric columns available
     exclude = ["player_id","is_spinner","is_pacer","is_overseas","injury_risk",
@@ -2136,16 +2067,145 @@ with st.sidebar:
         index=0
     )
 
+    # ── DATA STATUS IN SIDEBAR ─────────────────────────────────────────
+    st.markdown("<hr style='border-color:#1e3a5f;margin:0.8rem 0;'>", unsafe_allow_html=True)
+    if st.session_state.get("data_loaded"):
+        n_players = len(st.session_state.get("df_master", []))
+        st.markdown(f"""
+        <div style='background:#0d2137;border:1px solid #00d4ff33;border-radius:8px;padding:0.7rem;margin-bottom:0.5rem;'>
+            <div style='color:#00d4ff;font-size:0.78rem;font-weight:600;'>✅ DATA LOADED</div>
+            <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>{n_players} players ready</div>
+            <div style='color:#7ba7c4;font-size:0.72rem;'>Switch modes freely ↓</div>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("🔄 Upload New Data", use_container_width=True, key="sidebar_reset"):
+            for key in ["data_loaded","df_master","players_raw","perf_raw",
+                        "contracts_raw","budget_raw","df_processed"]:
+                if key in st.session_state:
+                    del st.session_state[key]
+            st.rerun()
+    else:
+        st.markdown("""
+        <div style='background:#1a0d0d;border:1px solid #f8717133;border-radius:8px;padding:0.7rem;margin-bottom:0.5rem;'>
+            <div style='color:#f87171;font-size:0.78rem;font-weight:600;'>⬆ No data loaded</div>
+            <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>Upload once, use everywhere</div>
+        </div>
+        """, unsafe_allow_html=True)
+
     st.markdown("""
     <hr style='border-color:#1e3a5f;margin:1rem 0;'>
     <div style='font-size:0.75rem;color:#4a7a9b;text-align:center;padding-bottom:1rem;'>
-        v3.0 &nbsp;|&nbsp; Built with Streamlit<br>
+        v4.0 &nbsp;|&nbsp; Built with Streamlit<br>
         <span style='color:#1e3a5f;'>─────────────────</span><br>
-        🧠 Intelligent column detection<br>
+        🧠 Upload once · Use everywhere<br>
         📊 Any CSV format supported<br>
         🌍 Any team · Any format
     </div>
     """, unsafe_allow_html=True)
+
+# ═══════════════════════════════════════════════════════
+# UNIFIED DATA UPLOAD SYSTEM
+# ═══════════════════════════════════════════════════════
+def show_unified_upload():
+    """Central upload screen — shown once, data shared across all modes."""
+    st.markdown("""
+    <div style='max-width:700px;margin:4vh auto;text-align:center;'>
+        <div style='font-size:3rem;margin-bottom:1rem;'>🏏</div>
+        <div style='font-size:1.8rem;font-weight:800;color:#00d4ff;letter-spacing:0.1em;margin-bottom:0.5rem;'>
+            Welcome to CricIntel
+        </div>
+        <div style='color:#7ba7c4;font-size:1rem;margin-bottom:2rem;'>
+            Upload your data once. Scout, analyse, optimise — all in one platform.
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="section-header">📁 Upload Your Data</div>', unsafe_allow_html=True)
+
+    c1, c2 = st.columns(2)
+    with c1:
+        players_f = st.file_uploader(
+            "Player data CSV",
+            type="csv", key="unified_players",
+            help="Any CSV with player names, roles, and basic info"
+        )
+    with c2:
+        perf_f = st.file_uploader(
+            "Performance / Metrics CSV",
+            type="csv", key="unified_perf",
+            help="Any CSV with stats or metrics — cricket or custom"
+        )
+
+    # Optional files for Auction Mode
+    with st.expander("➕ Add Contracts & Budget (for Auction Mode — optional)"):
+        ac1, ac2 = st.columns(2)
+        with ac1:
+            contracts_f = st.file_uploader("Contracts / Salary CSV", type="csv", key="unified_contracts")
+        with ac2:
+            budget_f = st.file_uploader("Budget CSV", type="csv", key="unified_budget")
+
+    if not all([players_f, perf_f]):
+        st.markdown("""
+        <div class="mapper-card" style="margin-top:1.5rem;">
+            <div class="mc-title">💡 What can I upload?</div>
+            <div class="mc-sub">
+                <b>Player CSV:</b> Any spreadsheet with player names and roles.<br>
+                <b>Performance CSV:</b> Any spreadsheet with stats or metrics — cricket stats, 
+                fitness scores, technical ratings, internal coaching data — anything works.<br><br>
+                <b>CricIntel detects your columns automatically.</b> No reformatting needed.
+                Once uploaded, all modes — Scout, Auction, Custom Intelligence — use the same data instantly.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        return False
+
+    # Process and store in session state
+    with st.spinner("🧠 CricIntel is analysing your data..."):
+        players = pd.read_csv(players_f)
+        perf    = pd.read_csv(perf_f)
+
+        # Store raw files
+        st.session_state["players_raw"] = players
+        st.session_state["perf_raw"]    = perf
+
+        # Store optional files
+        if contracts_f:
+            st.session_state["contracts_raw"] = pd.read_csv(contracts_f)
+        if budget_f:
+            st.session_state["budget_raw"] = pd.read_csv(budget_f)
+
+        # Build master dataframe
+        df = build_base_df(players, perf)
+        df = compute_phase_scores(df)
+
+        st.session_state["df_master"]    = df
+        st.session_state["data_loaded"]  = True
+
+    # Show what was loaded
+    st.success(f"✅ Data loaded successfully — {len(df)} players ready across all modes")
+
+    c1,c2,c3,c4,c5 = st.columns(5)
+    c1.metric("Total Players",  len(df))
+    c2.metric("Batters",        int((df["role"]=="BAT").sum()))
+    c3.metric("Bowlers",        int((df["role"]=="BOWL").sum()))
+    c4.metric("All-rounders",   int((df["role"]=="AR").sum()))
+    c5.metric("Columns",        len(df.columns))
+
+    # Show column detection
+    cric_divider()
+    p_det = auto_detect_columns(players)
+    r_det = auto_detect_columns(perf)
+    all_det = {**p_det, **r_det}
+    render_mapping_summary(all_det, ["player","player_id","role","matches","runs","strike_rate","wickets","economy"])
+
+    st.markdown("""
+    <div style='text-align:center;margin-top:1.5rem;color:#7ba7c4;font-size:0.9rem;'>
+        👈 Select a mode from the sidebar to start analysing
+    </div>
+    """, unsafe_allow_html=True)
+
+    return True
+
 
 mode_labels = {
     "🔍 Scout Mode":           ("🔍 Scout Mode",           "Talent identification · Similarity search · Gap-fill recommendations"),
@@ -2168,11 +2228,41 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-if mode=="🔍 Scout Mode":
-    run_scout_mode()
-elif mode=="💰 Auction Mode":
-    run_auction_mode()
-elif mode=="🎯 Custom Intelligence":
-    run_custom_intelligence()
-else:
+# ── UNIFIED DATA GATE ─────────────────────────────────────────────────
+# Highlights doesn't need CSV data
+if mode == "🎬 Highlights Generator":
+    banner_title, banner_sub = mode_labels[mode]
+    st.markdown(f"""
+    <div class="cricintel-banner">
+        <div><h1>CRICINTEL</h1><p>{banner_sub}</p></div>
+        <div style='text-align:right;'>
+            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
+            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
     run_highlights_mode()
+
+else:
+    banner_title, banner_sub = mode_labels[mode]
+    st.markdown(f"""
+    <div class="cricintel-banner">
+        <div><h1>CRICINTEL</h1><p>{banner_sub}</p></div>
+        <div style='text-align:right;'>
+            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
+            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    # Show upload screen if no data loaded
+    if not st.session_state.get("data_loaded"):
+        show_unified_upload()
+    else:
+        # Data is loaded — run selected mode
+        if mode == "🔍 Scout Mode":
+            run_scout_mode()
+        elif mode == "💰 Auction Mode":
+            run_auction_mode()
+        elif mode == "🎯 Custom Intelligence":
+            run_custom_intelligence()
