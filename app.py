@@ -1788,11 +1788,12 @@ def run_custom_intelligence():
         <div class="mapper-card">
             <div class="mc-title">🎯 What is Custom Intelligence?</div>
             <div class="mc-sub">
-                <b>Mode 1 — Your Metrics:</b> Select which columns matter to you, set your own weights, 
-                get analysis based on your methodology.<br><br>
-                <b>Mode 2 — CricIntel Intelligence:</b> Let CricIntel's full 139-metric engine do the thinking. 
-                Phase analysis, form index, pitch fit, opponent fit — all computed automatically.<br><br>
-                <b>Or combine both</b> — blend your internal scores with CricIntel's analysis.
+                Upload any CSV with any metrics — fitness scores, technical ratings, match stats, 
+                internal coaching assessments, anything.<br><br>
+                <b>Step 1:</b> Select which metrics to include in your analysis — no limit.<br>
+                <b>Step 2 (optional):</b> Pick up to 5 priority metrics and set their importance. 
+                All other metrics carry equal weight automatically.<br><br>
+                <b>Skip Step 2</b> and every metric carries equal weight. Simple.
             </div>
         </div>
         """, unsafe_allow_html=True)
@@ -1804,332 +1805,229 @@ def run_custom_intelligence():
     # ── DETECT COLUMNS ────────────────────────────────────────────────────
     cric_divider()
     section("Column Detection", "🧠")
-    p_detected = auto_detect_columns(players)
-    r_detected = auto_detect_columns(perf)
-    all_detected = {**p_detected, **r_detected}
-    required = ["player","player_id","role","matches"]
-    render_mapping_summary(all_detected, required)
+    all_detected = {**auto_detect_columns(players), **auto_detect_columns(perf)}
+    render_mapping_summary(all_detected, ["player","player_id","role","matches"])
 
-    # Merge data
+    # Merge
     with st.spinner("Loading your data..."):
         df = smart_merge(players, perf)
         df = apply_column_mapping(df, {f: col for f, (col,_) in auto_detect_columns(df).items()})
         if "player" not in df.columns:
             name_candidates = [c for c in df.columns if "name" in c.lower()]
-            if name_candidates:
-                df["player"] = df[name_candidates[0]]
-            else:
-                df["player"] = ["Player_" + str(i) for i in df.index]
+            df["player"] = df[name_candidates[0]] if name_candidates else ["Player_"+str(i) for i in df.index]
         if "player_id" not in df.columns:
             df["player_id"] = df.index + 1
 
-    # Get all numeric columns
-    all_numeric_cols = df.select_dtypes(include=[np.number]).columns.tolist()
-    exclude_cols = ["player_id","age","is_spinner","is_pacer","is_overseas",
-                    "injury_risk","is_pp_bowler","is_death_bowler","is_pp_batter","is_death_hitter"]
-    available_metrics = [c for c in all_numeric_cols if c not in exclude_cols]
+    # All numeric columns available
+    exclude = ["player_id","is_spinner","is_pacer","is_overseas","injury_risk",
+               "is_pp_bowler","is_death_bowler","is_pp_batter","is_death_hitter"]
+    available_metrics = [c for c in df.select_dtypes(include=[np.number]).columns if c not in exclude]
 
-    # ── MODE SELECTOR ─────────────────────────────────────────────────────
+    # ── STEP 1: SELECT METRICS ────────────────────────────────────────────
     cric_divider()
-    section("Choose Your Analysis Mode", "⚙️")
+    section("Step 1 — Select Your Metrics", "📊")
+    st.caption(f"Choose any metrics from your data. {len(available_metrics)} metrics available.")
 
-    analysis_mode = st.radio(
-        "How do you want to analyse players?",
-        ["🎯 My Metrics — I choose what matters",
-         "🤖 CricIntel Intelligence — Full 139-metric engine",
-         "🔀 Hybrid — Blend my metrics with CricIntel's analysis"],
-        index=0,
-        horizontal=False
+    selected_metrics = st.multiselect(
+        "Choose metrics to include in your analysis",
+        options=available_metrics,
+        default=[],
+        placeholder="Select metrics — choose as many as you want...",
+        key="ci_metrics"
     )
 
-    # ── MODE 1: CUSTOM METRICS ────────────────────────────────────────────
-    if analysis_mode == "🎯 My Metrics — I choose what matters":
-        cric_divider()
-        section("Select Your Metrics", "📊")
-        st.caption("Pick the columns that matter to your coaching methodology.")
+    if not selected_metrics:
+        st.info("👆 Select at least 2 metrics to continue.")
+        st.stop()
 
-        selected_metrics = st.multiselect(
-            "Choose metrics to include in your analysis",
-            options=available_metrics,
-            default=available_metrics[:5] if len(available_metrics) >= 5 else available_metrics,
-            key="ci_metrics"
-        )
+    st.success(f"✅ {len(selected_metrics)} metrics selected")
 
-        if not selected_metrics:
-            st.warning("Select at least 2 metrics to continue.")
-            st.stop()
+    # ── STEP 2: PRIORITY WEIGHTING (OPTIONAL) ────────────────────────────
+    cric_divider()
+    section("Step 2 — Priority Weighting (Optional)", "⚖️")
 
-        # Weight sliders
-        cric_divider()
-        section("Set Your Weights", "⚖️")
-        st.caption("How important is each metric? Weights must add up to 100%.")
+    use_weights = st.checkbox(
+        "I want to set priority weights for specific metrics",
+        value=False,
+        key="ci_use_weights"
+    )
 
-        weights = {}
-        default_weight = round(100 / len(selected_metrics))
+    if not use_weights:
+        st.info(f"All {len(selected_metrics)} metrics carry equal weight. Toggle above to customise.")
+        # Equal weights
+        weights = {m: 1.0/len(selected_metrics) for m in selected_metrics}
 
-        cols = st.columns(min(len(selected_metrics), 4))
-        for i, metric in enumerate(selected_metrics):
-            col = cols[i % 4]
-            weights[metric] = col.slider(
-                metric.replace("_"," ").title(),
-                min_value=0,
-                max_value=100,
-                value=default_weight,
-                step=5,
-                key=f"weight_{metric}"
-            )
-
-        total_weight = sum(weights.values())
-        if total_weight == 0:
-            st.error("Total weight cannot be 0.")
-            st.stop()
-
-        # Weight display
-        w1, w2 = st.columns(2)
-        if total_weight == 100:
-            w1.success(f"✅ Total weight: {total_weight}%")
-        elif total_weight > 100:
-            w1.error(f"❌ Total weight: {total_weight}% — reduce some weights")
-        else:
-            w1.warning(f"⚠️ Total weight: {total_weight}% — weights don't add to 100 (will normalise automatically)")
-
-        # Compute custom score
-        df_clean = df.copy()
-        for metric in selected_metrics:
-            if metric in df_clean.columns:
-                df_clean[metric] = pd.to_numeric(df_clean[metric], errors="coerce").fillna(0)
-
-        # Normalise weights
-        total_w = sum(weights.values())
-        norm_weights = {m: w/total_w for m, w in weights.items()}
-
-        # Compute weighted composite score
-        df_clean["custom_score"] = sum(
-            norm_weights[m] * norm01(df_clean[m])
-            for m in selected_metrics
-            if m in df_clean.columns
-        )
-
-        # ── RESULTS ───────────────────────────────────────────────────────
-        cric_divider()
-        section("Your Custom Analysis", "🏆")
-
-        # Snapshot
-        s1, s2, s3, s4 = st.columns(4)
-        s1.metric("Total Players", len(df_clean))
-        s2.metric("Metrics Used", len(selected_metrics))
-        s3.metric("Top Score", f"{df_clean['custom_score'].max():.3f}")
-        s4.metric("Avg Score", f"{df_clean['custom_score'].mean():.3f}")
-
-        # Top players table
-        show_cols = ["player"] + (["role"] if "role" in df_clean.columns else []) + selected_metrics + ["custom_score"]
-        show_cols = [c for c in show_cols if c in df_clean.columns]
-
-        st.dataframe(
-            df_clean[show_cols].sort_values("custom_score", ascending=False).head(50).style.format(
-                {"custom_score": "{:.3f}"}
-            ),
-            use_container_width=True,
-            height=440
-        )
-
-        # ── CUSTOM SIMILARITY SEARCH ──────────────────────────────────────
-        cric_divider()
-        section("Similarity Search — Your Metrics", "🔍")
-        st.caption("Find players who are most similar based on YOUR chosen metrics.")
-
-        target = st.selectbox("Select a player", df_clean["player"].tolist(), key="ci_sim_target")
-
-        trow = df_clean[df_clean["player"]==target].head(1)
-        if len(trow) > 0:
-            candidates = df_clean[df_clean["player"]!=target].copy()
-            feat_data = df_clean[selected_metrics].apply(pd.to_numeric, errors="coerce").fillna(0.0)
-
-            scaler = StandardScaler()
-            scaled = scaler.fit_transform(feat_data.values)
-
-            target_idx = df_clean[df_clean["player"]==target].index[0]
-            df_idx = list(df_clean.index)
-            t_pos = df_idx.index(target_idx)
-
-            t_vec = scaled[t_pos].reshape(1,-1)
-            cand_mask = [i for i,idx in enumerate(df_idx) if idx != target_idx]
-            cand_scaled = scaled[cand_mask]
-
-            sims = cosine_similarity(cand_scaled, t_vec).reshape(-1)
-            candidates = candidates.copy()
-            candidates["similarity"] = sims
-
-            sim_show = candidates.sort_values("similarity", ascending=False).head(10)
-
-            # Show target card
-            st.markdown(f"""
-            <div class="player-card">
-                <div class="pname">🎯 {target}</div>
-                <div class="pstat">Custom Score: <b>{float(trow["custom_score"].values[0]):.3f}</b></div>
-            </div>
-            """, unsafe_allow_html=True)
-
-            sim_cols = ["player"] + (["role"] if "role" in sim_show.columns else []) + ["similarity","custom_score"]
-            sim_cols = [c for c in sim_cols if c in sim_show.columns]
-            st.dataframe(
-                sim_show[sim_cols].style.format({"similarity":"{:.3f}","custom_score":"{:.3f}"}),
-                use_container_width=True,
-                height=380
-            )
-
-        # ── SHORTLIST ─────────────────────────────────────────────────────
-        cric_divider()
-        section("Shortlist", "📋")
-
-        if "ci_shortlist" not in st.session_state:
-            st.session_state["ci_shortlist"] = []
-
-        sl1, sl2 = st.columns([3,1])
-        add_p = sl1.multiselect(
-            "Add players to shortlist",
-            options=[p for p in df_clean["player"].tolist() if p not in st.session_state["ci_shortlist"]],
-            default=[],
-            key="ci_shortlist_add"
-        )
-        if sl2.button("Add to Shortlist", type="primary", key="ci_add_btn"):
-            for p in add_p:
-                if p not in st.session_state["ci_shortlist"]:
-                    st.session_state["ci_shortlist"].append(p)
-            st.rerun()
-
-        if len(st.session_state["ci_shortlist"]) > 0:
-            st.markdown(f"**{len(st.session_state['ci_shortlist'])} players shortlisted**")
-            shortlist_df = df_clean[df_clean["player"].isin(st.session_state["ci_shortlist"])]
-            sl_cols = ["player"] + selected_metrics + ["custom_score"]
-            sl_cols = [c for c in sl_cols if c in shortlist_df.columns]
-            st.dataframe(shortlist_df[sl_cols].style.format({"custom_score":"{:.3f}"}),
-                        use_container_width=True)
-
-            c1,c2,c3 = st.columns(3)
-            rem = c1.selectbox("Remove", ["Select"]+st.session_state["ci_shortlist"], key="ci_rem")
-            if c1.button("Remove", key="ci_rem_btn"):
-                if rem != "Select":
-                    st.session_state["ci_shortlist"].remove(rem)
-                    st.rerun()
-            if c2.button("Clear All", key="ci_clear"):
-                st.session_state["ci_shortlist"] = []
-                st.rerun()
-            c3.download_button("⬇ Export Shortlist", to_csv_bytes(shortlist_df),
-                              "custom_shortlist.csv", "text/csv")
-        else:
-            st.info("No players shortlisted yet.")
-
-        # Download
-        cric_divider()
-        st.download_button("⬇ Download Full Custom Analysis", to_csv_bytes(df_clean[show_cols]),
-                          "custom_analysis.csv", "text/csv")
-
-    # ── MODE 2: CRICINTEL INTELLIGENCE ────────────────────────────────────
-    elif analysis_mode == "🤖 CricIntel Intelligence — Full 139-metric engine":
-        cric_divider()
-        section("CricIntel Full Analysis", "🤖")
-        st.caption("Running CricIntel's complete analytical engine on your data.")
-
-        with st.spinner("Running full analysis..."):
-            df_base = build_base_df(players, perf)
-            df_base = compute_phase_scores(df_base)
-
-        st.success(f"✅ Analysis complete — {len(df_base)} players processed across 139 metrics")
-
-        # Snapshot
-        s1,s2,s3,s4,s5 = st.columns(5)
-        s1.metric("Players", len(df_base))
-        s2.metric("Batters",      int((df_base["role"]=="BAT").sum()))
-        s3.metric("Bowlers",      int((df_base["role"]=="BOWL").sum()))
-        s4.metric("All-rounders", int((df_base["role"]=="AR").sum()))
-        s5.metric("Avg Impact",   f"{df_base['match_impact_score'].mean():.3f}")
-
-        show_cols = [c for c in ["player","role","age","batting_role","bowling_role",
-                                  "matches","runs","strike_rate","wickets","economy",
-                                  "match_impact_score","total_risk"] if c in df_base.columns]
-        st.dataframe(
-            df_base[show_cols].sort_values("match_impact_score",ascending=False).head(50).style.format(
-                {"match_impact_score":"{:.3f}","total_risk":"{:.3f}",
-                 "strike_rate":"{:.1f}","economy":"{:.2f}"}
-            ),
-            use_container_width=True, height=440
-        )
-        st.download_button("⬇ Download CricIntel Analysis", to_csv_bytes(df_base),
-                          "cricintel_analysis.csv", "text/csv")
-
-    # ── MODE 3: HYBRID ────────────────────────────────────────────────────
     else:
-        cric_divider()
-        section("Hybrid Analysis", "🔀")
-        st.caption("Blend your internal scores with CricIntel's intelligence.")
+        st.caption("Pick up to 5 priority metrics and set their importance. All other metrics share the remaining weight equally.")
 
-        # Run CricIntel engine
-        with st.spinner("Running CricIntel engine..."):
-            df_base = build_base_df(players, perf)
-            df_base = compute_phase_scores(df_base)
-
-        # Pick custom metrics
-        section("Your Internal Metrics", "📊")
-        all_numeric = df.select_dtypes(include=[np.number]).columns.tolist()
-        exclude = ["player_id","age","is_spinner","is_pacer","is_overseas","injury_risk"]
-        available = [c for c in all_numeric if c not in exclude]
-
-        custom_cols = st.multiselect(
-            "Select your internal metrics to blend",
-            options=available,
-            default=available[:3] if len(available)>=3 else available,
-            key="hybrid_metrics"
+        # Pick priority metrics
+        priority_metrics = st.multiselect(
+            "Select up to 5 priority metrics",
+            options=selected_metrics,
+            default=selected_metrics[:3] if len(selected_metrics) >= 3 else selected_metrics,
+            max_selections=5,
+            key="ci_priority"
         )
 
-        h1, h2 = st.columns(2)
-        cricintel_weight = h1.slider("CricIntel Intelligence weight (%)", 0, 100, 60, 5)
-        custom_weight    = h2.slider("Your metrics weight (%)", 0, 100, 40, 5)
-
-        total_hw = cricintel_weight + custom_weight
-        if total_hw != 100:
-            st.warning(f"⚠️ Weights add to {total_hw}% — will normalise automatically")
-
-        if custom_cols:
-            # Compute custom score from selected cols
-            df_custom = df.copy()
-            for c in custom_cols:
-                if c in df_custom.columns:
-                    df_custom[c] = pd.to_numeric(df_custom[c], errors="coerce").fillna(0)
-
-            custom_composite = sum(norm01(df_custom[c]) for c in custom_cols if c in df_custom.columns) / len(custom_cols)
-
-            # Merge with CricIntel scores
-            df_base = df_base.reset_index(drop=True)
-            df_base["custom_composite"] = custom_composite.values[:len(df_base)] if len(custom_composite) >= len(df_base) else 0
-
-            # Normalise weights
-            tw = cricintel_weight + custom_weight
-            ci_w  = cricintel_weight / tw
-            cust_w= custom_weight / tw
-
-            df_base["hybrid_score"] = (
-                ci_w   * norm01(df_base["match_impact_score"]) +
-                cust_w * norm01(df_base["custom_composite"])
-            )
-
-            s1,s2,s3 = st.columns(3)
-            s1.metric("Players Analysed", len(df_base))
-            s2.metric("CricIntel Weight",  f"{cricintel_weight}%")
-            s3.metric("Your Metrics Weight", f"{custom_weight}%")
-
-            show_cols = [c for c in ["player","role","match_impact_score","custom_composite","hybrid_score","total_risk"] if c in df_base.columns]
-            st.dataframe(
-                df_base[show_cols].sort_values("hybrid_score", ascending=False).head(50).style.format(
-                    {"hybrid_score":"{:.3f}","match_impact_score":"{:.3f}",
-                     "custom_composite":"{:.3f}","total_risk":"{:.3f}"}
-                ),
-                use_container_width=True, height=440
-            )
-            st.download_button("⬇ Download Hybrid Analysis", to_csv_bytes(df_base),
-                              "hybrid_analysis.csv", "text/csv")
+        if not priority_metrics:
+            st.warning("Select at least 1 priority metric or disable priority weighting.")
+            weights = {m: 1.0/len(selected_metrics) for m in selected_metrics}
         else:
-            st.info("Select at least one internal metric to blend.")
+            # Sliders for priority metrics
+            st.markdown("**Set importance for your priority metrics:**")
+            cols = st.columns(min(len(priority_metrics), 5))
+            priority_weights = {}
+            for i, metric in enumerate(priority_metrics):
+                default_w = min(30, int(80/len(priority_metrics)))
+                priority_weights[metric] = cols[i].slider(
+                    metric.replace("_"," ").title(),
+                    min_value=5, max_value=80,
+                    value=default_w, step=5,
+                    key=f"pw_{metric}"
+                )
+
+            total_priority = sum(priority_weights.values())
+
+            if total_priority >= 100:
+                st.error(f"❌ Priority weights total {total_priority}% — must be less than 100% to leave room for other metrics.")
+                weights = {m: 1.0/len(selected_metrics) for m in selected_metrics}
+            else:
+                remaining_pct = 100 - total_priority
+                non_priority = [m for m in selected_metrics if m not in priority_metrics]
+                equal_share = remaining_pct / len(non_priority) if non_priority else 0
+
+                # Display summary
+                w1, w2, w3 = st.columns(3)
+                w1.metric("Priority metrics weight", f"{total_priority}%")
+                w2.metric("Other metrics weight", f"{remaining_pct}%")
+                w3.metric("Each other metric gets", f"{equal_share:.1f}%")
+
+                st.success(f"✅ {len(priority_metrics)} priority metrics set · {len(non_priority)} metrics share remaining {remaining_pct}% equally")
+
+                # Build final weights (normalised to sum=1)
+                weights = {}
+                for m in priority_metrics:
+                    weights[m] = priority_weights[m] / 100.0
+                for m in non_priority:
+                    weights[m] = equal_share / 100.0
+
+    # ── COMPUTE CUSTOM SCORE ──────────────────────────────────────────────
+    df_clean = df.copy()
+    for m in selected_metrics:
+        if m in df_clean.columns:
+            df_clean[m] = pd.to_numeric(df_clean[m], errors="coerce").fillna(0)
+
+    df_clean["custom_score"] = sum(
+        weights[m] * norm01(df_clean[m])
+        for m in selected_metrics
+        if m in df_clean.columns
+    )
+
+    # ── RESULTS ───────────────────────────────────────────────────────────
+    cric_divider()
+    section("Your Custom Analysis", "🏆")
+
+    s1, s2, s3, s4 = st.columns(4)
+    s1.metric("Total Players",  len(df_clean))
+    s2.metric("Metrics Used",   len(selected_metrics))
+    s3.metric("Top Score",      f"{df_clean['custom_score'].max():.3f}")
+    s4.metric("Avg Score",      f"{df_clean['custom_score'].mean():.3f}")
+
+    show_cols = ["player"] + (["role"] if "role" in df_clean.columns else []) +                 (["age"] if "age" in df_clean.columns else []) +                 selected_metrics[:8] + ["custom_score"]
+    show_cols = [c for c in dict.fromkeys(show_cols) if c in df_clean.columns]
+
+    st.dataframe(
+        df_clean[show_cols].sort_values("custom_score", ascending=False).head(50).style.format(
+            {"custom_score": "{:.3f}"}
+        ),
+        use_container_width=True, height=440
+    )
+
+    # ── SIMILARITY SEARCH ─────────────────────────────────────────────────
+    cric_divider()
+    section("Similarity Search — Your Metrics", "🔍")
+    st.caption("Find players most similar to any player based on YOUR chosen metrics.")
+
+    target = st.selectbox("Select a player", df_clean["player"].tolist(), key="ci_sim_target")
+    trow = df_clean[df_clean["player"]==target].head(1)
+
+    if len(trow) > 0:
+        feat_data = df_clean[selected_metrics].apply(pd.to_numeric, errors="coerce").fillna(0.0).values
+        scaler = StandardScaler()
+        scaled = scaler.fit_transform(feat_data)
+
+        target_pos = df_clean[df_clean["player"]==target].index[0]
+        df_positions = list(df_clean.index)
+        t_pos_in_array = df_positions.index(target_pos)
+
+        t_vec = scaled[t_pos_in_array].reshape(1,-1)
+        cand_mask = [i for i in range(len(scaled)) if i != t_pos_in_array]
+        cand_scaled = scaled[cand_mask]
+        cand_df = df_clean.iloc[cand_mask].copy()
+
+        sims = cosine_similarity(cand_scaled, t_vec).reshape(-1)
+        cand_df["similarity"] = sims
+        sim_show = cand_df.sort_values("similarity", ascending=False).head(10)
+
+        st.markdown(f"""
+        <div class="player-card">
+            <div class="pname">🎯 {target}</div>
+            <div class="pstat">Custom Score: <b>{float(trow["custom_score"].values[0]):.3f}</b> &nbsp;|&nbsp; Metrics: <b>{len(selected_metrics)}</b></div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        sim_cols = ["player"] + (["role"] if "role" in sim_show.columns else []) + ["similarity","custom_score"]
+        st.dataframe(
+            sim_show[sim_cols].style.format({"similarity":"{:.3f}","custom_score":"{:.3f}"}),
+            use_container_width=True, height=380
+        )
+
+    # ── SHORTLIST ─────────────────────────────────────────────────────────
+    cric_divider()
+    section("Shortlist", "📋")
+
+    if "ci_shortlist" not in st.session_state:
+        st.session_state["ci_shortlist"] = []
+
+    sl1, sl2 = st.columns([3,1])
+    add_p = sl1.multiselect(
+        "Add players to shortlist",
+        options=[p for p in df_clean["player"].tolist() if p not in st.session_state["ci_shortlist"]],
+        default=[], key="ci_shortlist_add"
+    )
+    if sl2.button("Add to Shortlist", type="primary", key="ci_add_btn"):
+        for p in add_p:
+            if p not in st.session_state["ci_shortlist"]:
+                st.session_state["ci_shortlist"].append(p)
+        st.rerun()
+
+    if len(st.session_state["ci_shortlist"]) > 0:
+        st.markdown(f"**{len(st.session_state['ci_shortlist'])} players shortlisted**")
+        shortlist_df = df_clean[df_clean["player"].isin(st.session_state["ci_shortlist"])]
+        sl_cols = ["player"] + selected_metrics[:6] + ["custom_score"]
+        sl_cols = [c for c in sl_cols if c in shortlist_df.columns]
+        st.dataframe(shortlist_df[sl_cols].style.format({"custom_score":"{:.3f}"}),
+                    use_container_width=True)
+
+        c1,c2,c3 = st.columns(3)
+        rem = c1.selectbox("Remove", ["Select"]+st.session_state["ci_shortlist"], key="ci_rem")
+        if c1.button("Remove", key="ci_rem_btn"):
+            if rem != "Select":
+                st.session_state["ci_shortlist"].remove(rem)
+                st.rerun()
+        if c2.button("Clear All", key="ci_clear"):
+            st.session_state["ci_shortlist"] = []
+            st.rerun()
+        c3.download_button("⬇ Export Shortlist", to_csv_bytes(shortlist_df),
+                          "custom_shortlist.csv", "text/csv")
+    else:
+        st.info("No players shortlisted yet.")
+
+    # ── DOWNLOAD ──────────────────────────────────────────────────────────
+    cric_divider()
+    st.download_button("⬇ Download Full Custom Analysis", to_csv_bytes(df_clean[show_cols]),
+                      "custom_analysis.csv", "text/csv")
+
 
 
 # ═══════════════════════════════════════════════════════
