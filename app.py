@@ -2061,11 +2061,29 @@ with st.sidebar:
     <hr style='border-color:#1e3a5f;margin:1rem 0;'>
     """, unsafe_allow_html=True)
 
-    mode = st.radio(
-        "Select Mode",
-        ["🔍 Scout Mode","💰 Auction Mode","🎯 Custom Intelligence","🎬 Highlights Generator"],
-        index=0
-    )
+    data_loaded = st.session_state.get("data_loaded", False)
+    if data_loaded:
+        mode = st.radio(
+            "Select Mode",
+            ["🔍 Scout Mode","💰 Auction Mode","🎯 Custom Intelligence","🎬 Highlights Generator"],
+            index=0
+        )
+    else:
+        # Data not loaded — only Highlights available, rest locked
+        st.markdown("""
+        <div style='font-size:0.8rem;color:#4a7a9b;margin-bottom:0.5rem;'>
+            Upload data to unlock all modes
+        </div>
+        """, unsafe_allow_html=True)
+        mode = st.radio(
+            "Select Mode",
+            ["📁 Upload Data","🎬 Highlights Generator"],
+            index=0
+        )
+        # Map to correct mode names
+        if mode == "📁 Upload Data":
+            mode = "🔍 Scout Mode"  # triggers upload screen
+        
 
     # ── DATA STATUS IN SIDEBAR ─────────────────────────────────────────
     st.markdown("<hr style='border-color:#1e3a5f;margin:0.8rem 0;'>", unsafe_allow_html=True)
