@@ -2154,13 +2154,20 @@ def show_unified_upload():
             help="Any CSV with stats or metrics — cricket or custom"
         )
 
-    # Optional files for Auction Mode
-    with st.expander("➕ Add Contracts & Budget (for Auction Mode — optional)"):
-        ac1, ac2 = st.columns(2)
-        with ac1:
-            contracts_f = st.file_uploader("Contracts / Salary CSV", type="csv", key="unified_contracts")
-        with ac2:
-            budget_f = st.file_uploader("Budget CSV", type="csv", key="unified_budget")
+    # Auction Mode files — visible by default
+    st.markdown("""
+    <div class="mapper-card" style="margin-top:0.5rem;">
+        <div class="mc-title">💰 Auction Mode Files (Optional)</div>
+        <div class="mc-sub">Upload these if you want to use Auction Mode. Scout Mode and Custom Intelligence work without them.</div>
+    </div>
+    """, unsafe_allow_html=True)
+    ac1, ac2 = st.columns(2)
+    with ac1:
+        contracts_f = st.file_uploader("Contracts / Salary CSV", type="csv", key="unified_contracts",
+                                        help="Any CSV with player IDs + salary/wage/price column")
+    with ac2:
+        budget_f = st.file_uploader("Budget CSV", type="csv", key="unified_budget",
+                                     help="Total budget + optional squad size settings")
 
     if not all([players_f, perf_f]):
         st.markdown("""
