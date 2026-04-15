@@ -2193,24 +2193,35 @@ mode_labels = {
     "🎯 Custom Intelligence":  ("🎯 Custom Intelligence",   "Your metrics · Your weights · Your analysis"),
     "🎬 Highlights Generator": ("🎬 Highlights Generator",  "Upload match video · Generate highlight clips"),
 }
-banner_title, banner_sub = mode_labels[mode]
 
-st.markdown(f"""
-<div class="cricintel-banner">
-    <div>
-        <h1>CRICINTEL</h1>
-        <p>{banner_sub}</p>
-    </div>
-    <div style='text-align:right;'>
-        <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
-        <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
-    </div>
-</div>
-""", unsafe_allow_html=True)
-
-# ── UNIFIED DATA GATE ─────────────────────────────────────────────────
-# Highlights doesn't need CSV data
+# ── ROUTING ───────────────────────────────────────────────────────────
 if mode == "🎬 Highlights Generator":
+    st.markdown(f"""
+    <div class="cricintel-banner">
+        <div><h1>CRICINTEL</h1><p>Upload match video · Generate highlight clips</p></div>
+        <div style='text-align:right;'>
+            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>🎬 Highlights Generator</div>
+            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    run_highlights_mode()
+
+elif not st.session_state.get("data_loaded"):
+    # No data yet — show upload screen only
+    st.markdown("""
+    <div class="cricintel-banner">
+        <div><h1>CRICINTEL</h1><p>Upload your data once · Scout, analyse, optimise — all in one platform</p></div>
+        <div style='text-align:right;'>
+            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>📁 Upload Data</div>
+            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>Step 1 of 1</div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    show_unified_upload()
+
+else:
+    # Data loaded — show selected mode with its banner
     banner_title, banner_sub = mode_labels[mode]
     st.markdown(f"""
     <div class="cricintel-banner">
@@ -2221,38 +2232,10 @@ if mode == "🎬 Highlights Generator":
         </div>
     </div>
     """, unsafe_allow_html=True)
-    run_highlights_mode()
 
-else:
-    # ── STEP 1: DATA NOT LOADED — show upload screen regardless of mode ──
-    if not st.session_state.get("data_loaded"):
-        st.markdown("""
-        <div class="cricintel-banner">
-            <div><h1>CRICINTEL</h1><p>Upload your data once · Use every mode instantly</p></div>
-            <div style='text-align:right;'>
-                <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>📁 Data Upload</div>
-                <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>Step 1 of 1</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-        show_unified_upload()
-
-    # ── STEP 2: DATA LOADED — show selected mode ───────────────────────
-    else:
-        banner_title, banner_sub = mode_labels[mode]
-        st.markdown(f"""
-        <div class="cricintel-banner">
-            <div><h1>CRICINTEL</h1><p>{banner_sub}</p></div>
-            <div style='text-align:right;'>
-                <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
-                <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
-            </div>
-        </div>
-        """, unsafe_allow_html=True)
-
-        if mode == "🔍 Scout Mode":
-            run_scout_mode()
-        elif mode == "💰 Auction Mode":
-            run_auction_mode()
-        elif mode == "🎯 Custom Intelligence":
-            run_custom_intelligence()
+    if mode == "🔍 Scout Mode":
+        run_scout_mode()
+    elif mode == "💰 Auction Mode":
+        run_auction_mode()
+    elif mode == "🎯 Custom Intelligence":
+        run_custom_intelligence()
