@@ -2181,28 +2181,8 @@ def show_unified_upload():
         st.session_state["df_master"]    = df
         st.session_state["data_loaded"]  = True
 
-    # Show what was loaded
-    st.success(f"✅ Data loaded successfully — {len(df)} players ready across all modes")
-
-    c1,c2,c3,c4,c5 = st.columns(5)
-    c1.metric("Total Players",  len(df))
-    c2.metric("Batters",        int((df["role"]=="BAT").sum()))
-    c3.metric("Bowlers",        int((df["role"]=="BOWL").sum()))
-    c4.metric("All-rounders",   int((df["role"]=="AR").sum()))
-    c5.metric("Columns",        len(df.columns))
-
-    # Show column detection
-    cric_divider()
-    p_det = auto_detect_columns(players)
-    r_det = auto_detect_columns(perf)
-    all_det = {**p_det, **r_det}
-    render_mapping_summary(all_det, ["player","player_id","role","matches","runs","strike_rate","wickets","economy"])
-
-    st.markdown("""
-    <div style='text-align:center;margin-top:1.5rem;color:#7ba7c4;font-size:0.9rem;'>
-        👈 Select a mode from the sidebar to start analysing
-    </div>
-    """, unsafe_allow_html=True)
+    # Auto redirect to Scout Mode after loading
+    st.rerun()
 
     return True
 
@@ -2244,22 +2224,32 @@ if mode == "🎬 Highlights Generator":
     run_highlights_mode()
 
 else:
-    banner_title, banner_sub = mode_labels[mode]
-    st.markdown(f"""
-    <div class="cricintel-banner">
-        <div><h1>CRICINTEL</h1><p>{banner_sub}</p></div>
-        <div style='text-align:right;'>
-            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
-            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-
-    # Show upload screen if no data loaded
+    # ── STEP 1: DATA NOT LOADED — show upload screen regardless of mode ──
     if not st.session_state.get("data_loaded"):
+        st.markdown("""
+        <div class="cricintel-banner">
+            <div><h1>CRICINTEL</h1><p>Upload your data once · Use every mode instantly</p></div>
+            <div style='text-align:right;'>
+                <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>📁 Data Upload</div>
+                <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>Step 1 of 1</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
         show_unified_upload()
+
+    # ── STEP 2: DATA LOADED — show selected mode ───────────────────────
     else:
-        # Data is loaded — run selected mode
+        banner_title, banner_sub = mode_labels[mode]
+        st.markdown(f"""
+        <div class="cricintel-banner">
+            <div><h1>CRICINTEL</h1><p>{banner_sub}</p></div>
+            <div style='text-align:right;'>
+                <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
+                <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
         if mode == "🔍 Scout Mode":
             run_scout_mode()
         elif mode == "💰 Auction Mode":
