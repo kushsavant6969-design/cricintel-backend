@@ -7,7 +7,14 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.linear_model import Ridge
 from sklearn.metrics.pairwise import cosine_similarity
 import pulp as pl
-import os, tempfile, subprocess
+import os, tempfile, subprocess, io
+from datetime import date
+
+try:
+    from fpdf import FPDF
+    _PDF_AVAILABLE = True
+except ImportError:
+    _PDF_AVAILABLE = False
 
 # ─────────────────────────────────────────────
 # PAGE CONFIG
@@ -16,7 +23,7 @@ st.set_page_config(
     page_title="CricIntel",
     page_icon="🏏",
     layout="wide",
-    initial_sidebar_state="expanded",
+    initial_sidebar_state="auto",
 )
 
 # ─────────────────────────────────────────────
@@ -127,6 +134,57 @@ section[data-testid="stSidebar"] * { color: #e0e6ef !important; }
 .stTabs [data-baseweb="tab-list"] { background:#0a0f1e; border-radius:8px; padding:4px; }
 .stTabs [data-baseweb="tab"] { color:#7ba7c4 !important; font-weight:500; }
 .stTabs [aria-selected="true"] { background:#0d2137 !important; color:#00d4ff !important; border-radius:6px; }
+
+/* ── Mobile responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+    .block-container {
+        padding-left: 0.6rem !important;
+        padding-right: 0.6rem !important;
+        padding-top: 0.8rem !important;
+    }
+    .cricintel-banner {
+        flex-direction: column;
+        text-align: center;
+        padding: 1rem 0.8rem;
+        gap: 0.6rem;
+    }
+    .cricintel-banner h1 { font-size: 1.55rem; letter-spacing: 0.08em; }
+    .cricintel-banner p  { font-size: 0.78rem; }
+    .cricintel-banner > div:last-child { display: none; }
+
+    .section-header { font-size: 0.88rem; padding: 0.4rem 0.75rem; margin: 1rem 0 0.6rem; }
+
+    .player-card { padding: 0.65rem 0.85rem; }
+    .player-card .pname { font-size: 0.88rem; }
+    .player-card .pstat { font-size: 0.7rem; }
+
+    .mapper-card { padding: 0.75rem 0.9rem; }
+    .mapper-card .mc-title { font-size: 0.8rem; }
+    .mapper-card .mc-sub   { font-size: 0.7rem; }
+
+    .explain-card { padding: 0.65rem 0.8rem; }
+    .explain-card .ename { font-size: 0.85rem; }
+
+    .filter-panel { padding: 0.75rem 0.9rem; }
+
+    /* Stack dataframes horizontally with scroll */
+    [data-testid="stDataFrame"] { overflow-x: auto !important; }
+
+    /* Make metric widgets more compact */
+    [data-testid="stMetric"] { padding: 0.4rem 0 !important; }
+    [data-testid="stMetricValue"] { font-size: 1.05rem !important; }
+    [data-testid="stMetricLabel"] { font-size: 0.7rem !important; }
+
+    /* Tabs scrollable on mobile */
+    .stTabs [data-baseweb="tab-list"] { overflow-x: auto; flex-wrap: nowrap; }
+    .stTabs [data-baseweb="tab"] { white-space: nowrap; font-size: 0.78rem !important; }
+}
+
+@media (max-width: 480px) {
+    .cricintel-banner h1 { font-size: 1.25rem; }
+    .section-header { font-size: 0.8rem; }
+    [data-testid="stMetricValue"] { font-size: 0.9rem !important; }
+}
 </style>
 """, unsafe_allow_html=True)
 
@@ -756,6 +814,205 @@ def pick_best_xi(squad, xi_size, xi_min_role, max_overseas_xi, enforce_left_in_t
 
 
 # ═══════════════════════════════════════════════════════
+# PDF EXPORT
+# ═══════════════════════════════════════════════════════
+def generate_shortlist_pdf(shortlist_df: pd.DataFrame, title: str = "CricIntel Shortlist") -> bytes:
+    """Return a PDF as raw bytes for st.download_button."""
+    if not _PDF_AVAILABLE:
+        return b""
+
+    # Columns to include (keep it printable-width)
+    _WANT = ["player","role","age","bat_hand","matches","runs","strike_rate",
+             "wickets","economy","match_impact_score","total_risk"]
+    cols = [c for c in _WANT if c in shortlist_df.columns]
+    headers = {
+        "player": "Player", "role": "Role", "age": "Age",
+        "bat_hand": "Hand", "matches": "M", "runs": "Runs",
+        "strike_rate": "SR", "wickets": "Wkts", "economy": "Eco",
+        "match_impact_score": "Impact", "total_risk": "Risk",
+    }
+
+    pdf = FPDF(orientation="L", unit="mm", format="A4")
+    pdf.set_auto_page_break(auto=True, margin=12)
+    pdf.add_page()
+
+    # ── Header ──────────────────────────────────────────────────────────────
+    pdf.set_fill_color(10, 15, 30)
+    pdf.rect(0, 0, 297, 22, style="F")
+    pdf.set_text_color(0, 212, 255)
+    pdf.set_font("Helvetica", "B", 16)
+    pdf.set_xy(8, 5)
+    pdf.cell(0, 10, "CRICINTEL", ln=0)
+    pdf.set_font("Helvetica", "", 9)
+    pdf.set_text_color(123, 167, 196)
+    pdf.set_xy(60, 8)
+    pdf.cell(0, 6, "AI Cricket Analytics Platform", ln=0)
+    pdf.set_text_color(100, 140, 180)
+    pdf.set_font("Helvetica", "", 8)
+    pdf.set_xy(210, 8)
+    pdf.cell(80, 6, f"Generated: {date.today().strftime('%d %b %Y')}", align="R")
+
+    # ── Sub-header ──────────────────────────────────────────────────────────
+    pdf.set_xy(8, 26)
+    pdf.set_text_color(200, 230, 245)
+    pdf.set_font("Helvetica", "B", 11)
+    pdf.cell(0, 7, title, ln=1)
+    pdf.set_font("Helvetica", "", 8)
+    pdf.set_text_color(123, 167, 196)
+    pdf.cell(0, 5, f"{len(shortlist_df)} player(s) shortlisted", ln=1)
+    pdf.ln(2)
+
+    # ── Table header ────────────────────────────────────────────────────────
+    COL_W = {"player":52,"role":14,"age":10,"bat_hand":10,"matches":10,
+              "runs":14,"strike_rate":12,"wickets":11,"economy":12,
+              "match_impact_score":16,"total_risk":12}
+    ROW_H = 7
+
+    pdf.set_fill_color(13, 33, 55)
+    pdf.set_text_color(0, 212, 255)
+    pdf.set_font("Helvetica", "B", 8)
+    pdf.set_draw_color(30, 58, 95)
+    for c in cols:
+        pdf.cell(COL_W.get(c, 18), ROW_H, headers.get(c, c), border=1, fill=True, align="C")
+    pdf.ln()
+
+    # ── Table rows ───────────────────────────────────────────────────────────
+    pdf.set_font("Helvetica", "", 7.5)
+    for i, (_, row) in enumerate(shortlist_df[cols].iterrows()):
+        fill = i % 2 == 0
+        pdf.set_fill_color(8, 15, 26) if fill else pdf.set_fill_color(13, 27, 42)
+        pdf.set_text_color(224, 230, 239)
+        for c in cols:
+            val = row[c]
+            if c in ("match_impact_score", "total_risk"):
+                txt = f"{float(val):.3f}" if pd.notna(val) else "—"
+            elif c == "strike_rate":
+                txt = f"{float(val):.1f}" if pd.notna(val) else "—"
+            elif c == "economy":
+                txt = f"{float(val):.2f}" if pd.notna(val) else "—"
+            elif c in ("age","matches","runs","wickets"):
+                txt = str(int(val)) if pd.notna(val) and val != 0 else "—"
+            else:
+                txt = str(val) if pd.notna(val) else "—"
+            align = "L" if c == "player" else "C"
+            pdf.cell(COL_W.get(c, 18), ROW_H, txt[:28], border=1, fill=True, align=align)
+        pdf.ln()
+
+    # ── Footer ───────────────────────────────────────────────────────────────
+    pdf.set_y(-12)
+    pdf.set_font("Helvetica", "I", 7)
+    pdf.set_text_color(74, 122, 155)
+    pdf.cell(0, 6, "Confidential — CricIntel AI Cricket Analytics Platform", align="C")
+
+    return bytes(pdf.output())
+
+
+# ═══════════════════════════════════════════════════════
+# PLAIN ENGLISH EXPLAINABILITY
+# ═══════════════════════════════════════════════════════
+METRIC_LABELS = {
+    "pp_bat_score":       "powerplay batting",
+    "mid_bat_score":      "middle-overs batting",
+    "death_bat_score":    "death batting",
+    "pp_bowl_score":      "powerplay bowling",
+    "mid_bowl_score":     "middle-overs bowling",
+    "death_bowl_score":   "death bowling",
+    "match_impact_score": "overall match impact",
+    "unit_fit_score":     "fit with your unit",
+    "combined_reco":      "recommendation score",
+    "total_risk":         "risk profile",
+    "economy":            "bowling economy",
+    "strike_rate":        "batting strike rate",
+    "pp_eco":             "powerplay economy",
+    "middle_eco":         "middle-overs economy",
+    "death_eco":          "death-overs economy",
+    "pp_sr":              "powerplay strike rate",
+    "middle_sr":          "middle-overs strike rate",
+    "death_sr":           "death strike rate",
+    "dot_ball_pct":       "dot ball percentage",
+    "boundary_pct":       "boundary-hitting rate",
+    "pp_wkts":            "powerplay wickets",
+    "death_wkts":         "death-overs wickets",
+    "pp_runs":            "powerplay run contribution",
+    "death_runs":         "death-overs run contribution",
+}
+
+LOWER_IS_BETTER = {"economy","pp_eco","middle_eco","death_eco","total_risk","dot_ball_pct"}
+
+
+def _pct_phrase(pct: float, metric: str) -> str:
+    """Turn a raw percentage difference into a readable phrase like '32% above average'."""
+    if metric in LOWER_IS_BETTER:
+        pct = -pct
+    abs_p = abs(pct)
+    direction = "above" if pct >= 0 else "below"
+    if abs_p < 4:
+        return "on par with"
+    if abs_p >= 50:
+        intensity = "far"
+    elif abs_p >= 25:
+        intensity = "well"
+    elif abs_p >= 10:
+        intensity = ""
+    else:
+        intensity = "slightly"
+    parts = [p for p in [intensity, direction, "average"] if p]
+    phrase = " ".join(parts)
+    return f"{abs_p:.0f}% {phrase}"
+
+
+def plain_english_explain(player_name: str, player_row, unit_avg, feat_cols: list, gap_type: str) -> dict:
+    """
+    Returns {
+        'headline': one-sentence reason for recommendation,
+        'strengths': list of plain-English strength strings,
+        'tradeoffs': list of plain-English trade-off strings,
+    }
+    """
+    diffs = {}
+    pct_diffs = {}
+    for c in feat_cols:
+        try:
+            pv = float(player_row[c])
+            av = float(unit_avg.get(c, 0.0))
+            diffs[c] = pv - av
+            pct_diffs[c] = ((pv - av) / abs(av) * 100) if av != 0 else 0.0
+        except Exception:
+            continue
+
+    if not diffs:
+        return {
+            "headline": f"{player_name} is a strong fit for your squad.",
+            "strengths": [], "tradeoffs": [],
+        }
+
+    def adj(metric, d):
+        return -d if metric in LOWER_IS_BETTER else d
+
+    ranked = sorted(diffs.items(), key=lambda kv: adj(kv[0], kv[1]), reverse=True)
+
+    strengths, tradeoffs = [], []
+    for metric, diff in ranked[:3]:
+        label = METRIC_LABELS.get(metric, metric.replace("_", " "))
+        pct   = pct_diffs.get(metric, 0.0)
+        if adj(metric, diff) > 0 and abs(pct) >= 4:
+            strengths.append(f"their {label} is {_pct_phrase(pct, metric)}")
+
+    for metric, diff in ranked[-2:]:
+        label = METRIC_LABELS.get(metric, metric.replace("_", " "))
+        pct   = pct_diffs.get(metric, 0.0)
+        if adj(metric, diff) < -3 and abs(pct) >= 4:
+            tradeoffs.append(f"{label} is {_pct_phrase(pct, metric)}")
+
+    if strengths:
+        headline = f"{player_name} is recommended because {strengths[0]}."
+    else:
+        headline = f"{player_name} is a competitive fit for your {gap_type} gap."
+
+    return {"headline": headline, "strengths": strengths, "tradeoffs": tradeoffs}
+
+
+# ═══════════════════════════════════════════════════════
 # SCOUT MODE
 # ═══════════════════════════════════════════════════════
 def run_scout_mode():
@@ -966,7 +1223,7 @@ def run_scout_mode():
             height=min(100 + len(shortlist_df)*35, 400)
         )
 
-        remove_col, clear_col, export_col = st.columns(3)
+        remove_col, clear_col, csv_col, pdf_col = st.columns(4)
         remove_player = remove_col.selectbox(
             "Remove a player",
             ["Select"] + st.session_state["shortlist"],
@@ -981,12 +1238,25 @@ def run_scout_mode():
             st.session_state["shortlist"] = []
             st.rerun()
 
-        export_col.download_button(
-            "Export Shortlist CSV",
+        csv_col.download_button(
+            "⬇ Export CSV",
             to_csv_bytes(shortlist_df),
             "cricintel_shortlist.csv",
-            "text/csv"
+            "text/csv",
+            key="scout_csv_dl"
         )
+
+        if _PDF_AVAILABLE:
+            pdf_bytes = generate_shortlist_pdf(shortlist_df, title="Scout Mode — Player Shortlist")
+            pdf_col.download_button(
+                "⬇ Export PDF",
+                pdf_bytes,
+                "cricintel_shortlist.pdf",
+                "application/pdf",
+                key="scout_pdf_dl"
+            )
+        else:
+            pdf_col.caption("PDF unavailable — install fpdf2")
 
     # ── PLAYER PROFILE CARD ───────────────────────────────────────────────
     cric_divider()
@@ -1286,29 +1556,30 @@ def run_scout_mode():
             use_container_width=True, height=300
         )
 
-    # Explainability
+    # Plain-English Explainability
     cric_divider()
-    section("Explainability — Top 5", "🔬")
+    section("Why These Players?", "🗣️")
     for _, r in rec.head(5).iterrows():
-        diffs = {}
-        for c in feat_cols:
-            try: diffs[c] = float(r[c]) - float(unit_avg.get(c,0.0))
-            except: continue
-        ranked = sorted(diffs.items(), key=lambda kv: kv[1], reverse=True)
-        best   = ranked[:3]
-        worst  = ranked[-1:] if ranked else []
+        explain = plain_english_explain(r["player"], r, unit_avg, feat_cols, gap_type)
 
+        s_html = "".join(
+            f'<div class="explain-pos" style="margin-top:0.2rem;">▲ {s}</div>'
+            for s in explain["strengths"]
+        )
+        t_html = "".join(
+            f'<div class="explain-neg" style="margin-top:0.15rem;">▼ Trade-off: {t}</div>'
+            for t in explain["tradeoffs"]
+        )
         st.markdown(f"""
         <div class="explain-card">
-            <div class="ename">{r['player']} {role_badge(r['role'])}</div>
-            <div class="escores">combined_reco: <b>{r.get('combined_reco',0):.3f}</b> &nbsp;|&nbsp; unit_fit: <b>{r.get('unit_fit_score',0):.3f}</b> &nbsp;|&nbsp; impact: <b>{r.get('match_impact_score',0):.3f}</b></div>
+            <div class="ename">{r["player"]} {role_badge(r["role"])}</div>
+            <div style="font-size:0.87rem;color:#c8e6f5;margin:0.4rem 0 0.45rem;line-height:1.55;">
+                {explain["headline"]}
+            </div>
+            {s_html}
+            {t_html}
         </div>
         """, unsafe_allow_html=True)
-        for k, v in best:
-            st.markdown(f'<span class="explain-pos">▲ <b>{k}</b> better than unit avg ({v:+.3f})</span>', unsafe_allow_html=True)
-        for k, v in worst:
-            st.markdown(f'<span class="explain-neg">▼ <b>{k}</b> trade-off vs unit ({v:+.3f})</span>', unsafe_allow_html=True)
-        st.write("")
 
     # Downloads
     cric_divider()
@@ -1971,7 +2242,7 @@ def run_custom_intelligence():
         st.dataframe(shortlist_df[sl_cols].style.format({"custom_score":"{:.3f}"}),
                     use_container_width=True)
 
-        c1,c2,c3 = st.columns(3)
+        c1,c2,c3,c4 = st.columns(4)
         rem = c1.selectbox("Remove", ["Select"]+st.session_state["ci_shortlist"], key="ci_rem")
         if c1.button("Remove", key="ci_rem_btn"):
             if rem != "Select":
@@ -1980,8 +2251,14 @@ def run_custom_intelligence():
         if c2.button("Clear All", key="ci_clear"):
             st.session_state["ci_shortlist"] = []
             st.rerun()
-        c3.download_button("⬇ Export Shortlist", to_csv_bytes(shortlist_df),
-                          "custom_shortlist.csv", "text/csv")
+        c3.download_button("⬇ Export CSV", to_csv_bytes(shortlist_df),
+                          "custom_shortlist.csv", "text/csv", key="ci_csv_dl")
+        if _PDF_AVAILABLE:
+            ci_pdf = generate_shortlist_pdf(shortlist_df, title="Custom Intelligence — Player Shortlist")
+            c4.download_button("⬇ Export PDF", ci_pdf,
+                              "custom_shortlist.pdf", "application/pdf", key="ci_pdf_dl")
+        else:
+            c4.caption("PDF unavailable — install fpdf2")
     else:
         st.info("No players shortlisted yet.")
 

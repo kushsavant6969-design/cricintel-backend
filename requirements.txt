@@ -6,3 +6,4 @@ pulp
 moviepy
 opencv-python
 matplotlib
+fpdf2
