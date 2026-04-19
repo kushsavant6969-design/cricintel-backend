@@ -139,7 +139,9 @@ section[data-testid="stSidebar"] * { color: #e0e6ef !important; }
 COLUMN_ALIASES = {
     # Identity
     "player_id":   ["player_id","id","player id","uid","player_uid","playerid","p_id","pid","player_no","number"],
-    "player":      ["player","name","player_name","full_name","fullname","playername","player name","cricket_name"],
+    "player":      ["player","name","player_name","full_name","fullname","playername","player name","cricket_name",
+                    "athlete","athlete_name","cricketer","cricketer_name","person","person_name",
+                    "first_name","last_name","display_name","display name","known_as"],
 
     # Role
     "role":        ["role","position","player_role","type","player_type","category","playing_role","role_type"],
@@ -376,6 +378,8 @@ def smart_merge(players_df: pd.DataFrame, perf_df: pd.DataFrame) -> pd.DataFrame
         common = set(players_df.columns) & set(perf_df.columns)
         if common:
             join_col = list(common)[0]
+            players_df[join_col] = players_df[join_col].astype(str)
+            perf_df[join_col]    = perf_df[join_col].astype(str)
             df = players_df.merge(perf_df, on=join_col, how="left", suffixes=("", "_perf"))
             df = df.rename(columns={join_col: "player_id"})
         else:
@@ -447,10 +451,14 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
         c_id = c_detected.get("player_id", (None, 0))[0]
         if c_id and c_id != "player_id":
             contracts = contracts.rename(columns={c_id: "player_id"})
-        # FIX: cast both to string to avoid type mismatch
-        df["player_id"] = df["player_id"].astype(str)
-        contracts["player_id"] = contracts["player_id"].astype(str)
-        df = df.merge(contracts, on="player_id", how="left", suffixes=("", "_contract"))
+        if "player_id" in contracts.columns:
+            df["player_id"] = df["player_id"].astype(str)
+            contracts["player_id"] = contracts["player_id"].astype(str)
+            df = df.merge(contracts, on="player_id", how="left", suffixes=("", "_contract"))
+        elif "player" in df.columns and "player" in contracts.columns:
+            df["player"] = df["player"].astype(str)
+            contracts["player"] = contracts["player"].astype(str)
+            df = df.merge(contracts, on="player", how="left", suffixes=("", "_contract"))
 
     # ── Apply intelligent column mapping ──────────────────────────────────
     detected = auto_detect_columns(df)
@@ -460,17 +468,29 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     # ── Required column check ─────────────────────────────────────────────
     if "player" not in df.columns:
         name_candidates = [c for c in df.columns if "name" in c.lower()]
+        if not name_candidates:
+            name_candidates = [c for c in df.columns
+                               if any(kw in c.lower() for kw in ["player","athlete","cricketer","person"])]
+        if not name_candidates:
+            str_cols = df.select_dtypes(include=["object"]).columns.tolist()
+            name_candidates = [c for c in str_cols if df[c].nunique() > max(5, len(df) * 0.4)]
         if name_candidates:
             df["player"] = df[name_candidates[0]]
         else:
-            df["player"] = ["Player_" + str(i) for i in df.index]
+            df["player"] = [f"Player_{i+1}" for i in range(len(df))]
 
     if "player_id" not in df.columns:
         df["player_id"] = df.index + 1
 
     # ── Numeric safety ────────────────────────────────────────────────────
     df = safe_numeric(df, ["matches","runs","strike_rate","wickets","economy",
-                           "dot_ball_pct","boundary_pct","age"], 0.0)
+                           "dot_ball_pct","boundary_pct"], 0.0)
+    # Age: use 25 as default, never 0
+    if "age" not in df.columns:
+        df["age"] = 25.0
+    else:
+        df["age"] = pd.to_numeric(df["age"], errors="coerce")
+        df["age"] = df["age"].where(df["age"] > 0, 25.0).fillna(25.0)
 
     # ── Optional phase columns ────────────────────────────────────────────
     for col in ["pp_sr","middle_sr","death_sr","pp_runs","death_runs",
@@ -530,15 +550,17 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     ).astype(int)
 
     # ── Bowling arm + spin type ───────────────────────────────────────────
-    if df["bowling_arm"].isna().all():
-        df["bowling_arm"] = np.where(noise < 0.28, "L", "R")
+    arm_na = df["bowling_arm"].isna()
+    if arm_na.any():
+        df.loc[arm_na, "bowling_arm"] = np.where(noise[arm_na] < 0.28, "L", "R")
     df["bowling_arm"] = df["bowling_arm"].astype(str).str.upper()
     df.loc[~df["bowling_arm"].isin(["L","R"]), "bowling_arm"] = "R"
 
-    if df["spin_type"].isna().all():
-        df["spin_type"] = "NONE"
-        spin_mask = df["is_spinner"].astype(int)==1
-        df.loc[spin_mask, "spin_type"] = np.where(noise[spin_mask]<0.55, "OFF", "LEG")
+    spin_na = df["spin_type"].isna()
+    if spin_na.any():
+        df.loc[spin_na, "spin_type"] = "NONE"
+        spinner_na_mask = spin_na & (df["is_spinner"].astype(int) == 1)
+        df.loc[spinner_na_mask, "spin_type"] = np.where(noise[spinner_na_mask] < 0.55, "OFF", "LEG")
     df["spin_type"] = df["spin_type"].astype(str).str.upper()
 
     df["is_left_arm_spinner"]  = ((df["is_spinner"].astype(int)==1) & (df["bowling_arm"]=="L")).astype(int)
@@ -1745,7 +1767,16 @@ def run_custom_intelligence():
     df = apply_column_mapping(df, {f: col for f, (col,_) in auto_detect_columns(df).items()})
     if "player" not in df.columns:
         name_candidates = [c for c in df.columns if "name" in c.lower()]
-        df["player"] = df[name_candidates[0]] if name_candidates else ["Player_"+str(i) for i in df.index]
+        if not name_candidates:
+            name_candidates = [c for c in df.columns
+                               if any(kw in c.lower() for kw in ["player","athlete","cricketer","person"])]
+        if not name_candidates:
+            str_cols = df.select_dtypes(include=["object"]).columns.tolist()
+            name_candidates = [c for c in str_cols if df[c].nunique() > max(5, len(df) * 0.4)]
+        if name_candidates:
+            df["player"] = df[name_candidates[0]]
+        else:
+            df["player"] = [f"Player_{i+1}" for i in range(len(df))]
     if "player_id" not in df.columns:
         df["player_id"] = df.index + 1
 
@@ -2050,6 +2081,12 @@ def check_login():
 
 # Run login check — stops here if not authenticated
 check_login()
+
+# Ensure data_loaded is consistent with what's actually in session state.
+# Guards against the case where df_master exists but the flag got lost on rerun.
+if (st.session_state.get("df_master") is not None
+        and not st.session_state.get("data_loaded")):
+    st.session_state["data_loaded"] = True
 
 with st.sidebar:
     st.markdown("""
