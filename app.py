@@ -608,12 +608,15 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     ).astype(int)
 
     # ── Bowling arm + spin type ───────────────────────────────────────────
+    # Cast to object first so string assignment doesn't hit a float64 column
+    df["bowling_arm"] = df["bowling_arm"].astype(object)
     arm_na = df["bowling_arm"].isna()
     if arm_na.any():
         df.loc[arm_na, "bowling_arm"] = np.where(noise[arm_na] < 0.28, "L", "R")
     df["bowling_arm"] = df["bowling_arm"].astype(str).str.upper()
     df.loc[~df["bowling_arm"].isin(["L","R"]), "bowling_arm"] = "R"
 
+    df["spin_type"] = df["spin_type"].astype(object)
     spin_na = df["spin_type"].isna()
     if spin_na.any():
         df.loc[spin_na, "spin_type"] = "NONE"
