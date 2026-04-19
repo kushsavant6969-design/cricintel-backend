@@ -1063,6 +1063,8 @@ def run_scout_mode():
         if df["age"].max() > 0:
             age_min = int(df["age"].min()) if df["age"].min() > 0 else 15
             age_max = int(df["age"].max()) if df["age"].max() > 0 else 45
+            if age_min >= age_max:
+                age_min = max(0, age_max - 1)
             sel_age = f2.slider("Age range", age_min, age_max, (age_min, age_max))
         else:
             sel_age = (15, 45)
