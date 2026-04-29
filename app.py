@@ -9,6 +9,8 @@ from sklearn.metrics.pairwise import cosine_similarity
 import pulp as pl
 import os, tempfile, subprocess, io
 from datetime import date
+import plotly.graph_objects as go
+import plotly.express as px
 
 try:
     from fpdf import FPDF
@@ -185,6 +187,58 @@ section[data-testid="stSidebar"] * { color: #e0e6ef !important; }
     .section-header { font-size: 0.8rem; }
     [data-testid="stMetricValue"] { font-size: 0.9rem !important; }
 }
+
+/* ── Score displays (0-100) ──────────────────────────────── */
+.score-display { display:inline-flex;flex-direction:column;align-items:center;min-width:90px; }
+.score-number  { font-size:2.4rem;font-weight:800;line-height:1;font-family:'Inter',sans-serif; }
+.score-number-sm { font-size:1.4rem;font-weight:700;line-height:1; }
+.score-label   { font-size:0.67rem;color:#7ba7c4;text-transform:uppercase;letter-spacing:.07em;margin-top:3px; }
+.score-bar-outer { width:100%;height:5px;background:#1e3a5f;border-radius:4px;margin-top:5px;overflow:hidden; }
+.score-bar-inner { height:100%;border-radius:4px; }
+.score-green { color:#4ade80; } .score-amber { color:#fbbf24; } .score-red { color:#f87171; }
+.bar-green   { background:#4ade80; } .bar-amber { background:#fbbf24; } .bar-red { background:#f87171; }
+
+/* ── Form-trend pills ────────────────────────────────────── */
+.form-pill { display:inline-block;padding:2px 9px;border-radius:20px;font-size:0.7rem;font-weight:600;letter-spacing:.05em; }
+.form-consistent { background:#1a3a2a;color:#4ade80;border:1px solid #4ade8044; }
+.form-declining  { background:#2a1a1a;color:#f87171;border:1px solid #f8717144; }
+.form-rising     { background:#1a1a3a;color:#818cf8;border:1px solid #818cf844; }
+.form-unknown    { background:#1a2535;color:#7ba7c4;border:1px solid #7ba7c444; }
+
+/* ── Risk chip ───────────────────────────────────────────── */
+.risk-chip { display:inline-block;padding:2px 8px;border-radius:20px;font-size:0.68rem;font-weight:600; }
+.risk-low  { background:#1a3a2a;color:#4ade80; }
+.risk-med  { background:#2a2a1a;color:#fbbf24; }
+.risk-high { background:#2a1a1a;color:#f87171; }
+
+/* ── Enhanced player result cards ───────────────────────── */
+.pcard { background:linear-gradient(135deg,#0d1b2a,#0a1520);border:1px solid #1e3a5f;border-radius:12px;padding:1.1rem 1.2rem;margin-bottom:0.7rem;transition:border-color .15s; }
+.pcard:hover { border-color:#00d4ff55; }
+.pcard-header { display:flex;align-items:flex-start;justify-content:space-between;margin-bottom:0.7rem; }
+.pcard-name   { font-size:1.05rem;font-weight:700;color:#e0e6ef;line-height:1.2; }
+.pcard-badges { display:flex;gap:6px;align-items:center;margin-top:4px;flex-wrap:wrap; }
+.pcard-scores { display:flex;gap:20px;align-items:flex-start;flex-shrink:0;margin-left:12px; }
+.pcard-stats  { display:flex;gap:18px;padding-top:0.7rem;border-top:1px solid #1e3a5f;flex-wrap:wrap; }
+.pstat-item   { display:flex;flex-direction:column; }
+.pstat-val    { font-size:0.92rem;font-weight:600;color:#e0e6ef; }
+.pstat-lbl    { font-size:0.63rem;color:#4a7a9b;text-transform:uppercase;letter-spacing:.05em; }
+
+/* ── Auction player cards ────────────────────────────────── */
+.acard       { background:linear-gradient(135deg,#0d1b2a,#0a1520);border:1px solid #1e3a5f;border-radius:12px;padding:1rem 1.2rem;margin-bottom:0.7rem; }
+.acard-price { font-size:1.5rem;font-weight:800;color:#fbbf24;line-height:1; }
+.acard-label { font-size:0.65rem;color:#7ba7c4;text-transform:uppercase;letter-spacing:.06em;margin-top:2px; }
+.value-badge { display:inline-block;padding:3px 10px;border-radius:20px;font-size:0.68rem;font-weight:700;letter-spacing:.06em; }
+.vb-premium  { background:#1e0a2a;color:#c084fc;border:1px solid #c084fc44; }
+.vb-good     { background:#1a3a2a;color:#4ade80;border:1px solid #4ade8044; }
+.vb-budget   { background:#1a2535;color:#38bdf8;border:1px solid #38bdf844; }
+
+/* ── Budget progress bar ─────────────────────────────────── */
+.bud-bar-outer { width:100%;height:10px;background:#1e3a5f;border-radius:6px;margin:6px 0;overflow:hidden; }
+.bud-bar-inner { height:100%;border-radius:6px;background:linear-gradient(90deg,#00d4ff,#4ade80); }
+
+/* ── Composite score bar ─────────────────────────────────── */
+.comp-bar-outer { width:100%;height:5px;background:#1e3a5f;border-radius:4px;margin-top:5px;overflow:hidden; }
+.comp-bar-inner { height:100%;border-radius:4px;background:linear-gradient(90deg,#00d4ff,#818cf8); }
 </style>
 """, unsafe_allow_html=True)
 
@@ -495,6 +549,200 @@ def section(title, icon="▸"):
 
 def cric_divider():
     st.markdown('<hr class="cricdiv">', unsafe_allow_html=True)
+
+
+# ── Visual score helpers ──────────────────────────────────────────────────────
+
+def score_to_100(val: float) -> float:
+    return round(float(val) * 100, 1)
+
+def score_color_cls(val_100: float):
+    """Returns (text_css_class, bar_css_class) for a 0-100 score."""
+    if val_100 >= 60: return "score-green", "bar-green"
+    if val_100 >= 30: return "score-amber", "bar-amber"
+    return "score-red", "bar-red"
+
+def form_trend_pill(trend) -> str:
+    t = str(trend).lower().strip() if pd.notna(trend) else ""
+    if "consist" in t:           return '<span class="form-pill form-consistent">Consistent</span>'
+    if "declin" in t:            return '<span class="form-pill form-declining">Declining</span>'
+    if "rising" in t or "improv" in t: return '<span class="form-pill form-rising">Rising</span>'
+    if t and t not in ("nan","none","—"): return f'<span class="form-pill form-unknown">{str(trend)}</span>'
+    return ""
+
+def risk_chip_html(risk_val: float) -> str:
+    r100 = score_to_100(risk_val)
+    if r100 < 30:   cls, lbl = "risk-low",  f"Low risk"
+    elif r100 < 60: cls, lbl = "risk-med",  f"Med risk"
+    else:           cls, lbl = "risk-high", f"High risk"
+    return f'<span class="risk-chip {cls}">{lbl} ({r100:.0f})</span>'
+
+def score_block_html(val_100: float, label: str, note: str = "") -> str:
+    sc, bc = score_color_cls(val_100)
+    note_html = f'<div style="font-size:0.67rem;color:#4a7a9b;margin-top:2px">{note}</div>' if note else ""
+    return (
+        f'<div class="score-display">'
+        f'<div class="score-number {sc}">{val_100:.0f}</div>'
+        f'<div class="score-label">{label}</div>'
+        f'{note_html}'
+        f'<div class="score-bar-outer"><div class="score-bar-inner {bc}" style="width:{min(val_100,100):.1f}%"></div></div>'
+        f'</div>'
+    )
+
+def player_result_card(row) -> str:
+    """Render a rich player card for Scout Mode results."""
+    name    = row.get("player", "—")
+    role    = str(row.get("role", "BAT"))
+    impact  = float(row.get("match_impact_score", 0))
+    risk    = float(row.get("total_risk", 0))
+    runs    = int(row.get("runs", 0))
+    sr      = float(row.get("strike_rate", 0))
+    wkts    = int(row.get("wickets", 0))
+    eco     = float(row.get("economy", 0))
+    country = row.get("country", None)
+    trend   = row.get("form_trend", None)
+
+    i100 = score_to_100(impact)
+    r100 = score_to_100(risk)
+    isc, ibc = score_color_cls(i100)
+
+    form_html    = form_trend_pill(trend) if pd.notna(trend) else "" if pd.isna(trend) else ""
+    country_html = (f'<span style="font-size:0.72rem;color:#7ba7c4">🌍 {country}</span>'
+                    if country and pd.notna(country) else "")
+    return f"""
+    <div class="pcard">
+      <div class="pcard-header">
+        <div>
+          <div class="pcard-name">{name}</div>
+          <div class="pcard-badges">{role_badge(role)}{form_html}{country_html}</div>
+        </div>
+        <div class="pcard-scores">
+          <div class="score-display">
+            <div class="score-number {isc}">{i100:.0f}</div>
+            <div class="score-label">Impact</div>
+            <div class="score-bar-outer"><div class="score-bar-inner {ibc}" style="width:{min(i100,100):.1f}%"></div></div>
+          </div>
+          <div style="text-align:center">
+            {risk_chip_html(risk)}
+            <div style="font-size:0.62rem;color:#4a7a9b;margin-top:3px">Risk ▼ lower=better</div>
+          </div>
+        </div>
+      </div>
+      <div class="pcard-stats">
+        <div class="pstat-item"><div class="pstat-val">{runs:,}</div><div class="pstat-lbl">Runs</div></div>
+        <div class="pstat-item"><div class="pstat-val">{sr:.1f}</div><div class="pstat-lbl">S/R</div></div>
+        <div class="pstat-item"><div class="pstat-val">{wkts}</div><div class="pstat-lbl">Wickets</div></div>
+        <div class="pstat-item"><div class="pstat-val">{eco:.2f}</div><div class="pstat-lbl">Economy</div></div>
+      </div>
+    </div>"""
+
+def auction_player_card(row, budget_remaining: float, budget_total: float) -> str:
+    """Render an auction player card with value rating and budget bar."""
+    name     = row.get("player", "—")
+    role     = str(row.get("role", "BAT"))
+    price    = float(row.get("price_used_lakh", 0))
+    fair     = float(row.get("fair_salary_lakh", 0))
+    gap      = float(row.get("value_gap", 0))
+    impact   = float(row.get("match_impact_score", 0))
+    risk     = float(row.get("total_risk", 0))
+    obj      = float(row.get("objective_score", 0))
+
+    # Value rating
+    if gap > 200:   vb_cls, vb_lbl = "vb-premium", "⭐ Premium"
+    elif gap >= 0:  vb_cls, vb_lbl = "vb-good",    "✓ Good Value"
+    else:           vb_cls, vb_lbl = "vb-budget",  "◈ Budget Pick"
+
+    i100 = score_to_100(impact)
+    isc, ibc = score_color_cls(i100)
+
+    # Budget bar
+    spent_pct  = max(0, min(100, (1 - budget_remaining / budget_total) * 100)) if budget_total > 0 else 0
+    rem_lbl    = f"₹{budget_remaining:,.0f}L remaining"
+
+    return f"""
+    <div class="acard">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:0.6rem">
+        <div>
+          <div style="font-size:1rem;font-weight:700;color:#e0e6ef">{name}</div>
+          <div style="display:flex;gap:6px;margin-top:4px">{role_badge(role)} <span class="value-badge {vb_cls}">{vb_lbl}</span></div>
+        </div>
+        <div style="text-align:right">
+          <div class="acard-price">₹{price:,.0f}L</div>
+          <div class="acard-label">Auction price</div>
+          <div style="font-size:0.7rem;color:#7ba7c4;margin-top:2px">Fair: ₹{fair:,.0f}L &nbsp;|&nbsp; Gap: <span style="color:{'#4ade80' if gap>=0 else '#f87171'}">{'+'if gap>=0 else ''}{gap:,.0f}L</span></div>
+        </div>
+      </div>
+      <div style="display:flex;gap:20px;align-items:center">
+        <div class="score-display">
+          <div class="score-number-sm {isc}">{i100:.0f}</div>
+          <div class="score-label">Impact</div>
+          <div class="score-bar-outer"><div class="score-bar-inner {ibc}" style="width:{min(i100,100):.1f}%"></div></div>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:0.7rem;color:#7ba7c4;margin-bottom:2px">Budget remaining after pick: {rem_lbl}</div>
+          <div class="bud-bar-outer"><div class="bud-bar-inner" style="width:{100-spent_pct:.1f}%"></div></div>
+        </div>
+        <div>{risk_chip_html(risk)}</div>
+      </div>
+    </div>"""
+
+def custom_score_card(row, selected_metrics: list, max_score: float) -> str:
+    """Render a Custom Intelligence score card with composite bar."""
+    name       = row.get("player", "—")
+    role       = str(row.get("role", "")) if "role" in row.index else ""
+    cs         = float(row.get("custom_score", 0))
+    cs_pct     = (cs / max_score * 100) if max_score > 0 else 0
+    sc, bc     = score_color_cls(cs_pct)
+
+    role_html  = role_badge(role) if role else ""
+    stats_html = "".join(
+        f'<div class="pstat-item"><div class="pstat-val">{float(row[m]):.2f}</div>'
+        f'<div class="pstat-lbl">{m.replace("_"," ")[:14]}</div></div>'
+        for m in selected_metrics[:5] if m in row.index and pd.notna(row[m])
+    )
+    return f"""
+    <div class="pcard" style="border-color:#818cf833">
+      <div class="pcard-header">
+        <div>
+          <div class="pcard-name">{name}</div>
+          <div class="pcard-badges">{role_html}</div>
+        </div>
+        <div class="score-display" style="min-width:80px;align-items:flex-end">
+          <div class="score-number {sc}">{cs_pct:.0f}</div>
+          <div class="score-label">Profile match</div>
+          <div class="comp-bar-outer"><div class="comp-bar-inner" style="width:{min(cs_pct,100):.1f}%"></div></div>
+        </div>
+      </div>
+      <div class="pcard-stats">{stats_html}</div>
+    </div>"""
+
+
+# ── Style helpers for remaining dataframes ────────────────────────────────────
+
+def _style_form(val):
+    v = str(val).lower()
+    if "declin" in v:            return "color: #f87171; font-weight: 600"
+    if "consist" in v:           return "color: #4ade80; font-weight: 600"
+    if "rising" in v or "improv" in v: return "color: #818cf8; font-weight: 600"
+    return ""
+
+def _style_risk_cell(val):
+    try:
+        v = float(val)
+        if v < 0.30:  return "color: #4ade80"
+        if v < 0.60:  return "color: #fbbf24"
+        return "color: #f87171; font-weight: 600"
+    except (TypeError, ValueError):
+        return ""
+
+def apply_table_styles(styler, df_cols):
+    """Apply form-trend and risk colour coding to a Styler object."""
+    if "form_trend" in df_cols:
+        styler = styler.map(_style_form, subset=["form_trend"])
+    for rc in ["total_risk", "match_impact_score"]:
+        if rc in df_cols:
+            styler = styler.map(_style_risk_cell, subset=[rc])
+    return styler
 
 
 # ═══════════════════════════════════════════════════════
@@ -1032,19 +1280,94 @@ def run_scout_mode():
     c4.metric("All-rounders",  int((df["role"]=="AR").sum()))
     c5.metric("Wicketkeepers", int((df["role"]=="WK").sum()))
 
-    # ── CHARTS ────────────────────────────────────────────────────────────
+    # ── OVERVIEW CHARTS ───────────────────────────────────────────────────
     cric_divider()
-    section("Role & Nationality Breakdown", "🌍")
-    t1, t2 = st.columns(2)
-    with t1:
+    section("Squad Overview", "📊")
+
+    _CHART_BASE = dict(
+        paper_bgcolor="#0a0f1e", plot_bgcolor="#0a0f1e",
+        font=dict(family="Inter", color="#7ba7c4", size=11),
+        margin=dict(l=8, r=8, t=36, b=8),
+    )
+
+    ov1, ov2 = st.columns(2)
+
+    # Donut — role distribution
+    with ov1:
         role_counts = df["role"].value_counts().reset_index()
-        role_counts.columns = ["Role","Count"]
-        st.bar_chart(role_counts.set_index("Role"), color="#00d4ff")
-    with t2:
+        role_counts.columns = ["Role", "Count"]
+        role_colors = {"BAT":"#4ade80","BOWL":"#818cf8","AR":"#fbbf24","WK":"#f87171"}
+        fig_role = go.Figure(go.Pie(
+            labels=role_counts["Role"], values=role_counts["Count"],
+            hole=0.60,
+            marker_colors=[role_colors.get(r,"#7ba7c4") for r in role_counts["Role"]],
+            textinfo="label+percent", textfont_size=10,
+            hovertemplate="<b>%{label}</b>: %{value} players<extra></extra>",
+        ))
+        fig_role.update_layout(**_CHART_BASE, height=280,
+                               title=dict(text="Role Distribution", x=0.02, y=0.96,
+                                          font=dict(color="#c8e6f5", size=13)),
+                               showlegend=False)
+        st.plotly_chart(fig_role, use_container_width=True, config={"displayModeBar": False})
+
+    # Bar — top 10 nationalities
+    with ov2:
         if "country" in df.columns:
-            cc = df["country"].value_counts().head(8).reset_index()
-            cc.columns = ["Country","Count"]
-            st.bar_chart(cc.set_index("Country"), color="#818cf8")
+            cc = df["country"].value_counts().head(10).reset_index()
+            cc.columns = ["Country", "Count"]
+            fig_nat = go.Figure(go.Bar(
+                x=cc["Count"], y=cc["Country"], orientation="h",
+                marker_color="#00d4ff", opacity=0.85,
+                hovertemplate="<b>%{y}</b>: %{x}<extra></extra>",
+            ))
+            fig_nat.update_layout(**_CHART_BASE, height=280,
+                                  title=dict(text="Top Nationalities", x=0.02, y=0.96,
+                                             font=dict(color="#c8e6f5", size=13)),
+                                  xaxis=dict(gridcolor="#1e3a5f"),
+                                  yaxis=dict(autorange="reversed", gridcolor="#1e3a5f"))
+            st.plotly_chart(fig_nat, use_container_width=True, config={"displayModeBar": False})
+        else:
+            st.caption("No country column detected.")
+
+    ov3, ov4 = st.columns(2)
+
+    # Histogram — age distribution
+    with ov3:
+        ages = pd.to_numeric(df["age"], errors="coerce").dropna()
+        ages = ages[ages > 0]
+        if len(ages):
+            fig_age = go.Figure(go.Histogram(
+                x=ages, nbinsx=20,
+                marker_color="#00d4ff", opacity=0.80,
+                hovertemplate="Age %{x}: %{y} players<extra></extra>",
+            ))
+            fig_age.update_layout(**_CHART_BASE, height=260,
+                                  title=dict(text="Age Distribution", x=0.02, y=0.96,
+                                             font=dict(color="#c8e6f5", size=13)),
+                                  xaxis=dict(title="Age", gridcolor="#1e3a5f"),
+                                  yaxis=dict(title="Players", gridcolor="#1e3a5f"))
+            st.plotly_chart(fig_age, use_container_width=True, config={"displayModeBar": False})
+
+    # Pie — form trend breakdown
+    with ov4:
+        if "form_trend" in df.columns:
+            ft = df["form_trend"].fillna("Unknown").value_counts().reset_index()
+            ft.columns = ["Trend", "Count"]
+            trend_colors = {"Consistent":"#4ade80","Declining":"#f87171","Rising":"#818cf8","Unknown":"#4a7a9b"}
+            fig_form = go.Figure(go.Pie(
+                labels=ft["Trend"], values=ft["Count"],
+                hole=0.55,
+                marker_colors=[trend_colors.get(t,"#7ba7c4") for t in ft["Trend"]],
+                textinfo="label+percent", textfont_size=10,
+                hovertemplate="<b>%{label}</b>: %{value} players<extra></extra>",
+            ))
+            fig_form.update_layout(**_CHART_BASE, height=260,
+                                   title=dict(text="Form Trend Breakdown", x=0.02, y=0.96,
+                                              font=dict(color="#c8e6f5", size=13)),
+                                   showlegend=False)
+            st.plotly_chart(fig_form, use_container_width=True, config={"displayModeBar": False})
+        else:
+            st.caption("No form_trend column detected.")
 
     # ── SMART FILTER PANEL ────────────────────────────────────────────────
     cric_divider()
@@ -1165,24 +1488,31 @@ def run_scout_mode():
 
     st.caption(f"Showing **{len(filtered)}** of {len(df)} players")
 
-    # ── TOP PROFILES TABLE ────────────────────────────────────────────────
+    # ── TOP PROFILES ──────────────────────────────────────────────────────
     cric_divider()
     section("Top Profiles", "🏆")
 
+    top_sorted = filtered.sort_values("match_impact_score", ascending=False)
+
+    # Cards for top 20
+    top20 = top_sorted.head(20)
+    for _, row in top20.iterrows():
+        st.markdown(player_result_card(row), unsafe_allow_html=True)
+
+    # Full table in expander for when users want raw data
     show_cols = [c for c in ["player","form_trend","role","age","country","bat_hand","bowling_arm",
                               "batting_role","bowling_role","matches","runs","strike_rate",
                               "wickets","economy","dot_ball_pct","boundary_pct",
                               "recent_matches","recent_sr","recent_economy","form_index",
                               "scouting_grade","format_specialism","analyst_recommendation",
                               "match_impact_score","total_risk"] if c in filtered.columns]
-
-    st.dataframe(
-        filtered[show_cols].sort_values("match_impact_score",ascending=False).head(50).style.format(
-            {c:"{:.3f}" for c in ["match_impact_score","total_risk"] if c in show_cols} |
+    with st.expander(f"📋 View full table ({len(top_sorted)} players)"):
+        styler = top_sorted[show_cols].head(50).style.format(
+            {c: "{:.0f}" for c in ["match_impact_score","total_risk"] if c in show_cols} |
             {"strike_rate":"{:.1f}","economy":"{:.2f}"}
-        ),
-        use_container_width=True, height=440
-    )
+        )
+        styler = apply_table_styles(styler, show_cols)
+        st.dataframe(styler, use_container_width=True, height=440)
 
     # ── SHORTLIST FEATURE ─────────────────────────────────────────────────
     cric_divider()
@@ -1217,16 +1547,15 @@ def run_scout_mode():
 
         sl_cols = [c for c in ["player","role","age","bat_hand","batting_role",
                                 "bowling_role","matches","runs","strike_rate",
-                                "wickets","economy","match_impact_score","total_risk"] if c in shortlist_df.columns]
+                                "wickets","economy","form_trend","match_impact_score","total_risk"] if c in shortlist_df.columns]
 
-        st.dataframe(
-            shortlist_df[sl_cols].style.format(
-                {"match_impact_score":"{:.3f}","total_risk":"{:.3f}",
-                 "strike_rate":"{:.1f}","economy":"{:.2f}"}
-            ),
-            use_container_width=True,
-            height=min(100 + len(shortlist_df)*35, 400)
+        _sl_styler = shortlist_df[sl_cols].style.format(
+            {"match_impact_score":"{:.3f}","total_risk":"{:.3f}",
+             "strike_rate":"{:.1f}","economy":"{:.2f}"}
         )
+        _sl_styler = apply_table_styles(_sl_styler, sl_cols)
+        st.dataframe(_sl_styler, use_container_width=True,
+                     height=min(100 + len(shortlist_df)*35, 400))
 
         remove_col, clear_col, csv_col, pdf_col = st.columns(4)
         remove_player = remove_col.selectbox(
@@ -1281,47 +1610,20 @@ def run_scout_mode():
         prow = df[df["player"]==profile_player].iloc[0]
         sim_for_radar = get_similar_players(df, profile_player, top_k=3)
 
-        # Header metrics
-        h1,h2,h3,h4,h5 = st.columns(5)
-        h1.metric("Role",     prow.get("role","—"))
-        h2.metric("Age",      int(prow.get("age",0)) if float(prow.get("age",0))>0 else "—")
-        h3.metric("Country",  prow.get("country","—") if "country" in df.columns else "—")
-        h4.metric("Bat Hand", prow.get("bat_hand","—"))
-        h5.metric("Matches",  int(prow.get("matches",0)))
-
+        # ── HERO: player name + role ──────────────────────────────────────
+        trend_pill = form_trend_pill(prow.get("form_trend")) if "form_trend" in df.columns else ""
+        country_str = str(prow.get("country","")) if "country" in df.columns and pd.notna(prow.get("country")) else ""
         st.markdown(f"""
-        <div class="player-card">
-            <div class="pname">🏏 {profile_player} {role_badge(prow["role"])}</div>
-            <div class="pstat">
-                Runs: <b>{int(prow.get("runs",0))}</b> &nbsp;|&nbsp;
-                SR: <b>{float(prow.get("strike_rate",0)):.1f}</b> &nbsp;|&nbsp;
-                Wickets: <b>{int(prow.get("wickets",0))}</b> &nbsp;|&nbsp;
-                Economy: <b>{float(prow.get("economy",0)):.2f}</b> &nbsp;|&nbsp;
-                Dot Ball%: <b>{float(prow.get("dot_ball_pct",0)):.1f}</b> &nbsp;|&nbsp;
-                Boundary%: <b>{float(prow.get("boundary_pct",0)):.1f}</b>
-            </div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:0.8rem;flex-wrap:wrap">
+            <div style="font-size:1.7rem;font-weight:800;color:#e0e6ef;letter-spacing:-0.01em">{profile_player}</div>
+            {role_badge(prow["role"])}
+            {trend_pill}
+            {"<span style='font-size:0.78rem;color:#7ba7c4'>🌍 " + country_str + "</span>" if country_str else ""}
         </div>
         """, unsafe_allow_html=True)
 
-        # Scouting info
-        si1,si2,si3 = st.columns(3)
-        if "scouting_grade" in df.columns:
-            si1.metric("Scouting Grade", prow.get("scouting_grade","—"))
-        if "analyst_recommendation" in df.columns:
-            si2.metric("Recommendation", prow.get("analyst_recommendation","—"))
-        if "format_specialism" in df.columns:
-            si3.metric("Format Specialism", str(prow.get("format_specialism","—")))
-
-        # Format fit
-        if "county_red_ball_fit" in df.columns or "county_white_ball_fit" in df.columns:
-            ff1,ff2 = st.columns(2)
-            if "county_red_ball_fit" in df.columns:
-                ff1.metric("Red Ball Fit",   f"{float(prow.get('county_red_ball_fit',0)):.1f}/100")
-            if "county_white_ball_fit" in df.columns:
-                ff2.metric("White Ball Fit", f"{float(prow.get('county_white_ball_fit',0)):.1f}/100")
-
-        # Radar chart
-        st.markdown(f"**📡 {profile_player} — Radar vs Top 3 Similar Players**")
+        # ── HERO: RADAR CHART (full width, shown first) ───────────────────
+        st.markdown(f'<div style="font-size:0.78rem;color:#7ba7c4;margin-bottom:0.3rem">📡 Performance radar vs 3 most similar players</div>', unsafe_allow_html=True)
 
         radar_axes = [c for c in [
             "pp_bat_score","mid_bat_score","death_bat_score",
@@ -1394,9 +1696,78 @@ def run_scout_mode():
         svg.append("</svg>")
         components.html(f'<div style="background:#080f1a;padding:1rem;border-radius:12px;">{"".join(svg)}</div>', height=600)
 
-        ri1,ri2 = st.columns(2)
-        ri1.metric("Match Impact Score", f'{float(prow.get("match_impact_score",0)):.3f}')
-        ri2.metric("Total Risk Score",   f'{float(prow.get("total_risk",0)):.3f}', delta="Lower is better", delta_color="inverse")
+        # ── IMPACT + RISK — 0-100 scale with progress bars ───────────────
+        _impact = float(prow.get("match_impact_score", 0))
+        _risk   = float(prow.get("total_risk", 0))
+        _i100   = score_to_100(_impact)
+        _r100   = score_to_100(_risk)
+        _isc, _ibc = score_color_cls(_i100)
+        _rsc, _rbc = score_color_cls(100 - _r100)  # invert: lower risk = greener
+
+        st.markdown(f"""
+        <div style="display:flex;gap:32px;margin:1.2rem 0;padding:1.2rem 1.4rem;
+                    background:#0d1b2a;border:1px solid #1e3a5f;border-radius:12px;flex-wrap:wrap">
+          <div class="score-display" style="min-width:130px">
+            <div class="score-number {_isc}">{_i100:.0f}</div>
+            <div class="score-label">Impact Score</div>
+            <div style="font-size:0.68rem;color:#4a7a9b;margin-top:3px;max-width:130px">
+              Overall match influence (0–100)
+            </div>
+            <div class="score-bar-outer" style="margin-top:7px">
+              <div class="score-bar-inner {_ibc}" style="width:{min(_i100,100):.1f}%"></div>
+            </div>
+          </div>
+          <div class="score-display" style="min-width:130px">
+            <div class="score-number {_rsc}">{_r100:.0f}</div>
+            <div class="score-label">Risk Score</div>
+            <div style="font-size:0.68rem;color:#4a7a9b;margin-top:3px;max-width:130px">
+              Injury + availability risk — lower is better
+            </div>
+            <div class="score-bar-outer" style="margin-top:7px">
+              <div class="score-bar-inner {_rbc}" style="width:{min(100-_r100,100):.1f}%"></div>
+            </div>
+          </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # ── STAT ROW + SCOUTING INFO ──────────────────────────────────────
+        h1,h2,h3,h4,h5 = st.columns(5)
+        h1.metric("Role",     prow.get("role","—"))
+        h2.metric("Age",      int(prow.get("age",0)) if float(prow.get("age",0))>0 else "—")
+        h3.metric("Country",  prow.get("country","—") if "country" in df.columns else "—")
+        h4.metric("Bat Hand", prow.get("bat_hand","—"))
+        h5.metric("Matches",  int(prow.get("matches",0)))
+
+        st.markdown(f"""
+        <div class="player-card">
+            <div class="pname">🏏 {profile_player} {role_badge(prow["role"])}</div>
+            <div class="pstat">
+                Runs: <b>{int(prow.get("runs",0))}</b> &nbsp;|&nbsp;
+                SR: <b>{float(prow.get("strike_rate",0)):.1f}</b> &nbsp;|&nbsp;
+                Wickets: <b>{int(prow.get("wickets",0))}</b> &nbsp;|&nbsp;
+                Economy: <b>{float(prow.get("economy",0)):.2f}</b> &nbsp;|&nbsp;
+                Dot Ball%: <b>{float(prow.get("dot_ball_pct",0)):.1f}</b> &nbsp;|&nbsp;
+                Boundary%: <b>{float(prow.get("boundary_pct",0)):.1f}</b>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+
+        # Scouting info
+        si1,si2,si3 = st.columns(3)
+        if "scouting_grade" in df.columns:
+            si1.metric("Scouting Grade", prow.get("scouting_grade","—"))
+        if "analyst_recommendation" in df.columns:
+            si2.metric("Recommendation", prow.get("analyst_recommendation","—"))
+        if "format_specialism" in df.columns:
+            si3.metric("Format Specialism", str(prow.get("format_specialism","—")))
+
+        # Format fit
+        if "county_red_ball_fit" in df.columns or "county_white_ball_fit" in df.columns:
+            ff1,ff2 = st.columns(2)
+            if "county_red_ball_fit" in df.columns:
+                ff1.metric("Red Ball Fit",   f"{float(prow.get('county_red_ball_fit',0)):.1f}/100")
+            if "county_white_ball_fit" in df.columns:
+                ff2.metric("White Ball Fit", f"{float(prow.get('county_white_ball_fit',0)):.1f}/100")
 
     # ── SIMILARITY SEARCH ─────────────────────────────────────────────────
     cric_divider()
@@ -1428,15 +1799,14 @@ def run_scout_mode():
         sim_cols = [c for c in ["player","role","batting_role","bowling_role",
                                   "similarity","match_impact_score","total_risk",
                                   "runs","strike_rate","wickets","economy",
-                                  "scouting_grade","analyst_recommendation"] if c in sim.columns]
+                                  "form_trend","scouting_grade","analyst_recommendation"] if c in sim.columns]
         sim_show = sim[sim_cols].rename(columns={"similarity":"Similarity ↓"})
-        st.dataframe(
-            sim_show.style.format(
-                {"Similarity ↓":"{:.3f}","match_impact_score":"{:.3f}",
-                 "total_risk":"{:.3f}","strike_rate":"{:.1f}","economy":"{:.2f}"}
-            ),
-            use_container_width=True, height=380
+        _sim_styler = sim_show.style.format(
+            {"Similarity ↓":"{:.3f}","match_impact_score":"{:.3f}",
+             "total_risk":"{:.3f}","strike_rate":"{:.1f}","economy":"{:.2f}"}
         )
+        _sim_styler = apply_table_styles(_sim_styler, sim_cols)
+        st.dataframe(_sim_styler, use_container_width=True, height=380)
     else:
         st.warning("No similar players found.")
 
@@ -1552,14 +1922,13 @@ def run_scout_mode():
         show_rec = [c for c in ["player","role","age","bat_hand","bowling_arm",
                                   "batting_role","bowling_role","unit_fit_score",
                                   "combined_reco","match_impact_score","total_risk",
-                                  "scouting_grade","analyst_recommendation"] if c in rec.columns]
-        st.dataframe(
-            rec[show_rec].style.format(
-                {"unit_fit_score":"{:.3f}","combined_reco":"{:.3f}",
-                 "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
-            ),
-            use_container_width=True, height=300
+                                  "form_trend","scouting_grade","analyst_recommendation"] if c in rec.columns]
+        _rec_styler = rec[show_rec].style.format(
+            {"unit_fit_score":"{:.3f}","combined_reco":"{:.3f}",
+             "match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
         )
+        _rec_styler = apply_table_styles(_rec_styler, show_rec)
+        st.dataframe(_rec_styler, use_container_width=True, height=300)
 
     # Plain-English Explainability
     cric_divider()
@@ -1868,12 +2237,11 @@ def run_auction_mode():
                               "fair_salary_lakh","value_gap","match_impact_score",
                               "pitch_fit","opponent_fit","flex_score","total_risk",
                               "objective_score"] if c in df.columns]
-    st.dataframe(
-        df[top_show].sort_values("objective_score",ascending=False).head(50).style.format(
-            {"objective_score":"{:.3f}","value_gap":"{:.1f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
-        ),
-        use_container_width=True, height=420
+    _top_styler = df[top_show].sort_values("objective_score", ascending=False).head(50).style.format(
+        {"objective_score":"{:.3f}","value_gap":"{:.1f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
     )
+    _top_styler = apply_table_styles(_top_styler, top_show)
+    st.dataframe(_top_styler, use_container_width=True, height=420)
 
     cric_divider()
     section("Optimised Squad Selection", "🤖")
@@ -1913,17 +2281,37 @@ def run_auction_mode():
         st.error("❌ No squad returned.")
         st.stop()
 
-    squad_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
-                               "is_spinner","is_pacer","is_overseas","price_used_lakh",
-                               "fair_salary_lakh","value_gap","match_impact_score",
-                               "pitch_fit","opponent_fit","flex_score","total_risk",
-                               "objective_score"] if c in squad.columns]
-    st.dataframe(
-        squad[squad_show].sort_values("objective_score",ascending=False).style.format(
+    # ── SQUAD PLAYER CARDS ────────────────────────────────────────────────
+    cric_divider()
+    section("Recommended Squad — Player Cards", "🃏")
+    _bud_total = float(budget_after_ret)
+    _bud_rem   = _bud_total - float(squad[price_col].sum()) if len(squad) else _bud_total
+    _bud_pct   = max(0, min(100, (_bud_rem / _bud_total * 100))) if _bud_total > 0 else 0
+    st.markdown(f"""
+    <div style="padding:0.8rem 1rem;background:#0d1b2a;border:1px solid #1e3a5f;border-radius:10px;margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;margin-bottom:4px">
+        <span style="font-size:0.78rem;color:#7ba7c4">Budget remaining after squad selection</span>
+        <span style="font-size:0.9rem;font-weight:700;color:#fbbf24">₹{_bud_rem:,.0f}L of ₹{_bud_total:,.0f}L</span>
+      </div>
+      <div class="bud-bar-outer"><div class="bud-bar-inner" style="width:{_bud_pct:.1f}%"></div></div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    squad_sorted = squad.sort_values("objective_score", ascending=False)
+    for _, srow in squad_sorted.iterrows():
+        st.markdown(auction_player_card(srow, _bud_rem, _bud_total), unsafe_allow_html=True)
+
+    with st.expander("📋 Full squad table"):
+        squad_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
+                                   "is_spinner","is_pacer","is_overseas","price_used_lakh",
+                                   "fair_salary_lakh","value_gap","match_impact_score",
+                                   "pitch_fit","opponent_fit","flex_score","total_risk",
+                                   "objective_score"] if c in squad.columns]
+        _sq_styler = squad[squad_show].sort_values("objective_score", ascending=False).style.format(
             {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}"}
-        ),
-        use_container_width=True, height=420
-    )
+        )
+        _sq_styler = apply_table_styles(_sq_styler, squad_show)
+        st.dataframe(_sq_styler, use_container_width=True, height=420)
 
     cric_divider()
     section("Best Playing XI", "🏏")
@@ -2171,15 +2559,24 @@ def run_custom_intelligence():
     s3.metric("Top Score",      f"{df_clean['custom_score'].max():.3f}")
     s4.metric("Avg Score",      f"{df_clean['custom_score'].mean():.3f}")
 
-    show_cols = ["player"] + (["role"] if "role" in df_clean.columns else []) +                 (["age"] if "age" in df_clean.columns else []) +                 selected_metrics[:8] + ["custom_score"]
+    show_cols = ["player"] + (["role"] if "role" in df_clean.columns else []) + \
+                (["age"] if "age" in df_clean.columns else []) + \
+                selected_metrics[:8] + ["custom_score"]
     show_cols = [c for c in dict.fromkeys(show_cols) if c in df_clean.columns]
 
-    st.dataframe(
-        df_clean[show_cols].sort_values("custom_score", ascending=False).head(50).style.format(
-            {"custom_score": "{:.3f}"}
-        ),
-        use_container_width=True, height=440
-    )
+    _sorted_ci = df_clean[show_cols].sort_values("custom_score", ascending=False)
+    _max_cs    = float(_sorted_ci["custom_score"].max()) if len(_sorted_ci) else 1.0
+
+    # Top 10 as cards
+    for _, row in _sorted_ci.head(10).iterrows():
+        st.markdown(custom_score_card(row, selected_metrics, _max_cs), unsafe_allow_html=True)
+
+    # Full table in expander
+    with st.expander(f"📋 Full results table ({len(_sorted_ci)} players)"):
+        st.dataframe(
+            _sorted_ci.head(50).style.format({"custom_score": "{:.3f}"}),
+            use_container_width=True, height=440
+        )
 
     # ── SIMILARITY SEARCH ─────────────────────────────────────────────────
     cric_divider()

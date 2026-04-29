@@ -7,3 +7,4 @@ moviepy
 opencv-python
 matplotlib
 fpdf2
+plotly>=5.19.0
