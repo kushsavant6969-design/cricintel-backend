@@ -2701,12 +2701,28 @@ def run_highlights_mode():
             st.success("✅ Video uploaded")
 
     with tab_yt:
+        st.markdown(
+            """
+            <div style="background:#1c1500;border:1px solid #f59e0b60;border-radius:8px;padding:12px 16px;margin-bottom:14px">
+            <div style="font-size:12px;font-weight:600;color:#f59e0b;margin-bottom:6px">⚠ YouTube download limitations on this server</div>
+            <div style="font-size:11px;color:#9ca3af;line-height:1.7">
+            YouTube actively blocks automated downloads from cloud server IPs (HTTP 429 + bot detection).
+            This is a YouTube restriction — not a bug in the app.<br><br>
+            <b style="color:#e8eaf0">Recommended: download locally then upload</b><br>
+            Run this on your own machine and upload the file in the <b>Upload Video</b> tab:<br>
+            <code style="background:#0a0c10;padding:3px 8px;border-radius:4px;font-size:11px;color:#c8f135">
+            yt-dlp -f "bv*[height&lt;=720]+ba/best" --extractor-args "youtube:player_client=android" -o match.mp4 YOUR_URL
+            </code>
+            </div></div>
+            """,
+            unsafe_allow_html=True,
+        )
         yt_url = st.text_input(
-            "Paste YouTube URL",
+            "Paste YouTube URL (may fail on this server — see note above)",
             placeholder="https://www.youtube.com/watch?v=...",
             key="hl_yt",
         )
-        if yt_url and st.button("⬇ Fetch from YouTube", key="hl_fetch"):
+        if yt_url and st.button("⬇ Try Fetch from YouTube", key="hl_fetch"):
             _ph = st.empty()
             _tmp = tempfile.mkdtemp()
             _vpath = _download_youtube(yt_url, _tmp, _ph)
@@ -2714,9 +2730,6 @@ def run_highlights_mode():
                 st.session_state["hl_video_path"] = _vpath
                 st.session_state["hl_tmp_dir"]    = _tmp
                 _ph.success("✅ Downloaded successfully")
-            else:
-                # _download_youtube already set a detailed error on _ph; only add if nothing shown
-                pass
 
     vpath = st.session_state.get("hl_video_path")
     if vpath and os.path.exists(vpath):
