@@ -2354,64 +2354,470 @@ def run_auction_mode():
 # HIGHLIGHTS GENERATOR
 # ═══════════════════════════════════════════════════════
 def run_highlights_mode():
-    section("Upload Source Video", "🎬")
+    # ── Step A helpers ────────────────────────────────────────────────────────
+
+    def _download_youtube(url: str, tmp_dir: str, progress_placeholder) -> str | None:
+        """Download a YouTube video with yt-dlp. Returns local path or None."""
+        out_tpl = os.path.join(tmp_dir, "input.%(ext)s")
+        try:
+            progress_placeholder.info("⬇ Downloading video from YouTube…")
+            subprocess.check_call(
+                ["yt-dlp", "-f", "bv*[height<=1080]+ba/b[height<=1080]/best",
+                 "--no-playlist", "-o", out_tpl, url],
+                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            )
+            vpath = next(
+                (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
+                None,
+            )
+            return vpath if vpath and os.path.exists(vpath) else None
+        except Exception as exc:
+            progress_placeholder.error(f"yt-dlp failed: {exc}")
+            return None
+
+    # ── Step B: wicket detection via MediaPipe Pose ───────────────────────────
+
+    def _detect_wickets(video_path: str, progress_placeholder) -> list[float]:
+        """
+        Sample 1 frame every 2 s. Detect umpire raised-finger signal:
+        right wrist above right shoulder + right wrist above nose.
+        Returns sorted list of timestamps (seconds).
+        """
+        try:
+            import cv2
+            import mediapipe as mp
+        except ImportError:
+            progress_placeholder.warning("⚠ OpenCV / MediaPipe not installed — wicket detection skipped.")
+            return []
+
+        mp_pose  = mp.solutions.pose
+        pose     = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.4)
+        cap      = cv2.VideoCapture(video_path)
+        fps      = cap.get(cv2.CAP_PROP_FPS) or 25.0
+        total_f  = int(cap.get(cv2.CAP_PROP_FRAME_COUNT))
+        step_f   = max(1, int(fps * 2))          # 1 frame every 2 s
+        total_samples = max(1, total_f // step_f)
+
+        progress_placeholder.info("🔍 Detecting wickets (umpire finger signal)…")
+        prog_bar = st.progress(0)
+
+        wicket_ts: list[float] = []
+        frame_idx = 0
+        sample_n  = 0
+
+        while True:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            ts = frame_idx / fps
+            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            result = pose.process(rgb)
+
+            if result.pose_landmarks:
+                lm = result.pose_landmarks.landmark
+                # RIGHT side landmarks (umpire's right arm)
+                r_wrist    = lm[mp_pose.PoseLandmark.RIGHT_WRIST]
+                r_shoulder = lm[mp_pose.PoseLandmark.RIGHT_SHOULDER]
+                nose       = lm[mp_pose.PoseLandmark.NOSE]
+                # Wicket signal: right wrist clearly above right shoulder and above nose
+                if (r_wrist.visibility > 0.5 and r_shoulder.visibility > 0.5
+                        and r_wrist.y < r_shoulder.y - 0.08   # y is inverted (0=top)
+                        and r_wrist.y < nose.y):
+                    wicket_ts.append(ts)
+
+            sample_n  += 1
+            frame_idx += step_f
+            prog_bar.progress(min(1.0, sample_n / total_samples))
+
+        cap.release()
+        pose.close()
+        prog_bar.empty()
+
+        # Merge detections within 10 s of each other (same wicket event)
+        merged: list[float] = []
+        for t in sorted(wicket_ts):
+            if not merged or t - merged[-1] > 10.0:
+                merged.append(t)
+
+        return merged
+
+    # ── Step D helpers: four / six detection ─────────────────────────────────
+
+    def _detect_fours_sixes(video_path: str, window_start: float, window_end: float,
+                            progress_placeholder) -> dict[str, list[float]]:
+        """
+        Within [window_start, window_end] scan for:
+          Fours  — umpire right wrist moves rapidly left-right (horizontal sweep)
+          Sixes  — both wrists above nose simultaneously
+        Returns {"fours": [...], "sixes": [...]} timestamp lists.
+        """
+        try:
+            import cv2
+            import mediapipe as mp
+        except ImportError:
+            return {"fours": [], "sixes": []}
+
+        mp_pose = mp.solutions.pose
+        pose    = mp_pose.Pose(static_image_mode=True, min_detection_confidence=0.4)
+        cap     = cv2.VideoCapture(video_path)
+        fps     = cap.get(cv2.CAP_PROP_FPS) or 25.0
+        step_f  = max(1, int(fps * 2))
+
+        start_f = int(window_start * fps)
+        end_f   = int(window_end   * fps)
+        total_s = max(1, (end_f - start_f) // step_f)
+
+        progress_placeholder.info("🔍 Scanning for boundaries (fours/sixes)…")
+        prog_bar = st.progress(0)
+
+        fours_raw: list[float] = []
+        sixes_raw: list[float] = []
+        prev_rx: float | None  = None
+        sample_n = 0
+        frame_idx = start_f
+
+        while frame_idx <= end_f:
+            cap.set(cv2.CAP_PROP_POS_FRAMES, frame_idx)
+            ret, frame = cap.read()
+            if not ret:
+                break
+
+            ts  = frame_idx / fps
+            rgb = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            res = pose.process(rgb)
+
+            if res.pose_landmarks:
+                lm = res.pose_landmarks.landmark
+                r_wrist = lm[mp_pose.PoseLandmark.RIGHT_WRIST]
+                l_wrist = lm[mp_pose.PoseLandmark.LEFT_WRIST]
+                nose    = lm[mp_pose.PoseLandmark.NOSE]
+
+                # Six: both wrists above nose
+                if (r_wrist.visibility > 0.5 and l_wrist.visibility > 0.5
+                        and r_wrist.y < nose.y and l_wrist.y < nose.y):
+                    sixes_raw.append(ts)
+                else:
+                    # Four: right wrist moves rapidly left-right (>0.15 normalised units per 2 s)
+                    if r_wrist.visibility > 0.5:
+                        if prev_rx is not None and abs(r_wrist.x - prev_rx) > 0.15:
+                            fours_raw.append(ts)
+                        prev_rx = r_wrist.x
+
+            sample_n  += 1
+            frame_idx += step_f
+            prog_bar.progress(min(1.0, sample_n / total_s))
+
+        cap.release()
+        pose.close()
+        prog_bar.empty()
+
+        def _merge(ts_list: list[float], gap: float = 10.0) -> list[float]:
+            out: list[float] = []
+            for t in sorted(ts_list):
+                if not out or t - out[-1] > gap:
+                    out.append(t)
+            return out
+
+        return {"fours": _merge(fours_raw), "sixes": _merge(sixes_raw)}
+
+    def _infer_dot_balls(window_start: float, window_end: float,
+                         event_timestamps: list[float]) -> list[float]:
+        """
+        Every 4-min window inside [window_start, window_end] with no event = dot-ball region.
+        Return one representative timestamp per quiet 4-min block.
+        """
+        dot_balls: list[float] = []
+        t = window_start
+        while t + 240 <= window_end:
+            block_events = [e for e in event_timestamps if t <= e <= t + 240]
+            if not block_events:
+                dot_balls.append(t + 120)   # midpoint of the quiet block
+            t += 240
+        return dot_balls
+
+    # ── Step E+F: cut clips then concat ──────────────────────────────────────
+
+    def _cut_and_stitch(video_path: str, timestamps: list[float],
+                        pre_s: int, post_s: int,
+                        out_path: str, tmp_dir: str,
+                        progress_placeholder) -> bool:
+        """Cut ±pre_s/post_s clips around each timestamp, stitch with ffmpeg concat."""
+        if not timestamps:
+            return False
+
+        progress_placeholder.info(f"✂️ Cutting {len(timestamps)} clips…")
+        prog_bar = st.progress(0)
+        clip_paths: list[str] = []
+
+        for i, ts in enumerate(sorted(timestamps)):
+            t_start = max(0.0, ts - pre_s)
+            duration = pre_s + post_s
+            clip_path = os.path.join(tmp_dir, f"clip_{i:04d}.mp4")
+            cmd = [
+                "ffmpeg", "-y",
+                "-ss", str(t_start),
+                "-i", video_path,
+                "-t", str(duration),
+                "-c:v", "libx264", "-preset", "fast", "-crf", "23",
+                "-c:a", "aac", "-b:a", "128k",
+                clip_path,
+            ]
+            try:
+                subprocess.check_call(cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+                clip_paths.append(clip_path)
+            except Exception:
+                pass
+            prog_bar.progress((i + 1) / len(timestamps))
+
+        prog_bar.empty()
+
+        if not clip_paths:
+            progress_placeholder.error("No clips were cut successfully.")
+            return False
+
+        progress_placeholder.info("🎞 Stitching highlights reel…")
+        concat_list = os.path.join(tmp_dir, "concat.txt")
+        with open(concat_list, "w") as f:
+            for cp in clip_paths:
+                f.write(f"file '{cp}'\n")
+
+        concat_cmd = [
+            "ffmpeg", "-y", "-f", "concat", "-safe", "0",
+            "-i", concat_list,
+            "-c", "copy", out_path,
+        ]
+        try:
+            subprocess.check_call(concat_cmd, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            return True
+        except Exception as exc:
+            progress_placeholder.error(f"Stitch failed: {exc}")
+            return False
+
+    # ─────────────────────────────────────────────────────────────────────────
+    # UI
+    # ─────────────────────────────────────────────────────────────────────────
+
+    # ── Step 1 — Source video ─────────────────────────────────────────────────
+    section("Step 1 — Source Video", "🎬")
 
     if "hl_video_path" not in st.session_state:
         st.session_state["hl_video_path"] = None
 
-    tab_file, tab_yt = st.tabs(["📂 Upload Video","▶️ YouTube Link"])
+    tab_file, tab_yt = st.tabs(["📂 Upload Video", "▶️ YouTube Link"])
 
     with tab_file:
-        vid = st.file_uploader("Upload video (mp4/mov/mkv)", type=["mp4","mov","mkv"], key="hl_upload")
+        vid = st.file_uploader("Upload video (mp4 / mov / mkv)", type=["mp4", "mov", "mkv"], key="hl_upload")
         if vid:
             tmp_dir = tempfile.mkdtemp()
             vpath   = os.path.join(tmp_dir, vid.name)
-            with open(vpath,"wb") as f: f.write(vid.getbuffer())
+            with open(vpath, "wb") as f:
+                f.write(vid.getbuffer())
             st.session_state["hl_video_path"] = vpath
+            st.session_state["hl_tmp_dir"]    = tmp_dir
             st.success("✅ Video uploaded")
-            st.video(vpath)
 
     with tab_yt:
-        yt_url = st.text_input("Paste YouTube URL", placeholder="https://www.youtube.com/watch?v=...", key="hl_yt")
-        st.caption("Requires `yt-dlp` + `ffmpeg` on the server.")
-        if yt_url and st.button("Fetch from YouTube", key="hl_fetch"):
-            tmp_dir = tempfile.mkdtemp()
-            out_tpl = os.path.join(tmp_dir,"input.%(ext)s")
-            try:
-                subprocess.check_call(["yt-dlp","-f","bv*+ba/b","-o",out_tpl,yt_url])
-                vpath = next((os.path.join(tmp_dir,f) for f in os.listdir(tmp_dir) if f.startswith("input.")),None)
-                if vpath and os.path.exists(vpath):
-                    st.session_state["hl_video_path"] = vpath
-                    st.success("✅ Downloaded")
-                    st.video(vpath)
-                else:
-                    st.error("File not found after download.")
-            except Exception as e:
-                st.error(f"Download failed: {e}")
+        yt_url = st.text_input(
+            "Paste YouTube URL",
+            placeholder="https://www.youtube.com/watch?v=...",
+            key="hl_yt",
+        )
+        if yt_url and st.button("⬇ Fetch from YouTube", key="hl_fetch"):
+            _ph = st.empty()
+            _tmp = tempfile.mkdtemp()
+            _vpath = _download_youtube(yt_url, _tmp, _ph)
+            if _vpath:
+                st.session_state["hl_video_path"] = _vpath
+                st.session_state["hl_tmp_dir"]    = _tmp
+                _ph.success("✅ Downloaded successfully")
+            else:
+                _ph.error("Download failed. Check the URL and that yt-dlp is installed.")
+
+    vpath = st.session_state.get("hl_video_path")
+    if vpath and os.path.exists(vpath):
+        st.caption(f"📁 Source: `{os.path.basename(vpath)}`  ({os.path.getsize(vpath) // (1024*1024)} MB)")
 
     cric_divider()
-    section("Generate Highlights Clip", "✂️")
-    c1,c2,c3 = st.columns(3)
-    start_sec = c1.number_input("Start time (seconds)", min_value=0, value=0, step=5)
-    clip_secs = c2.number_input("Clip length (seconds)", min_value=5, max_value=600, value=60, step=5)
-    out_name  = c3.text_input("Output filename", value="highlights.mp4")
 
-    if st.button("⚡ Generate Highlights", type="primary"):
-        vpath = st.session_state.get("hl_video_path")
-        if not vpath or not os.path.exists(vpath):
-            st.error("Upload a video first.")
-            return
-        tmp_out  = tempfile.mkdtemp()
-        out_path = os.path.join(tmp_out, out_name)
-        cmd = ["ffmpeg","-y","-i",vpath,"-ss",str(int(start_sec)),"-t",str(int(clip_secs)),"-c","copy",out_path]
-        try:
-            with st.spinner("Processing..."): subprocess.check_call(cmd)
-            st.success("✅ Done")
+    # ── Step 2 — Player selection ─────────────────────────────────────────────
+    section("Step 2 — Player", "🧑‍🏏")
+
+    p_col1, p_col2 = st.columns(2)
+    player_role = p_col1.radio("Role", ["Batter", "Bowler"], horizontal=True, key="hl_role")
+    player_name = p_col2.text_input("Player name (for output filename)", placeholder="e.g. Rohit Sharma", key="hl_name")
+
+    cric_divider()
+
+    # ── Step 3 — Role-specific options ────────────────────────────────────────
+    section("Step 3 — Match Context", "🏏")
+
+    innings_options = ["1st Innings", "2nd Innings"]
+
+    if player_role == "Batter":
+        b1, b2, b3 = st.columns(3)
+        bat_innings   = b1.selectbox("Innings", innings_options, key="hl_bat_inn")
+        bat_position  = b2.selectbox("Batting position", list(range(1, 12)), key="hl_bat_pos")
+        bat_events    = b3.multiselect("Event types", ["Fours", "Sixes", "Dismissal"],
+                                       default=["Fours", "Sixes", "Dismissal"], key="hl_bat_ev")
+        inn2_override = st.number_input(
+            "2nd innings start override (seconds) — leave 0 to auto-detect",
+            min_value=0, value=0, step=30, key="hl_inn2",
+        )
+    else:
+        bw1, bw2, bw3 = st.columns(3)
+        bowl_innings   = bw1.selectbox("Innings", innings_options, key="hl_bowl_inn")
+        bowl_spell     = bw2.selectbox("Bowling spell", ["Spell 1", "Spell 2", "Spell 3"], key="hl_bowl_spell")
+        bw_col1, bw_col2 = st.columns(2)
+        bowl_start_over = bw_col1.number_input("Approx. start over", min_value=1, max_value=50, value=1, step=1, key="hl_bowl_s")
+        bowl_end_over   = bw_col2.number_input("Approx. end over", min_value=1, max_value=50, value=4, step=1, key="hl_bowl_e")
+        bowl_events     = bw3.multiselect("Event types", ["Wickets", "Dot Balls"],
+                                          default=["Wickets"], key="hl_bowl_ev")
+
+    cric_divider()
+
+    # ── Step 4 — Generate ─────────────────────────────────────────────────────
+    section("Step 4 — Generate Highlights", "⚡")
+
+    if not (vpath and os.path.exists(vpath)):
+        st.info("Upload or fetch a video in Step 1 to continue.")
+        return
+
+    if st.button("⚡ Generate Highlights Reel", type="primary", key="hl_generate"):
+        tmp_dir   = st.session_state.get("hl_tmp_dir") or tempfile.mkdtemp()
+        player_slug = (player_name.strip().replace(" ", "_").lower() or "player")
+        ph = st.empty()
+
+        # ── B: Detect wickets ──────────────────────────────────────────────
+        ph.info("🔍 Detecting wickets…")
+        all_wicket_ts = _detect_wickets(vpath, ph)
+
+        # ── C: Estimate active window ──────────────────────────────────────
+        MINS_PER_OVER = 4          # club-level estimate
+        SECS_PER_OVER = MINS_PER_OVER * 60
+
+        if player_role == "Batter":
+            is_second = (bat_innings == "2nd Innings")
+            pos = int(bat_position)
+
+            # Locate innings boundary
+            if is_second:
+                if int(inn2_override) > 0:
+                    inn2_start = float(inn2_override)
+                else:
+                    # Detect long gap (>8 min) between consecutive wickets
+                    if len(all_wicket_ts) >= 2:
+                        gaps = [(all_wicket_ts[i+1] - all_wicket_ts[i], i)
+                                for i in range(len(all_wicket_ts)-1)]
+                        big_gap = max(gaps, key=lambda x: x[0])
+                        inn2_start = all_wicket_ts[big_gap[1]+1] if big_gap[0] > 480 else 0.0
+                    else:
+                        inn2_start = 0.0
+                wickets_in_inn = [t for t in all_wicket_ts if t >= inn2_start]
+            else:
+                inn2_start = 0.0
+                wickets_in_inn = [t for t in all_wicket_ts]
+
+            if pos <= 2:
+                w_start = inn2_start
+            else:
+                idx = pos - 2   # wicket that brought this batter in
+                w_start = wickets_in_inn[idx - 1] if idx <= len(wickets_in_inn) else inn2_start
+
+            w_end_candidates = [t for t in wickets_in_inn if t > w_start]
+            w_end = w_end_candidates[0] + 30 if w_end_candidates else w_start + 7200
+
+            ph.info(f"🏏 Batter window: {w_start/60:.1f} min → {w_end/60:.1f} min")
+
+            # D: Collect events
+            event_ts: list[float] = []
+            if "Dismissal" in bat_events:
+                # Include the dismissal wicket timestamp
+                dismissal = [t for t in wickets_in_inn if w_start < t <= w_end]
+                event_ts.extend(dismissal)
+
+            needs_boundaries = "Fours" in bat_events or "Sixes" in bat_events
+            if needs_boundaries:
+                boundary_data = _detect_fours_sixes(vpath, w_start, w_end, ph)
+                if "Fours" in bat_events:
+                    event_ts.extend(boundary_data["fours"])
+                if "Sixes" in bat_events:
+                    event_ts.extend(boundary_data["sixes"])
+
+        else:  # Bowler
+            is_second     = (bowl_innings == "2nd Innings")
+            start_over    = int(bowl_start_over)
+            end_over      = int(bowl_end_over)
+
+            # Innings offset (rough: 2nd innings starts after a long break)
+            if is_second and len(all_wicket_ts) >= 2:
+                gaps = [(all_wicket_ts[i+1] - all_wicket_ts[i], i)
+                        for i in range(len(all_wicket_ts)-1)]
+                big_gap = max(gaps, key=lambda x: x[0])
+                inn_offset = all_wicket_ts[big_gap[1]+1] if big_gap[0] > 480 else 0.0
+            else:
+                inn_offset = 0.0
+
+            w_start = inn_offset + (start_over - 1) * SECS_PER_OVER
+            w_end   = inn_offset + end_over * SECS_PER_OVER
+
+            ph.info(f"🎳 Bowler window: {w_start/60:.1f} min → {w_end/60:.1f} min")
+
+            event_ts: list[float] = []
+            if "Wickets" in bowl_events:
+                bowl_wickets = [t for t in all_wicket_ts if w_start <= t <= w_end]
+                event_ts.extend(bowl_wickets)
+            if "Dot Balls" in bowl_events:
+                dot_ts = _infer_dot_balls(w_start, w_end, event_ts)
+                event_ts.extend(dot_ts)
+
+        event_ts = sorted(set(event_ts))
+
+        # ── G: Fallback if too few events ─────────────────────────────────
+        if len(event_ts) < 2:
+            ph.warning(
+                "⚠ Signal detection found limited events. "
+                "Try adjusting the innings start time manually, or enter timestamps below."
+            )
+            manual_ts_str = st.text_input(
+                "Manual timestamps (comma-separated seconds)",
+                placeholder="e.g. 312, 580, 940",
+                key="hl_manual_ts",
+            )
+            if manual_ts_str:
+                try:
+                    event_ts = [float(x.strip()) for x in manual_ts_str.split(",") if x.strip()]
+                    st.info(f"Using {len(event_ts)} manual timestamps.")
+                except ValueError:
+                    st.error("Invalid format — enter numbers separated by commas.")
+                    return
+            else:
+                return
+
+        ph.info(f"✅ {len(event_ts)} events found — cutting clips…")
+
+        # ── E+F: Cut and stitch ────────────────────────────────────────────
+        role_slug   = "batting" if player_role == "Batter" else "bowling"
+        out_name    = f"{player_slug}_{role_slug}_highlights.mp4"
+        out_path    = os.path.join(tmp_dir, out_name)
+
+        success = _cut_and_stitch(vpath, event_ts, pre_s=5, post_s=10, out_path=out_path,
+                                  tmp_dir=tmp_dir, progress_placeholder=ph)
+
+        if success and os.path.exists(out_path):
+            ph.success(f"✅ Highlights reel ready — {len(event_ts)} clips stitched")
             st.video(out_path)
-            with open(out_path,"rb") as f:
-                st.download_button("⬇ Download Highlights", data=f.read(), file_name=out_name, mime="video/mp4")
-        except Exception as e:
-            st.error(f"❌ ffmpeg failed: {e}")
+            with open(out_path, "rb") as f:
+                st.download_button(
+                    label=f"⬇ Download {out_name}",
+                    data=f.read(),
+                    file_name=out_name,
+                    mime="video/mp4",
+                    key="hl_dl",
+                )
+        else:
+            ph.error("❌ Highlights generation failed. Check that ffmpeg is installed.")
 
 
 # ═══════════════════════════════════════════════════════

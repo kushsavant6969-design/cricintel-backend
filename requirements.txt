@@ -4,7 +4,9 @@ numpy
 scikit-learn
 pulp
 moviepy
-opencv-python
+opencv-python-headless
 matplotlib
 fpdf2
 plotly>=5.19.0
+yt-dlp
+mediapipe
