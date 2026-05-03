@@ -2357,59 +2357,101 @@ def run_highlights_mode():
     # ── Step A helpers ────────────────────────────────────────────────────────
 
     def _download_youtube(url: str, tmp_dir: str, progress_placeholder) -> str | None:
-        """Download a YouTube video with yt-dlp. Returns local path or None."""
+        """
+        Download a YouTube video with yt-dlp using alternative player clients that
+        bypass YouTube's bot-detection on server IPs (429 / JS-runtime issues).
+        Tries android client first, then tv_embedded, then web as last resort.
+        """
         out_tpl = os.path.join(tmp_dir, "input.%(ext)s")
-        ydl_opts = {
-            "format": "bv*[height<=720]+ba/b[height<=720]/best",
-            "outtmpl": out_tpl,
-            "noplaylist": True,
-            "quiet": True,
-            "no_warnings": True,
-        }
+
+        # android / tv_embedded clients don't require a JS runtime and are not
+        # subject to the same 429 rate-limits that hit cloud server IPs.
+        client_attempts = [
+            ("android",     "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720][ext=mp4]/best"),
+            ("tv_embedded",  "bestvideo[height<=720]+bestaudio/best[height<=720]/best"),
+            ("web",          "bestvideo[height<=480]+bestaudio/best[height<=480]/best"),
+        ]
 
         progress_placeholder.info("⬇ Downloading video from YouTube…")
 
-        # Try 1: Python yt_dlp import (more reliable on Render than subprocess PATH)
-        try:
-            import yt_dlp
-            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-                ydl.download([url])
-            vpath = next(
-                (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
-                None,
-            )
-            if vpath and os.path.exists(vpath):
-                return vpath
-        except ImportError:
-            pass  # fall through to subprocess
-        except Exception as exc:
-            progress_placeholder.warning(f"yt_dlp Python API failed: {exc} — trying CLI…")
+        for client, fmt in client_attempts:
+            ydl_opts = {
+                "format": fmt,
+                "outtmpl": out_tpl,
+                "noplaylist": True,
+                "quiet": True,
+                "no_warnings": True,
+                "extractor_args": {"youtube": {"player_client": [client]}},
+                "socket_timeout": 60,
+                "retries": 3,
+            }
 
-        # Try 2: subprocess CLI fallback
+            try:
+                import yt_dlp
+                # Clear any partial file from a previous attempt
+                for f in os.listdir(tmp_dir):
+                    if f.startswith("input."):
+                        os.remove(os.path.join(tmp_dir, f))
+
+                progress_placeholder.info(f"⬇ Trying YouTube client: `{client}`…")
+                with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                    ydl.download([url])
+
+                vpath = next(
+                    (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
+                    None,
+                )
+                if vpath and os.path.exists(vpath) and os.path.getsize(vpath) > 1024:
+                    return vpath
+
+            except ImportError:
+                break  # yt_dlp not installed at all — fall through to CLI
+            except Exception as exc:
+                progress_placeholder.warning(f"Client `{client}` failed: {exc}")
+                continue
+
+        # CLI fallback (catches ImportError path or if all Python attempts failed)
+        progress_placeholder.info("⬇ Trying yt-dlp CLI (android client)…")
         try:
+            for f in os.listdir(tmp_dir):
+                if f.startswith("input."):
+                    os.remove(os.path.join(tmp_dir, f))
+
             result = subprocess.run(
-                ["yt-dlp", "-f", "bv*[height<=720]+ba/b[height<=720]/best",
-                 "--no-playlist", "-o", out_tpl, url],
+                [
+                    "yt-dlp",
+                    "--extractor-args", "youtube:player_client=android,tv_embedded",
+                    "-f", "bestvideo[height<=720][ext=mp4]+bestaudio[ext=m4a]/best[height<=720]/best",
+                    "--no-playlist", "--socket-timeout", "60",
+                    "-o", out_tpl, url,
+                ],
                 capture_output=True, text=True, timeout=300,
             )
-            if result.returncode != 0:
-                progress_placeholder.error(
-                    f"yt-dlp CLI error (exit {result.returncode}):\n```\n{result.stderr[-800:]}\n```"
+            if result.returncode == 0:
+                vpath = next(
+                    (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
+                    None,
                 )
-                return None
-            vpath = next(
-                (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
-                None,
+                if vpath and os.path.exists(vpath):
+                    return vpath
+
+            progress_placeholder.error(
+                f"yt-dlp failed (exit {result.returncode}):\n```\n"
+                f"{(result.stderr or result.stdout)[-1000:]}\n```"
             )
-            return vpath if vpath and os.path.exists(vpath) else None
+            return None
+
         except FileNotFoundError:
             progress_placeholder.error(
-                "yt-dlp not found on PATH. Ensure `yt-dlp` is in requirements.txt "
-                "and the server has been redeployed."
+                "yt-dlp binary not found. Ensure `yt-dlp` is in requirements.txt "
+                "and the server has been redeployed since the last requirements change."
             )
             return None
         except subprocess.TimeoutExpired:
-            progress_placeholder.error("Download timed out after 5 minutes.")
+            progress_placeholder.error("Download timed out (5 min limit).")
+            return None
+        except Exception as exc:
+            progress_placeholder.error(f"Unexpected error: {type(exc).__name__}: {exc}")
             return None
         except Exception as exc:
             progress_placeholder.error(f"Download failed: {type(exc).__name__}: {exc}")
