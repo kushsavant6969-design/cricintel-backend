@@ -2359,20 +2359,60 @@ def run_highlights_mode():
     def _download_youtube(url: str, tmp_dir: str, progress_placeholder) -> str | None:
         """Download a YouTube video with yt-dlp. Returns local path or None."""
         out_tpl = os.path.join(tmp_dir, "input.%(ext)s")
+        ydl_opts = {
+            "format": "bv*[height<=720]+ba/b[height<=720]/best",
+            "outtmpl": out_tpl,
+            "noplaylist": True,
+            "quiet": True,
+            "no_warnings": True,
+        }
+
+        progress_placeholder.info("⬇ Downloading video from YouTube…")
+
+        # Try 1: Python yt_dlp import (more reliable on Render than subprocess PATH)
         try:
-            progress_placeholder.info("⬇ Downloading video from YouTube…")
-            subprocess.check_call(
-                ["yt-dlp", "-f", "bv*[height<=1080]+ba/b[height<=1080]/best",
-                 "--no-playlist", "-o", out_tpl, url],
-                stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
+            import yt_dlp
+            with yt_dlp.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([url])
+            vpath = next(
+                (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
+                None,
             )
+            if vpath and os.path.exists(vpath):
+                return vpath
+        except ImportError:
+            pass  # fall through to subprocess
+        except Exception as exc:
+            progress_placeholder.warning(f"yt_dlp Python API failed: {exc} — trying CLI…")
+
+        # Try 2: subprocess CLI fallback
+        try:
+            result = subprocess.run(
+                ["yt-dlp", "-f", "bv*[height<=720]+ba/b[height<=720]/best",
+                 "--no-playlist", "-o", out_tpl, url],
+                capture_output=True, text=True, timeout=300,
+            )
+            if result.returncode != 0:
+                progress_placeholder.error(
+                    f"yt-dlp CLI error (exit {result.returncode}):\n```\n{result.stderr[-800:]}\n```"
+                )
+                return None
             vpath = next(
                 (os.path.join(tmp_dir, f) for f in os.listdir(tmp_dir) if f.startswith("input.")),
                 None,
             )
             return vpath if vpath and os.path.exists(vpath) else None
+        except FileNotFoundError:
+            progress_placeholder.error(
+                "yt-dlp not found on PATH. Ensure `yt-dlp` is in requirements.txt "
+                "and the server has been redeployed."
+            )
+            return None
+        except subprocess.TimeoutExpired:
+            progress_placeholder.error("Download timed out after 5 minutes.")
+            return None
         except Exception as exc:
-            progress_placeholder.error(f"yt-dlp failed: {exc}")
+            progress_placeholder.error(f"Download failed: {type(exc).__name__}: {exc}")
             return None
 
     # ── Step B: wicket detection via MediaPipe Pose ───────────────────────────
@@ -2633,7 +2673,8 @@ def run_highlights_mode():
                 st.session_state["hl_tmp_dir"]    = _tmp
                 _ph.success("✅ Downloaded successfully")
             else:
-                _ph.error("Download failed. Check the URL and that yt-dlp is installed.")
+                # _download_youtube already set a detailed error on _ph; only add if nothing shown
+                pass
 
     vpath = st.session_state.get("hl_video_path")
     if vpath and os.path.exists(vpath):
