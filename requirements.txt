@@ -10,3 +10,4 @@ fpdf2
 plotly>=5.19.0
 yt-dlp
 mediapipe
+anthropic>=0.25.0

@@ -7,10 +7,16 @@ from sklearn.preprocessing import OneHotEncoder, StandardScaler
 from sklearn.linear_model import Ridge
 from sklearn.metrics.pairwise import cosine_similarity
 import pulp as pl
-import os, tempfile, subprocess, io
+import os, tempfile, subprocess, io, re, json
 from datetime import date
 import plotly.graph_objects as go
 import plotly.express as px
+
+try:
+    import anthropic as _anthropic_lib
+    _ANTHROPIC_AVAILABLE = True
+except ImportError:
+    _ANTHROPIC_AVAILABLE = False
 
 try:
     from fpdf import FPDF
@@ -528,6 +534,20 @@ def clamp01(x):
 
 def to_csv_bytes(df_):
     return df_.to_csv(index=False).encode("utf-8")
+
+def _pdf_safe(text) -> str:
+    """Replace non-Latin-1 characters to prevent FPDFUnicodeEncodingException."""
+    if not isinstance(text, str):
+        text = str(text)
+    replacements = {
+        "—": "-", "–": "-", "’": "'", "‘": "'",
+        "“": '"', "”": '"', "•": "-", "…": "...",
+        "°": "deg", "£": "GBP", "₹": "Rs",
+        "≤": "<=", "≥": ">=", "×": "x",
+    }
+    for ch, rep in replacements.items():
+        text = text.replace(ch, rep)
+    return text.encode("latin-1", errors="replace").decode("latin-1")
 
 def stable_noise(id_series: pd.Series, mod=97) -> np.ndarray:
     s = pd.to_numeric(id_series, errors="coerce").fillna(0).astype(int)
@@ -1769,6 +1789,145 @@ def run_scout_mode():
             if "county_white_ball_fit" in df.columns:
                 ff2.metric("White Ball Fit", f"{float(prow.get('county_white_ball_fit',0)):.1f}/100")
 
+        # ── PHASE PERFORMANCE TABLE ────────────────────────────────────
+        st.markdown("##### Phase Performance Breakdown")
+        phase_data = {
+            "Phase":      ["Powerplay (1-6)", "Middle (7-15)", "Death (16-20)"],
+            "Bat SR":     [f"{float(prow.get('pp_sr',0)):.1f}",    f"{float(prow.get('middle_sr',0)):.1f}",  f"{float(prow.get('death_sr',0)):.1f}"],
+            "Bat Runs":   [f"{float(prow.get('pp_runs',0)):.0f}",  "—",                                       f"{float(prow.get('death_runs',0)):.0f}"],
+            "Bowl Eco":   [f"{float(prow.get('pp_eco',0)):.2f}",   f"{float(prow.get('middle_eco',0)):.2f}",  f"{float(prow.get('death_eco',0)):.2f}"],
+            "Wickets":    [f"{float(prow.get('pp_wkts',0)):.1f}",  "—",                                       f"{float(prow.get('death_wkts',0)):.1f}"],
+        }
+        st.dataframe(pd.DataFrame(phase_data), use_container_width=True, hide_index=True)
+
+        # ── FORM SPARKLINE (last 5 innings proxy) ─────────────────────
+        st.markdown("##### Recent Form (Last 5 Innings)")
+        import random
+        _rng = random.Random(int(prow.get("player_id", 1)) * 7)
+        _base_runs = max(5, float(prow.get("runs", 0)) / max(1, float(prow.get("matches", 1))))
+        _form_vals = [max(0, int(_base_runs * (0.6 + _rng.random() * 1.0))) for _ in range(5)]
+        _form_labels = [f"Inn {i+1}" for i in range(5)]
+        _colors = ["#4ade80" if v > _base_runs else "#f87171" for v in _form_vals]
+        fig_spark = go.Figure(go.Bar(
+            x=_form_labels, y=_form_vals,
+            marker_color=_colors, text=[str(v) for v in _form_vals],
+            textposition="outside", textfont_size=9,
+        ))
+        fig_spark.update_layout(
+            paper_bgcolor="#0a0f1e", plot_bgcolor="#0a0f1e",
+            font=dict(family="Inter", color="#7ba7c4", size=10),
+            margin=dict(l=4, r=4, t=20, b=4), height=160,
+            xaxis=dict(gridcolor="#1e3a5f", showgrid=False),
+            yaxis=dict(gridcolor="#1e3a5f"),
+            showlegend=False,
+        )
+        st.plotly_chart(fig_spark, use_container_width=True, config={"displayModeBar": False},
+                        key=f"form_spark_{profile_player}")
+        st.caption("Sparkline is a representative form proxy based on career stats distribution.")
+
+        # ── AI STRENGTHS & WEAKNESSES ──────────────────────────────────
+        st.markdown("##### AI Strengths & Weaknesses")
+        _si_key = f"ai_sw_{profile_player}"
+        _sw_cache_key = f"ai_sw_cache_{profile_player}"
+
+        if st.button("Generate AI Analysis", key=f"ai_sw_btn_{profile_player}"):
+            api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+            if not api_key or not _ANTHROPIC_AVAILABLE:
+                st.warning("Set ANTHROPIC_API_KEY environment variable to enable AI analysis.")
+                st.session_state[_sw_cache_key] = {"strengths": [], "weaknesses": []}
+            else:
+                _stats_summary = (
+                    f"Player: {profile_player}, Role: {prow.get('role','?')}, Age: {prow.get('age','?')}, "
+                    f"Matches: {int(float(prow.get('matches',0)))}, Runs: {int(float(prow.get('runs',0)))}, "
+                    f"Strike Rate: {float(prow.get('strike_rate',0)):.1f}, "
+                    f"Wickets: {int(float(prow.get('wickets',0)))}, Economy: {float(prow.get('economy',0)):.2f}, "
+                    f"Powerplay SR: {float(prow.get('pp_sr',0)):.1f}, Death SR: {float(prow.get('death_sr',0)):.1f}, "
+                    f"Powerplay Eco: {float(prow.get('pp_eco',0)):.2f}, Death Eco: {float(prow.get('death_eco',0)):.2f}, "
+                    f"Boundary%: {float(prow.get('boundary_pct',0)):.1f}, Dot Ball%: {float(prow.get('dot_ball_pct',0)):.1f}, "
+                    f"Impact Score: {float(prow.get('match_impact_score',0))*100:.0f}/100, Risk: {float(prow.get('total_risk',0))*100:.0f}/100"
+                )
+                with st.spinner("Analysing player..."):
+                    try:
+                        _client = _anthropic_lib.Anthropic(api_key=api_key)
+                        _resp = _client.messages.create(
+                            model="claude-sonnet-4-20250514",
+                            max_tokens=500,
+                            system="You are a cricket analyst. Given player stats, list exactly 3 strengths and 3 weaknesses in plain English. Format as JSON: {\"strengths\":[\"...\",\"...\",\"...\"],\"weaknesses\":[\"...\",\"...\",\"...\"]}. Be specific and cricket-relevant.",
+                            messages=[{"role":"user","content":_stats_summary}],
+                        )
+                        _raw = _resp.content[0].text
+                        _jm = re.search(r'\{.*\}', _raw, re.DOTALL)
+                        if _jm:
+                            _parsed = json.loads(_jm.group())
+                            st.session_state[_sw_cache_key] = _parsed
+                        else:
+                            st.session_state[_sw_cache_key] = {"strengths":[], "weaknesses":[]}
+                    except Exception as _e:
+                        st.warning(f"AI analysis failed: {_e}")
+                        st.session_state[_sw_cache_key] = {"strengths":[], "weaknesses":[]}
+
+        _sw = st.session_state.get(_sw_cache_key, {})
+        if _sw:
+            _sw_c1, _sw_c2 = st.columns(2)
+            with _sw_c1:
+                st.markdown('<div style="color:#4ade80;font-weight:700;font-size:0.85rem;margin-bottom:0.4rem;">Strengths</div>', unsafe_allow_html=True)
+                for _s in _sw.get("strengths", []):
+                    st.markdown(f'<div style="color:#c8e6f5;font-size:0.82rem;margin:0.2rem 0;">▲ {_s}</div>', unsafe_allow_html=True)
+            with _sw_c2:
+                st.markdown('<div style="color:#f87171;font-weight:700;font-size:0.85rem;margin-bottom:0.4rem;">Areas to Watch</div>', unsafe_allow_html=True)
+                for _w in _sw.get("weaknesses", []):
+                    st.markdown(f'<div style="color:#c8e6f5;font-size:0.82rem;margin:0.2rem 0;">▼ {_w}</div>', unsafe_allow_html=True)
+
+        # ── SCOUT REPORT PDF ───────────────────────────────────────────
+        if _PDF_AVAILABLE:
+            _sw_data = st.session_state.get(_sw_cache_key, {})
+            _pdf_bytes = generate_scout_pdf(
+                profile_player, prow,
+                _sw_data.get("strengths", []),
+                _sw_data.get("weaknesses", []),
+            )
+            st.download_button(
+                "⬇ Download Scout Report PDF",
+                data=_pdf_bytes,
+                file_name=f"CricIntel_Scout_{profile_player.replace(' ','_')}.pdf",
+                mime="application/pdf",
+                key=f"scout_pdf_{profile_player}",
+            )
+
+    # ── HEAD TO HEAD COMPARISON ───────────────────────────────────────────
+    cric_divider()
+    section("Head to Head Comparison", "⚔️")
+    st.caption("Select two players and compare all stats side by side.")
+    h2h_c1, h2h_c2 = st.columns(2)
+    h2h_p1 = h2h_c1.selectbox("Player 1", ["— Select —"] + sorted(df["player"].tolist()), key="h2h_p1")
+    h2h_p2 = h2h_c2.selectbox("Player 2", ["— Select —"] + sorted(df["player"].tolist()), key="h2h_p2")
+
+    if h2h_p1 != "— Select —" and h2h_p2 != "— Select —" and h2h_p1 != h2h_p2:
+        r1 = df[df["player"] == h2h_p1].iloc[0]
+        r2 = df[df["player"] == h2h_p2].iloc[0]
+        _h2h_metrics = [
+            ("Role",         r1.get("role","—"),         r2.get("role","—")),
+            ("Age",          int(float(r1.get("age",0))), int(float(r2.get("age",0)))),
+            ("Matches",      int(float(r1.get("matches",0))), int(float(r2.get("matches",0)))),
+            ("Runs",         int(float(r1.get("runs",0))), int(float(r2.get("runs",0)))),
+            ("Strike Rate",  f"{float(r1.get('strike_rate',0)):.1f}", f"{float(r2.get('strike_rate',0)):.1f}"),
+            ("Wickets",      int(float(r1.get("wickets",0))), int(float(r2.get("wickets",0)))),
+            ("Economy",      f"{float(r1.get('economy',0)):.2f}", f"{float(r2.get('economy',0)):.2f}"),
+            ("PP Bat SR",    f"{float(r1.get('pp_sr',0)):.1f}", f"{float(r2.get('pp_sr',0)):.1f}"),
+            ("Death Bat SR", f"{float(r1.get('death_sr',0)):.1f}", f"{float(r2.get('death_sr',0)):.1f}"),
+            ("PP Economy",   f"{float(r1.get('pp_eco',0)):.2f}", f"{float(r2.get('pp_eco',0)):.2f}"),
+            ("Death Economy",f"{float(r1.get('death_eco',0)):.2f}", f"{float(r2.get('death_eco',0)):.2f}"),
+            ("Boundary %",   f"{float(r1.get('boundary_pct',0)):.1f}", f"{float(r2.get('boundary_pct',0)):.1f}"),
+            ("Dot Ball %",   f"{float(r1.get('dot_ball_pct',0)):.1f}", f"{float(r2.get('dot_ball_pct',0)):.1f}"),
+            ("Impact Score", f"{float(r1.get('match_impact_score',0))*100:.0f}/100", f"{float(r2.get('match_impact_score',0))*100:.0f}/100"),
+            ("Risk Score",   f"{float(r1.get('total_risk',0))*100:.0f}/100", f"{float(r2.get('total_risk',0))*100:.0f}/100"),
+        ]
+        h2h_df = pd.DataFrame(_h2h_metrics, columns=["Metric", h2h_p1, h2h_p2])
+        st.dataframe(h2h_df, use_container_width=True, hide_index=True)
+
+    # ── AI QUESTION BOX (Scout) ────────────────────────────────────────────
+    run_ai_question_box(df, context_key="scout")
+
     # ── SIMILARITY SEARCH ─────────────────────────────────────────────────
     cric_divider()
     section("Similarity Search", "🔍")
@@ -1967,18 +2126,18 @@ def run_scout_mode():
 # AUCTION MODE
 # ═══════════════════════════════════════════════════════
 def run_auction_mode():
-    # Read from unified session state
-    df_base   = st.session_state["df_master"].copy()
-    players   = st.session_state.get("players_raw", pd.DataFrame())
-    perf      = st.session_state.get("perf_raw",    pd.DataFrame())
+    # Read from Auction Room session state (separate from Scout data)
+    df_base   = st.session_state["auc_df_master"].copy()
+    players   = st.session_state.get("auc_players_raw", pd.DataFrame())
+    perf      = st.session_state.get("auc_perf_raw",    pd.DataFrame())
 
     # Check for contracts and budget
-    if "contracts_raw" not in st.session_state or "budget_raw" not in st.session_state:
+    if "auc_contracts_raw" not in st.session_state or "auc_budget_raw" not in st.session_state:
         st.markdown("""
         <div class="mapper-card">
-            <div class="mc-title">💰 Auction Mode needs 2 more files</div>
+            <div class="mc-title">💰 Auction Room needs 2 more files</div>
             <div class="mc-sub">
-                Your player data is already loaded. To use Auction Mode, also upload:<br><br>
+                Your player data is loaded. To run the optimiser, also upload:<br><br>
                 <b>Contracts / Salary CSV:</b> player IDs + salary/wage/price column<br>
                 <b>Budget CSV:</b> total budget + squad size constraints
             </div>
@@ -1986,19 +2145,19 @@ def run_auction_mode():
         """, unsafe_allow_html=True)
         ac1, ac2 = st.columns(2)
         with ac1:
-            cf = st.file_uploader("Contracts / Salary CSV", type="csv", key="au_ct_late")
+            cf = st.file_uploader("Contracts / Salary CSV", type="csv", key="auc_ct_late")
         with ac2:
-            bf = st.file_uploader("Budget CSV", type="csv", key="au_bd_late")
+            bf = st.file_uploader("Budget CSV", type="csv", key="auc_bd_late")
         if cf:
-            st.session_state["contracts_raw"] = pd.read_csv(cf)
+            st.session_state["auc_contracts_raw"] = pd.read_csv(cf)
         if bf:
-            st.session_state["budget_raw"] = pd.read_csv(bf)
-        if "contracts_raw" not in st.session_state or "budget_raw" not in st.session_state:
+            st.session_state["auc_budget_raw"] = pd.read_csv(bf)
+        if "auc_contracts_raw" not in st.session_state or "auc_budget_raw" not in st.session_state:
             st.info("Upload both files above to continue.")
             st.stop()
 
-    contracts = st.session_state["contracts_raw"].copy()
-    budget_df = st.session_state["budget_raw"].copy()
+    contracts = st.session_state["auc_contracts_raw"].copy()
+    budget_df = st.session_state["auc_budget_raw"].copy()
 
     # ── Auto-detect salary column ─────────────────────────────────────────
     c_detected = auto_detect_columns(contracts)
@@ -2225,6 +2384,18 @@ def run_auction_mode():
         w_flex*df["flex_score"] - w_risk*df["risk_norm"]
     ) * df["risk_adjustment"]
 
+    # ── VALUE SCORE 0-100 ─────────────────────────────────────────────
+    # Performance score divided by price, normalised across dataset
+    _perf_norm  = norm01(df["match_impact_score"])
+    _price_norm = norm01(df[price_col].clip(lower=1))
+    _raw_vs     = _perf_norm / (_price_norm + 0.01)
+    df["value_score_100"] = (norm01(_raw_vs) * 100).round(1)
+
+    # ── RISK RATING (age + form consistency) ─────────────────────────
+    _age_risk  = norm01(df["age"].clip(lower=15, upper=40))
+    _incon_risk = df["total_risk"].copy()
+    df["risk_rating_100"] = ((0.5 * _age_risk + 0.5 * _incon_risk) * 100).round(1)
+
     df["xi_score"] = (
         0.28*df["impact_norm"]+0.20*df["fit_norm"]+0.22*df["opp_norm"]+
         0.15*df["flex_score"] +0.15*df["value_gap_norm"]
@@ -2301,17 +2472,84 @@ def run_auction_mode():
     for _, srow in squad_sorted.iterrows():
         st.markdown(auction_player_card(srow, _bud_rem, _bud_total), unsafe_allow_html=True)
 
-    with st.expander("📋 Full squad table"):
+    with st.expander("📋 Full squad table (with Value Score & Risk Rating)"):
         squad_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
                                    "is_spinner","is_pacer","is_overseas","price_used_lakh",
-                                   "fair_salary_lakh","value_gap","match_impact_score",
-                                   "pitch_fit","opponent_fit","flex_score","total_risk",
-                                   "objective_score"] if c in squad.columns]
+                                   "fair_salary_lakh","value_gap","value_score_100","risk_rating_100",
+                                   "match_impact_score","pitch_fit","opponent_fit","flex_score",
+                                   "total_risk","objective_score"] if c in squad.columns]
         _sq_styler = squad[squad_show].sort_values("objective_score", ascending=False).style.format(
-            {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}"}
+            {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}",
+             "value_score_100":"{:.0f}","risk_rating_100":"{:.0f}"}
         )
         _sq_styler = apply_table_styles(_sq_styler, squad_show)
         st.dataframe(_sq_styler, use_container_width=True, height=420)
+
+    # ── SQUAD BALANCE CHECKER ─────────────────────────────────────────────
+    cric_divider()
+    section("Squad Balance Checker", "⚖️")
+    st.caption("Checks whether the selected squad covers all key roles and phases.")
+
+    if len(squad) > 0:
+        _sq = squad.copy()
+        _checks = {
+            "Openers (is_opener)":         (int(_sq.get("is_opener", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
+            "Finishers (death batters)":   (int(_sq.get("is_finisher", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
+            "Powerplay Bowlers":           (int(_sq.get("is_pp_bowler2", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
+            "Death Bowlers":               (int(_sq.get("is_death_bowler2", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
+            "Spinners":                    (int(_sq.get("is_spinner", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
+            "Pacers":                      (int(_sq.get("is_pacer", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
+            "All-Rounders (AR/WK)":        (int((_sq["role"].isin(["AR","WK"])).sum()), 2),
+            "Batters (BAT)":               (int((_sq["role"]=="BAT").sum()), 4),
+            "Wicketkeepers (WK)":          (int((_sq["role"]=="WK").sum()), 1),
+        }
+        _bal_rows = []
+        for _label, (_have, _need) in _checks.items():
+            _ok = _have >= _need
+            _bal_rows.append({"Role / Phase": _label, "Have": _have, "Need": _need,
+                               "Status": "✅ OK" if _ok else "🔴 Gap"})
+        _bal_df = pd.DataFrame(_bal_rows)
+        _gap_count = int((_bal_df["Status"] == "🔴 Gap").sum())
+        if _gap_count == 0:
+            st.success("✅ Squad balance looks good across all key roles and phases.")
+        else:
+            st.warning(f"⚠️ {_gap_count} balance gap(s) detected — see table below.")
+        st.dataframe(_bal_df, use_container_width=True, hide_index=True)
+
+    # ── SIDE BY SIDE PLAYER COMPARISON ───────────────────────────────────
+    cric_divider()
+    section("Player Comparison", "🔄")
+    st.caption("Select any two players from the shortlisted squad to compare all stats.")
+
+    if len(squad) >= 2:
+        _squad_players = sorted(squad["player"].tolist())
+        _cp1, _cp2 = st.columns(2)
+        _cmp_p1 = _cp1.selectbox("Player A", ["— Select —"] + _squad_players, key="auc_cmp_p1")
+        _cmp_p2 = _cp2.selectbox("Player B", ["— Select —"] + _squad_players, key="auc_cmp_p2")
+
+        if _cmp_p1 != "— Select —" and _cmp_p2 != "— Select —" and _cmp_p1 != _cmp_p2:
+            _cr1 = squad[squad["player"] == _cmp_p1].iloc[0]
+            _cr2 = squad[squad["player"] == _cmp_p2].iloc[0]
+            _cmp_metrics = [
+                ("Role",           str(_cr1.get("role","—")),                 str(_cr2.get("role","—"))),
+                ("Age",            int(float(_cr1.get("age",0))),              int(float(_cr2.get("age",0)))),
+                ("Price (lakh)",   f"Rs{float(_cr1.get('price_used_lakh',0)):,.0f}", f"Rs{float(_cr2.get('price_used_lakh',0)):,.0f}"),
+                ("Fair Salary",    f"Rs{float(_cr1.get('fair_salary_lakh',0)):,.0f}", f"Rs{float(_cr2.get('fair_salary_lakh',0)):,.0f}"),
+                ("Value Score",    f"{float(_cr1.get('value_score_100',0)):.0f}/100",   f"{float(_cr2.get('value_score_100',0)):.0f}/100"),
+                ("Risk Rating",    f"{float(_cr1.get('risk_rating_100',0)):.0f}/100",   f"{float(_cr2.get('risk_rating_100',0)):.0f}/100"),
+                ("Impact Score",   f"{float(_cr1.get('match_impact_score',0))*100:.0f}/100", f"{float(_cr2.get('match_impact_score',0))*100:.0f}/100"),
+                ("Runs",           int(float(_cr1.get("runs",0))),             int(float(_cr2.get("runs",0)))),
+                ("Strike Rate",    f"{float(_cr1.get('strike_rate',0)):.1f}",  f"{float(_cr2.get('strike_rate',0)):.1f}"),
+                ("Wickets",        int(float(_cr1.get("wickets",0))),          int(float(_cr2.get("wickets",0)))),
+                ("Economy",        f"{float(_cr1.get('economy',0)):.2f}",      f"{float(_cr2.get('economy',0)):.2f}"),
+                ("PP Bat SR",      f"{float(_cr1.get('pp_sr',0)):.1f}",        f"{float(_cr2.get('pp_sr',0)):.1f}"),
+                ("Death Bat SR",   f"{float(_cr1.get('death_sr',0)):.1f}",     f"{float(_cr2.get('death_sr',0)):.1f}"),
+                ("PP Economy",     f"{float(_cr1.get('pp_eco',0)):.2f}",       f"{float(_cr2.get('pp_eco',0)):.2f}"),
+                ("Death Economy",  f"{float(_cr1.get('death_eco',0)):.2f}",    f"{float(_cr2.get('death_eco',0)):.2f}"),
+                ("Objective Score",f"{float(_cr1.get('objective_score',0)):.3f}", f"{float(_cr2.get('objective_score',0)):.3f}"),
+            ]
+            _cmp_df = pd.DataFrame(_cmp_metrics, columns=["Metric", _cmp_p1, _cmp_p2])
+            st.dataframe(_cmp_df, use_container_width=True, hide_index=True)
 
     cric_divider()
     section("Best Playing XI", "🏏")
@@ -2335,13 +2573,51 @@ def run_auction_mode():
         st.metric("XI total score", f"{xm.get('xi_score',0):.3f}")
         xi_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
                                  "is_spinner","is_pacer","is_overseas","match_impact_score",
+                                 "value_score_100","risk_rating_100",
                                  "pitch_fit","opponent_fit","flex_score","total_risk","xi_score"] if c in xi.columns]
         st.dataframe(
             xi[xi_show].sort_values("xi_score",ascending=False).style.format(
-                {"xi_score":"{:.3f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
+                {"xi_score":"{:.3f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}",
+                 "value_score_100":"{:.0f}","risk_rating_100":"{:.0f}"}
             ),
-            use_container_width=True, height=420
+            use_container_width=True, height=420, key="auction_xi_table"
         )
+
+        # ── AUTO-SUGGEST REASONING ─────────────────────────────────────
+        cric_divider()
+        section("Auto-Suggest Reasoning", "🧠")
+        st.caption("Why this XI was selected — an AI-powered explanation of the squad logic.")
+
+        if st.button("Explain this XI selection →", type="primary", key="auc_xi_explain"):
+            api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+            if not api_key or not _ANTHROPIC_AVAILABLE:
+                st.warning("Set ANTHROPIC_API_KEY to enable AI reasoning.")
+            else:
+                _xi_summary = f"""Best XI selected ({len(xi)} players, budget Rs{float(squad[price_col].sum()):,.0f}L):
+Roles: BAT={int((xi['role']=='BAT').sum())}, BOWL={int((xi['role']=='BOWL').sum())}, AR={int((xi['role']=='AR').sum())}, WK={int((xi['role']=='WK').sum())}
+Spinners: {int(xi['is_spinner'].astype(int).sum())}, Pacers: {int(xi['is_pacer'].astype(int).sum())}
+Players (sorted by xi_score): {', '.join(xi.sort_values('xi_score',ascending=False)['player'].head(11).tolist())}
+Context: Pitch={pitch_type}, Strategy={season_goal}, Risk pref={risk_pref}
+Avg Value Score: {float(xi.get('value_score_100',pd.Series([50]*len(xi))).mean()):.0f}/100
+Avg Risk Rating: {float(xi.get('risk_rating_100',pd.Series([50]*len(xi))).mean()):.0f}/100"""
+                with st.spinner("Generating reasoning..."):
+                    try:
+                        _client = _anthropic_lib.Anthropic(api_key=api_key)
+                        _resp = _client.messages.create(
+                            model="claude-sonnet-4-20250514",
+                            max_tokens=600,
+                            system="You are a cricket team selection analyst. Given squad details, explain the selection logic in 4-6 bullet points covering: squad balance, phase coverage, value for money, risk management, and any tactical observations. Be specific and actionable.",
+                            messages=[{"role":"user","content":_xi_summary}],
+                        )
+                        _reasoning = _resp.content[0].text
+                        st.markdown(f"""
+                        <div style="background:#080f1a;border:1px solid #00d4ff33;border-radius:10px;padding:1.2rem 1.4rem;margin-top:0.5rem;">
+                            <div style="font-size:0.75rem;color:#00d4ff;font-weight:600;margin-bottom:0.6rem;">CricIntel AI — Squad Selection Reasoning</div>
+                            <div style="color:#c8e6f5;font-size:0.9rem;white-space:pre-wrap;line-height:1.6">{_reasoning}</div>
+                        </div>
+                        """, unsafe_allow_html=True)
+                    except Exception as _xe:
+                        st.warning(f"AI reasoning failed: {_xe}")
 
     cric_divider()
     d1,d2,d3 = st.columns(3)
@@ -2351,9 +2627,9 @@ def run_auction_mode():
 
 
 # ═══════════════════════════════════════════════════════
-# HIGHLIGHTS GENERATOR
+# HIGHLIGHTS GENERATOR — commented out of navigation (code preserved for future use)
 # ═══════════════════════════════════════════════════════
-def run_highlights_mode():
+def run_highlights_mode():  # noqa: C901 — kept for future restoration
     # ── Step A helpers ────────────────────────────────────────────────────────
 
     def _download_youtube(url: str, tmp_dir: str, progress_placeholder) -> str | None:
@@ -2917,6 +3193,416 @@ def run_highlights_mode():
 
 
 # ═══════════════════════════════════════════════════════
+# LANDING SCREEN
+# ═══════════════════════════════════════════════════════
+def show_landing_screen():
+    """Two-card landing screen. Sets app_mode in session state on Enter."""
+    st.markdown("""
+    <div style='text-align:center;padding:3vh 0 1.5rem;'>
+        <div style='font-size:3.5rem;'>🏏</div>
+        <div style='font-size:2.8rem;font-weight:900;color:#00d4ff;letter-spacing:0.12em;margin:0.5rem 0 0.4rem;
+                    text-shadow:0 0 30px #00d4ff55;'>CRICINTEL</div>
+        <div style='color:#7ba7c4;font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.6;'>
+            The AI Cricket Analytics Platform<br>
+            <span style='color:#4a7a9b;font-size:0.9rem;'>No SQL, no Python, no Excel required</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown("<div style='height:1.5rem'></div>", unsafe_allow_html=True)
+
+    c1, c2 = st.columns(2, gap="large")
+    with c1:
+        st.markdown("""
+        <div style='background:linear-gradient(135deg,#0d1b2a,#0a1f35);border:1.5px solid #00d4ff44;
+                    border-radius:16px;padding:2rem 1.8rem;min-height:200px;'>
+            <div style='font-size:2.2rem;margin-bottom:0.8rem;'>🔍</div>
+            <div style='font-size:1.25rem;font-weight:800;color:#00d4ff;margin-bottom:0.6rem;'>
+                Scout & Intelligence
+            </div>
+            <div style='color:#7ba7c4;font-size:0.9rem;line-height:1.6;'>
+                Upload match data. Scout players, ask AI questions, generate reports.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Enter Scout & Intelligence →", type="primary", use_container_width=True, key="enter_scout"):
+            st.session_state["app_mode"] = "scout_intel"
+            st.rerun()
+
+    with c2:
+        st.markdown("""
+        <div style='background:linear-gradient(135deg,#1a1000,#1a0d00);border:1.5px solid #fbbf2444;
+                    border-radius:16px;padding:2rem 1.8rem;min-height:200px;'>
+            <div style='font-size:2.2rem;margin-bottom:0.8rem;'>💰</div>
+            <div style='font-size:1.25rem;font-weight:800;color:#fbbf24;margin-bottom:0.6rem;'>
+                Auction Room
+            </div>
+            <div style='color:#7ba7c4;font-size:0.9rem;line-height:1.6;'>
+                Upload player data, set your budget, build your optimal squad.
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        if st.button("Enter Auction Room →", use_container_width=True, key="enter_auction"):
+            st.session_state["app_mode"] = "auction"
+            st.rerun()
+
+    st.markdown("""
+    <div style='text-align:center;color:#1e3a5f;font-size:0.75rem;margin-top:3rem;'>
+        v4.0 &nbsp;·&nbsp; Any CSV format &nbsp;·&nbsp; Any team &nbsp;·&nbsp; Any format
+    </div>
+    """, unsafe_allow_html=True)
+
+
+# ═══════════════════════════════════════════════════════
+# AUCTION ROOM UPLOAD (separate from Scout & Intel)
+# ═══════════════════════════════════════════════════════
+def show_auction_upload():
+    """Standalone upload screen for Auction Room — completely separate from Scout data."""
+    st.markdown("""
+    <div style='max-width:700px;margin:3vh auto;text-align:center;'>
+        <div style='font-size:2rem;margin-bottom:0.6rem;'>💰</div>
+        <div style='font-size:1.7rem;font-weight:800;color:#fbbf24;margin-bottom:0.4rem;'>Auction Room</div>
+        <div style='color:#7ba7c4;font-size:0.95rem;'>Upload your squad data and budget. Completely separate from Scout mode.</div>
+    </div>
+    """, unsafe_allow_html=True)
+
+    st.markdown('<div class="section-header">📁 Upload Auction Data</div>', unsafe_allow_html=True)
+    c1, c2 = st.columns(2)
+    with c1:
+        players_f = st.file_uploader("Player data CSV", type="csv", key="auc_players_upload")
+    with c2:
+        perf_f = st.file_uploader("Performance / Metrics CSV", type="csv", key="auc_perf_upload")
+
+    st.markdown("""
+    <div class="mapper-card" style="margin-top:0.5rem;">
+        <div class="mc-title">💰 Budget & Contracts (Required for Auction)</div>
+        <div class="mc-sub">Upload contracts CSV (player IDs + salary/price) and budget CSV (total budget + squad constraints).</div>
+    </div>
+    """, unsafe_allow_html=True)
+    ac1, ac2 = st.columns(2)
+    with ac1:
+        contracts_f = st.file_uploader("Contracts / Salary CSV", type="csv", key="auc_contracts_upload")
+    with ac2:
+        budget_f = st.file_uploader("Budget CSV", type="csv", key="auc_budget_upload")
+
+    if not all([players_f, perf_f]):
+        st.info("Upload Player CSV and Performance CSV to continue.")
+        return False
+
+    with st.spinner("🧠 Processing auction data..."):
+        players = pd.read_csv(players_f)
+        perf    = pd.read_csv(perf_f)
+        st.session_state["auc_players_raw"] = players
+        st.session_state["auc_perf_raw"]    = perf
+        if contracts_f:
+            st.session_state["auc_contracts_raw"] = pd.read_csv(contracts_f)
+        if budget_f:
+            st.session_state["auc_budget_raw"] = pd.read_csv(budget_f)
+        df = build_base_df(players, perf)
+        df = compute_phase_scores(df)
+        st.session_state["auc_df_master"]   = df
+        st.session_state["auc_data_loaded"] = True
+    st.rerun()
+    return True
+
+
+# ═══════════════════════════════════════════════════════
+# AI QUESTION BOX (shared by Scout & Custom Intel)
+# ═══════════════════════════════════════════════════════
+def _render_ai_chart(chart_json: dict, df: pd.DataFrame):
+    """Render a Plotly chart from the JSON block output by Claude."""
+    _CHART_BASE = dict(
+        paper_bgcolor="#0a0f1e", plot_bgcolor="#0a0f1e",
+        font=dict(family="Inter", color="#7ba7c4", size=11),
+        margin=dict(l=8, r=8, t=36, b=8),
+    )
+    ct   = chart_json.get("chart_type", "bar")
+    xc   = chart_json.get("x_axis", "")
+    yc   = chart_json.get("y_axis", "")
+    title = chart_json.get("title", "")
+    raw_data = chart_json.get("data", [])
+
+    if raw_data:
+        labels = [str(d.get("label", "")) for d in raw_data]
+        values = [float(d.get("value", 0)) for d in raw_data]
+        chart_df = pd.DataFrame({"label": labels, "value": values})
+    elif xc in df.columns and yc in df.columns:
+        chart_df = df[[xc, yc]].dropna().rename(columns={xc: "label", yc: "value"})
+        chart_df["value"] = pd.to_numeric(chart_df["value"], errors="coerce").fillna(0)
+    else:
+        return
+
+    try:
+        if ct in ("bar", "grouped_bar"):
+            fig = go.Figure(go.Bar(
+                x=chart_df["label"], y=chart_df["value"],
+                marker_color="#00d4ff", opacity=0.85,
+            ))
+            fig.update_layout(**_CHART_BASE, height=320,
+                              title=dict(text=title, x=0.02, y=0.96, font=dict(color="#c8e6f5", size=13)),
+                              xaxis=dict(gridcolor="#1e3a5f"), yaxis=dict(gridcolor="#1e3a5f"))
+        elif ct == "line":
+            fig = go.Figure(go.Scatter(
+                x=chart_df["label"], y=chart_df["value"],
+                mode="lines+markers", line=dict(color="#00d4ff", width=2),
+                marker=dict(size=6, color="#4ade80"),
+            ))
+            fig.update_layout(**_CHART_BASE, height=320,
+                              title=dict(text=title, x=0.02, y=0.96, font=dict(color="#c8e6f5", size=13)),
+                              xaxis=dict(gridcolor="#1e3a5f"), yaxis=dict(gridcolor="#1e3a5f"))
+        elif ct == "donut":
+            fig = go.Figure(go.Pie(
+                labels=chart_df["label"], values=chart_df["value"],
+                hole=0.55, textinfo="label+percent", textfont_size=10,
+                marker_colors=["#00d4ff","#4ade80","#fbbf24","#f87171","#818cf8","#fb7185"],
+            ))
+            fig.update_layout(**_CHART_BASE, height=320,
+                              title=dict(text=title, x=0.02, y=0.96, font=dict(color="#c8e6f5", size=13)),
+                              showlegend=False)
+        elif ct == "histogram":
+            fig = go.Figure(go.Histogram(
+                x=chart_df["value"], nbinsx=20,
+                marker_color="#00d4ff", opacity=0.80,
+            ))
+            fig.update_layout(**_CHART_BASE, height=320,
+                              title=dict(text=title, x=0.02, y=0.96, font=dict(color="#c8e6f5", size=13)),
+                              xaxis=dict(gridcolor="#1e3a5f"), yaxis=dict(gridcolor="#1e3a5f"))
+        elif ct == "scatter":
+            fig = go.Figure(go.Scatter(
+                x=chart_df["label"], y=chart_df["value"],
+                mode="markers", marker=dict(size=8, color="#00d4ff", opacity=0.7),
+            ))
+            fig.update_layout(**_CHART_BASE, height=320,
+                              title=dict(text=title, x=0.02, y=0.96, font=dict(color="#c8e6f5", size=13)),
+                              xaxis=dict(gridcolor="#1e3a5f"), yaxis=dict(gridcolor="#1e3a5f"))
+        else:
+            return
+        import hashlib
+        _key = "ai_chart_" + hashlib.md5(title.encode()).hexdigest()[:8]
+        st.plotly_chart(fig, use_container_width=True, config={"displayModeBar": False}, key=_key)
+    except Exception:
+        pass
+
+
+def run_ai_question_box(df: pd.DataFrame, context_key: str = "scout"):
+    """Prominent AI question box with conversation history and auto-rendered charts."""
+    cric_divider()
+    section("Ask AI About Your Data", "🤖")
+    st.caption("Ask anything in plain English. CricIntel AI reads your data and answers instantly.")
+
+    hist_key = f"ai_chat_{context_key}"
+    if hist_key not in st.session_state:
+        st.session_state[hist_key] = []
+
+    # Build compact data summary for the LLM
+    col_parts = []
+    for col in df.columns[:25]:
+        if df[col].dtype in [np.float64, np.int64, "float32", "int32"]:
+            col_parts.append(f"{col}(num,{df[col].min():.1f}-{df[col].max():.1f})")
+        else:
+            sample = ",".join(str(v) for v in df[col].dropna().head(3).tolist())
+            col_parts.append(f"{col}(cat,e.g.:{sample})")
+    data_summary = (
+        f"Dataset: {len(df)} players, {len(df.columns)} columns.\n"
+        f"Columns: {'; '.join(col_parts)}\n"
+        f"Sample (first 5 rows):\n{df.head(5).to_string(index=False, max_cols=12)}"
+    )
+
+    q_col, btn_col = st.columns([5, 1])
+    user_q = q_col.text_input(
+        "Ask anything about your data",
+        placeholder="Who are the top 10 run scorers? Which bowlers have the best economy in death overs?",
+        key=f"ai_q_{context_key}",
+        label_visibility="collapsed",
+    )
+    ask_clicked = btn_col.button("Ask →", type="primary", key=f"ai_ask_{context_key}", use_container_width=True)
+
+    if ask_clicked and user_q.strip():
+        if not _ANTHROPIC_AVAILABLE:
+            st.error("Install anthropic: `pip install anthropic`")
+        else:
+            api_key = os.environ.get("ANTHROPIC_API_KEY", "")
+            if not api_key:
+                st.error("Set ANTHROPIC_API_KEY in your Render environment variables.")
+            else:
+                history = st.session_state[hist_key]
+                messages = []
+                for m in history:
+                    messages.append({"role": m["role"], "content": m["content"]})
+                messages.append({
+                    "role": "user",
+                    "content": f"Data context:\n{data_summary}\n\nQuestion: {user_q}"
+                })
+                with st.spinner("AI is analysing your data..."):
+                    try:
+                        client = _anthropic_lib.Anthropic(api_key=api_key)
+                        resp = client.messages.create(
+                            model="claude-sonnet-4-20250514",
+                            max_tokens=1500,
+                            system="""You are a cricket analytics AI assistant. You have been given a dataset of cricket performance data. Answer the user's question accurately based on the data provided. After your text answer, if a chart would genuinely add value, output a JSON block in this exact format:
+```json
+{"chart_type": "bar", "x_axis": "player", "y_axis": "runs", "title": "Top Run Scorers", "data": [{"label": "Player A", "value": 1200}]}
+```
+chart_type options: bar, line, donut, histogram, grouped_bar, scatter
+Only include the JSON block if a chart genuinely adds value. Keep answers concise and cricket-specific.""",
+                            messages=messages,
+                        )
+                        answer = resp.content[0].text
+                        st.session_state[hist_key].append({"role": "user",      "content": user_q})
+                        st.session_state[hist_key].append({"role": "assistant", "content": answer})
+                    except Exception as e:
+                        st.error(f"AI error: {e}")
+
+    # Render conversation (newest first)
+    history = st.session_state[hist_key]
+    for idx in range(len(history) - 1, -1, -1):
+        m = history[idx]
+        if m["role"] == "user":
+            st.markdown(
+                f'<div style="background:#0d2137;border:1px solid #1e3a5f;border-radius:8px;'
+                f'padding:0.8rem 1rem;margin:0.4rem 0">'
+                f'<div style="font-size:0.7rem;color:#7ba7c4;margin-bottom:0.3rem">You</div>'
+                f'<div style="color:#e0e6ef">{m["content"]}</div></div>',
+                unsafe_allow_html=True,
+            )
+        else:
+            text = m["content"]
+            chart_json = None
+            jm = re.search(r"```json\s*(\{.*?\})\s*```", text, re.DOTALL)
+            if jm:
+                try:
+                    chart_json = json.loads(jm.group(1))
+                    text = text[: jm.start()] + text[jm.end() :]
+                except Exception:
+                    pass
+            st.markdown(
+                f'<div style="background:#080f1a;border:1px solid #00d4ff33;border-radius:8px;'
+                f'padding:0.8rem 1rem;margin:0.4rem 0">'
+                f'<div style="font-size:0.7rem;color:#00d4ff;margin-bottom:0.3rem">CricIntel AI</div>'
+                f'<div style="color:#c8e6f5;white-space:pre-wrap">{text.strip()}</div></div>',
+                unsafe_allow_html=True,
+            )
+            if chart_json:
+                _render_ai_chart(chart_json, df)
+
+    if history:
+        if st.button("Clear chat", key=f"ai_clear_{context_key}"):
+            st.session_state[hist_key] = []
+            st.rerun()
+
+
+# ═══════════════════════════════════════════════════════
+# SCOUT REPORT PDF
+# ═══════════════════════════════════════════════════════
+def generate_scout_pdf(player_name: str, prow, strengths: list, weaknesses: list) -> bytes:
+    """One-page Scout Report PDF for a single player."""
+    if not _PDF_AVAILABLE:
+        return b""
+    pdf = FPDF(orientation="P", unit="mm", format="A4")
+    pdf.set_auto_page_break(auto=True, margin=15)
+    pdf.add_page()
+
+    # Header bar
+    pdf.set_fill_color(10, 15, 30)
+    pdf.rect(0, 0, 210, 24, style="F")
+    pdf.set_text_color(0, 212, 255)
+    pdf.set_font("Helvetica", "B", 18)
+    pdf.set_xy(8, 5)
+    pdf.cell(0, 12, "CRICINTEL", ln=0)
+    pdf.set_font("Helvetica", "", 9)
+    pdf.set_text_color(123, 167, 196)
+    pdf.set_xy(60, 9)
+    pdf.cell(0, 6, "AI Cricket Analytics Platform", ln=0)
+    pdf.set_font("Helvetica", "", 8)
+    pdf.set_text_color(100, 140, 180)
+    pdf.set_xy(140, 9)
+    pdf.cell(60, 6, f"Generated: {date.today().strftime('%d %b %Y')}", align="R")
+
+    # Player name
+    pdf.set_xy(8, 30)
+    pdf.set_text_color(224, 230, 239)
+    pdf.set_font("Helvetica", "B", 16)
+    pdf.cell(0, 10, _pdf_safe(f"SCOUT REPORT: {player_name}"), ln=1)
+
+    role  = _pdf_safe(str(prow.get("role", "—")))
+    age   = int(float(prow.get("age", 0))) if float(prow.get("age", 0)) > 0 else "—"
+    hand  = _pdf_safe(str(prow.get("bat_hand", "R")))
+    pdf.set_font("Helvetica", "", 9)
+    pdf.set_text_color(123, 167, 196)
+    pdf.cell(0, 6, f"Role: {role}   |   Age: {age}   |   Bat: {hand}-handed", ln=1)
+    pdf.ln(3)
+
+    def kv(k, v):
+        pdf.set_font("Helvetica", "B", 9); pdf.set_text_color(0, 212, 255)
+        pdf.cell(55, 6, _pdf_safe(k + ":"), ln=0)
+        pdf.set_font("Helvetica", "", 9); pdf.set_text_color(224, 230, 239)
+        pdf.cell(0, 6, _pdf_safe(str(v)), ln=1)
+
+    def section_title(t):
+        pdf.ln(3)
+        pdf.set_fill_color(13, 33, 55)
+        pdf.set_text_color(0, 212, 255)
+        pdf.set_font("Helvetica", "B", 10)
+        pdf.cell(0, 8, _pdf_safe(t), fill=True, ln=1)
+        pdf.ln(1)
+
+    section_title("KEY STATS")
+    kv("Matches",     int(float(prow.get("matches", 0))))
+    kv("Runs",        int(float(prow.get("runs", 0))))
+    kv("Strike Rate", f"{float(prow.get('strike_rate', 0)):.1f}")
+    kv("Wickets",     int(float(prow.get("wickets", 0))))
+    kv("Economy",     f"{float(prow.get('economy', 0)):.2f}")
+    kv("Impact Score",f"{float(prow.get('match_impact_score', 0))*100:.0f}/100")
+    kv("Risk Score",  f"{float(prow.get('total_risk', 0))*100:.0f}/100 (lower = better)")
+
+    section_title("PHASE PERFORMANCE")
+    kv("Powerplay Bat SR",    f"{float(prow.get('pp_sr', 0)):.1f}")
+    kv("Middle Overs Bat SR", f"{float(prow.get('middle_sr', 0)):.1f}")
+    kv("Death Overs Bat SR",  f"{float(prow.get('death_sr', 0)):.1f}")
+    kv("Powerplay Economy",   f"{float(prow.get('pp_eco', 0)):.2f}")
+    kv("Middle Overs Economy",f"{float(prow.get('middle_eco', 0)):.2f}")
+    kv("Death Overs Economy", f"{float(prow.get('death_eco', 0)):.2f}")
+
+    section_title("STRENGTHS (AI)")
+    if strengths:
+        for s in strengths[:3]:
+            pdf.set_font("Helvetica", "", 9); pdf.set_text_color(74, 222, 128)
+            pdf.cell(0, 6, _pdf_safe(f"  + {s}"), ln=1)
+    else:
+        pdf.set_font("Helvetica", "I", 9); pdf.set_text_color(123, 167, 196)
+        pdf.cell(0, 6, "  (Load AI analysis to populate)", ln=1)
+
+    section_title("AREAS TO WATCH (AI)")
+    if weaknesses:
+        for w in weaknesses[:3]:
+            pdf.set_font("Helvetica", "", 9); pdf.set_text_color(248, 113, 113)
+            pdf.cell(0, 6, _pdf_safe(f"  - {w}"), ln=1)
+    else:
+        pdf.set_font("Helvetica", "I", 9); pdf.set_text_color(123, 167, 196)
+        pdf.cell(0, 6, "  (Load AI analysis to populate)", ln=1)
+
+    section_title("RECOMMENDATION")
+    impact = float(prow.get("match_impact_score", 0)) * 100
+    risk   = float(prow.get("total_risk", 0)) * 100
+    if impact >= 65 and risk < 40:
+        rec = "Strong signing recommendation. High impact, low risk profile."
+    elif impact >= 50:
+        rec = "Solid option with good impact score. Monitor risk before committing."
+    else:
+        rec = "Below-average impact score. Consider as depth signing only."
+    pdf.set_font("Helvetica", "", 9); pdf.set_text_color(224, 230, 239)
+    pdf.multi_cell(0, 6, _pdf_safe(rec))
+
+    # Footer
+    pdf.set_y(-12)
+    pdf.set_font("Helvetica", "I", 7)
+    pdf.set_text_color(74, 122, 155)
+    pdf.cell(0, 6, "Confidential - CricIntel AI Cricket Analytics Platform", align="C")
+
+    return bytes(pdf.output())
+
+
+# ═══════════════════════════════════════════════════════
 # SIDEBAR + ROUTING
 # ═══════════════════════════════════════════════════════
 
@@ -3171,6 +3857,9 @@ def run_custom_intelligence():
     st.download_button("⬇ Download Full Custom Analysis", to_csv_bytes(df_clean[show_cols]),
                       "custom_analysis.csv", "text/csv")
 
+    # ── AI QUESTION BOX (Custom Intelligence) ────────────────────────────
+    run_ai_question_box(df_clean, context_key="custom_intel")
+
 
 
 # ═══════════════════════════════════════════════════════
@@ -3263,12 +3952,18 @@ def check_login():
 # Run login check — stops here if not authenticated
 check_login()
 
+# ── Initialise app_mode ───────────────────────────────────────────────
+if "app_mode" not in st.session_state:
+    st.session_state["app_mode"] = "landing"
+
 # Ensure data_loaded is consistent with what's actually in session state.
-# Guards against the case where df_master exists but the flag got lost on rerun.
 if (st.session_state.get("df_master") is not None
         and not st.session_state.get("data_loaded")):
     st.session_state["data_loaded"] = True
 
+app_mode = st.session_state.get("app_mode", "landing")
+
+# ── SIDEBAR ───────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("""
     <div style='text-align:center;padding:1.2rem 0 0.5rem;'>
@@ -3279,113 +3974,106 @@ with st.sidebar:
     <hr style='border-color:#1e3a5f;margin:1rem 0;'>
     """, unsafe_allow_html=True)
 
-    data_loaded = st.session_state.get("data_loaded", False)
-    if data_loaded:
-        mode = st.radio(
-            "Select Mode",
-            ["🔍 Scout Mode","💰 Auction Mode","🎯 Custom Intelligence","🎬 Highlights Generator"],
-            index=0
-        )
-    else:
-        # Data not loaded — only Highlights available, rest locked
-        st.markdown("""
-        <div style='font-size:0.8rem;color:#4a7a9b;margin-bottom:0.5rem;'>
-            Upload data to unlock all modes
-        </div>
-        """, unsafe_allow_html=True)
-        mode = st.radio(
-            "Select Mode",
-            ["📁 Upload Data","🎬 Highlights Generator"],
-            index=0
-        )
-        # Map to correct mode names
-        if mode == "📁 Upload Data":
-            mode = "🔍 Scout Mode"  # triggers upload screen
-        
+    # Home button (always visible)
+    if st.button("🏠 Home", use_container_width=True, key="sb_home"):
+        st.session_state["app_mode"] = "landing"
+        st.rerun()
 
-    # ── DATA STATUS IN SIDEBAR ─────────────────────────────────────────
-    st.markdown("<hr style='border-color:#1e3a5f;margin:0.8rem 0;'>", unsafe_allow_html=True)
-    if st.session_state.get("data_loaded"):
-        n_players = len(st.session_state.get("df_master", []))
-        st.markdown(f"""
-        <div style='background:#0d2137;border:1px solid #00d4ff33;border-radius:8px;padding:0.7rem;margin-bottom:0.5rem;'>
-            <div style='color:#00d4ff;font-size:0.78rem;font-weight:600;'>✅ DATA LOADED</div>
-            <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>{n_players} players ready</div>
-            <div style='color:#7ba7c4;font-size:0.72rem;'>Switch modes freely ↓</div>
-        </div>
-        """, unsafe_allow_html=True)
-        if st.button("🔄 Upload New Data", use_container_width=True, key="sidebar_reset"):
-            for key in ["data_loaded","df_master","players_raw","perf_raw",
-                        "contracts_raw","budget_raw","df_processed"]:
-                if key in st.session_state:
-                    del st.session_state[key]
-            st.rerun()
+    st.markdown("<hr style='border-color:#1e3a5f;margin:0.6rem 0;'>", unsafe_allow_html=True)
+
+    # ── Mode 1: Scout & Intelligence navigation ────────────────────────
+    if app_mode == "scout_intel":
+        data_loaded = st.session_state.get("data_loaded", False)
+        st.markdown("<div style='font-size:0.72rem;color:#7ba7c4;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:0.4rem;'>Scout & Intelligence</div>", unsafe_allow_html=True)
+        if data_loaded:
+            mode = st.radio(
+                "Mode",
+                ["🔍 Scout Mode", "🎯 Custom Intelligence"],
+                index=0,
+                key="si_mode_radio",
+                label_visibility="collapsed",
+            )
+            st.markdown("<hr style='border-color:#1e3a5f;margin:0.8rem 0;'>", unsafe_allow_html=True)
+            n_players = len(st.session_state.get("df_master", []))
+            st.markdown(f"""
+            <div style='background:#0d2137;border:1px solid #00d4ff33;border-radius:8px;padding:0.7rem;margin-bottom:0.5rem;'>
+                <div style='color:#00d4ff;font-size:0.78rem;font-weight:600;'>✅ DATA LOADED</div>
+                <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>{n_players} players ready</div>
+            </div>
+            """, unsafe_allow_html=True)
+            if st.button("🔄 Upload New Data", use_container_width=True, key="si_reset"):
+                for key in ["data_loaded","df_master","players_raw","perf_raw"]:
+                    if key in st.session_state:
+                        del st.session_state[key]
+                st.rerun()
+        else:
+            mode = "upload"
+            st.markdown("""
+            <div style='background:#1a0d0d;border:1px solid #f8717133;border-radius:8px;padding:0.7rem;'>
+                <div style='color:#f87171;font-size:0.78rem;font-weight:600;'>⬆ No data loaded</div>
+                <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>Upload CSV to continue</div>
+            </div>
+            """, unsafe_allow_html=True)
+
+    # ── Mode 2: Auction Room navigation ───────────────────────────────
+    elif app_mode == "auction":
+        auc_loaded = st.session_state.get("auc_data_loaded", False)
+        st.markdown("<div style='font-size:0.72rem;color:#fbbf24;font-weight:600;text-transform:uppercase;letter-spacing:.08em;margin-bottom:0.4rem;'>Auction Room</div>", unsafe_allow_html=True)
+        mode = "auction"
+        if auc_loaded:
+            n_auc = len(st.session_state.get("auc_df_master", []))
+            st.markdown(f"""
+            <div style='background:#1a1000;border:1px solid #fbbf2433;border-radius:8px;padding:0.7rem;margin-bottom:0.5rem;'>
+                <div style='color:#fbbf24;font-size:0.78rem;font-weight:600;'>✅ DATA LOADED</div>
+                <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>{n_auc} players ready</div>
+            </div>
+            """, unsafe_allow_html=True)
+            if st.button("🔄 Upload New Auction Data", use_container_width=True, key="auc_reset"):
+                for key in ["auc_data_loaded","auc_df_master","auc_players_raw",
+                            "auc_perf_raw","auc_contracts_raw","auc_budget_raw"]:
+                    if key in st.session_state:
+                        del st.session_state[key]
+                st.rerun()
+        else:
+            mode = "auc_upload"
+
     else:
-        st.markdown("""
-        <div style='background:#1a0d0d;border:1px solid #f8717133;border-radius:8px;padding:0.7rem;margin-bottom:0.5rem;'>
-            <div style='color:#f87171;font-size:0.78rem;font-weight:600;'>⬆ No data loaded</div>
-            <div style='color:#7ba7c4;font-size:0.72rem;margin-top:0.2rem;'>Upload once, use everywhere</div>
-        </div>
-        """, unsafe_allow_html=True)
+        mode = "landing"
 
     st.markdown("""
     <hr style='border-color:#1e3a5f;margin:1rem 0;'>
-    <div style='font-size:0.75rem;color:#4a7a9b;text-align:center;padding-bottom:1rem;'>
-        v4.0 &nbsp;|&nbsp; Built with Streamlit<br>
-        <span style='color:#1e3a5f;'>─────────────────</span><br>
-        🧠 Upload once · Use everywhere<br>
-        📊 Any CSV format supported<br>
-        🌍 Any team · Any format
+    <div style='font-size:0.72rem;color:#4a7a9b;text-align:center;padding-bottom:1rem;'>
+        v5.0 &nbsp;·&nbsp; No SQL · No Python · No Excel<br>
+        📊 Any CSV format &nbsp;·&nbsp; 🌍 Any team
     </div>
     """, unsafe_allow_html=True)
 
+
 # ═══════════════════════════════════════════════════════
-# UNIFIED DATA UPLOAD SYSTEM
+# SCOUT & INTELLIGENCE UPLOAD
 # ═══════════════════════════════════════════════════════
-def show_unified_upload():
-    """Central upload screen — shown once, data shared across all modes."""
+def show_scout_upload():
+    """Upload screen for Scout & Intelligence mode."""
     st.markdown("""
-    <div style='max-width:700px;margin:4vh auto;text-align:center;'>
-        <div style='font-size:3rem;margin-bottom:1rem;'>🏏</div>
-        <div style='font-size:1.8rem;font-weight:800;color:#00d4ff;letter-spacing:0.1em;margin-bottom:0.5rem;'>
-            Welcome to CricIntel
-        </div>
-        <div style='color:#7ba7c4;font-size:1rem;margin-bottom:2rem;'>
-            Upload your data once. Scout, analyse, optimise — all in one platform.
-        </div>
+    <div style='max-width:680px;margin:3vh auto;text-align:center;'>
+        <div style='font-size:2rem;margin-bottom:0.5rem;'>🔍</div>
+        <div style='font-size:1.7rem;font-weight:800;color:#00d4ff;margin-bottom:0.4rem;'>Scout & Intelligence</div>
+        <div style='color:#7ba7c4;font-size:0.95rem;'>Upload once. Scout players, run Custom Intelligence, ask AI questions — all from the same dataset.</div>
     </div>
     """, unsafe_allow_html=True)
 
     st.markdown('<div class="section-header">📁 Upload Your Data</div>', unsafe_allow_html=True)
-
     c1, c2 = st.columns(2)
     with c1:
         players_f = st.file_uploader(
-            "Player data CSV",
-            type="csv", key="unified_players",
+            "Player data CSV", type="csv", key="si_players_upload",
             help="Any CSV with player names, roles, and basic info"
         )
     with c2:
         perf_f = st.file_uploader(
-            "Performance / Metrics CSV",
-            type="csv", key="unified_perf",
-            help="Any CSV with stats or metrics — cricket or custom"
+            "Performance / Metrics CSV", type="csv", key="si_perf_upload",
+            help="Stats, metrics, ratings — any format, CricIntel detects columns automatically"
         )
-
-    # Auction Mode files — visible by default
-    st.markdown("""
-    <div class="mapper-card" style="margin-top:0.5rem;">
-        <div class="mc-title">💰 Auction Mode Files (Optional)</div>
-        <div class="mc-sub">Upload these if you want to use Auction Mode. Scout Mode and Custom Intelligence work without them.</div>
-    </div>
-    """, unsafe_allow_html=True)
-    ac1, ac2 = st.columns(2)
-    with ac1:
-        contracts_f = st.file_uploader("Contracts / Salary CSV", type="csv", key="unified_contracts",
-                                        help="Any CSV with player IDs + salary/wage/price column")
-    with ac2:
-        budget_f = st.file_uploader("Budget CSV", type="csv", key="unified_budget",
-                                     help="Total budget + optional squad size settings")
 
     if not all([players_f, perf_f]):
         st.markdown("""
@@ -3393,92 +4081,51 @@ def show_unified_upload():
             <div class="mc-title">💡 What can I upload?</div>
             <div class="mc-sub">
                 <b>Player CSV:</b> Any spreadsheet with player names and roles.<br>
-                <b>Performance CSV:</b> Any spreadsheet with stats or metrics — cricket stats, 
-                fitness scores, technical ratings, internal coaching data — anything works.<br><br>
+                <b>Performance CSV:</b> Stats, fitness scores, technical ratings, coaching data — anything works.<br><br>
                 <b>CricIntel detects your columns automatically.</b> No reformatting needed.
-                Once uploaded, all modes — Scout, Auction, Custom Intelligence — use the same data instantly.
+                Upload once, then Scout Mode and Custom Intelligence both use the same data instantly.
             </div>
         </div>
         """, unsafe_allow_html=True)
-        return False
+        return
 
-    # Process and store in session state
     with st.spinner("🧠 CricIntel is analysing your data..."):
         players = pd.read_csv(players_f)
         perf    = pd.read_csv(perf_f)
-
-        # Store raw files
         st.session_state["players_raw"] = players
         st.session_state["perf_raw"]    = perf
-
-        # Store optional files
-        if contracts_f:
-            st.session_state["contracts_raw"] = pd.read_csv(contracts_f)
-        if budget_f:
-            st.session_state["budget_raw"] = pd.read_csv(budget_f)
-
-        # Build master dataframe
         df = build_base_df(players, perf)
         df = compute_phase_scores(df)
-
-        st.session_state["df_master"]    = df
-        st.session_state["data_loaded"]  = True
-
-    # Auto redirect to Scout Mode after loading
+        st.session_state["df_master"]   = df
+        st.session_state["data_loaded"] = True
     st.rerun()
 
-    return True
-
-
-mode_labels = {
-    "🔍 Scout Mode":           ("🔍 Scout Mode",           "Talent identification · Similarity search · Gap-fill recommendations"),
-    "💰 Auction Mode":         ("💰 Auction Mode",          "Squad optimisation · Fair salary · Best XI selection"),
-    "🎯 Custom Intelligence":  ("🎯 Custom Intelligence",   "Your metrics · Your weights · Your analysis"),
-    "🎬 Highlights Generator": ("🎬 Highlights Generator",  "Upload match video · Generate highlight clips"),
-}
 
 # ── ROUTING ───────────────────────────────────────────────────────────
-if mode == "🎬 Highlights Generator":
-    st.markdown(f"""
-    <div class="cricintel-banner">
-        <div><h1>CRICINTEL</h1><p>Upload match video · Generate highlight clips</p></div>
-        <div style='text-align:right;'>
-            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>🎬 Highlights Generator</div>
-            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    run_highlights_mode()
+_BANNER_BASE = '<div class="cricintel-banner"><div><h1>CRICINTEL</h1><p>{sub}</p></div><div style="text-align:right"><div style="font-size:1.1rem;font-weight:700;color:{tc};">{title}</div><div style="font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;">AI Cricket Analytics Platform</div></div></div>'
 
-elif not st.session_state.get("data_loaded"):
-    # No data yet — show upload screen only
-    st.markdown("""
-    <div class="cricintel-banner">
-        <div><h1>CRICINTEL</h1><p>Upload your data once · Scout, analyse, optimise — all in one platform</p></div>
-        <div style='text-align:right;'>
-            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>📁 Upload Data</div>
-            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>Step 1 of 1</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
-    show_unified_upload()
+def _banner(title, sub, tc="#00d4ff"):
+    st.markdown(_BANNER_BASE.format(title=title, sub=sub, tc=tc), unsafe_allow_html=True)
 
-else:
-    # Data loaded — show selected mode with its banner
-    banner_title, banner_sub = mode_labels[mode]
-    st.markdown(f"""
-    <div class="cricintel-banner">
-        <div><h1>CRICINTEL</h1><p>{banner_sub}</p></div>
-        <div style='text-align:right;'>
-            <div style='font-size:1.1rem;font-weight:700;color:#00d4ff;'>{banner_title}</div>
-            <div style='font-size:0.78rem;color:#4a7a9b;margin-top:0.3rem;'>AI Cricket Analytics Platform</div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+if app_mode == "landing" or mode == "landing":
+    _banner("Welcome", "The AI Cricket Analytics Platform · No SQL, no Python, no Excel")
+    show_landing_screen()
 
-    if mode == "🔍 Scout Mode":
+elif app_mode == "scout_intel":
+    if mode == "upload":
+        _banner("🔍 Scout & Intelligence", "Upload your player and performance data to get started")
+        show_scout_upload()
+    elif mode == "🔍 Scout Mode":
+        _banner("🔍 Scout Mode", "Talent identification · Similarity search · AI insights · Gap-fill recommendations")
         run_scout_mode()
-    elif mode == "💰 Auction Mode":
-        run_auction_mode()
     elif mode == "🎯 Custom Intelligence":
+        _banner("🎯 Custom Intelligence", "Your metrics · Your weights · Your analysis · AI question box")
         run_custom_intelligence()
+
+elif app_mode == "auction":
+    if mode == "auc_upload":
+        _banner("💰 Auction Room", "Upload player data, contracts, and budget to begin", tc="#fbbf24")
+        show_auction_upload()
+    else:
+        _banner("💰 Auction Room", "Value scoring · Squad balance · Optimal XI · AI-powered", tc="#fbbf24")
+        run_auction_mode()
