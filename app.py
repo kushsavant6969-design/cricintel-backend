@@ -677,7 +677,7 @@ def auction_player_card(row, budget_remaining: float, budget_total: float) -> st
 
     # Budget bar
     spent_pct  = max(0, min(100, (1 - budget_remaining / budget_total) * 100)) if budget_total > 0 else 0
-    rem_lbl    = f"₹{budget_remaining:,.0f}L remaining"
+    rem_lbl    = f"£{budget_remaining*100000:,.0f} remaining"
 
     return f"""
     <div class="acard">
@@ -687,9 +687,9 @@ def auction_player_card(row, budget_remaining: float, budget_total: float) -> st
           <div style="display:flex;gap:6px;margin-top:4px">{role_badge(role)} <span class="value-badge {vb_cls}">{vb_lbl}</span></div>
         </div>
         <div style="text-align:right">
-          <div class="acard-price">₹{price:,.0f}L</div>
+          <div class="acard-price">£{price*100000:,.0f}</div>
           <div class="acard-label">Auction price</div>
-          <div style="font-size:0.7rem;color:#7ba7c4;margin-top:2px">Fair: ₹{fair:,.0f}L &nbsp;|&nbsp; Gap: <span style="color:{'#4ade80' if gap>=0 else '#f87171'}">{'+'if gap>=0 else ''}{gap:,.0f}L</span></div>
+          <div style="font-size:0.7rem;color:#7ba7c4;margin-top:2px">Fair: £{fair*100000:,.0f} &nbsp;|&nbsp; Gap: <span style="color:{'#4ade80' if gap>=0 else '#f87171'}">{'+'if gap>=0 else '-'}£{abs(gap)*100000:,.0f}</span></div>
         </div>
       </div>
       <div style="display:flex;gap:20px;align-items:center">
@@ -1349,27 +1349,8 @@ def run_scout_mode():
         else:
             st.caption("No country column detected.")
 
-    ov3, ov4 = st.columns(2)
-
-    # Histogram — age distribution
-    with ov3:
-        ages = pd.to_numeric(df["age"], errors="coerce").dropna()
-        ages = ages[ages > 0]
-        if len(ages):
-            fig_age = go.Figure(go.Histogram(
-                x=ages, nbinsx=20,
-                marker_color="#00d4ff", opacity=0.80,
-                hovertemplate="Age %{x}: %{y} players<extra></extra>",
-            ))
-            fig_age.update_layout(**_CHART_BASE, height=260,
-                                  title=dict(text="Age Distribution", x=0.02, y=0.96,
-                                             font=dict(color="#c8e6f5", size=13)),
-                                  xaxis=dict(title="Age", gridcolor="#1e3a5f"),
-                                  yaxis=dict(title="Players", gridcolor="#1e3a5f"))
-            st.plotly_chart(fig_age, use_container_width=True, config={"displayModeBar": False})
-
     # Pie — form trend breakdown
-    with ov4:
+    with st.container():
         if "form_trend" in df.columns:
             ft = df["form_trend"].fillna("Unknown").value_counts().reset_index()
             ft.columns = ["Trend", "Count"]
@@ -1645,11 +1626,14 @@ def run_scout_mode():
         # ── HERO: RADAR CHART (full width, shown first) ───────────────────
         st.markdown(f'<div style="font-size:0.78rem;color:#7ba7c4;margin-bottom:0.3rem">📡 Performance radar vs 3 most similar players</div>', unsafe_allow_html=True)
 
-        radar_axes = [c for c in [
-            "pp_bat_score","mid_bat_score","death_bat_score",
-            "pp_bowl_score","mid_bowl_score","death_bowl_score",
-            "match_impact_score"
-        ] if c in df.columns]
+        _player_role = str(prow.get("role", "AR")).upper()
+        if _player_role == "BAT":
+            _role_cols = ["pp_bat_score","mid_bat_score","death_bat_score","match_impact_score"]
+        elif _player_role == "BOWL":
+            _role_cols = ["pp_bowl_score","mid_bowl_score","death_bowl_score","match_impact_score"]
+        else:
+            _role_cols = ["pp_bat_score","mid_bat_score","death_bat_score","pp_bowl_score","mid_bowl_score","death_bowl_score","match_impact_score"]
+        radar_axes = [c for c in _role_cols if c in df.columns]
 
         axis_labels = {
             "pp_bat_score":"PP Bat","mid_bat_score":"Mid Bat","death_bat_score":"Death Bat",
@@ -2238,8 +2222,8 @@ def run_auction_mode():
     section("Auction Settings", "💰")
     a1,a2,a3 = st.columns(3)
     inflation     = a1.slider("Inflation multiplier", 1.0,2.5,1.35,0.05,disabled=not auction_mode)
-    reserve_floor = a2.number_input("Reserve floor (lakh)", value=120.0, step=10.0, disabled=not auction_mode)
-    budget_lakh   = a3.number_input("Budget (lakh)", value=float(default_budget), step=100.0)
+    reserve_floor = a2.number_input("Reserve floor (× £100K)", value=120.0, step=10.0, disabled=not auction_mode)
+    budget_lakh   = a3.number_input("Budget (× £100K)", value=float(default_budget), step=100.0)
 
     cric_divider()
     section("Squad Constraints", "⚙️")
@@ -2270,7 +2254,7 @@ def run_auction_mode():
     section("Retentions / RTM", "🔒")
     r1,r2 = st.columns([2,1])
     retained_players = r1.multiselect("Retained/locked players", df["player"].tolist(), default=[])
-    default_ret_cost = r2.number_input("Default retained cost (lakh)", value=600.0, step=50.0)
+    default_ret_cost = r2.number_input("Default retained cost (× £100K)", value=600.0, step=50.0)
 
     retained_costs = {}
     if retained_players:
@@ -2281,8 +2265,8 @@ def run_auction_mode():
     locked_set       = set(retained_players)
     retained_total   = sum(retained_costs.get(p,default_ret_cost) for p in retained_players)
     budget_after_ret = float(budget_lakh - retained_total)
-    st.metric("Budget after retentions", f"₹ {budget_after_ret:,.1f} lakh",
-              delta=f"-₹{retained_total:,.1f} retained" if retained_total>0 else None)
+    st.metric("Budget after retentions", f"£{budget_after_ret*100000:,.0f}",
+              delta=f"-£{retained_total*100000:,.0f} retained" if retained_total>0 else None)
     if budget_after_ret<=0:
         st.error("❌ Retentions exceed budget.")
         st.stop()
@@ -2438,7 +2422,7 @@ def run_auction_mode():
 
     s1,s2,s3,s4,s5,s6 = st.columns(6)
     s1.metric("Players",     sm.get("count",0))
-    s2.metric("Spend",       f"{sm.get('spend',0):,.1f}")
+    s2.metric("Spend",       f"£{sm.get('spend',0)*100000:,.0f}")
     s3.metric("Objective",   f"{sm.get('objective',0):.2f}")
     s4.metric("BAT",         sm.get("BAT",0))
     s5.metric("BOWL",        sm.get("BOWL",0))
@@ -2462,7 +2446,7 @@ def run_auction_mode():
     <div style="padding:0.8rem 1rem;background:#0d1b2a;border:1px solid #1e3a5f;border-radius:10px;margin-bottom:1rem">
       <div style="display:flex;justify-content:space-between;margin-bottom:4px">
         <span style="font-size:0.78rem;color:#7ba7c4">Budget remaining after squad selection</span>
-        <span style="font-size:0.9rem;font-weight:700;color:#fbbf24">₹{_bud_rem:,.0f}L of ₹{_bud_total:,.0f}L</span>
+        <span style="font-size:0.9rem;font-weight:700;color:#fbbf24">£{_bud_rem*100000:,.0f} of £{_bud_total*100000:,.0f}</span>
       </div>
       <div class="bud-bar-outer"><div class="bud-bar-inner" style="width:{_bud_pct:.1f}%"></div></div>
     </div>
@@ -2533,8 +2517,8 @@ def run_auction_mode():
             _cmp_metrics = [
                 ("Role",           str(_cr1.get("role","—")),                 str(_cr2.get("role","—"))),
                 ("Age",            int(float(_cr1.get("age",0))),              int(float(_cr2.get("age",0)))),
-                ("Price (lakh)",   f"Rs{float(_cr1.get('price_used_lakh',0)):,.0f}", f"Rs{float(_cr2.get('price_used_lakh',0)):,.0f}"),
-                ("Fair Salary",    f"Rs{float(_cr1.get('fair_salary_lakh',0)):,.0f}", f"Rs{float(_cr2.get('fair_salary_lakh',0)):,.0f}"),
+                ("Price",          f"£{float(_cr1.get('price_used_lakh',0))*100000:,.0f}", f"£{float(_cr2.get('price_used_lakh',0))*100000:,.0f}"),
+                ("Fair Salary",    f"£{float(_cr1.get('fair_salary_lakh',0))*100000:,.0f}", f"£{float(_cr2.get('fair_salary_lakh',0))*100000:,.0f}"),
                 ("Value Score",    f"{float(_cr1.get('value_score_100',0)):.0f}/100",   f"{float(_cr2.get('value_score_100',0)):.0f}/100"),
                 ("Risk Rating",    f"{float(_cr1.get('risk_rating_100',0)):.0f}/100",   f"{float(_cr2.get('risk_rating_100',0)):.0f}/100"),
                 ("Impact Score",   f"{float(_cr1.get('match_impact_score',0))*100:.0f}/100", f"{float(_cr2.get('match_impact_score',0))*100:.0f}/100"),
@@ -2593,7 +2577,7 @@ def run_auction_mode():
             if not api_key or not _ANTHROPIC_AVAILABLE:
                 st.warning("Set ANTHROPIC_API_KEY to enable AI reasoning.")
             else:
-                _xi_summary = f"""Best XI selected ({len(xi)} players, budget Rs{float(squad[price_col].sum()):,.0f}L):
+                _xi_summary = f"""Best XI selected ({len(xi)} players, budget £{float(squad[price_col].sum())*100000:,.0f}):
 Roles: BAT={int((xi['role']=='BAT').sum())}, BOWL={int((xi['role']=='BOWL').sum())}, AR={int((xi['role']=='AR').sum())}, WK={int((xi['role']=='WK').sum())}
 Spinners: {int(xi['is_spinner'].astype(int).sum())}, Pacers: {int(xi['is_pacer'].astype(int).sum())}
 Players (sorted by xi_score): {', '.join(xi.sort_values('xi_score',ascending=False)['player'].head(11).tolist())}
@@ -3203,8 +3187,7 @@ def show_landing_screen():
         <div style='font-size:2.8rem;font-weight:900;color:#00d4ff;letter-spacing:0.12em;margin:0.5rem 0 0.4rem;
                     text-shadow:0 0 30px #00d4ff55;'>CRICINTEL</div>
         <div style='color:#7ba7c4;font-size:1.05rem;max-width:560px;margin:0 auto;line-height:1.6;'>
-            The AI Cricket Analytics Platform<br>
-            <span style='color:#4a7a9b;font-size:0.9rem;'>No SQL, no Python, no Excel required</span>
+            The AI Cricket Analytics Platform
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -4043,7 +4026,7 @@ with st.sidebar:
     st.markdown("""
     <hr style='border-color:#1e3a5f;margin:1rem 0;'>
     <div style='font-size:0.72rem;color:#4a7a9b;text-align:center;padding-bottom:1rem;'>
-        v5.0 &nbsp;·&nbsp; No SQL · No Python · No Excel<br>
+        v5.0<br>
         📊 Any CSV format &nbsp;·&nbsp; 🌍 Any team
     </div>
     """, unsafe_allow_html=True)
@@ -4108,7 +4091,7 @@ def _banner(title, sub, tc="#00d4ff"):
     st.markdown(_BANNER_BASE.format(title=title, sub=sub, tc=tc), unsafe_allow_html=True)
 
 if app_mode == "landing" or mode == "landing":
-    _banner("Welcome", "The AI Cricket Analytics Platform · No SQL, no Python, no Excel")
+    _banner("Welcome", "The AI Cricket Analytics Platform")
     show_landing_screen()
 
 elif app_mode == "scout_intel":
