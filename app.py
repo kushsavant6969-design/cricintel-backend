@@ -536,18 +536,41 @@ def to_csv_bytes(df_):
     return df_.to_csv(index=False).encode("utf-8")
 
 def _pdf_safe(text) -> str:
-    """Replace non-Latin-1 characters to prevent FPDFUnicodeEncodingException."""
+    “””Replace non-Latin-1 characters to prevent FPDFUnicodeEncodingException.”””
     if not isinstance(text, str):
         text = str(text)
     replacements = {
-        "—": "-", "–": "-", "’": "'", "‘": "'",
-        "“": '"', "”": '"', "•": "-", "…": "...",
-        "°": "deg", "£": "GBP", "₹": "Rs",
-        "≤": "<=", "≥": ">=", "×": "x",
+        # Dashes
+        “—“: “-”,   # em dash —
+        “–“: “-”,   # en dash –
+        “‒”: “-”,   # figure dash
+        “―”: “-”,   # horizontal bar
+        # Curly / smart quotes
+        “‘”: “’”,   # left single quotation mark ‘
+        “’”: “’”,   # right single quotation mark ‘
+        “‚”: “’”,   # single low-9 quotation mark ‚
+        “‛”: “’”,   # single high-reversed-9 quotation mark ‛
+        ““”: ‘”’,   # left double quotation mark “
+        “””: ‘”’,   # right double quotation mark “
+        “„”: ‘”’,   # double low-9 quotation mark „
+        “‟”: ‘”’,   # double high-reversed-9 quotation mark ‟
+        # Ellipsis
+        “…”: “...”, # horizontal ellipsis …
+        # Bullets and misc
+        “•”: “-”,   # bullet •
+        “°”: “deg”, # degree sign °
+        “£”: “GBP”, # pound sign £
+        “₹”: “Rs”,  # rupee sign ₹
+        “≤”: “<=”,  # less-than or equal ≤
+        “≥”: “>=”,  # greater-than or equal ≥
+        “×”: “x”,   # multiplication sign ×
+        “’”: “’”,   # right single quote (duplicate for safety)
+        “â”: “-”,  # utf-8 bytes for em dash sometimes decoded wrong
     }
     for ch, rep in replacements.items():
         text = text.replace(ch, rep)
-    return text.encode("latin-1", errors="replace").decode("latin-1")
+    # Final safety net: encode to Latin-1, replacing anything still outside the range
+    return text.encode(“latin-1”, errors=”replace”).decode(“latin-1”)
 
 def stable_noise(id_series: pd.Series, mod=97) -> np.ndarray:
     s = pd.to_numeric(id_series, errors="coerce").fillna(0).astype(int)
@@ -1377,25 +1400,15 @@ def run_scout_mode():
     with st.expander("🔽 Open Filters", expanded=True):
         st.markdown('<div class="filter-panel">', unsafe_allow_html=True)
 
-        f1, f2, f3 = st.columns(3)
+        f1, f2 = st.columns(2)
 
         # Role filter
         role_options = ["All"] + sorted(df["role"].dropna().unique().tolist())
         sel_role = f1.multiselect("Role", role_options[1:], default=[])
 
-        # Age filter
-        if df["age"].max() > 0:
-            age_min = int(df["age"].min()) if df["age"].min() > 0 else 15
-            age_max = int(df["age"].max()) if df["age"].max() > 0 else 45
-            if age_min >= age_max:
-                age_min = max(0, age_max - 1)
-            sel_age = f2.slider("Age range", age_min, age_max, (age_min, age_max))
-        else:
-            sel_age = (15, 45)
-
         # Batting hand
         hand_options = ["All","Left (L)","Right (R)"]
-        sel_hand = f3.selectbox("Batting hand", hand_options)
+        sel_hand = f2.selectbox("Batting hand", hand_options)
 
         f4, f5, f6 = st.columns(3)
 
@@ -1456,9 +1469,6 @@ def run_scout_mode():
 
     if sel_role:
         filtered = filtered[filtered["role"].isin(sel_role)]
-    if sel_age != (int(df["age"].min()) if df["age"].min()>0 else 15,
-                   int(df["age"].max()) if df["age"].max()>0 else 45):
-        filtered = filtered[(filtered["age"]>=sel_age[0]) & (filtered["age"]<=sel_age[1])]
     if sel_hand == "Left (L)":
         filtered = filtered[filtered["bat_hand"]=="L"]
     elif sel_hand == "Right (R)":
@@ -3459,15 +3469,15 @@ def generate_scout_pdf(player_name: str, prow, strengths: list, weaknesses: list
     pdf.set_text_color(0, 212, 255)
     pdf.set_font("Helvetica", "B", 18)
     pdf.set_xy(8, 5)
-    pdf.cell(0, 12, "CRICINTEL", ln=0)
+    pdf.cell(0, 12, _pdf_safe("CRICINTEL"), ln=0)
     pdf.set_font("Helvetica", "", 9)
     pdf.set_text_color(123, 167, 196)
     pdf.set_xy(60, 9)
-    pdf.cell(0, 6, "AI Cricket Analytics Platform", ln=0)
+    pdf.cell(0, 6, _pdf_safe("AI Cricket Analytics Platform"), ln=0)
     pdf.set_font("Helvetica", "", 8)
     pdf.set_text_color(100, 140, 180)
     pdf.set_xy(140, 9)
-    pdf.cell(60, 6, f"Generated: {date.today().strftime('%d %b %Y')}", align="R")
+    pdf.cell(60, 6, _pdf_safe(f"Generated: {date.today().strftime('%d %b %Y')}"), align="R")
 
     # Player name
     pdf.set_xy(8, 30)
@@ -3475,12 +3485,12 @@ def generate_scout_pdf(player_name: str, prow, strengths: list, weaknesses: list
     pdf.set_font("Helvetica", "B", 16)
     pdf.cell(0, 10, _pdf_safe(f"SCOUT REPORT: {player_name}"), ln=1)
 
-    role  = _pdf_safe(str(prow.get("role", "—")))
-    age   = int(float(prow.get("age", 0))) if float(prow.get("age", 0)) > 0 else "—"
+    role  = _pdf_safe(str(prow.get("role", "-")))
+    age   = int(float(prow.get("age", 0))) if float(prow.get("age", 0)) > 0 else "-"
     hand  = _pdf_safe(str(prow.get("bat_hand", "R")))
     pdf.set_font("Helvetica", "", 9)
     pdf.set_text_color(123, 167, 196)
-    pdf.cell(0, 6, f"Role: {role}   |   Age: {age}   |   Bat: {hand}-handed", ln=1)
+    pdf.cell(0, 6, _pdf_safe(f"Role: {role}   |   Age: {age}   |   Bat: {hand}-handed"), ln=1)
     pdf.ln(3)
 
     def kv(k, v):
@@ -3521,7 +3531,7 @@ def generate_scout_pdf(player_name: str, prow, strengths: list, weaknesses: list
             pdf.cell(0, 6, _pdf_safe(f"  + {s}"), ln=1)
     else:
         pdf.set_font("Helvetica", "I", 9); pdf.set_text_color(123, 167, 196)
-        pdf.cell(0, 6, "  (Load AI analysis to populate)", ln=1)
+        pdf.cell(0, 6, _pdf_safe("  (Load AI analysis to populate)"), ln=1)
 
     section_title("AREAS TO WATCH (AI)")
     if weaknesses:
@@ -3530,7 +3540,7 @@ def generate_scout_pdf(player_name: str, prow, strengths: list, weaknesses: list
             pdf.cell(0, 6, _pdf_safe(f"  - {w}"), ln=1)
     else:
         pdf.set_font("Helvetica", "I", 9); pdf.set_text_color(123, 167, 196)
-        pdf.cell(0, 6, "  (Load AI analysis to populate)", ln=1)
+        pdf.cell(0, 6, _pdf_safe("  (Load AI analysis to populate)"), ln=1)
 
     section_title("RECOMMENDATION")
     impact = float(prow.get("match_impact_score", 0)) * 100
@@ -3548,7 +3558,7 @@ def generate_scout_pdf(player_name: str, prow, strengths: list, weaknesses: list
     pdf.set_y(-12)
     pdf.set_font("Helvetica", "I", 7)
     pdf.set_text_color(74, 122, 155)
-    pdf.cell(0, 6, "Confidential - CricIntel AI Cricket Analytics Platform", align="C")
+    pdf.cell(0, 6, _pdf_safe("Confidential - CricIntel AI Cricket Analytics Platform"), align="C")
 
     return bytes(pdf.output())
 
