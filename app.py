@@ -262,7 +262,7 @@ COLUMN_ALIASES = {
                     "first_name","last_name","display_name","display name","known_as"],
 
     # Role
-    "role":        ["role","position","player_role","type","player_type","category","playing_role","role_type"],
+    "role":        ["role","player_role","playing_role","role_type","cricket_role","batting_type","bowling_type"],
 
     # Age
     "age":         ["age","player_age","years","age_years","current_age"],
@@ -1962,8 +1962,11 @@ def run_scout_mode():
     pool_df = gap_pool(df, gap_type)
 
     if len(pool_df)==0:
-        st.warning("No players found for this gap type.")
-        st.stop()
+        st.info(
+            f"ℹ️ No players flagged as specialists for **{gap_type}** in your data. "
+            "Your CSV may not include is_pacer / is_spinner columns — showing all players as candidates instead."
+        )
+        pool_df = df.copy()
 
     current_players = st.multiselect(
         f"Your current players ({gap_type})",
@@ -2397,7 +2400,18 @@ def run_auction_mode():
 
     if sm.get("violations"):
         v = {k:round(v,2) for k,v in sm["violations"].items() if v and v>0.001}
-        if v: st.warning(f"⚠️ Soft shortfalls: {v}")
+        if v:
+            _label_map = {
+                "is_spinner":      "Spinners",
+                "is_pacer":        "Pacers",
+                "is_death_bowler2":"Death bowlers",
+                "is_death_hitter": "Death hitters",
+                "is_pp_bowler2":   "PP bowlers",
+                "is_opener":       "Openers",
+                "is_finisher":     "Finishers",
+            }
+            _parts = [f"{_label_map.get(k,k)} short by {int(n)}" for k,n in v.items()]
+            st.warning("⚠️ Squad shortfalls: " + " · ".join(_parts))
 
     if len(squad)==0:
         st.error("❌ No squad returned.")
