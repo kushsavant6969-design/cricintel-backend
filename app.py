@@ -402,7 +402,11 @@ def apply_column_mapping(df: pd.DataFrame, mapping: dict) -> pd.DataFrame:
     rename_map = {}
     for internal, source in mapping.items():
         if source and source in out.columns and source != internal:
-            rename_map[source] = internal
+            # Don't rename a column whose own name is already a recognised
+            # internal field (e.g. stops 'player_id' being renamed to 'player'
+            # via substring fuzzy-match).
+            if source not in mapping:
+                rename_map[source] = internal
     out = out.rename(columns=rename_map)
 
     # Standardise role values
