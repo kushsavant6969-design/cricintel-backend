@@ -536,41 +536,34 @@ def to_csv_bytes(df_):
     return df_.to_csv(index=False).encode("utf-8")
 
 def _pdf_safe(text) -> str:
-    “””Replace non-Latin-1 characters to prevent FPDFUnicodeEncodingException.”””
+    # Replace non-Latin-1 characters to prevent FPDFUnicodeEncodingException.
     if not isinstance(text, str):
         text = str(text)
     replacements = {
-        # Dashes
-        “—“: “-”,   # em dash —
-        “–“: “-”,   # en dash –
-        “‒”: “-”,   # figure dash
-        “―”: “-”,   # horizontal bar
-        # Curly / smart quotes
-        “‘”: “’”,   # left single quotation mark ‘
-        “’”: “’”,   # right single quotation mark ‘
-        “‚”: “’”,   # single low-9 quotation mark ‚
-        “‛”: “’”,   # single high-reversed-9 quotation mark ‛
-        ““”: ‘”’,   # left double quotation mark “
-        “””: ‘”’,   # right double quotation mark “
-        “„”: ‘”’,   # double low-9 quotation mark „
-        “‟”: ‘”’,   # double high-reversed-9 quotation mark ‟
-        # Ellipsis
-        “…”: “...”, # horizontal ellipsis …
-        # Bullets and misc
-        “•”: “-”,   # bullet •
-        “°”: “deg”, # degree sign °
-        “£”: “GBP”, # pound sign £
-        “₹”: “Rs”,  # rupee sign ₹
-        “≤”: “<=”,  # less-than or equal ≤
-        “≥”: “>=”,  # greater-than or equal ≥
-        “×”: “x”,   # multiplication sign ×
-        “’”: “’”,   # right single quote (duplicate for safety)
-        “â”: “-”,  # utf-8 bytes for em dash sometimes decoded wrong
+        "—": "-",
+        "–": "-",
+        "‒": "-",
+        "―": "-",
+        "‘": "'",
+        "’": "'",
+        "‚": "'",
+        "‛": "'",
+        "“": '"',
+        "”": '"',
+        "„": '"',
+        "‟": '"',
+        "…": "...",
+        "•": "-",
+        "°": "deg",
+        "£": "GBP",
+        "₹": "Rs",
+        "≤": "<=",
+        "≥": ">=",
+        "×": "x",
     }
     for ch, rep in replacements.items():
         text = text.replace(ch, rep)
-    # Final safety net: encode to Latin-1, replacing anything still outside the range
-    return text.encode(“latin-1”, errors=”replace”).decode(“latin-1”)
+    return text.encode("latin-1", errors="replace").decode("latin-1")
 
 def stable_noise(id_series: pd.Series, mod=97) -> np.ndarray:
     s = pd.to_numeric(id_series, errors="coerce").fillna(0).astype(int)
