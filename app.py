@@ -668,16 +668,16 @@ def auction_player_card(row, budget_remaining: float, budget_total: float) -> st
     obj      = float(row.get("objective_score", 0))
 
     # Value rating
-    if gap > 200:   vb_cls, vb_lbl = "vb-premium", "⭐ Premium"
-    elif gap >= 0:  vb_cls, vb_lbl = "vb-good",    "✓ Good Value"
-    else:           vb_cls, vb_lbl = "vb-budget",  "◈ Budget Pick"
+    if gap > 20000:  vb_cls, vb_lbl = "vb-premium", "⭐ Premium"
+    elif gap >= 0:   vb_cls, vb_lbl = "vb-good",    "✓ Good Value"
+    else:            vb_cls, vb_lbl = "vb-budget",  "◈ Budget Pick"
 
     i100 = score_to_100(impact)
     isc, ibc = score_color_cls(i100)
 
     # Budget bar
     spent_pct  = max(0, min(100, (1 - budget_remaining / budget_total) * 100)) if budget_total > 0 else 0
-    rem_lbl    = f"£{budget_remaining*100000:,.0f} remaining"
+    rem_lbl    = f"£{budget_remaining:,.0f} remaining"
 
     return f"""
     <div class="acard">
@@ -687,9 +687,9 @@ def auction_player_card(row, budget_remaining: float, budget_total: float) -> st
           <div style="display:flex;gap:6px;margin-top:4px">{role_badge(role)} <span class="value-badge {vb_cls}">{vb_lbl}</span></div>
         </div>
         <div style="text-align:right">
-          <div class="acard-price">£{price*100000:,.0f}</div>
+          <div class="acard-price">£{price:,.0f}</div>
           <div class="acard-label">Auction price</div>
-          <div style="font-size:0.7rem;color:#7ba7c4;margin-top:2px">Fair: £{fair*100000:,.0f} &nbsp;|&nbsp; Gap: <span style="color:{'#4ade80' if gap>=0 else '#f87171'}">{'+'if gap>=0 else '-'}£{abs(gap)*100000:,.0f}</span></div>
+          <div style="font-size:0.7rem;color:#7ba7c4;margin-top:2px">Fair: £{fair:,.0f} &nbsp;|&nbsp; Gap: <span style="color:{'#4ade80' if gap>=0 else '#f87171'}">{'+'if gap>=0 else '-'}£{abs(gap):,.0f}</span></div>
         </div>
       </div>
       <div style="display:flex;gap:20px;align-items:center">
@@ -2190,112 +2190,91 @@ def run_auction_mode():
         df = build_base_df(players, perf, contracts=contracts)
         df["current_salary_lakh"] = pd.to_numeric(df.get("current_salary_lakh",0),errors="coerce").fillna(0.0)
 
-    # ── CONTEXT ───────────────────────────────────────────────────────────
-    cric_divider()
-    section("Match Context", "🏟️")
-    cc1,cc2,cc3,cc4 = st.columns(4)
-    pitch_type  = cc1.selectbox("Home pitch",      ["Flat/True","Spin-friendly","Pace/Bounce"])
-    season_goal = cc2.selectbox("Season strategy", ["Balanced","Batting dominance","Bowling dominance"])
-    risk_pref   = cc3.selectbox("Risk preference", ["Balanced","Risk-averse","High-upside"])
-    auction_mode= cc4.checkbox("Auction pricing",  value=True)
-
-    cric_divider()
-    section("Opponent Profile", "🎯")
-    opp_profiles = {
-        "Balanced":               {"spin":0.5,"pace":0.5,"death":0.5,"pp":0.5},
-        "Spin choke team":        {"spin":0.85,"pace":0.35,"death":0.55,"pp":0.45},
-        "Pace/bounce attack":     {"spin":0.35,"pace":0.85,"death":0.65,"pp":0.55},
-        "Death-over specialists": {"spin":0.45,"pace":0.55,"death":0.90,"pp":0.45},
-        "Powerplay smashers":     {"spin":0.45,"pace":0.55,"death":0.55,"pp":0.90},
-    }
-    oc1,oc2 = st.columns([2,1])
-    opp_sel  = oc1.selectbox("Opponent type", list(opp_profiles.keys()))
-    override = oc2.checkbox("Manual sliders", value=False)
-    base_opp = opp_profiles[opp_sel]
-    o1,o2,o3,o4 = st.columns(4)
-    opp_spin  = o1.slider("Spin threat",        0.0,1.0,float(base_opp["spin"]),  0.05,disabled=not override)
-    opp_pace  = o2.slider("Pace threat",         0.0,1.0,float(base_opp["pace"]),  0.05,disabled=not override)
-    opp_death = o3.slider("Death bowl strength", 0.0,1.0,float(base_opp["death"]), 0.05,disabled=not override)
-    opp_pp    = o4.slider("PP aggressiveness",   0.0,1.0,float(base_opp["pp"]),    0.05,disabled=not override)
-
     cric_divider()
     section("Auction Settings", "💰")
     a1,a2,a3 = st.columns(3)
-    inflation     = a1.slider("Inflation multiplier", 1.0,2.5,1.35,0.05,disabled=not auction_mode)
-    reserve_floor = a2.number_input("Reserve floor (× £100K)", value=120.0, step=10.0, disabled=not auction_mode)
-    budget_lakh   = a3.number_input("Budget (× £100K)", value=float(default_budget), step=100.0)
+    inflation     = a1.slider("Inflation multiplier", 1.0, 2.5, 1.35, 0.05)
+    reserve_floor = a2.number_input("Reserve floor (£)", value=30000, min_value=0, step=5000)
+    budget_gbp    = a3.number_input("Budget (£)", value=1_500_000, min_value=500_000, max_value=3_000_000, step=50_000)
+    st.caption("The Hundred 2025 salary pot is £1.41m per team, rising to £2.05m in 2026.")
 
     cric_divider()
-    section("Squad Constraints", "⚙️")
-    c5,c6,c7,c8 = st.columns(4)
-    max_players = c5.number_input("Max squad",  value=int(default_maxpl),   step=1)
-    min_bat     = c6.number_input("Min BAT",    value=int(default_minbat),  step=1)
-    min_bowl    = c7.number_input("Min BOWL",   value=int(default_minbowl), step=1)
-    min_ar      = c8.number_input("Min AR",     value=int(default_minar),   step=1)
-    c9,c10 = st.columns(2)
-    min_wk             = c9.number_input("Min WK",        value=int(default_minwk), step=1)
-    max_overseas_squad = c10.number_input("Max Overseas", value=8, step=1)
+    section("Squad Requirements", "⚙️")
+    st.markdown('<div style="font-size:0.85rem;font-weight:600;color:#7ba7c4;margin-bottom:0.4rem">Role Minimums</div>', unsafe_allow_html=True)
+    sq1,sq2,sq3,sq4,sq5,sq6 = st.columns(6)
+    max_players        = sq1.number_input("Max squad size",       value=int(default_maxpl),   step=1)
+    min_bat            = sq2.number_input("Min Batters",          value=int(default_minbat),  step=1)
+    min_bowl           = sq3.number_input("Min Bowlers",          value=int(default_minbowl), step=1)
+    min_ar             = sq4.number_input("Min All-Rounders",     value=int(default_minar),   step=1)
+    min_wk             = sq5.number_input("Min Wicketkeepers",    value=int(default_minwk),   step=1)
+    max_overseas_squad = sq6.number_input("Max Overseas players", value=8, step=1)
     min_role = {"BAT":min_bat,"BOWL":min_bowl,"AR":min_ar,"WK":min_wk}
 
-    cric_divider()
-    section("Balance Constraints", "⚖️")
-    b1,b2,b3,b4 = st.columns(4)
-    min_spinners  = b1.number_input("Min Spinners",      value=3,step=1)
-    min_pacers    = b2.number_input("Min Pacers",        value=3,step=1)
-    min_death_bowl= b3.number_input("Min Death Bowlers", value=2,step=1)
-    min_death_hit = b4.number_input("Min Death Hitters", value=2,step=1)
-    b5,b6,b7 = st.columns(3)
-    min_pp_bowl  = b5.number_input("Min PP Bowlers", value=2,step=1)
-    min_openers  = b6.number_input("Min Openers",    value=2,step=1)
-    min_finishers= b7.number_input("Min Finishers",  value=2,step=1)
+    st.markdown('<div style="font-size:0.85rem;font-weight:600;color:#7ba7c4;margin:0.8rem 0 0.4rem">Specialist Requirements</div>', unsafe_allow_html=True)
+    sp1,sp2,sp3,sp4 = st.columns(4)
+    min_spinners  = sp1.number_input("Min Spinners",      value=3, step=1)
+    min_pacers    = sp2.number_input("Min Pacers",        value=3, step=1)
+    min_pp_bowl   = sp3.number_input("Min PP Bowlers",    value=2, step=1)
+    min_death_bowl= sp4.number_input("Min Death Bowlers", value=2, step=1)
+    sp5,sp6,sp7 = st.columns(3)
+    min_openers   = sp5.number_input("Min Openers",       value=2, step=1)
+    min_death_hit = sp6.number_input("Min Death Hitters", value=2, step=1)
+    min_finishers = sp7.number_input("Min Finishers",     value=2, step=1)
     enforce_left = st.checkbox("Enforce left-right balance (≥1 lefty in top 4)", value=True)
 
     cric_divider()
     section("Retentions / RTM", "🔒")
-    r1,r2 = st.columns([2,1])
-    retained_players = r1.multiselect("Retained/locked players", df["player"].tolist(), default=[])
-    default_ret_cost = r2.number_input("Default retained cost (× £100K)", value=600.0, step=50.0)
+
+    if "auc_retained" not in st.session_state:
+        st.session_state["auc_retained"] = {}
+
+    _all_players = df["player"].tolist()
+    _add_player  = st.selectbox(
+        "Add retained player",
+        ["— Select —"] + [p for p in _all_players if p not in st.session_state["auc_retained"]],
+        key="auc_add_retained"
+    )
+    if _add_player != "— Select —" and _add_player not in st.session_state["auc_retained"]:
+        st.session_state["auc_retained"][_add_player] = 100000
+        st.rerun()
 
     retained_costs = {}
-    if retained_players:
-        rc_cols = st.columns(min(len(retained_players),4))
-        for i,p in enumerate(retained_players[:20]):
-            retained_costs[p] = rc_cols[i%4].number_input(p, value=float(default_ret_cost), step=50.0, key=f"rc_{p}")
+    if st.session_state["auc_retained"]:
+        _hc1, _hc2, _hc3 = st.columns([3, 2, 1])
+        _hc1.markdown("**Player**")
+        _hc2.markdown("**Salary (£)**")
+        _hc3.markdown("**Remove**")
+        st.markdown('<hr style="margin:0.2rem 0;border-color:#1e3a5f">', unsafe_allow_html=True)
+        for _rp in list(st.session_state["auc_retained"].keys()):
+            _rc1, _rc2, _rc3 = st.columns([3, 2, 1])
+            _rc1.write(_rp)
+            _sal = _rc2.number_input(
+                "sal", min_value=0, value=st.session_state["auc_retained"].get(_rp, 100000),
+                step=10000, key=f"rsal_{_rp}", label_visibility="collapsed"
+            )
+            st.session_state["auc_retained"][_rp] = _sal
+            retained_costs[_rp] = _sal
+            if _rc3.button("✕", key=f"rrem_{_rp}"):
+                del st.session_state["auc_retained"][_rp]
+                st.rerun()
 
-    locked_set       = set(retained_players)
-    retained_total   = sum(retained_costs.get(p,default_ret_cost) for p in retained_players)
-    budget_after_ret = float(budget_lakh - retained_total)
-    st.metric("Budget after retentions", f"£{budget_after_ret*100000:,.0f}",
-              delta=f"-£{retained_total*100000:,.0f} retained" if retained_total>0 else None)
-    if budget_after_ret<=0:
+    locked_set       = set(st.session_state["auc_retained"].keys())
+    retained_total   = sum(retained_costs.values())
+    budget_after_ret = float(budget_gbp - retained_total)
+    st.metric("Budget after retentions", f"£{budget_after_ret:,.0f}",
+              delta=f"-£{retained_total:,.0f} retained" if retained_total > 0 else None)
+    if budget_after_ret <= 0:
         st.error("❌ Retentions exceed budget.")
         st.stop()
 
     # ── Pricing ───────────────────────────────────────────────────────────
-    df["auction_price_lakh"] = df["current_salary_lakh"].copy()
-    if auction_mode:
-        df["auction_price_lakh"] = (df["current_salary_lakh"]*float(inflation)).clip(lower=float(reserve_floor))
-    price_col = "auction_price_lakh" if auction_mode else "current_salary_lakh"
-    df["price_used_lakh"] = df[price_col].copy()
-    if retained_players:
-        df["price_used_lakh"] = df["price_used_lakh"].astype(float)
-        for p in retained_players:
-            df.loc[df["player"]==p,"price_used_lakh"] = float(retained_costs.get(p,default_ret_cost))
+    df["price_used_lakh"] = (df["current_salary_lakh"] * float(inflation)).clip(lower=float(reserve_floor))
+    for _p in locked_set:
+        df.loc[df["player"]==_p, "price_used_lakh"] = float(retained_costs.get(_p, 100000))
     price_col = "price_used_lakh"
 
-    rp_map = {"Risk-averse":1.2,"High-upside":0.4,"Balanced":0.8}
-    df["risk_adjustment"] = (1-rp_map[risk_pref]*df["total_risk"]).clip(lower=0.25,upper=1.05)
-
-    fit = np.ones(len(df),dtype=float)
-    if pitch_type=="Spin-friendly":
-        fit += 0.12*df["is_spinner"].astype(float)+0.05*(df["batting_role"]=="ANCHOR").astype(float)
-        fit -= 0.04*df["is_pacer"].astype(float)
-    elif pitch_type=="Pace/Bounce":
-        fit += 0.12*df["is_pacer"].astype(float)+0.05*norm01(df["pp_sr"])
-        fit -= 0.04*df["is_spinner"].astype(float)
-    else:
-        fit += 0.10*norm01(df["strike_rate"])+0.08*(df["batting_role"]=="FINISHER").astype(float)
-    df["pitch_fit"] = np.clip(fit,0.80,1.30)
+    df["risk_adjustment"] = pd.Series(np.ones(len(df)), index=df.index)
+    df["pitch_fit"]       = pd.Series(np.ones(len(df)), index=df.index)
 
     cric_divider()
     section("Phase Importance", "⏱️")
@@ -2305,19 +2284,7 @@ def run_auction_mode():
     w_death = p3.slider("Death overs weight",  0.0,2.0,1.2,0.1)
     df = compute_phase_scores(df, w_pp, w_mid, w_death)
 
-    lefty   = (df["bat_hand"].astype(str)=="L").astype(float)
-    anchor  = (df["batting_role"]=="ANCHOR").astype(float)
-    opener  = (df["batting_role"]=="OPENER").astype(float)
-    pp_bowl = (df["bowling_role"]=="PP").astype(float)
-    pacer   = df["is_pacer"].astype(float)
-    spinner = df["is_spinner"].astype(float)
-
-    opp_mult = np.ones(len(df),dtype=float)
-    opp_mult += 0.10*opp_spin *(0.9*lefty +0.6*anchor+0.6*spinner+0.2*df["mid_bat_score"])
-    opp_mult += 0.10*opp_pace *(0.9*pacer +0.6*opener+0.5*pp_bowl+0.2*df["pp_bat_score"])
-    opp_mult += 0.08*opp_death*(0.9*anchor+0.4*df["mid_bat_score"])
-    opp_mult += 0.08*opp_pp   *(0.9*pp_bowl+0.5*(1-norm01(df["pp_eco"])))
-    df["opponent_fit"] = np.clip(opp_mult,0.85,1.22)
+    df["opponent_fit"] = pd.Series(np.ones(len(df)), index=df.index)
 
     feat_pool = ["role","age","runs","wickets","matches","strike_rate","economy",
                  "dot_ball_pct","boundary_pct","match_impact_score"]
@@ -2407,8 +2374,9 @@ def run_auction_mode():
     }
     extra_max_flags = {"is_overseas":int(max_overseas_squad)}
 
-    soft_mode      = st.checkbox("Soft constraints", value=True)
-    penalty_weight = st.slider("Soft penalty", 0.5,10.0,2.5,0.1,disabled=not soft_mode)
+    with st.expander("Advanced Settings", expanded=False):
+        soft_mode      = st.checkbox("Soft constraints", value=True)
+        penalty_weight = st.slider("Soft penalty", 0.5,10.0,2.5,0.1,disabled=not soft_mode)
 
     with st.spinner("Running squad optimiser..."):
         squad, sm = optimize_squad_soft(
@@ -2422,7 +2390,7 @@ def run_auction_mode():
 
     s1,s2,s3,s4,s5,s6 = st.columns(6)
     s1.metric("Players",     sm.get("count",0))
-    s2.metric("Spend",       f"£{sm.get('spend',0)*100000:,.0f}")
+    s2.metric("Spend",       f"£{sm.get('spend',0):,.0f}")
     s3.metric("Objective",   f"{sm.get('objective',0):.2f}")
     s4.metric("BAT",         sm.get("BAT",0))
     s5.metric("BOWL",        sm.get("BOWL",0))
@@ -2446,7 +2414,7 @@ def run_auction_mode():
     <div style="padding:0.8rem 1rem;background:#0d1b2a;border:1px solid #1e3a5f;border-radius:10px;margin-bottom:1rem">
       <div style="display:flex;justify-content:space-between;margin-bottom:4px">
         <span style="font-size:0.78rem;color:#7ba7c4">Budget remaining after squad selection</span>
-        <span style="font-size:0.9rem;font-weight:700;color:#fbbf24">£{_bud_rem*100000:,.0f} of £{_bud_total*100000:,.0f}</span>
+        <span style="font-size:0.9rem;font-weight:700;color:#fbbf24">£{_bud_rem:,.0f} of £{_bud_total:,.0f}</span>
       </div>
       <div class="bud-bar-outer"><div class="bud-bar-inner" style="width:{_bud_pct:.1f}%"></div></div>
     </div>
@@ -2517,8 +2485,8 @@ def run_auction_mode():
             _cmp_metrics = [
                 ("Role",           str(_cr1.get("role","—")),                 str(_cr2.get("role","—"))),
                 ("Age",            int(float(_cr1.get("age",0))),              int(float(_cr2.get("age",0)))),
-                ("Price",          f"£{float(_cr1.get('price_used_lakh',0))*100000:,.0f}", f"£{float(_cr2.get('price_used_lakh',0))*100000:,.0f}"),
-                ("Fair Salary",    f"£{float(_cr1.get('fair_salary_lakh',0))*100000:,.0f}", f"£{float(_cr2.get('fair_salary_lakh',0))*100000:,.0f}"),
+                ("Price",          f"£{float(_cr1.get('price_used_lakh',0)):,.0f}", f"£{float(_cr2.get('price_used_lakh',0)):,.0f}"),
+                ("Fair Salary",    f"£{float(_cr1.get('fair_salary_lakh',0)):,.0f}", f"£{float(_cr2.get('fair_salary_lakh',0)):,.0f}"),
                 ("Value Score",    f"{float(_cr1.get('value_score_100',0)):.0f}/100",   f"{float(_cr2.get('value_score_100',0)):.0f}/100"),
                 ("Risk Rating",    f"{float(_cr1.get('risk_rating_100',0)):.0f}/100",   f"{float(_cr2.get('risk_rating_100',0)):.0f}/100"),
                 ("Impact Score",   f"{float(_cr1.get('match_impact_score',0))*100:.0f}/100", f"{float(_cr2.get('match_impact_score',0))*100:.0f}/100"),
@@ -2577,11 +2545,11 @@ def run_auction_mode():
             if not api_key or not _ANTHROPIC_AVAILABLE:
                 st.warning("Set ANTHROPIC_API_KEY to enable AI reasoning.")
             else:
-                _xi_summary = f"""Best XI selected ({len(xi)} players, budget £{float(squad[price_col].sum())*100000:,.0f}):
+                _xi_summary = f"""Best XI selected ({len(xi)} players, budget £{float(squad[price_col].sum()):,.0f}):
 Roles: BAT={int((xi['role']=='BAT').sum())}, BOWL={int((xi['role']=='BOWL').sum())}, AR={int((xi['role']=='AR').sum())}, WK={int((xi['role']=='WK').sum())}
 Spinners: {int(xi['is_spinner'].astype(int).sum())}, Pacers: {int(xi['is_pacer'].astype(int).sum())}
 Players (sorted by xi_score): {', '.join(xi.sort_values('xi_score',ascending=False)['player'].head(11).tolist())}
-Context: Pitch={pitch_type}, Strategy={season_goal}, Risk pref={risk_pref}
+Context: The Hundred format, balanced squad strategy
 Avg Value Score: {float(xi.get('value_score_100',pd.Series([50]*len(xi))).mean()):.0f}/100
 Avg Risk Rating: {float(xi.get('risk_rating_100',pd.Series([50]*len(xi))).mean()):.0f}/100"""
                 with st.spinner("Generating reasoning..."):
