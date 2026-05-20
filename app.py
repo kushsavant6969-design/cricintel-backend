@@ -374,11 +374,19 @@ def auto_detect_columns(df: pd.DataFrame) -> dict:
 
 
 def standardise_roles(series: pd.Series) -> pd.Series:
-    """Standardise role values to BAT/BOWL/AR/WK."""
+    """Standardise role values to BAT/BOWL/AR/WK.
+    If a value is already a valid role code, preserve it. If it maps via ROLE_MAP, use that.
+    Do NOT override with a stats-based heuristic — always come from the CSV value.
+    """
+    VALID = {"BAT", "BOWL", "AR", "WK"}
     def map_role(val):
         if pd.isna(val):
             return "BAT"
-        v = str(val).lower().strip()
+        v_raw = str(val).strip()
+        # Already a valid standard code — keep as-is
+        if v_raw.upper() in VALID:
+            return v_raw.upper()
+        v = v_raw.lower()
         return ROLE_MAP.get(v, "BAT")
     return series.apply(map_role)
 
@@ -680,8 +688,8 @@ def auction_player_card(row, budget_remaining: float, budget_total: float) -> st
     """Render an auction player card with value rating and budget bar."""
     name     = row.get("player", "—")
     role     = str(row.get("role", "BAT"))
-    price    = float(row.get("price_used_lakh", 0))
-    fair     = float(row.get("fair_salary_lakh", 0))
+    price    = float(row.get("price_gbp", row.get("price_used_lakh", 0)))
+    fair     = float(row.get("fair_salary_gbp", row.get("fair_salary_lakh", 0)))
     gap      = float(row.get("value_gap", 0))
     impact   = float(row.get("match_impact_score", 0))
     risk     = float(row.get("total_risk", 0))
@@ -1764,13 +1772,11 @@ def run_scout_mode():
         """, unsafe_allow_html=True)
 
         # Scouting info
-        si1,si2,si3 = st.columns(3)
+        si1,si2 = st.columns(2)
         if "scouting_grade" in df.columns:
             si1.metric("Scouting Grade", prow.get("scouting_grade","—"))
-        if "analyst_recommendation" in df.columns:
-            si2.metric("Recommendation", prow.get("analyst_recommendation","—"))
         if "format_specialism" in df.columns:
-            si3.metric("Format Specialism", str(prow.get("format_specialism","—")))
+            si2.metric("Format Specialism", str(prow.get("format_specialism","—")))
 
         # Format fit
         if "county_red_ball_fit" in df.columns or "county_white_ball_fit" in df.columns:
@@ -1779,42 +1785,6 @@ def run_scout_mode():
                 ff1.metric("Red Ball Fit",   f"{float(prow.get('county_red_ball_fit',0)):.1f}/100")
             if "county_white_ball_fit" in df.columns:
                 ff2.metric("White Ball Fit", f"{float(prow.get('county_white_ball_fit',0)):.1f}/100")
-
-        # ── PHASE PERFORMANCE TABLE ────────────────────────────────────
-        st.markdown("##### Phase Performance Breakdown")
-        phase_data = {
-            "Phase":      ["Powerplay (1-6)", "Middle (7-15)", "Death (16-20)"],
-            "Bat SR":     [f"{float(prow.get('pp_sr',0)):.1f}",    f"{float(prow.get('middle_sr',0)):.1f}",  f"{float(prow.get('death_sr',0)):.1f}"],
-            "Bat Runs":   [f"{float(prow.get('pp_runs',0)):.0f}",  "—",                                       f"{float(prow.get('death_runs',0)):.0f}"],
-            "Bowl Eco":   [f"{float(prow.get('pp_eco',0)):.2f}",   f"{float(prow.get('middle_eco',0)):.2f}",  f"{float(prow.get('death_eco',0)):.2f}"],
-            "Wickets":    [f"{float(prow.get('pp_wkts',0)):.1f}",  "—",                                       f"{float(prow.get('death_wkts',0)):.1f}"],
-        }
-        st.dataframe(pd.DataFrame(phase_data), use_container_width=True, hide_index=True)
-
-        # ── FORM SPARKLINE (last 5 innings proxy) ─────────────────────
-        st.markdown("##### Recent Form (Last 5 Innings)")
-        import random
-        _rng = random.Random(int(prow.get("player_id", 1)) * 7)
-        _base_runs = max(5, float(prow.get("runs", 0)) / max(1, float(prow.get("matches", 1))))
-        _form_vals = [max(0, int(_base_runs * (0.6 + _rng.random() * 1.0))) for _ in range(5)]
-        _form_labels = [f"Inn {i+1}" for i in range(5)]
-        _colors = ["#4ade80" if v > _base_runs else "#f87171" for v in _form_vals]
-        fig_spark = go.Figure(go.Bar(
-            x=_form_labels, y=_form_vals,
-            marker_color=_colors, text=[str(v) for v in _form_vals],
-            textposition="outside", textfont_size=9,
-        ))
-        fig_spark.update_layout(
-            paper_bgcolor="#0a0f1e", plot_bgcolor="#0a0f1e",
-            font=dict(family="Inter", color="#7ba7c4", size=10),
-            margin=dict(l=4, r=4, t=20, b=4), height=160,
-            xaxis=dict(gridcolor="#1e3a5f", showgrid=False),
-            yaxis=dict(gridcolor="#1e3a5f"),
-            showlegend=False,
-        )
-        st.plotly_chart(fig_spark, use_container_width=True, config={"displayModeBar": False},
-                        key=f"form_spark_{profile_player}")
-        st.caption("Sparkline is a representative form proxy based on career stats distribution.")
 
         # ── AI STRENGTHS & WEAKNESSES ──────────────────────────────────
         st.markdown("##### AI Strengths & Weaknesses")
@@ -2114,6 +2084,24 @@ def run_scout_mode():
 
 
 # ═══════════════════════════════════════════════════════
+# SAFE VALUE CONVERTERS (for number_input / slider)
+# ═══════════════════════════════════════════════════════
+def _safe_int(v, default=0):
+    """Convert v to int safely; return default if conversion fails."""
+    try:
+        return int(float(str(v).replace(",", "").strip()))
+    except (ValueError, TypeError):
+        return default
+
+def _safe_float(v, default=0.0):
+    """Convert v to float safely; return default if conversion fails."""
+    try:
+        return float(str(v).replace(",", "").strip())
+    except (ValueError, TypeError):
+        return default
+
+
+# ═══════════════════════════════════════════════════════
 # AUCTION MODE
 # ═══════════════════════════════════════════════════════
 def run_auction_mode():
@@ -2209,11 +2197,11 @@ def run_auction_mode():
     section("Squad Requirements", "⚙️")
     st.markdown('<div style="font-size:0.85rem;font-weight:600;color:#7ba7c4;margin-bottom:0.4rem">Role Minimums</div>', unsafe_allow_html=True)
     sq1,sq2,sq3,sq4,sq5,sq6 = st.columns(6)
-    max_players        = sq1.number_input("Max squad size",       value=int(default_maxpl),   step=1)
-    min_bat            = sq2.number_input("Min Batters",          value=int(default_minbat),  step=1)
-    min_bowl           = sq3.number_input("Min Bowlers",          value=int(default_minbowl), step=1)
-    min_ar             = sq4.number_input("Min All-Rounders",     value=int(default_minar),   step=1)
-    min_wk             = sq5.number_input("Min Wicketkeepers",    value=int(default_minwk),   step=1)
+    max_players        = sq1.number_input("Max squad size",       value=_safe_int(default_maxpl,  25), step=1)
+    min_bat            = sq2.number_input("Min Batters",          value=_safe_int(default_minbat,  8), step=1)
+    min_bowl           = sq3.number_input("Min Bowlers",          value=_safe_int(default_minbowl, 8), step=1)
+    min_ar             = sq4.number_input("Min All-Rounders",     value=_safe_int(default_minar,   4), step=1)
+    min_wk             = sq5.number_input("Min Wicketkeepers",    value=_safe_int(default_minwk,   2), step=1)
     max_overseas_squad = sq6.number_input("Max Overseas players", value=8, step=1)
     min_role = {"BAT":min_bat,"BOWL":min_bowl,"AR":min_ar,"WK":min_wk}
 
@@ -2256,7 +2244,7 @@ def run_auction_mode():
             _rc1, _rc2, _rc3 = st.columns([3, 2, 1])
             _rc1.write(_rp)
             _sal = _rc2.number_input(
-                "sal", min_value=0, value=st.session_state["auc_retained"].get(_rp, 100000),
+                "sal", min_value=0, value=_safe_int(st.session_state["auc_retained"].get(_rp, 100000), 100000),
                 step=10000, key=f"rsal_{_rp}", label_visibility="collapsed"
             )
             st.session_state["auc_retained"][_rp] = _sal
@@ -2303,6 +2291,9 @@ def run_auction_mode():
     model.fit(X, y)
     df["fair_salary_lakh"] = np.clip(model.predict(X),0,None)
     df["value_gap"] = df["fair_salary_lakh"] - df["price_used_lakh"]
+    # Display aliases — use these in tables/cards shown to the user
+    df["price_gbp"]       = df["price_used_lakh"]
+    df["fair_salary_gbp"] = df["fair_salary_lakh"]
 
     df["phase_versatility"] = (
         0.5*((df["is_pp_batter"].astype(int)==1)|(df["is_pp_bowler"].astype(int)==1)).astype(float)+
@@ -2362,11 +2353,12 @@ def run_auction_mode():
     cric_divider()
     section("Top Player Rankings", "📊")
     top_show = [c for c in ["player","role","age","bat_hand","batting_role","bowling_role",
-                              "is_spinner","is_pacer","is_overseas","price_used_lakh",
-                              "fair_salary_lakh","value_gap","match_impact_score",
+                              "is_spinner","is_pacer","is_overseas","price_gbp",
+                              "fair_salary_gbp","value_gap","match_impact_score",
                               "pitch_fit","opponent_fit","flex_score","total_risk",
                               "objective_score"] if c in df.columns]
-    _top_styler = df[top_show].sort_values("objective_score", ascending=False).head(50).style.format(
+    _top_rename = {"price_gbp": "Price (£)", "fair_salary_gbp": "Fair Value (£)"}
+    _top_styler = df[top_show].rename(columns=_top_rename).sort_values("objective_score", ascending=False).head(50).style.format(
         {"objective_score":"{:.3f}","value_gap":"{:.1f}","match_impact_score":"{:.3f}","total_risk":"{:.3f}"}
     )
     _top_styler = apply_table_styles(_top_styler, top_show)
@@ -2433,47 +2425,17 @@ def run_auction_mode():
 
     with st.expander("📋 Full squad table (with Value Score & Risk Rating)"):
         squad_show = [c for c in ["player","role","bat_hand","batting_role","bowling_role",
-                                   "is_spinner","is_pacer","is_overseas","price_used_lakh",
-                                   "fair_salary_lakh","value_gap","value_score_100","risk_rating_100",
+                                   "is_spinner","is_pacer","is_overseas","price_gbp",
+                                   "fair_salary_gbp","value_gap","value_score_100","risk_rating_100",
                                    "match_impact_score","pitch_fit","opponent_fit","flex_score",
                                    "total_risk","objective_score"] if c in squad.columns]
-        _sq_styler = squad[squad_show].sort_values("objective_score", ascending=False).style.format(
+        _sq_rename = {"price_gbp": "Price (£)", "fair_salary_gbp": "Fair Value (£)"}
+        _sq_styler = squad[squad_show].rename(columns=_sq_rename).sort_values("objective_score", ascending=False).style.format(
             {"objective_score":"{:.3f}","value_gap":"{:.1f}","total_risk":"{:.3f}",
              "value_score_100":"{:.0f}","risk_rating_100":"{:.0f}"}
         )
         _sq_styler = apply_table_styles(_sq_styler, squad_show)
         st.dataframe(_sq_styler, use_container_width=True, height=420)
-
-    # ── SQUAD BALANCE CHECKER ─────────────────────────────────────────────
-    cric_divider()
-    section("Squad Balance Checker", "⚖️")
-    st.caption("Checks whether the selected squad covers all key roles and phases.")
-
-    if len(squad) > 0:
-        _sq = squad.copy()
-        _checks = {
-            "Openers (is_opener)":         (int(_sq.get("is_opener", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
-            "Finishers (death batters)":   (int(_sq.get("is_finisher", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
-            "Powerplay Bowlers":           (int(_sq.get("is_pp_bowler2", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
-            "Death Bowlers":               (int(_sq.get("is_death_bowler2", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
-            "Spinners":                    (int(_sq.get("is_spinner", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
-            "Pacers":                      (int(_sq.get("is_pacer", pd.Series([0]*len(_sq))).astype(int).sum()), 2),
-            "All-Rounders (AR/WK)":        (int((_sq["role"].isin(["AR","WK"])).sum()), 2),
-            "Batters (BAT)":               (int((_sq["role"]=="BAT").sum()), 4),
-            "Wicketkeepers (WK)":          (int((_sq["role"]=="WK").sum()), 1),
-        }
-        _bal_rows = []
-        for _label, (_have, _need) in _checks.items():
-            _ok = _have >= _need
-            _bal_rows.append({"Role / Phase": _label, "Have": _have, "Need": _need,
-                               "Status": "✅ OK" if _ok else "🔴 Gap"})
-        _bal_df = pd.DataFrame(_bal_rows)
-        _gap_count = int((_bal_df["Status"] == "🔴 Gap").sum())
-        if _gap_count == 0:
-            st.success("✅ Squad balance looks good across all key roles and phases.")
-        else:
-            st.warning(f"⚠️ {_gap_count} balance gap(s) detected — see table below.")
-        st.dataframe(_bal_df, use_container_width=True, hide_index=True)
 
     # ── SIDE BY SIDE PLAYER COMPARISON ───────────────────────────────────
     cric_divider()
@@ -2492,8 +2454,8 @@ def run_auction_mode():
             _cmp_metrics = [
                 ("Role",           str(_cr1.get("role","—")),                 str(_cr2.get("role","—"))),
                 ("Age",            int(float(_cr1.get("age",0))),              int(float(_cr2.get("age",0)))),
-                ("Price",          f"£{float(_cr1.get('price_used_lakh',0)):,.0f}", f"£{float(_cr2.get('price_used_lakh',0)):,.0f}"),
-                ("Fair Salary",    f"£{float(_cr1.get('fair_salary_lakh',0)):,.0f}", f"£{float(_cr2.get('fair_salary_lakh',0)):,.0f}"),
+                ("Price (£)",      f"£{float(_cr1.get('price_gbp', _cr1.get('price_used_lakh',0))):,.0f}", f"£{float(_cr2.get('price_gbp', _cr2.get('price_used_lakh',0))):,.0f}"),
+                ("Fair Value (£)", f"£{float(_cr1.get('fair_salary_gbp', _cr1.get('fair_salary_lakh',0))):,.0f}", f"£{float(_cr2.get('fair_salary_gbp', _cr2.get('fair_salary_lakh',0))):,.0f}"),
                 ("Value Score",    f"{float(_cr1.get('value_score_100',0)):.0f}/100",   f"{float(_cr2.get('value_score_100',0)):.0f}/100"),
                 ("Risk Rating",    f"{float(_cr1.get('risk_rating_100',0)):.0f}/100",   f"{float(_cr2.get('risk_rating_100',0)):.0f}/100"),
                 ("Impact Score",   f"{float(_cr1.get('match_impact_score',0))*100:.0f}/100", f"{float(_cr2.get('match_impact_score',0))*100:.0f}/100"),
