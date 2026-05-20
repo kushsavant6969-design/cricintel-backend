@@ -1129,24 +1129,24 @@ def generate_shortlist_pdf(shortlist_df: pd.DataFrame, title: str = "CricIntel S
     pdf.set_text_color(0, 212, 255)
     pdf.set_font("Helvetica", "B", 16)
     pdf.set_xy(8, 5)
-    pdf.cell(0, 10, "CRICINTEL", ln=0)
+    pdf.cell(0, 10, _pdf_safe("CRICINTEL"), ln=0)
     pdf.set_font("Helvetica", "", 9)
     pdf.set_text_color(123, 167, 196)
     pdf.set_xy(60, 8)
-    pdf.cell(0, 6, "AI Cricket Analytics Platform", ln=0)
+    pdf.cell(0, 6, _pdf_safe("AI Cricket Analytics Platform"), ln=0)
     pdf.set_text_color(100, 140, 180)
     pdf.set_font("Helvetica", "", 8)
     pdf.set_xy(210, 8)
-    pdf.cell(80, 6, f"Generated: {date.today().strftime('%d %b %Y')}", align="R")
+    pdf.cell(80, 6, _pdf_safe(f"Generated: {date.today().strftime('%d %b %Y')}"), align="R")
 
     # ── Sub-header ──────────────────────────────────────────────────────────
     pdf.set_xy(8, 26)
     pdf.set_text_color(200, 230, 245)
     pdf.set_font("Helvetica", "B", 11)
-    pdf.cell(0, 7, title, ln=1)
+    pdf.cell(0, 7, _pdf_safe(title), ln=1)
     pdf.set_font("Helvetica", "", 8)
     pdf.set_text_color(123, 167, 196)
-    pdf.cell(0, 5, f"{len(shortlist_df)} player(s) shortlisted", ln=1)
+    pdf.cell(0, 5, _pdf_safe(f"{len(shortlist_df)} player(s) shortlisted"), ln=1)
     pdf.ln(2)
 
     # ── Table header ────────────────────────────────────────────────────────
@@ -1160,7 +1160,7 @@ def generate_shortlist_pdf(shortlist_df: pd.DataFrame, title: str = "CricIntel S
     pdf.set_font("Helvetica", "B", 8)
     pdf.set_draw_color(30, 58, 95)
     for c in cols:
-        pdf.cell(COL_W.get(c, 18), ROW_H, headers.get(c, c), border=1, fill=True, align="C")
+        pdf.cell(COL_W.get(c, 18), ROW_H, _pdf_safe(headers.get(c, c)), border=1, fill=True, align="C")
     pdf.ln()
 
     # ── Table rows ───────────────────────────────────────────────────────────
@@ -1172,24 +1172,24 @@ def generate_shortlist_pdf(shortlist_df: pd.DataFrame, title: str = "CricIntel S
         for c in cols:
             val = row[c]
             if c in ("match_impact_score", "total_risk"):
-                txt = f"{float(val):.3f}" if pd.notna(val) else "—"
+                txt = f"{float(val):.3f}" if pd.notna(val) else "-"
             elif c == "strike_rate":
-                txt = f"{float(val):.1f}" if pd.notna(val) else "—"
+                txt = f"{float(val):.1f}" if pd.notna(val) else "-"
             elif c == "economy":
-                txt = f"{float(val):.2f}" if pd.notna(val) else "—"
+                txt = f"{float(val):.2f}" if pd.notna(val) else "-"
             elif c in ("age","matches","runs","wickets"):
-                txt = str(int(val)) if pd.notna(val) and val != 0 else "—"
+                txt = str(int(val)) if pd.notna(val) and val != 0 else "-"
             else:
-                txt = str(val) if pd.notna(val) else "—"
+                txt = str(val) if pd.notna(val) else "-"
             align = "L" if c == "player" else "C"
-            pdf.cell(COL_W.get(c, 18), ROW_H, txt[:28], border=1, fill=True, align=align)
+            pdf.cell(COL_W.get(c, 18), ROW_H, _pdf_safe(txt[:28]), border=1, fill=True, align=align)
         pdf.ln()
 
     # ── Footer ───────────────────────────────────────────────────────────────
     pdf.set_y(-12)
     pdf.set_font("Helvetica", "I", 7)
     pdf.set_text_color(74, 122, 155)
-    pdf.cell(0, 6, "Confidential — CricIntel AI Cricket Analytics Platform", align="C")
+    pdf.cell(0, 6, _pdf_safe("Confidential - CricIntel AI Cricket Analytics Platform"), align="C")
 
     return bytes(pdf.output())
 
