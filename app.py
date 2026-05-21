@@ -262,7 +262,7 @@ COLUMN_ALIASES = {
                     "first_name","last_name","display_name","display name","known_as"],
 
     # Role
-    "role":        ["role","player_role","playing_role","role_type","cricket_role","batting_type","bowling_type"],
+    "role":        ["role","player_role","playing_role","role_type","cricket_role"],
 
     # Age
     "age":         ["age","player_age","years","age_years","current_age"],
@@ -527,6 +527,23 @@ def smart_merge(players_df: pd.DataFrame, perf_df: pd.DataFrame) -> pd.DataFrame
             df["age"] = perf_df["age"].values[:len(df)]
         else:
             df["age"] = 25
+
+    # Resolve role conflict — always prefer players_df role over perf_df
+    # (perf CSVs often carry a default "AR" role; player CSVs have the real position)
+    if "role" in players_df.columns:
+        # Re-apply the players role directly — it may have been suffixed _perf if
+        # players_df was accidentally used as the right side of the merge
+        _role_src = "role" if "role" in df.columns else "role_perf"
+        if "role" in df.columns and "role_perf" in df.columns:
+            # Both present — players side is left (no suffix), keep it
+            pass
+        elif "role_perf" in df.columns:
+            df["role"] = df["role_perf"]
+    elif "role" not in df.columns:
+        if "role_perf" in df.columns:
+            df["role"] = df["role_perf"]
+        else:
+            df["role"] = "BAT"
 
     return df
 
@@ -800,6 +817,11 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     # ── Smart merge ────────────────────────────────────────────────────────
     df = smart_merge(players, perf)
 
+    # Save role from players/perf BEFORE contracts merge can corrupt it.
+    # Contracts CSVs sometimes carry a generic "role" column (often all "AR")
+    # that would overwrite the real player positions from the roster CSV.
+    _saved_role = df["role"].copy() if "role" in df.columns else None
+
     if contracts is not None:
         c_detected = auto_detect_columns(contracts)
         c_id = c_detected.get("player_id", (None, 0))[0]
@@ -818,6 +840,13 @@ def build_base_df(players: pd.DataFrame, perf: pd.DataFrame, contracts: pd.DataF
     detected = auto_detect_columns(df)
     mapping  = {field: col for field, (col, _) in detected.items()}
     df = apply_column_mapping(df, mapping)
+
+    # Restore role from pre-contracts data so contracts can never override it.
+    # Also ensure a role column always exists (default BAT if none detected).
+    if _saved_role is not None:
+        df["role"] = standardise_roles(_saved_role.reindex(df.index).fillna("BAT"))
+    elif "role" not in df.columns:
+        df["role"] = "BAT"
 
     # ── Required column check ─────────────────────────────────────────────
     if "player" not in df.columns:
