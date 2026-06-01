@@ -3915,6 +3915,37 @@ with st.sidebar:
     else:
         mode = "landing"
 
+    # ── Sample Data Downloads ──────────────────────────────────────────
+    st.markdown("""
+    <hr style='border-color:#1e3a5f;margin:1rem 0;'>
+    <div style='font-size:0.72rem;color:#4a7a9b;font-weight:600;text-transform:uppercase;
+                letter-spacing:.08em;margin-bottom:0.3rem;'>📥 Sample Data</div>
+    <div style='font-size:0.70rem;color:#4a7a9b;margin-bottom:0.6rem;line-height:1.5;'>
+        Download sample files to explore CricIntel instantly.
+        Upload them using the button below.
+    </div>
+    """, unsafe_allow_html=True)
+
+    _data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "DATA")
+    _samples = [
+        ("⚡ Performance Data", "sample_performance.csv"),
+        ("👤 Player Data",      "sample_player.csv"),
+        ("💼 Contracts Data",   "sample_contracts.csv"),
+        ("💰 Budget Data",      "sample_budget.csv"),
+    ]
+    for _label, _fname in _samples:
+        _fpath = os.path.join(_data_dir, _fname)
+        if os.path.exists(_fpath):
+            with open(_fpath, "rb") as _f:
+                st.download_button(
+                    label=f"↓ {_label}",
+                    data=_f.read(),
+                    file_name=_fname.replace("sample_", ""),
+                    mime="text/csv",
+                    use_container_width=True,
+                    key=f"dl_{_fname}",
+                )
+
     st.markdown("""
     <hr style='border-color:#1e3a5f;margin:1rem 0;'>
     <div style='font-size:0.72rem;color:#4a7a9b;text-align:center;padding-bottom:1rem;'>

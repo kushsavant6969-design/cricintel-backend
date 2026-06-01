@@ -1,0 +1,2001 @@
+player_id,player,role,age,bat_hand,bowl_type,is_spinner,is_pacer,is_overseas,injury_risk,is_pp_bowler,is_death_bowler,is_pp_batter,is_death_hitter
+1,Ravindra Varma,AR,24,L,SPIN,1,0,0,0.305,0,0,0,0
+2,Dom Woakes,BOWL,35,R,PACE,0,1,0,0.743,1,1,0,0
+3,Cameron Zampa,AR,18,R,PACE,0,1,0,0.416,1,1,0,1
+4,Mitchell Tickner,BOWL,27,L,SPIN,1,0,0,0.436,1,0,0,0
+5,Gerald Elgar,BAT,34,R,,0,0,0,0.488,0,0,0,0
+6,Usama Abbasi,WK,38,L,,0,0,0,0.548,0,0,0,0
+7,Dushmantha Mathews,AR,23,R,SPIN,1,0,0,0.238,1,0,0,0
+8,Kemar Shepherd,AR,31,R,PACE,0,1,0,0.525,1,0,0,0
+9,Jonny Salt,BAT,21,R,,0,0,0,0.35,0,0,0,0
+10,Zak Stokes,BOWL,20,L,PACE,0,1,0,0.432,1,0,0,0
+11,Brydon Archer,BAT,25,R,,0,0,1,0.433,0,0,1,1
+12,Stuart Stokes,AR,36,L,PACE,0,1,0,0.723,1,1,0,0
+13,Ruturaj Sharma,BOWL,32,L,PACE,0,1,0,0.266,0,0,0,0
+14,Liam Salt,AR,28,R,SPIN,1,0,0,0.524,0,0,0,0
+15,Nathan Conway,BOWL,23,R,SPIN,1,0,0,0.274,0,0,0,0
+16,Neil Sodhi,BAT,20,R,,0,0,0,0.39,0,0,1,1
+17,Faf Parnell,BOWL,23,L,PACE,0,1,0,0.484,0,1,0,0
+18,Saim Aslam,BAT,21,R,,0,0,0,0.323,0,0,0,0
+19,Niroshan Udana,AR,21,R,SPIN,1,0,0,0.148,0,0,0,0
+20,Fabian Thomas,BOWL,32,R,PACE,0,1,0,0.581,1,1,0,0
+21,Jonny Anderson,BOWL,20,R,SPIN,1,0,1,0.239,1,0,0,0
+22,Jofra Brook,BAT,18,L,,0,0,0,0.283,0,0,0,0
+23,Zak Curran,WK,29,R,,0,0,1,0.389,0,0,0,0
+24,Harry Ali,AR,24,R,SPIN,1,0,0,0.287,0,0,0,0
+25,Shreyas Dube,AR,27,R,PACE,0,1,1,0.509,0,0,0,0
+26,Jack Ali,BAT,20,R,,0,0,0,0.299,0,0,0,0
+27,Alex Zampa,BOWL,22,R,PACE,0,1,0,0.435,1,1,0,0
+28,Tom Phillips,BAT,27,L,,0,0,0,0.231,0,0,1,1
+29,Wayne Ngidi,BAT,32,R,,0,0,0,0.381,0,0,1,1
+30,Agha Afridi,BOWL,26,R,PACE,0,1,0,0.563,0,0,0,0
+31,Suranga Karunaratne,BOWL,29,L,PACE,0,1,0,0.446,1,1,0,0
+32,Kavem Gayle,WK,28,R,,0,0,0,0.365,0,0,0,0
+33,Jos Ali,BAT,23,R,,0,0,0,0.399,0,0,0,0
+34,Ollie Buttler,BAT,23,R,,0,0,1,0.266,0,0,0,1
+35,Ben Broad,BOWL,26,L,PACE,0,1,0,0.45,1,1,0,0
+36,Matt Wood,BAT,18,R,,0,0,0,0.283,0,0,1,1
+37,Shreyas Bishnoi,BAT,32,R,,0,0,0,0.528,0,0,1,1
+38,Moeen Archer,BOWL,30,R,PACE,0,1,0,0.563,1,1,0,0
+39,David Hazlewood,BAT,24,R,,0,0,1,0.21,0,0,1,1
+40,Daryl Chapman,BOWL,25,R,PACE,0,1,0,0.467,1,1,0,0
+41,Heinrich Shamsi,BOWL,24,R,PACE,0,1,0,0.581,0,0,0,0
+42,Tayyab Gul,AR,31,L,PACE,0,1,0,0.496,0,0,0,0
+43,Lahiru Chameera,BOWL,33,L,PACE,0,1,0,0.614,1,1,0,0
+44,Darren Brooks,BAT,20,R,,0,0,0,0.162,0,0,0,0
+45,Moeen Sibley,AR,26,L,PACE,0,1,1,0.357,0,0,0,0
+46,Zak Carse,AR,18,L,SPIN,1,0,0,0.266,0,0,0,0
+47,Jamie Lawrence,BOWL,27,R,PACE,0,1,0,0.539,0,1,0,0
+48,Sam Sibley,BAT,23,R,,0,0,0,0.371,0,0,0,0
+49,Suryakumar Sharma,BOWL,25,L,SPIN,1,0,0,0.403,0,0,0,0
+50,Jamie Brook,BAT,27,R,,0,0,1,0.263,0,0,1,1
+51,Alex Turner,BAT,24,L,,0,0,0,0.29,0,0,1,1
+52,Kane Ravindra,BAT,26,R,,0,0,0,0.38,0,0,0,0
+53,Heinrich Williams,AR,34,R,SPIN,1,0,0,0.672,1,1,0,0
+54,Usama Aslam,BOWL,35,L,PACE,0,1,0,0.663,1,1,0,0
+55,Akila Kumara,BOWL,18,R,SPIN,1,0,0,0.209,1,1,0,0
+56,Shimron Hetmyer,AR,25,R,PACE,0,1,0,0.686,1,1,0,0
+57,Joe Anderson,BOWL,35,R,PACE,0,1,1,0.518,0,0,0,0
+58,Mark Brook,BOWL,29,R,SPIN,1,0,0,0.528,1,1,0,0
+59,Sam Brook,BAT,22,R,,0,0,0,0.268,0,0,0,0
+60,Sam Pope,BAT,30,R,,0,0,0,0.515,0,0,0,0
+61,Ishan Kohli,BOWL,21,R,PACE,0,1,0,0.277,1,1,0,0
+62,Joe Roy,BOWL,18,R,SPIN,1,0,0,0.404,1,1,0,0
+63,Lance Short,BOWL,31,R,PACE,0,1,0,0.644,0,0,0,0
+64,Jacob Nicholls,AR,28,L,PACE,0,1,0,0.51,0,0,0,0
+65,Temba Rickelton,BOWL,33,R,SPIN,1,0,1,0.644,1,1,0,0
+66,Haris Khushdil,BOWL,25,R,SPIN,1,0,0,0.335,1,0,0,0
+67,Dimuth Nissanka,BOWL,35,R,SPIN,1,0,0,0.428,0,0,0,0
+68,Shimron Holder,BAT,26,R,,0,0,0,0.223,0,0,0,0
+69,Dom Crawley,BAT,33,L,,0,0,0,0.68,0,0,0,0
+70,Jonny Root,BOWL,20,R,SPIN,1,0,0,0.256,0,0,0,0
+71,James Ahmed,BAT,20,R,,0,0,1,0.28,0,0,1,1
+72,Jack Brook,BOWL,34,L,SPIN,1,0,0,0.695,1,1,0,0
+73,Mohammed Chahal,AR,35,L,PACE,0,1,0,0.513,0,0,0,0
+74,Dom Wood,BAT,37,L,,0,0,1,0.344,0,0,1,0
+75,Usman Richardson,BAT,24,L,,0,0,0,0.156,0,0,1,1
+76,Mitchell Wagner,BAT,18,L,,0,0,0,0.121,0,0,0,0
+77,Reeza Rabada,BAT,38,R,,0,0,0,0.714,0,0,0,0
+78,Fakhar Zaman,BOWL,30,R,SPIN,1,0,0,0.547,1,0,0,0
+79,Maheesh Chandimal,BOWL,23,R,PACE,0,1,0,0.468,1,0,0,0
+80,Rovman Mayers,AR,34,R,SPIN,1,0,0,0.37,1,0,0,0
+81,Jos Lawrence,BOWL,36,R,PACE,0,1,0,0.95,1,1,0,0
+82,Harry Overton,BOWL,23,R,SPIN,1,0,0,0.326,0,0,0,0
+83,Matt Stokes,AR,34,R,PACE,0,1,0,0.749,0,0,0,0
+84,Mark Lawrence,BAT,34,L,,0,0,1,0.68,0,0,1,1
+85,Prasidh Bawa,BAT,28,L,,0,0,0,0.501,0,0,1,1
+86,Stuart Archer,BAT,31,R,,0,0,0,0.401,0,0,0,0
+87,Nathan Agar,BOWL,23,R,PACE,0,1,0,0.263,0,0,0,0
+88,Matt Kuggeleijn,BOWL,37,R,SPIN,1,0,0,0.476,1,0,0,0
+89,Andile Ngidi,BAT,38,R,,0,0,0,0.675,0,0,0,0
+90,Babar Azam,BOWL,38,L,PACE,0,1,0,0.702,1,1,0,0
+91,Sachith Liyanage,BAT,33,L,,0,0,0,0.692,0,0,1,1
+92,Fabian Brooks,BOWL,18,L,SPIN,1,0,0,0.266,1,1,0,0
+93,Sam Bairstow,BOWL,25,L,PACE,0,1,0,0.573,0,0,0,0
+94,Harry Broad,BOWL,27,L,PACE,0,1,0,0.484,0,0,0,0
+95,Ollie Curran,BAT,38,R,,0,0,0,0.51,0,0,0,0
+96,James Root,BOWL,29,R,PACE,0,1,0,0.596,1,1,0,0
+97,Umesh Patel,BAT,29,R,,0,0,0,0.358,0,0,0,0
+98,Liam Carse,BAT,21,R,,0,0,0,0.272,0,0,0,0
+99,Tim Philippe,BAT,34,R,,0,0,0,0.75,0,0,0,0
+100,Jacob Southee,WK,25,R,,0,0,0,0.527,0,0,1,0
+101,Reeza Amla,AR,19,L,SPIN,1,0,0,0.386,1,0,0,0
+102,Faheem Iftikhar,BOWL,38,R,SPIN,1,0,0,0.71,1,1,0,0
+103,Niroshan Theekshana,BAT,21,L,,0,0,0,0.183,0,0,1,1
+104,Nicholas Hetmyer,WK,18,L,,0,0,0,0.325,0,0,1,1
+105,Adil Anderson,AR,19,R,SPIN,1,0,1,0.347,1,0,0,0
+106,Adil Carse,BOWL,27,R,SPIN,1,0,0,0.359,1,1,0,0
+107,Adil Rashid,BOWL,20,R,SPIN,1,0,1,0.177,0,0,0,0
+108,Ben Stokes,BAT,35,R,,0,0,0,0.532,0,0,1,1
+109,Tilak Mukesh,BAT,28,R,,0,0,0,0.577,0,0,1,0
+110,Joe Overton,AR,24,L,PACE,0,1,0,0.4,1,0,1,0
+111,David Zampa,BOWL,18,R,PACE,0,1,0,0.413,1,1,0,0
+112,Rachin Boult,BAT,28,R,,0,0,0,0.458,0,0,1,0
+113,Gerald Rabada,BAT,21,R,,0,0,1,0.331,0,0,0,0
+114,Tayyab Shafique,BOWL,38,R,PACE,0,1,0,0.629,1,1,0,0
+115,Dilshan Vandersay,BAT,24,R,,0,0,0,0.347,0,0,0,0
+116,Roston Shepherd,AR,27,R,SPIN,1,0,0,0.224,0,0,0,0
+117,James Potts,BOWL,18,R,SPIN,1,0,0,0.232,1,1,0,0
+118,Matt Woakes,BOWL,20,R,PACE,0,1,1,0.306,1,1,0,0
+119,Jason Roy,BOWL,22,R,SPIN,1,0,0,0.284,0,0,0,0
+120,Joe Curran,BOWL,19,R,SPIN,1,0,0,0.299,1,1,0,0
+121,Hardik Sundar,BOWL,33,R,PACE,0,1,1,0.634,1,1,0,0
+122,Jonny Potts,BOWL,37,R,PACE,0,1,1,0.753,0,0,0,0
+123,Travis Richardson,BAT,38,R,,0,0,0,0.587,0,0,1,1
+124,Devon Tickner,BOWL,23,R,PACE,0,1,0,0.415,0,0,0,0
+125,Reeza Ngidi,BAT,34,R,,0,0,1,0.642,0,0,0,0
+126,Usman Saleem,BOWL,28,R,SPIN,1,0,0,0.386,1,1,0,0
+127,Pathum Kumara,BAT,18,R,,0,0,0,0.194,0,0,1,1
+128,Alzarri Sammy,BAT,19,R,,0,0,0,0.267,0,0,0,0
+129,Ollie Root,BAT,29,R,,0,0,1,0.387,0,0,0,0
+130,Chris Bethell,BOWL,26,L,PACE,0,1,1,0.508,0,0,0,0
+131,Jamie Ali,BAT,18,R,,0,0,0,0.392,0,0,0,1
+132,Rehan Wood,AR,37,L,SPIN,1,0,0,0.621,1,1,1,1
+133,Shubman Jadeja,BOWL,33,R,SPIN,1,0,0,0.531,0,0,0,0
+134,Jamie Potts,BAT,28,R,,0,0,0,0.471,0,0,0,0
+135,Marcus Warner,BOWL,38,L,PACE,0,1,1,0.767,1,1,0,0
+136,Kane Taylor,BAT,38,L,,0,0,0,0.643,0,0,0,0
+137,Ryan Nortje,WK,38,L,,0,0,0,0.687,0,0,0,0
+138,Naseem Saleem,BOWL,23,R,SPIN,1,0,0,0.391,0,0,0,0
+139,Dimuth Rajapaksa,AR,36,L,PACE,0,1,0,0.752,0,0,0,0
+140,Darren Bravo,BAT,28,R,,0,0,1,0.415,0,0,1,1
+141,Brydon Salt,BOWL,33,R,SPIN,1,0,0,0.676,1,1,0,0
+142,Brydon Root,BOWL,36,R,SPIN,1,0,1,0.613,1,1,0,0
+143,Brydon Potts,AR,21,L,PACE,0,1,0,0.44,0,0,0,0
+144,Chris Rashid,BOWL,27,R,SPIN,1,0,0,0.314,0,0,0,0
+145,Jasprit Iyer,BOWL,20,L,PACE,0,1,0,0.33,1,1,0,0
+146,Stuart Pope,BAT,23,R,,0,0,0,0.381,0,0,1,0
+147,Scott Labuschagne,BAT,26,L,,0,0,0,0.411,0,0,1,1
+148,Ross O'Rourke,BOWL,35,R,SPIN,1,0,0,0.577,0,0,0,0
+149,Temba Fortuin,BOWL,36,L,PACE,0,1,0,0.76,1,0,0,0
+150,Wahab Ahmed,BAT,26,R,,0,0,0,0.236,0,0,0,0
+151,Dasun Mendis,AR,24,R,SPIN,1,0,0,0.366,0,0,0,0
+152,Kevin Hetmyer,AR,29,R,SPIN,1,0,0,0.62,1,1,1,0
+153,Jason Curran,BAT,37,R,,0,0,0,0.74,0,0,1,1
+154,Jos Root,BOWL,38,R,PACE,0,1,0,0.62,0,0,0,0
+155,Jack Crawley,BAT,22,R,,0,0,1,0.331,0,0,1,1
+156,Jason Potts,BOWL,21,R,SPIN,1,0,0,0.29,1,0,0,0
+157,Arshdeep Bumrah,BAT,32,R,,0,0,0,0.75,0,0,0,0
+158,Harry Bairstow,BOWL,24,R,SPIN,1,0,0,0.299,1,0,0,0
+159,Marcus Smith,BOWL,22,L,PACE,0,1,1,0.485,1,1,0,0
+160,Ross Ravindra,AR,18,R,PACE,0,1,0,0.202,0,0,0,0
+161,Vernon Mulder,BAT,26,L,,0,0,0,0.346,0,0,1,1
+162,Tayyab Khushdil,AR,26,L,PACE,0,1,1,0.404,0,0,0,0
+163,Thisara Hasaranga,BAT,29,R,,0,0,0,0.504,0,0,0,0
+164,Roston Brooks,BAT,22,R,,0,0,1,0.153,0,0,0,0
+165,Jofra Salt,BOWL,33,R,PACE,0,1,0,0.635,0,0,0,0
+166,Ollie Stokes,BAT,32,R,,0,0,1,0.379,0,0,1,0
+167,Zak Root,AR,27,R,PACE,0,1,1,0.57,0,0,0,0
+168,Dom Root,AR,21,R,PACE,0,1,1,0.481,1,1,1,1
+169,Rishabh Sundar,BAT,28,R,,0,0,0,0.487,0,0,1,1
+170,Jofra Buttler,WK,32,R,,0,0,1,0.399,0,0,1,0
+171,Marnus Tye,BAT,25,L,,0,0,1,0.379,0,0,0,0
+172,Neil Ravindra,BOWL,23,R,PACE,0,1,0,0.635,0,1,0,0
+173,Tabraiz de Zorzi,BAT,28,R,,0,0,0,0.476,0,0,0,0
+174,Imam Rizwan,AR,25,L,SPIN,1,0,1,0.355,0,0,0,0
+175,Kasun de Silva,BAT,26,R,,0,0,0,0.491,0,0,1,1
+176,Odean Gayle,BAT,25,R,,0,0,0,0.44,0,0,0,0
+177,Craig Crawley,BOWL,24,L,SPIN,1,0,0,0.355,0,0,0,0
+178,Rehan Root,WK,33,R,,0,0,0,0.52,0,0,1,1
+179,Jonny Ali,AR,27,R,PACE,0,1,0,0.493,0,0,0,0
+180,Jamie Wood,BOWL,27,R,PACE,0,1,0,0.357,0,0,0,0
+181,Tilak Gill,AR,31,L,PACE,0,1,0,0.699,0,0,0,0
+182,Ollie Crawley,AR,25,R,SPIN,1,0,1,0.394,0,0,0,0
+183,Aaron Boland,BOWL,20,R,SPIN,1,0,0,0.02,0,0,0,0
+184,Colin Blundell,BAT,35,R,,0,0,0,0.539,0,0,0,0
+185,Gerald Markram,AR,19,R,PACE,0,1,0,0.22,0,0,0,0
+186,Salman Shah,BOWL,30,R,PACE,0,1,1,0.562,1,1,0,0
+187,Pathum Rajitha,BAT,23,L,,0,0,1,0.445,0,0,0,1
+188,Kyle Motie,BAT,22,L,,0,0,0,0.379,0,0,0,0
+189,Jason Brook,BOWL,18,R,SPIN,1,0,0,0.472,1,1,0,0
+190,Mark Ahmed,BAT,36,R,,0,0,0,0.499,0,0,1,0
+191,Jamie Carse,AR,27,R,PACE,0,1,0,0.432,1,1,1,0
+192,Tom Brook,BAT,25,R,,0,0,0,0.44,0,0,1,0
+193,Prasidh Iyer,BAT,33,R,,0,0,0,0.443,0,0,0,0
+194,Tom Potts,AR,18,R,PACE,0,1,0,0.198,1,1,0,0
+195,Steve Green,BAT,29,R,,0,0,0,0.337,0,0,0,0
+196,Mark Taylor,BAT,28,R,,0,0,0,0.442,0,0,1,1
+197,Tabraiz Rickelton,BOWL,29,R,PACE,0,1,1,0.426,0,0,0,0
+198,Asif Zaman,AR,20,R,SPIN,1,0,0,0.334,0,0,0,1
+199,Suranga Mendis,BAT,38,R,,0,0,0,0.612,0,0,1,0
+200,Nicholas Athanaze,BAT,23,L,,0,0,0,0.225,0,0,0,0
+201,Matt Overton,AR,32,L,PACE,0,1,1,0.789,1,1,0,0
+202,Jamie Salt,WK,33,L,,0,0,0,0.537,0,0,0,0
+203,Matt Rashid,BOWL,25,L,PACE,0,1,0,0.293,0,0,0,0
+204,Craig Wood,BAT,20,R,,0,0,0,0.085,0,0,0,0
+205,Hardik Chahal,BAT,24,L,,0,0,0,0.237,0,0,0,0
+206,Liam Archer,BAT,34,R,,0,0,1,0.5,0,0,1,1
+207,Matthew Starc,BAT,37,R,,0,0,0,0.494,0,0,0,0
+208,Daryl Boult,BOWL,37,R,PACE,0,1,0,0.701,0,0,0,0
+209,Marco Hendricks,BAT,22,R,,0,0,0,0.32,0,0,0,0
+210,Saim Rizwan,BOWL,30,R,SPIN,1,0,0,0.509,0,0,0,0
+211,Isuru Kumara,BOWL,21,R,PACE,0,1,0,0.442,1,1,0,0
+212,Fabian Bravo,BOWL,32,R,PACE,0,1,0,0.542,0,1,0,0
+213,Tom Ali,BAT,26,L,,0,0,0,0.357,0,0,0,0
+214,Mark Overton,AR,32,R,SPIN,1,0,0,0.617,1,1,0,0
+215,Jofra Ahmed,BOWL,32,R,PACE,0,1,1,0.704,1,0,0,0
+216,James Crawley,BOWL,38,L,PACE,0,1,1,0.752,1,1,0,0
+217,Rinku Siraj,BAT,28,R,,0,0,1,0.467,0,0,1,0
+218,Liam Crawley,BAT,25,R,,0,0,0,0.426,0,0,0,0
+219,Steve Smith,AR,29,R,PACE,0,1,0,0.419,0,0,0,0
+220,Colin Latham,BOWL,21,R,SPIN,1,0,0,0.245,0,0,0,0
+221,Wiaan du Plessis,BAT,20,R,,0,0,1,0.297,0,0,1,1
+222,Danish Afridi,BOWL,28,L,PACE,0,1,0,0.638,1,1,0,0
+223,Dinesh Chameera,BOWL,35,L,SPIN,1,0,0,0.57,1,1,0,0
+224,Shai Bravo,WK,29,R,,0,0,0,0.471,0,0,0,0
+225,Harry Anderson,BAT,34,R,,0,0,1,0.467,0,0,0,0
+226,Matt Ahmed,AR,21,L,PACE,0,1,1,0.401,1,1,0,0
+227,Jonny Archer,BAT,27,R,,0,0,1,0.409,0,0,1,0
+228,Jason Overton,BOWL,30,R,PACE,0,1,0,0.528,0,0,0,0
+229,Rishabh Bishnoi,BOWL,25,R,SPIN,1,0,0,0.386,1,1,0,0
+230,Jamie Crawley,BAT,18,R,,0,0,0,0.23,0,0,0,0
+231,Matthew Stoinis,BAT,19,R,,0,0,0,0.16,0,0,0,0
+232,Neil Chapman,BOWL,37,R,SPIN,1,0,1,0.564,1,1,0,0
+233,Reeza Nortje,WK,30,R,,0,0,0,0.289,0,0,0,0
+234,Agha Nawaz,BOWL,23,R,SPIN,1,0,0,0.516,1,1,0,0
+235,Nuwan Chameera,AR,23,R,PACE,0,1,0,0.362,0,0,0,0
+236,Alzarri Russell,AR,18,R,PACE,0,1,0,0.261,1,0,0,0
+237,Matt Anderson,BOWL,37,L,PACE,0,1,0,0.696,0,0,0,0
+238,Jos Stokes,AR,20,R,SPIN,1,0,0,0.337,1,1,0,0
+239,Jofra Root,BAT,33,R,,0,0,1,0.396,0,0,1,1
+240,Brydon Anderson,BAT,23,R,,0,0,0,0.163,0,0,0,1
+241,Suryakumar Iyer,AR,25,L,SPIN,1,0,0,0.407,0,0,0,0
+242,Jason Carse,AR,23,R,SPIN,1,0,0,0.412,0,0,0,0
+243,Peter Short,BAT,35,L,,0,0,0,0.685,0,0,1,1
+244,Tom Wagner,BOWL,18,R,PACE,0,1,0,0.203,0,0,0,0
+245,Reeza Williams,BOWL,25,R,PACE,0,1,1,0.442,1,1,0,0
+246,Agha Irfan,AR,23,R,PACE,0,1,0,0.401,0,0,0,0
+247,Pathum Rajapaksa,BOWL,23,R,SPIN,1,0,1,0.065,0,0,0,0
+248,Kyle Holder,BOWL,22,L,PACE,0,1,0,0.312,0,0,0,0
+249,Liam Bairstow,BAT,37,L,,0,0,0,0.65,0,0,0,0
+250,Joe Root,BOWL,25,R,SPIN,1,0,0,0.481,1,1,0,0
+251,Ollie Wood,BOWL,26,L,PACE,0,1,0,0.492,0,0,0,0
+252,Chris Archer,AR,26,R,PACE,0,1,1,0.561,0,0,0,0
+253,Suryakumar Kishan,BOWL,38,R,PACE,0,1,0,0.916,1,1,0,0
+254,Jack Stokes,BAT,25,R,,0,0,0,0.519,0,0,1,0
+255,Andrew Boland,BAT,25,R,,0,0,0,0.383,0,0,1,1
+256,Devon Kuggeleijn,BOWL,24,L,PACE,0,1,1,0.534,1,1,0,0
+257,Hashim Klaasen,AR,24,R,SPIN,1,0,0,0.119,0,0,0,0
+258,Asif Saleem,BAT,19,R,,0,0,1,0.289,0,0,1,0
+259,Maheesh Mathews,BAT,30,R,,0,0,0,0.556,0,0,0,0
+260,Kieran Sammy,BOWL,18,R,PACE,0,1,1,0.238,1,1,0,0
+261,Tom Woakes,BAT,22,R,,0,0,0,0.184,0,0,1,0
+262,Brydon Buttler,AR,22,R,SPIN,1,0,0,0.481,0,0,0,0
+263,Jamie Buttler,BAT,24,R,,0,0,1,0.394,0,0,1,1
+264,Mark Anderson,BAT,33,R,,0,0,0,0.607,0,0,0,0
+265,Mohammed Tiwary,AR,30,R,PACE,0,1,0,0.653,1,1,1,1
+266,Jonny Rashid,BAT,38,R,,0,0,0,0.782,0,0,0,0
+267,Marnus Inglis,BAT,25,R,,0,0,0,0.355,0,0,0,0
+268,Daryl Ferguson,BAT,37,L,,0,0,0,0.56,0,0,1,0
+269,Hashim Ngidi,BAT,18,L,,0,0,0,0.181,0,0,1,1
+270,Zafar Zaman,BAT,28,R,,0,0,1,0.359,0,0,0,0
+271,Dhananjaya Dickwella,BAT,34,L,,0,0,1,0.371,0,0,0,0
+272,Dwayne Athanaze,BAT,29,R,,0,0,0,0.497,0,0,0,0
+273,Tom Ahmed,BAT,37,R,,0,0,0,0.654,0,0,0,0
+274,Jamie Bairstow,BOWL,24,R,SPIN,1,0,1,0.443,1,1,0,0
+275,Sam Rashid,BOWL,18,R,SPIN,1,0,0,0.098,1,1,0,0
+276,Adil Potts,BOWL,34,L,SPIN,1,0,0,0.695,1,1,0,0
+277,Yuzvendra Dube,BAT,19,R,,0,0,0,0.293,0,0,0,0
+278,Matt Lawrence,BOWL,34,R,SPIN,1,0,0,0.674,1,1,0,0
+279,Andrew Tye,AR,33,R,PACE,0,1,0,0.581,1,0,0,0
+280,Daryl Ravindra,AR,35,R,PACE,0,1,0,0.86,1,1,0,0
+281,Rassie Philander,BAT,28,R,,0,0,1,0.518,0,0,0,0
+282,Agha Saleem,BAT,36,R,,0,0,0,0.63,0,0,0,0
+283,Maheesh Perera,BAT,21,R,,0,0,0,0.49,0,0,1,1
+284,Fabian Pollard,BAT,27,R,,0,0,0,0.431,0,0,1,1
+285,Dom Roy,BOWL,20,R,SPIN,1,0,0,0.331,1,1,0,0
+286,Zak Anderson,BOWL,34,R,PACE,0,1,1,0.608,0,0,0,0
+287,Zak Buttler,BAT,32,R,,0,0,0,0.629,0,0,0,0
+288,Zak Ahmed,BAT,34,R,,0,0,1,0.515,0,0,0,0
+289,Ravindra Yadav,BOWL,34,R,PACE,0,1,0,0.718,1,1,0,0
+290,Zak Wood,BAT,24,R,,0,0,0,0.344,0,0,0,0
+291,Mitchell Maxwell,AR,19,R,SPIN,1,0,0,0.215,0,0,1,0
+292,Henry Conway,BAT,37,L,,0,0,0,0.462,0,0,0,0
+293,Dean Steyn,AR,28,R,SPIN,1,0,1,0.262,0,1,0,0
+294,Saim Butt,BAT,19,R,,0,0,0,0.199,0,0,0,0
+295,Kasun Asalanka,AR,37,R,PACE,0,1,0,0.768,1,1,0,0
+296,Obed Gayle,AR,38,L,PACE,0,1,0,0.572,1,0,0,0
+297,Stuart Brook,WK,27,L,,0,0,0,0.537,0,0,0,0
+298,Jack Lawrence,AR,34,R,SPIN,1,0,1,0.533,0,0,0,0
+299,Sam Ali,AR,18,R,PACE,0,1,0,0.329,1,1,1,1
+300,Ben Anderson,BOWL,19,R,SPIN,1,0,0,0.296,0,0,0,0
+301,Rishabh Pandya,AR,23,L,SPIN,1,0,0,0.369,1,1,0,0
+302,Jofra Pope,BAT,31,R,,0,0,0,0.498,0,0,0,0
+303,Peter Khawaja,BOWL,20,R,PACE,0,1,0,0.275,1,1,0,0
+304,Kane Blundell,BOWL,18,L,PACE,0,1,0,0.19,1,0,0,0
+305,Lungi Fortuin,AR,32,R,PACE,0,1,0,0.636,1,1,0,0
+306,Saud Khan,BOWL,34,R,SPIN,1,0,0,0.66,1,1,0,0
+307,Angelo Hasaranga,BOWL,33,R,SPIN,1,0,0,0.654,1,1,0,0
+308,Sunil McCoy,BOWL,34,R,SPIN,1,0,1,0.489,0,0,0,0
+309,Matt Brook,BAT,34,R,,0,0,0,0.563,0,0,0,0
+310,Tom Lawrence,BAT,30,R,,0,0,0,0.518,0,0,1,0
+311,Moeen Potts,BOWL,28,L,SPIN,1,0,0,0.322,0,0,0,0
+312,Harry Root,BOWL,35,L,SPIN,1,0,0,0.626,1,1,0,0
+313,Shubman Yadav,BAT,25,R,,0,0,1,0.257,0,0,0,0
+314,Jamie Rashid,BAT,20,R,,0,0,0,0.106,0,0,0,0
+315,Cooper Turner,BAT,33,R,,0,0,0,0.398,0,0,0,0
+316,Kane Boult,BAT,23,R,,0,0,1,0.382,0,0,1,0
+317,Tony Maharaj,BAT,38,L,,0,0,1,0.579,0,0,0,0
+318,Agha Shakeel,BOWL,26,R,PACE,0,1,1,0.453,0,0,0,0
+319,Dinesh Lakmal,BAT,35,R,,0,0,0,0.506,0,0,0,0
+320,Kieran Bravo,WK,18,R,,0,0,0,0.107,0,0,0,0
+321,Matt Crawley,AR,31,R,PACE,0,1,0,0.527,0,0,0,0
+322,Chris Anderson,BOWL,27,R,PACE,0,1,0,0.427,0,1,0,0
+323,Jos Bairstow,BAT,27,R,,0,0,0,0.337,0,0,0,0
+324,Jofra Potts,BOWL,23,L,SPIN,1,0,1,0.196,1,1,0,0
+325,Prasidh Shaw,AR,38,R,SPIN,1,0,0,0.599,0,0,0,0
+326,Dom Curran,BOWL,26,L,PACE,0,1,0,0.441,0,0,0,0
+327,Marcus Maxwell,AR,35,R,SPIN,1,0,0,0.532,1,1,0,0
+328,Colin Williamson,BOWL,26,L,PACE,0,1,0,0.576,0,0,0,0
+329,Tony Mulder,BOWL,19,R,SPIN,1,0,0,0.273,1,1,0,0
+330,Sarfaraz Rizwan,BAT,36,R,,0,0,0,0.588,0,0,1,1
+331,Nuwan Udana,BOWL,21,L,PACE,0,1,0,0.393,1,1,0,0
+332,Jayden Mayers,BAT,23,R,,0,0,0,0.5,0,0,0,0
+333,Liam Wood,BOWL,36,R,PACE,0,1,0,0.716,0,0,0,0
+334,Jason Pope,AR,36,R,PACE,0,1,0,0.778,0,0,1,0
+335,Brydon Crawley,BAT,37,R,,0,0,0,0.755,0,0,1,1
+336,Ollie Ali,BOWL,26,R,PACE,0,1,0,0.332,0,0,0,0
+337,Rishabh Siraj,BAT,33,R,,0,0,0,0.643,0,0,1,0
+338,Jos Salt,BOWL,24,L,PACE,0,1,0,0.463,1,1,0,0
+339,Marcus Carey,BAT,33,R,,0,0,0,0.456,0,0,1,1
+340,Kane Duffy,AR,28,R,SPIN,1,0,1,0.368,0,0,0,0
+341,Reeza Jansen,BAT,19,R,,0,0,0,0.34,0,0,0,0
+342,Yasir Shakeel,WK,26,L,,0,0,0,0.364,0,0,1,1
+343,Thisara Karunaratne,AR,27,R,PACE,0,1,1,0.421,0,0,0,0
+344,Roston Sammy,BOWL,23,R,PACE,0,1,1,0.417,0,0,0,0
+345,Jofra Anderson,AR,25,R,PACE,0,1,0,0.581,1,0,0,0
+346,Dom Bethell,AR,28,R,PACE,0,1,0,0.472,0,0,0,0
+347,Ben Wood,WK,19,L,,0,0,1,0.147,0,0,0,0
+348,Brydon Ali,BAT,21,R,,0,0,0,0.19,0,0,1,1
+349,Suryakumar Pant,BOWL,34,L,SPIN,1,0,0,0.522,1,1,0,0
+350,Rehan Carse,BAT,25,R,,0,0,0,0.395,0,0,1,1
+351,Steve Philippe,BOWL,30,R,PACE,0,1,1,0.445,0,0,0,0
+352,Kane Ferguson,BAT,29,R,,0,0,0,0.409,0,0,0,0
+353,Wayne Amla,BOWL,29,R,PACE,0,1,0,0.464,0,0,0,0
+354,Usama Khurram,BOWL,26,R,SPIN,1,0,0,0.202,0,0,0,0
+355,Sachith Embuldeniya,BOWL,28,R,SPIN,1,0,1,0.477,1,1,0,0
+356,Dwayne Brooks,BOWL,35,R,SPIN,1,0,0,0.422,1,1,0,0
+357,Joe Stokes,AR,38,R,PACE,0,1,1,0.757,1,0,0,0
+358,Joe Crawley,AR,23,R,SPIN,1,0,0,0.304,1,0,0,0
+359,Jason Ahmed,BOWL,32,R,SPIN,1,0,1,0.495,1,1,0,0
+360,Stuart Rashid,BOWL,38,R,SPIN,1,0,1,0.55,0,0,0,0
+361,Rishabh Pant,AR,18,R,PACE,0,1,0,0.314,0,0,1,1
+362,Stuart Bairstow,BAT,34,R,,0,0,0,0.622,0,0,1,0
+363,Adam Short,BAT,28,R,,0,0,0,0.316,0,0,0,1
+364,Henry Duffy,BAT,38,R,,0,0,1,0.583,0,0,0,0
+365,Anrich Miller,BOWL,30,R,SPIN,1,0,0,0.578,1,0,0,0
+366,Salman Aslam,BOWL,35,R,SPIN,1,0,0,0.516,1,0,0,0
+367,Akila Chameera,AR,21,R,PACE,0,1,1,0.329,0,0,0,0
+368,Kavem Walsh,BOWL,20,R,SPIN,1,0,0,0.315,1,1,0,0
+369,Jack Root,BAT,37,R,,0,0,1,0.701,0,0,0,0
+370,Jofra Lawrence,AR,29,R,PACE,0,1,0,0.42,0,0,0,1
+371,Tom Buttler,AR,29,L,PACE,0,1,0,0.592,0,0,0,0
+372,Joe Rashid,BAT,21,R,,0,0,0,0.207,0,0,1,1
+373,Jasprit Kohli,BAT,22,L,,0,0,0,0.165,0,0,0,0
+374,Ollie Brook,BAT,35,R,,0,0,0,0.38,0,0,0,0
+375,David Philippe,BAT,24,R,,0,0,1,0.252,0,0,0,0
+376,Michael Conway,BAT,30,R,,0,0,0,0.413,0,0,0,0
+377,Dale Rickelton,AR,24,R,SPIN,1,0,0,0.45,0,1,0,0
+378,Babar Khushdil,BOWL,23,L,PACE,0,1,1,0.265,0,0,0,0
+379,Niroshan de Silva,BOWL,21,R,SPIN,1,0,1,0.351,0,0,0,0
+380,Jayden Gayle,BOWL,37,L,SPIN,1,0,0,0.567,1,0,0,0
+381,Jason Sibley,BOWL,37,R,SPIN,1,0,1,0.526,1,1,0,0
+382,Rehan Sibley,AR,20,L,SPIN,1,0,0,0.326,0,0,0,0
+383,Chris Overton,AR,25,L,SPIN,1,0,0,0.331,0,0,0,0
+384,Moeen Stokes,BOWL,29,R,PACE,0,1,0,0.613,1,1,0,0
+385,Sanju Chahal,BAT,26,R,,0,0,1,0.386,0,0,1,0
+386,Jofra Stokes,WK,33,R,,0,0,0,0.456,0,0,0,0
+387,Scott Conway,BOWL,23,R,SPIN,1,0,0,0.472,1,1,0,0
+388,Trent Williamson,WK,19,L,,0,0,1,0.31,0,0,1,1
+389,Lizaad Parnell,BAT,25,R,,0,0,0,0.484,0,0,1,1
+390,Tayyab Mir,AR,30,R,SPIN,1,0,0,0.379,0,0,0,0
+391,Charith Vandersay,BOWL,21,R,PACE,0,1,0,0.47,0,0,0,0
+392,Jason Russell,BAT,35,R,,0,0,0,0.606,0,0,1,1
+393,Mark Carse,BOWL,18,L,PACE,0,1,0,0.422,1,1,0,0
+394,Adil Wood,BOWL,19,R,SPIN,1,0,0,0.136,0,0,0,0
+395,Chris Roy,BAT,28,L,,0,0,1,0.505,0,0,0,1
+396,Rehan Ahmed,BOWL,28,L,SPIN,1,0,0,0.264,0,0,0,0
+397,Yuzvendra Rahul,AR,24,R,SPIN,1,0,0,0.419,0,0,0,0
+398,Matt Roy,BAT,23,R,,0,0,0,0.292,0,0,0,0
+399,Cameron Head,BOWL,19,R,SPIN,1,0,0,0.235,1,1,0,0
+400,Martin Mitchell,BOWL,31,R,PACE,0,1,1,0.41,0,0,0,0
+401,Lizaad Fortuin,BAT,25,R,,0,0,0,0.373,0,0,0,1
+402,Mohammad Rizwan,AR,20,L,PACE,0,1,0,0.373,1,1,0,0
+403,Dasun Rajapaksa,AR,26,R,SPIN,1,0,0,0.353,0,0,0,0
+404,Sunil Seales,BAT,37,L,,0,0,0,0.717,0,0,1,1
+405,James Ali,WK,23,L,,0,0,0,0.507,0,0,0,0
+406,Mark Salt,AR,36,L,SPIN,1,0,1,0.65,1,1,1,0
+407,Zak Broad,BAT,23,R,,0,0,0,0.357,0,0,0,0
+408,Sam Archer,AR,21,R,PACE,0,1,0,0.437,0,0,0,0
+409,Deepak Kohli,BAT,23,R,,0,0,0,0.211,0,0,0,0
+410,Adil Crawley,WK,24,R,,0,0,0,0.201,0,0,0,1
+411,Usman Carey,BOWL,20,R,PACE,0,1,0,0.248,0,0,0,0
+412,Adam Munro,BOWL,30,R,SPIN,1,0,0,0.485,1,1,0,0
+413,Andile Mulder,BAT,25,R,,0,0,0,0.288,0,0,0,0
+414,Saim Abbasi,AR,33,R,SPIN,1,0,0,0.521,0,0,0,0
+415,Asitha Dananjaya,BAT,28,R,,0,0,1,0.48,0,0,1,0
+416,Dwayne Russell,BAT,27,R,,0,0,0,0.481,0,0,1,0
+417,Joe Pope,BAT,27,R,,0,0,1,0.208,0,0,0,0
+418,Adil Bairstow,AR,21,L,PACE,0,1,0,0.269,0,0,0,0
+419,Craig Sibley,BAT,32,R,,0,0,0,0.399,0,0,0,1
+420,Dom Carse,AR,20,L,PACE,0,1,1,0.381,0,0,1,1
+421,Tilak Chahar,BOWL,33,L,SPIN,1,0,0,0.477,0,0,0,0
+422,Rehan Crawley,BAT,38,R,,0,0,0,0.756,0,0,1,1
+423,Aaron Warner,BAT,34,R,,0,0,0,0.522,0,0,0,0
+424,Will Chapman,BAT,27,R,,0,0,0,0.262,0,0,0,0
+425,Lizaad Philander,BOWL,24,R,SPIN,1,0,1,0.433,0,0,0,0
+426,Shan Rizwan,AR,36,R,SPIN,1,0,0,0.539,1,0,0,0
+427,Suranga Udana,BAT,23,R,,0,0,1,0.228,0,0,1,1
+428,Kavem Mayers,AR,28,L,SPIN,1,0,0,0.317,1,1,0,0
+429,Dom Lawrence,BAT,34,L,,0,0,0,0.544,0,0,0,0
+430,Moeen Broad,AR,37,L,PACE,0,1,0,0.687,0,0,0,0
+431,Jonny Overton,AR,37,R,PACE,0,1,1,0.551,0,0,0,0
+432,Rehan Anderson,AR,19,R,PACE,0,1,0,0.404,0,0,0,0
+433,Axar Jadeja,BOWL,36,L,SPIN,1,0,1,0.553,0,0,0,0
+434,Harry Salt,AR,20,R,SPIN,1,0,0,0.153,0,0,0,0
+435,Marcus Khawaja,BAT,30,R,,0,0,0,0.596,0,0,0,1
+436,Doug O'Rourke,BAT,37,R,,0,0,0,0.549,0,0,1,1
+437,Kagiso Miller,BAT,31,R,,0,0,0,0.4,0,0,1,1
+438,Mohammad Saleem,BOWL,37,R,PACE,0,1,1,0.843,1,1,0,0
+439,Dinesh Shanaka,BOWL,25,R,PACE,0,1,0,0.477,0,0,0,0
+440,Rovman Russell,BOWL,24,R,SPIN,1,0,0,0.25,0,1,0,0
+441,Dom Salt,AR,24,R,SPIN,1,0,0,0.325,0,0,0,0
+442,Ben Sibley,BAT,25,R,,0,0,0,0.403,0,0,1,1
+443,Ollie Pope,BOWL,32,R,PACE,0,1,0,0.644,0,0,0,0
+444,Adil Archer,BAT,27,R,,0,0,1,0.287,0,0,1,0
+445,Mohammed Pant,BAT,33,L,,0,0,0,0.445,0,0,0,0
+446,Stuart Potts,BOWL,26,R,PACE,0,1,0,0.459,0,0,0,0
+447,David Turner,WK,24,R,,0,0,0,0.274,0,0,0,0
+448,Will Boult,BOWL,21,L,PACE,0,1,0,0.135,0,0,0,0
+449,Anrich Fortuin,BAT,29,R,,0,0,0,0.311,0,0,1,1
+450,Babar Khurram,BOWL,36,L,PACE,0,1,0,0.612,0,0,0,0
+451,Chaturanga Chameera,BAT,36,R,,0,0,0,0.454,0,0,0,0
+452,Roston Chase,AR,23,R,PACE,0,1,1,0.437,0,0,0,0
+453,Rehan Roy,BOWL,28,R,PACE,0,1,1,0.529,1,1,0,0
+454,Jos Woakes,BAT,32,R,,0,0,1,0.556,0,0,0,0
+455,Brydon Ahmed,BAT,30,L,,0,0,1,0.506,0,0,0,0
+456,Sam Ahmed,BAT,19,L,,0,0,0,0.175,0,0,0,0
+457,Shubman Gaikwad,WK,30,L,,0,0,0,0.557,0,0,0,0
+458,Ollie Anderson,BOWL,18,L,SPIN,1,0,0,0.091,1,0,0,0
+459,Travis Turner,AR,20,R,PACE,0,1,0,0.415,0,0,0,0
+460,Trent Latham,BOWL,31,L,PACE,0,1,0,0.666,1,1,0,0
+461,Reeza Elgar,BOWL,20,R,SPIN,1,0,0,0.08,0,0,0,0
+462,Shadab Ayub,BAT,25,L,,0,0,1,0.438,0,0,0,0
+463,Wanindu Embuldeniya,WK,30,R,,0,0,1,0.556,0,0,0,0
+464,Dwayne Shepherd,BAT,31,R,,0,0,0,0.399,0,0,1,1
+465,Stuart Overton,BOWL,27,L,PACE,0,1,0,0.289,0,1,0,0
+466,Jamie Stokes,BOWL,19,L,SPIN,1,0,0,0.396,1,1,0,0
+467,Ollie Overton,BOWL,34,R,SPIN,1,0,0,0.462,0,0,0,0
+468,Tom Archer,WK,37,R,,0,0,1,0.564,0,0,0,0
+469,Tilak Iyer,BAT,36,R,,0,0,1,0.37,0,0,1,1
+470,Joe Potts,BOWL,33,L,SPIN,1,0,0,0.411,0,0,0,0
+471,Marcus Lyon,BOWL,26,R,PACE,0,1,0,0.406,1,1,0,0
+472,Mark Boult,BOWL,36,R,PACE,0,1,0,0.864,0,0,0,0
+473,Anrich Elgar,BAT,28,R,,0,0,0,0.332,0,0,0,0
+474,Shadab Shakeel,BAT,20,R,,0,0,0,0.375,0,0,1,1
+475,Asitha Karunaratne,BAT,35,R,,0,0,0,0.622,0,0,0,0
+476,Shai Chase,BAT,24,R,,0,0,0,0.331,0,0,1,0
+477,Moeen Carse,BOWL,37,L,PACE,0,1,0,0.766,1,1,0,0
+478,Liam Stokes,BOWL,25,L,PACE,0,1,0,0.395,1,1,0,0
+479,Tom Pope,BOWL,36,L,PACE,0,1,0,0.698,1,1,0,0
+480,Ben Potts,BOWL,29,R,PACE,0,1,0,0.71,1,1,0,0
+481,Rohit Pant,BOWL,27,R,PACE,0,1,1,0.498,1,1,0,0
+482,Sam Woakes,BAT,24,R,,0,0,0,0.157,0,0,0,0
+483,Tim Turner,BOWL,35,L,SPIN,1,0,0,0.496,0,0,0,0
+484,Trent Kuggeleijn,BAT,19,R,,0,0,0,0.222,0,0,0,0
+485,Temba Amla,BAT,27,R,,0,0,0,0.558,0,0,0,0
+486,Fakhar Butt,BOWL,25,L,PACE,0,1,0,0.489,0,1,0,0
+487,Dasun Perera,BOWL,29,R,PACE,0,1,0,0.455,1,0,0,0
+488,Kieran Shepherd,BAT,23,L,,0,0,0,0.163,0,0,0,0
+489,Chris Curran,BOWL,31,R,PACE,0,1,1,0.574,1,0,0,0
+490,Ben Archer,BOWL,26,R,SPIN,1,0,0,0.459,0,0,0,0
+491,Jonny Bairstow,BOWL,21,R,PACE,0,1,0,0.386,0,0,0,0
+492,Matt Pope,BOWL,22,R,PACE,0,1,1,0.334,1,1,0,0
+493,KL Siraj,BOWL,32,L,SPIN,1,0,0,0.339,0,1,0,0
+494,Jonny Crawley,BAT,23,R,,0,0,0,0.23,0,0,1,1
+495,Matthew Wade,AR,24,R,PACE,0,1,1,0.544,1,0,0,0
+496,Ben Chapman,BOWL,31,L,SPIN,1,0,0,0.423,0,0,0,0
+497,Kagiso Fortuin,BOWL,24,R,SPIN,1,0,0,0.371,0,0,0,0
+498,Saud Mir,BOWL,26,L,SPIN,1,0,0,0.45,0,1,0,0
+499,Sachith Shanaka,BAT,23,R,,0,0,0,0.348,0,0,0,0
+500,Kemar Roach,BOWL,25,L,PACE,0,1,1,0.516,1,1,0,0
+501,Harry Pope,BOWL,32,R,PACE,0,1,0,0.433,0,0,0,0
+502,Jack Overton,AR,29,R,SPIN,1,0,0,0.446,1,1,0,0
+503,Stuart Root,AR,38,R,PACE,0,1,0,0.575,0,0,0,0
+504,Joe Bethell,BOWL,34,R,SPIN,1,0,0,0.639,1,1,0,0
+505,Washington Sharma,BOWL,18,R,PACE,0,1,0,0.222,1,1,0,0
+506,Dom Ahmed,AR,25,R,PACE,0,1,0,0.449,0,0,0,0
+507,David Maxwell,BAT,24,R,,0,0,1,0.304,0,0,0,0
+508,Finn Bracewell,AR,30,L,PACE,0,1,0,0.592,0,1,0,0
+509,Heinrich Philander,BOWL,23,R,PACE,0,1,1,0.358,1,1,0,0
+510,Shan Aslam,BAT,38,R,,0,0,0,0.656,0,0,0,0
+511,Wanindu Hasaranga,BAT,24,L,,0,0,0,0.179,0,0,0,0
+512,Shimron Joseph,AR,28,R,PACE,0,1,0,0.457,0,0,0,0
+513,Mark Potts,BAT,20,L,,0,0,1,0.201,0,0,0,0
+514,Dom Sibley,BAT,37,L,,0,0,0,0.617,0,0,0,0
+515,Harry Buttler,BAT,37,L,,0,0,0,0.601,0,0,1,0
+516,Stuart Bethell,BAT,34,L,,0,0,1,0.359,0,0,0,0
+517,Rinku Sharma,BAT,25,R,,0,0,0,0.304,0,0,0,0
+518,James Wood,BOWL,19,R,PACE,0,1,0,0.243,0,0,0,0
+519,Pat Khawaja,BAT,32,R,,0,0,0,0.618,0,0,0,0
+520,Colin Mitchell,AR,27,L,SPIN,1,0,0,0.408,0,0,1,1
+521,Marco Williams,AR,38,R,SPIN,1,0,0,0.486,0,0,0,0
+522,Usman Abbasi,BAT,32,L,,0,0,0,0.583,0,0,1,0
+523,Suranga Kumara,BAT,29,R,,0,0,1,0.527,0,0,1,0
+524,Jason Powell,BOWL,38,R,SPIN,1,0,0,0.618,1,1,0,0
+525,Jos Archer,BAT,34,R,,0,0,0,0.536,0,0,0,0
+526,Tom Stokes,BAT,27,R,,0,0,1,0.354,0,0,1,1
+527,Jofra Overton,WK,18,R,,0,0,0,0.293,0,0,0,0
+528,Jos Buttler,WK,19,R,,0,0,0,0.212,0,0,0,0
+529,KL Pant,AR,27,L,PACE,0,1,0,0.486,0,0,0,0
+530,Craig Woakes,BAT,29,R,,0,0,0,0.558,0,0,1,1
+531,Josh Green,BOWL,18,R,PACE,0,1,0,0.292,0,0,0,0
+532,Trent Boult,BOWL,20,R,PACE,0,1,1,0.33,0,1,0,0
+533,Heinrich Coetzee,BOWL,32,R,SPIN,1,0,1,0.36,0,0,0,0
+534,Saim Ahmed,BOWL,33,R,SPIN,1,0,0,0.492,1,0,0,0
+535,Asitha Dickwella,BAT,18,R,,0,0,0,0.081,0,0,0,0
+536,Shamarh Roach,BAT,28,L,,0,0,1,0.398,0,0,1,0
+537,Moeen Bethell,BOWL,19,R,PACE,0,1,0,0.305,1,0,0,0
+538,Joe Sibley,BAT,33,R,,0,0,1,0.469,0,0,0,0
+539,Ollie Woakes,BAT,35,R,,0,0,0,0.41,0,0,0,0
+540,Jos Roy,AR,36,R,PACE,0,1,0,0.579,1,1,1,0
+541,Shreyas Pant,WK,30,L,,0,0,1,0.417,0,0,0,0
+542,Adil Curran,BOWL,31,R,SPIN,1,0,0,0.624,1,1,0,0
+543,Jake Richardson,AR,37,L,SPIN,1,0,0,0.688,1,1,0,0
+544,Mark Bracewell,WK,30,R,,0,0,1,0.436,0,0,0,0
+545,Rassie Mulder,BAT,27,R,,0,0,0,0.579,0,0,1,1
+546,Usama Zaman,BOWL,33,R,SPIN,1,0,0,0.599,1,1,0,0
+547,Pathum Perera,BOWL,30,R,PACE,0,1,0,0.819,1,1,0,0
+548,Jason Seales,BAT,35,L,,0,0,0,0.641,0,0,1,1
+549,Jack Buttler,BOWL,29,R,SPIN,1,0,0,0.471,1,1,0,0
+550,Jamie Root,BOWL,36,L,SPIN,1,0,0,0.647,0,0,0,0
+551,Craig Bethell,BOWL,18,L,PACE,0,1,0,0.462,1,1,0,0
+552,Chris Broad,BAT,18,R,,0,0,1,0.118,0,0,0,0
+553,Virat Jadeja,BAT,20,R,,0,0,0,0.407,0,0,0,1
+554,Adil Woakes,AR,29,R,SPIN,1,0,0,0.408,0,0,0,0
+555,Nathan Richardson,BAT,32,R,,0,0,0,0.475,0,0,0,0
+556,Michael Sears,BAT,22,L,,0,0,1,0.367,0,0,1,0
+557,Reeza Maharaj,BAT,21,R,,0,0,0,0.392,0,0,0,0
+558,Shoaib Abbasi,BOWL,36,L,SPIN,1,0,1,0.641,0,1,0,0
+559,Pathum Vandersay,BOWL,33,R,SPIN,1,0,0,0.749,1,1,0,0
+560,Kieron Seales,BOWL,31,R,PACE,0,1,0,0.751,0,0,0,0
+561,Adil Brook,BAT,28,R,,0,0,1,0.383,0,0,1,0
+562,Craig Salt,BAT,26,R,,0,0,1,0.24,0,0,0,0
+563,Joe Lawrence,AR,18,L,SPIN,1,0,0,0.26,0,0,0,0
+564,Rehan Overton,BOWL,21,R,SPIN,1,0,0,0.154,1,1,0,0
+565,Arshdeep Gaikwad,BOWL,36,L,SPIN,1,0,0,0.713,1,1,0,0
+566,Adil Lawrence,BOWL,25,L,PACE,0,1,0,0.471,1,1,0,0
+567,Peter Green,AR,32,L,PACE,0,1,1,0.737,0,0,0,0
+568,Ben Ferguson,BAT,32,R,,0,0,1,0.426,0,0,1,1
+569,Quinton Shamsi,BAT,24,L,,0,0,0,0.378,0,0,1,1
+570,Asif Ayub,BOWL,22,R,SPIN,1,0,0,0.372,1,1,0,0
+571,Chaturanga Vandersay,BAT,32,L,,0,0,0,0.476,0,0,0,0
+572,Kieron Chase,AR,19,R,SPIN,1,0,0,0.19,0,0,0,0
+573,Rehan Brook,BOWL,28,R,SPIN,1,0,0,0.365,0,0,0,0
+574,Jonny Wood,AR,36,R,PACE,0,1,0,0.784,1,0,0,0
+575,Joe Ahmed,AR,32,R,PACE,0,1,0,0.709,1,1,0,0
+576,Rehan Ali,BOWL,34,R,PACE,0,1,0,0.57,1,0,0,0
+577,Ravindra Bumrah,AR,19,L,SPIN,1,0,1,0.151,0,0,0,0
+578,Rehan Bairstow,BOWL,22,R,PACE,0,1,0,0.208,0,0,0,0
+579,Aaron Short,AR,23,L,PACE,0,1,0,0.398,0,0,0,0
+580,Martin Blundell,BAT,24,R,,0,0,0,0.472,0,0,0,0
+581,Andile Parnell,BOWL,22,L,SPIN,1,0,0,0.344,1,1,0,0
+582,Fakhar Rizwan,BOWL,38,L,SPIN,1,0,0,0.635,1,1,0,0
+583,Charith Nissanka,BAT,21,R,,0,0,0,0.509,0,0,1,1
+584,Rovman Roach,BOWL,32,L,SPIN,1,0,0,0.404,1,1,0,0
+585,Ben Bairstow,AR,30,L,PACE,0,1,0,0.565,0,0,0,0
+586,Jos Potts,BOWL,30,L,PACE,0,1,1,0.544,0,0,0,0
+587,James Salt,BAT,22,R,,0,0,0,0.248,0,0,0,0
+588,Zak Crawley,BAT,24,R,,0,0,0,0.195,0,0,0,0
+589,Rinku Sundar,BAT,30,L,,0,0,0,0.393,0,0,1,1
+590,Moeen Brook,BAT,24,R,,0,0,1,0.32,0,0,0,0
+591,Josh Starc,AR,32,L,PACE,0,1,0,0.495,0,0,0,0
+592,Kane Kuggeleijn,BOWL,18,R,PACE,0,1,1,0.245,1,1,0,0
+593,Tony Philander,BAT,19,L,,0,0,0,0.382,0,0,0,0
+594,Yasir Aslam,BOWL,33,R,SPIN,1,0,0,0.604,1,1,0,0
+595,Angelo Shanaka,BAT,30,R,,0,0,0,0.494,0,0,1,1
+596,Nicholas Hope,BAT,18,L,,0,0,0,0.323,0,0,1,0
+597,Dom Anderson,BOWL,36,L,SPIN,1,0,0,0.643,0,0,0,0
+598,Mark Stokes,BOWL,18,L,SPIN,1,0,0,0.129,1,1,0,0
+599,Jonny Ahmed,WK,38,L,,0,0,0,0.504,0,0,0,0
+600,Rehan Archer,BOWL,33,R,PACE,0,1,0,0.699,1,1,0,0
+601,Prithvi Pant,BOWL,38,R,PACE,0,1,0,0.762,0,0,0,0
+602,James Broad,AR,37,R,SPIN,1,0,0,0.577,1,1,0,0
+603,Alex Warner,AR,24,R,SPIN,1,0,1,0.439,0,0,0,0
+604,Finn Ravindra,BOWL,33,R,PACE,0,1,0,0.589,0,0,0,0
+605,Temba Hendricks,WK,22,L,,0,0,1,0.24,0,0,0,0
+606,Sarfaraz Butt,AR,27,R,PACE,0,1,0,0.632,1,1,0,0
+607,Chamika Karunaratne,AR,23,R,PACE,0,1,1,0.463,0,0,0,0
+608,Kavem Athanaze,BAT,28,R,,0,0,1,0.432,0,0,0,0
+609,Adil Ali,BOWL,36,R,SPIN,1,0,0,0.546,0,0,0,0
+610,Jofra Rashid,BOWL,27,R,PACE,0,1,1,0.45,0,0,0,0
+611,Jack Curran,BOWL,19,R,PACE,0,1,0,0.355,0,0,0,0
+612,Tom Bethell,BOWL,24,R,PACE,0,1,0,0.352,0,0,0,0
+613,Ravindra Siraj,WK,34,R,,0,0,1,0.51,0,0,0,0
+614,Matt Salt,WK,28,L,,0,0,0,0.516,0,0,1,0
+615,Sean Maxwell,BAT,29,R,,0,0,0,0.525,0,0,0,0
+616,Daryl Young,BOWL,27,R,PACE,0,1,0,0.58,1,1,0,0
+617,Aiden Coetzee,BOWL,24,R,PACE,0,1,0,0.486,1,1,0,0
+618,Fakhar Shafique,BAT,30,R,,0,0,0,0.517,0,0,1,1
+619,Wanindu Shanaka,BAT,31,R,,0,0,0,0.643,0,0,0,0
+620,Kieran Hosein,BAT,36,L,,0,0,0,0.698,0,0,0,0
+621,Jos Curran,AR,30,R,PACE,0,1,0,0.528,0,0,0,0
+622,Jamie Broad,BOWL,38,R,PACE,0,1,0,0.795,1,1,0,0
+623,Liam Ahmed,WK,35,R,,0,0,0,0.496,0,0,1,1
+624,Liam Lawrence,BOWL,19,L,SPIN,1,0,0,0.326,1,1,0,0
+625,Ravindra Patel,WK,26,R,,0,0,0,0.513,0,0,0,0
+626,Tom Rashid,BOWL,26,R,SPIN,1,0,0,0.52,0,1,0,0
+627,Adam Maxwell,AR,18,L,PACE,0,1,1,0.387,0,0,0,0
+628,Tom Blundell,BAT,21,R,,0,0,1,0.207,0,0,1,0
+629,Dean de Kock,BOWL,34,R,PACE,0,1,0,0.646,0,0,0,0
+630,Asif Khurram,AR,25,R,SPIN,1,0,0,0.505,0,0,0,0
+631,Angelo Rajapaksa,AR,21,R,SPIN,1,0,1,0.171,1,0,0,0
+632,Kieran Mayers,AR,24,L,PACE,0,1,1,0.416,1,0,1,1
+633,Jos Rashid,BAT,23,R,,0,0,0,0.304,0,0,0,0
+634,Ben Ahmed,BAT,21,R,,0,0,0,0.288,0,0,0,0
+635,James Carse,BAT,20,R,,0,0,0,0.085,0,0,1,1
+636,Joe Buttler,BAT,34,R,,0,0,0,0.415,0,0,1,1
+637,Kuldeep Varma,BOWL,35,L,PACE,0,1,1,0.737,1,1,0,0
+638,Jofra Bairstow,BOWL,28,R,PACE,0,1,0,0.632,1,1,0,0
+639,Scott Abbott,AR,30,L,PACE,0,1,0,0.657,1,1,0,0
+640,Neil Young,AR,37,R,PACE,0,1,0,0.603,0,0,0,0
+641,Dean Markram,BOWL,35,R,PACE,0,1,1,0.643,0,0,0,0
+642,Naseem Shah,AR,18,R,SPIN,1,0,0,0.241,0,0,0,0
+643,Dushmantha Rajitha,BAT,38,L,,0,0,1,0.634,0,0,1,0
+644,Hayden Roach,BAT,19,R,,0,0,0,0.32,0,0,0,0
+645,Adil Root,BOWL,18,R,SPIN,1,0,0,0.128,0,0,0,0
+646,Jamie Woakes,AR,26,L,PACE,0,1,0,0.452,0,0,0,0
+647,Moeen Anderson,BAT,33,R,,0,0,0,0.417,0,0,1,0
+648,Jofra Broad,BOWL,19,R,SPIN,1,0,1,0.339,1,1,0,0
+649,Virat Kishan,BOWL,24,R,PACE,0,1,0,0.575,1,1,0,0
+650,Liam Rashid,BAT,23,L,,0,0,0,0.386,0,0,0,0
+651,Marcus Hazlewood,BOWL,26,R,PACE,0,1,0,0.55,1,1,0,0
+652,Adam Kuggeleijn,AR,38,R,PACE,0,1,0,0.761,0,0,0,0
+653,Hashim Parnell,BOWL,24,R,SPIN,1,0,0,0.353,0,0,0,0
+654,Zafar Aslam,BAT,22,R,,0,0,0,0.306,0,0,1,1
+655,Akila Udana,AR,20,R,PACE,0,1,0,0.4,0,0,0,0
+656,Jason Motie,BAT,22,R,,0,0,0,0.38,0,0,1,1
+657,Jason Broad,AR,20,R,SPIN,1,0,0,0.324,0,0,0,0
+658,Ollie Bethell,BAT,30,R,,0,0,0,0.378,0,0,0,0
+659,Liam Sibley,BOWL,26,L,PACE,0,1,0,0.58,1,1,0,0
+660,Sam Lawrence,BOWL,28,R,SPIN,1,0,0,0.117,0,0,0,0
+661,Kuldeep Patel,BAT,35,R,,0,0,0,0.639,0,0,1,1
+662,Adil Ahmed,AR,30,L,PACE,0,1,0,0.562,1,1,0,0
+663,Adam Philippe,BAT,21,L,,0,0,1,0.247,0,0,1,1
+664,Mitchell Chapman,BAT,25,R,,0,0,1,0.374,0,0,0,1
+665,Wayne de Zorzi,BAT,24,R,,0,0,0,0.468,0,0,0,1
+666,Shan Saleem,BOWL,35,R,PACE,0,1,0,0.673,0,0,0,0
+667,Charith Dananjaya,AR,24,R,SPIN,1,0,0,0.337,0,1,0,0
+668,Kemar Sammy,WK,20,R,,0,0,0,0.36,0,0,1,0
+669,Craig Brook,BAT,33,R,,0,0,0,0.484,0,0,0,0
+670,Brydon Bairstow,BOWL,26,R,SPIN,1,0,0,0.438,1,1,0,0
+671,James Woakes,BAT,20,R,,0,0,1,0.175,0,0,0,1
+672,Ollie Ahmed,BOWL,32,R,PACE,0,1,0,0.541,0,1,0,0
+673,Rinku Kishan,WK,22,R,,0,0,0,0.413,0,0,1,0
+674,Harry Sibley,BOWL,36,R,SPIN,1,0,0,0.645,1,1,0,0
+675,Aaron Tye,BOWL,35,L,SPIN,1,0,0,0.544,1,1,0,0
+676,Daryl Blundell,BOWL,25,L,PACE,0,1,0,0.57,1,1,0,0
+677,Andile Jansen,AR,29,R,PACE,0,1,0,0.328,0,0,0,0
+678,Wahab Azam,BOWL,29,R,PACE,0,1,0,0.546,0,1,0,0
+679,Nuwan Chandimal,BAT,31,R,,0,0,1,0.472,0,0,0,1
+680,Akeal McCoy,BAT,19,R,,0,0,1,0.319,0,0,0,0
+681,Moeen Bairstow,BAT,24,L,,0,0,0,0.126,0,0,0,0
+682,Harry Crawley,BAT,21,R,,0,0,1,0.341,0,0,1,1
+683,Craig Rashid,BAT,32,R,,0,0,0,0.552,0,0,0,0
+684,Zak Archer,BOWL,19,R,SPIN,1,0,1,0.102,1,0,0,0
+685,Prasidh Sundar,BOWL,28,R,PACE,0,1,0,0.56,1,1,0,0
+686,Mark Bethell,BAT,33,R,,0,0,0,0.565,0,0,0,0
+687,Mitchell Agar,BOWL,37,R,PACE,0,1,0,0.822,1,1,0,0
+688,Henry Williamson,WK,24,L,,0,0,0,0.139,0,0,1,1
+689,Hashim Bavuma,BOWL,18,R,PACE,0,1,0,0.308,1,0,0,0
+690,Saud Ahmed,BOWL,33,R,SPIN,1,0,0,0.492,1,1,0,0
+691,Dilshan Shanaka,BAT,18,R,,0,0,0,0.143,0,0,1,0
+692,Andre Sammy,AR,19,R,SPIN,1,0,0,0.467,1,1,1,1
+693,James Bethell,BAT,38,R,,0,0,0,0.666,0,0,1,1
+694,Jason Root,BAT,36,R,,0,0,1,0.598,0,0,1,1
+695,Dom Rashid,AR,32,L,SPIN,1,0,0,0.55,1,1,0,0
+696,James Anderson,BOWL,35,R,PACE,0,1,1,0.583,0,0,0,0
+697,KL Pandya,BOWL,19,R,SPIN,1,0,0,0.214,0,0,0,0
+698,Harry Carse,BOWL,19,R,PACE,0,1,0,0.368,1,1,0,0
+699,Glenn Turner,BOWL,24,R,SPIN,1,0,0,0.255,0,1,0,0
+700,Matt Young,BAT,18,R,,0,0,0,0.178,0,0,1,1
+701,Aiden Fortuin,BAT,36,L,,0,0,0,0.597,0,0,1,1
+702,Shan Iftikhar,BAT,19,R,,0,0,1,0.168,0,0,1,1
+703,Angelo Kumara,BAT,29,R,,0,0,0,0.355,0,0,0,0
+704,Fabian Motie,AR,35,R,SPIN,1,0,0,0.621,0,0,0,0
+705,Zak Overton,BAT,33,R,,0,0,0,0.394,0,0,0,0
+706,Tom Crawley,BOWL,22,R,SPIN,1,0,0,0.465,0,0,0,0
+707,Mark Woakes,AR,27,R,PACE,0,1,0,0.638,1,1,0,0
+708,Ben Bethell,AR,29,R,PACE,0,1,1,0.639,0,0,1,0
+709,Mohammed Samson,BOWL,34,R,SPIN,1,0,0,0.58,0,0,0,0
+710,Jonny Carse,BOWL,26,L,SPIN,1,0,0,0.345,0,0,0,0
+711,Pat Wade,WK,23,L,,0,0,0,0.401,0,0,0,0
+712,Henry Blundell,BOWL,34,L,SPIN,1,0,0,0.362,0,0,0,0
+713,Wayne Coetzee,AR,36,L,PACE,0,1,1,0.749,1,1,1,1
+714,Faheem Saleem,AR,28,L,SPIN,1,0,1,0.598,1,1,1,1
+715,Dimuth Gunathilaka,AR,18,L,PACE,0,1,0,0.33,1,1,1,1
+716,Dwayne Hosein,BAT,28,L,,0,0,1,0.284,0,0,0,0
+717,Moeen Rashid,BOWL,36,L,SPIN,1,0,0,0.47,1,1,0,0
+718,Jonny Broad,BAT,38,L,,0,0,0,0.815,0,0,1,0
+719,Tom Carse,BOWL,26,L,SPIN,1,0,0,0.425,1,1,0,0
+720,Sam Buttler,WK,21,R,,0,0,0,0.465,0,0,1,1
+721,Deepak Pant,BOWL,30,R,PACE,0,1,0,0.565,1,1,0,0
+722,Ben Woakes,BOWL,35,R,PACE,0,1,0,0.71,1,0,0,0
+723,Marnus Carey,BAT,37,L,,0,0,0,0.825,0,0,1,1
+724,Devon O'Rourke,WK,19,R,,0,0,1,0.123,0,0,0,0
+725,Aiden Rickelton,BAT,24,L,,0,0,1,0.278,0,0,1,1
+726,Salman Saleem,BAT,28,L,,0,0,0,0.516,0,0,0,0
+727,Sachith de Silva,BAT,20,L,,0,0,0,0.16,0,0,0,0
+728,Kyle Pooran,BAT,36,R,,0,0,0,0.684,0,0,0,0
+729,Brydon Sibley,BOWL,20,R,SPIN,1,0,0,0.264,1,0,0,0
+730,James Roy,BOWL,31,L,PACE,0,1,0,0.559,0,0,0,0
+731,Tom Anderson,BAT,37,L,,0,0,0,0.559,0,0,1,1
+732,Moeen Pope,BAT,32,L,,0,0,0,0.455,0,0,1,1
+733,Suryakumar Gaikwad,BAT,34,R,,0,0,0,0.554,0,0,1,0
+734,Ollie Lawrence,BOWL,23,R,SPIN,1,0,0,0.241,0,0,0,0
+735,Usman Smith,BAT,35,R,,0,0,0,0.483,0,0,0,0
+736,Trent Sears,BOWL,26,L,SPIN,1,0,1,0.394,1,1,0,0
+737,Vernon du Plessis,BAT,19,R,,0,0,0,0.203,0,0,1,1
+738,Haris Azam,BAT,25,L,,0,0,0,0.289,0,0,1,0
+739,Nuwan Rajitha,BOWL,25,L,SPIN,1,0,0,0.417,1,0,0,0
+740,Shamarh Mayers,BOWL,28,R,PACE,0,1,0,0.58,1,1,0,0
+741,Jos Broad,BAT,23,R,,0,0,0,0.181,0,0,0,0
+742,Chris Lawrence,BAT,27,R,,0,0,0,0.3,0,0,1,1
+743,Jamie Overton,AR,26,L,PACE,0,1,0,0.457,0,0,0,0
+744,Zak Brook,BAT,24,R,,0,0,0,0.437,0,0,0,0
+745,Sanju Iyer,BOWL,32,R,SPIN,1,0,0,0.504,0,0,0,0
+746,Ben Crawley,BOWL,24,R,PACE,0,1,0,0.44,1,1,0,0
+747,Usman Lyon,BAT,34,R,,0,0,0,0.445,0,0,1,1
+748,Mitchell Latham,BOWL,23,L,PACE,0,1,0,0.407,0,0,0,0
+749,Marco Shamsi,AR,36,R,PACE,0,1,0,0.739,0,0,1,1
+750,Faheem Afridi,AR,25,R,PACE,0,1,0,0.3,0,0,0,0
+751,Kusal Karunaratne,BAT,18,R,,0,0,0,0.363,0,0,0,0
+752,Shamarh Hetmyer,BAT,21,R,,0,0,0,0.452,0,0,0,0
+753,Mark Curran,BAT,34,R,,0,0,0,0.614,0,0,1,1
+754,Matt Root,BOWL,36,L,PACE,0,1,0,0.531,0,0,0,0
+755,Matt Carse,BOWL,22,R,PACE,0,1,0,0.6,1,1,0,0
+756,Moeen Ali,BAT,30,R,,0,0,0,0.509,0,0,0,0
+757,Deepak Chahal,BAT,30,R,,0,0,0,0.458,0,0,0,0
+758,Liam Buttler,AR,20,R,SPIN,1,0,1,0.265,1,0,0,0
+759,Marnus Agar,BAT,27,L,,0,0,1,0.459,0,0,1,1
+760,Rachin Santner,BOWL,32,R,PACE,0,1,1,0.467,1,1,0,0
+761,Keshav Parnell,BOWL,38,L,PACE,0,1,0,0.582,0,0,0,0
+762,Shaheen Ahmed,BAT,35,R,,0,0,0,0.726,0,0,1,0
+763,Kusal Mathews,BAT,20,R,,0,0,0,0.212,0,0,1,1
+764,Dwayne Hetmyer,BAT,22,R,,0,0,0,0.324,0,0,0,0
+765,Tom Curran,AR,27,R,PACE,0,1,0,0.559,0,0,1,1
+766,Rehan Woakes,BAT,21,L,,0,0,0,0.386,0,0,0,1
+767,Craig Stokes,BAT,29,R,,0,0,0,0.373,0,0,0,0
+768,Chris Bairstow,BAT,18,R,,0,0,0,0.342,0,0,1,1
+769,Washington Kishan,BAT,20,R,,0,0,0,0.336,0,0,1,1
+770,Jamie Anderson,BOWL,18,R,PACE,0,1,0,0.305,0,0,0,0
+771,Marnus Smith,BAT,24,L,,0,0,1,0.236,0,0,0,0
+772,Trent Munro,BOWL,34,L,SPIN,1,0,0,0.57,1,1,0,0
+773,Aiden Bavuma,BOWL,21,R,PACE,0,1,0,0.325,0,1,0,0
+774,Faheem Gul,AR,38,L,SPIN,1,0,1,0.542,1,0,1,0
+775,Dilshan Dickwella,BAT,23,L,,0,0,0,0.257,0,0,1,0
+776,Kieron Powell,AR,18,R,PACE,0,1,0,0.418,1,1,1,1
+777,Liam Roy,BOWL,25,R,SPIN,1,0,0,0.278,1,1,0,0
+778,Zak Pope,BAT,33,R,,0,0,0,0.519,0,0,1,1
+779,Craig Buttler,AR,20,L,SPIN,1,0,0,0.203,0,0,0,0
+780,Sam Broad,AR,19,L,PACE,0,1,1,0.335,1,1,0,0
+781,Tilak Bishnoi,BAT,35,R,,0,0,0,0.412,0,0,0,0
+782,Ben Carse,AR,30,L,PACE,0,1,1,0.654,1,1,0,0
+783,Cameron Abbott,BOWL,25,L,PACE,0,1,1,0.551,1,1,0,0
+784,Will Wagner,BOWL,33,R,PACE,0,1,0,0.588,0,0,0,0
+785,Heinrich de Zorzi,WK,35,R,,0,0,0,0.661,0,0,0,0
+786,Wahab Irfan,BAT,25,L,,0,0,0,0.341,0,0,1,1
+787,Thisara Lakmal,AR,29,L,SPIN,1,0,0,0.391,0,0,0,0
+788,Roston Mayers,BAT,18,R,,0,0,0,0.158,0,0,0,0
+789,Joe Broad,AR,24,R,PACE,0,1,0,0.491,0,1,0,0
+790,Chris Salt,BOWL,30,R,SPIN,1,0,1,0.397,1,0,0,0
+791,Jofra Carse,BAT,22,R,,0,0,0,0.259,0,0,0,0
+792,Liam Bethell,BOWL,38,R,PACE,0,1,0,0.657,1,1,0,0
+793,Yuzvendra Bishnoi,BAT,38,R,,0,0,0,0.697,0,0,0,1
+794,Matt Potts,BAT,23,R,,0,0,0,0.259,0,0,1,1
+795,Steve Hazlewood,BAT,26,R,,0,0,1,0.347,0,0,0,0
+796,Martin Ferguson,BAT,21,R,,0,0,1,0.306,0,0,0,0
+797,Quinton Markram,BAT,28,R,,0,0,0,0.448,0,0,1,1
+798,Naseem Shakeel,BAT,20,L,,0,0,0,0.184,0,0,0,0
+799,Pathum Chandimal,BOWL,26,R,PACE,0,1,0,0.218,0,0,0,0
+800,Alzarri Pooran,BOWL,29,R,SPIN,1,0,0,0.558,1,1,0,0
+801,Dom Stokes,BOWL,30,R,PACE,0,1,0,0.594,0,0,0,0
+802,Liam Pope,BAT,30,R,,0,0,1,0.458,0,0,0,0
+803,Harry Woakes,AR,22,R,PACE,0,1,0,0.315,0,0,0,0
+804,Craig Roy,BOWL,34,R,SPIN,1,0,1,0.643,1,1,0,0
+805,Shreyas Pandya,BAT,32,R,,0,0,0,0.658,0,0,0,0
+806,Matt Bairstow,BAT,33,R,,0,0,0,0.659,0,0,1,1
+807,Alex Hazlewood,BOWL,27,R,PACE,0,1,0,0.627,1,0,0,0
+808,Mark Henry,BAT,36,R,,0,0,0,0.41,0,0,0,0
+809,Dale Mulder,BOWL,26,L,PACE,0,1,0,0.461,1,1,0,0
+810,Agha Zaman,WK,34,L,,0,0,0,0.618,0,0,0,0
+811,Niroshan Chandimal,BAT,22,R,,0,0,1,0.277,0,0,0,0
+812,Jayden Brooks,BAT,23,R,,0,0,0,0.256,0,0,0,0
+813,Jofra Archer,WK,29,R,,0,0,0,0.512,0,0,1,0
+814,Moeen Overton,BOWL,29,R,SPIN,1,0,0,0.344,0,0,0,0
+815,Brydon Curran,BAT,33,R,,0,0,0,0.595,0,0,1,1
+816,Matt Sibley,AR,24,R,PACE,0,1,0,0.438,1,0,0,0
+817,Rohit Jadeja,AR,36,R,SPIN,1,0,0,0.426,0,0,0,0
+818,Craig Anderson,BOWL,24,R,SPIN,1,0,0,0.384,1,0,0,0
+819,Travis Lyon,BOWL,29,R,PACE,0,1,0,0.562,0,0,0,0
+820,Doug Sears,BAT,37,L,,0,0,1,0.591,0,0,1,1
+821,Dale Amla,BAT,29,L,,0,0,0,0.48,0,0,0,1
+822,Shadab Khurram,BOWL,32,R,SPIN,1,0,0,0.555,0,0,0,0
+823,Kusal Lakmal,BAT,37,R,,0,0,0,0.648,0,0,0,0
+824,Nicholas Russell,BOWL,38,R,SPIN,1,0,1,0.671,1,0,0,0
+825,Jonny Pope,AR,28,L,PACE,0,1,0,0.585,1,1,0,0
+826,Jack Carse,BAT,26,R,,0,0,1,0.398,0,0,0,1
+827,Harry Bethell,BOWL,22,R,SPIN,1,0,0,0.177,0,0,0,0
+828,Adil Bethell,BAT,29,R,,0,0,0,0.331,0,0,0,0
+829,Prasidh Kohli,AR,37,L,PACE,0,1,0,0.718,0,0,0,0
+830,Ollie Archer,BAT,28,R,,0,0,0,0.412,0,0,0,0
+831,Aaron Head,BOWL,25,R,PACE,0,1,0,0.56,1,1,0,0
+832,Will Kuggeleijn,BOWL,20,R,SPIN,1,0,0,0.185,0,0,0,0
+833,Wayne Elgar,BOWL,26,R,PACE,0,1,0,0.418,0,0,0,0
+834,Salman Rizwan,BOWL,22,R,SPIN,1,0,1,0.156,1,0,0,0
+835,Chaturanga Perera,BOWL,38,R,PACE,0,1,0,0.826,1,1,0,0
+836,Darren Hosein,BOWL,29,R,SPIN,1,0,0,0.635,1,1,0,0
+837,Mark Archer,BOWL,20,R,PACE,0,1,0,0.53,1,1,0,0
+838,Sam Root,WK,19,R,,0,0,0,0.294,0,0,1,1
+839,Liam Root,BOWL,35,L,SPIN,1,0,0,0.628,1,1,0,0
+840,Liam Anderson,BOWL,37,R,PACE,0,1,0,0.877,0,1,0,0
+841,Washington Samson,BAT,34,R,,0,0,0,0.488,0,0,1,1
+842,Dom Broad,AR,20,R,SPIN,1,0,0,0.328,0,0,0,0
+843,Ryan Maxwell,BOWL,20,R,SPIN,1,0,0,0.268,1,1,0,0
+844,Tom Southee,BOWL,22,R,PACE,0,1,0,0.535,1,1,0,0
+845,Anrich Hendricks,BAT,33,L,,0,0,1,0.56,0,0,1,1
+846,Babar Zaman,AR,34,R,PACE,0,1,0,0.77,1,1,0,0
+847,Dimuth Hasaranga,BOWL,35,L,PACE,0,1,0,0.671,0,1,0,0
+848,Jason Hope,BOWL,20,R,SPIN,1,0,1,0.327,1,1,0,0
+849,Adil Overton,BAT,21,R,,0,0,0,0.238,0,0,1,1
+850,Jack Archer,WK,36,R,,0,0,0,0.6,0,0,1,0
+851,Zak Ali,BAT,37,R,,0,0,1,0.599,0,0,0,0
+852,Brydon Woakes,BAT,33,R,,0,0,0,0.623,0,0,1,0
+853,Virat Dube,AR,20,R,SPIN,1,0,1,0.202,0,0,0,0
+854,Moeen Ahmed,AR,19,R,SPIN,1,0,0,0.371,1,1,1,0
+855,Nathan Cummins,BAT,19,R,,0,0,1,0.337,0,0,0,0
+856,Doug Kuggeleijn,BOWL,32,R,SPIN,1,0,1,0.509,1,1,0,0
+857,Faf Steyn,BOWL,35,L,PACE,0,1,0,0.755,0,0,0,0
+858,Salman Zaman,AR,31,R,PACE,0,1,1,0.699,1,1,0,0
+859,Lahiru Shanaka,BAT,23,R,,0,0,0,0.347,0,0,1,0
+860,Kieran Hope,BOWL,33,R,PACE,0,1,0,0.597,0,0,0,0
+861,Rehan Pope,BOWL,19,R,SPIN,1,0,0,0.293,0,1,0,0
+862,Stuart Anderson,BOWL,35,R,SPIN,1,0,0,0.642,1,1,0,0
+863,Mark Ali,AR,36,R,PACE,0,1,0,0.772,0,1,1,0
+864,Ollie Sibley,BOWL,33,R,SPIN,1,0,0,0.291,1,1,0,0
+865,Jasprit Samson,BAT,36,L,,0,0,0,0.497,0,0,0,0
+866,Jason Crawley,AR,30,R,PACE,0,1,0,0.574,0,0,0,0
+867,Adam Inglis,AR,27,R,SPIN,1,0,1,0.403,1,1,0,0
+868,Henry Southee,AR,24,R,SPIN,1,0,0,0.457,1,1,0,0
+869,Aiden Steyn,BAT,37,R,,0,0,1,0.751,0,0,0,0
+870,Imam Saleem,BAT,32,R,,0,0,1,0.452,0,0,1,1
+871,Sachith Dananjaya,BOWL,22,R,PACE,0,1,0,0.247,1,1,0,0
+872,Shamarh Walsh,BAT,38,R,,0,0,0,0.51,0,0,1,1
+873,Zak Lawrence,WK,19,R,,0,0,1,0.386,0,0,1,0
+874,Stuart Crawley,BAT,30,R,,0,0,0,0.634,0,0,1,1
+875,Ben Ali,BOWL,22,L,SPIN,1,0,0,0.067,0,0,0,0
+876,Joe Carse,AR,31,R,PACE,0,1,1,0.536,0,0,0,0
+877,Tilak Jadeja,BOWL,26,R,SPIN,1,0,0,0.273,1,1,0,0
+878,Liam Brook,BAT,27,L,,0,0,0,0.39,0,0,0,0
+879,Tim Zampa,BOWL,32,R,SPIN,1,0,1,0.479,1,0,0,0
+880,Ben O'Rourke,BOWL,33,R,SPIN,1,0,0,0.683,1,1,0,0
+881,Quinton Amla,BOWL,25,R,SPIN,1,0,1,0.352,1,0,0,0
+882,Faheem Rizwan,BOWL,38,L,PACE,0,1,0,0.885,1,1,0,0
+883,Niroshan Hasaranga,AR,28,R,SPIN,1,0,0,0.585,1,0,1,0
+884,Kyle Hetmyer,BOWL,21,R,PACE,0,1,0,0.356,1,1,0,0
+885,Jack Wood,BAT,18,L,,0,0,0,0.296,0,0,0,0
+886,Jason Stokes,BAT,22,R,,0,0,1,0.339,0,0,0,0
+887,Jamie Archer,BOWL,32,L,PACE,0,1,0,0.479,0,0,0,0
+888,James Stokes,BAT,29,L,,0,0,0,0.433,0,0,0,0
+889,Yuzvendra Pant,BAT,25,L,,0,0,0,0.297,0,0,0,0
+890,Dom Archer,BOWL,28,R,SPIN,1,0,1,0.355,1,1,0,0
+891,Travis Stoinis,BAT,35,R,,0,0,0,0.564,0,0,0,0
+892,Matt Taylor,WK,30,R,,0,0,0,0.534,0,0,1,1
+893,Gerald Maharaj,BAT,19,R,,0,0,0,0.344,0,0,1,1
+894,Abrar Irfan,BAT,19,R,,0,0,0,0.337,0,0,0,0
+895,Niroshan Fernando,BOWL,28,L,SPIN,1,0,1,0.406,1,0,0,0
+896,Shamarh Seales,AR,26,R,SPIN,1,0,1,0.299,1,0,0,0
+897,Jofra Sibley,BAT,35,R,,0,0,0,0.582,0,0,0,0
+898,Jos Crawley,BAT,30,R,,0,0,0,0.615,0,0,0,0
+899,Tom Salt,BAT,33,R,,0,0,0,0.421,0,0,1,1
+900,Dom Bairstow,BOWL,30,R,PACE,0,1,0,0.487,1,1,0,0
+901,Jasprit Sundar,BOWL,25,R,PACE,0,1,0,0.461,1,1,0,0
+902,Mark Buttler,BAT,31,L,,0,0,0,0.369,0,0,0,0
+903,Ryan Warner,BAT,31,R,,0,0,0,0.6,0,0,0,1
+904,Daryl O'Rourke,BOWL,33,R,SPIN,1,0,1,0.526,1,1,0,0
+905,Dean Ngidi,WK,21,R,,0,0,0,0.236,0,0,1,1
+906,Agha Mir,BOWL,31,R,PACE,0,1,0,0.757,1,1,0,0
+907,Maheesh Karunaratne,BOWL,23,L,PACE,0,1,0,0.319,0,0,0,0
+908,Akeal Shepherd,BAT,34,L,,0,0,0,0.585,0,0,0,0
+909,Joe Archer,BAT,34,R,,0,0,0,0.629,0,0,1,1
+910,Brydon Lawrence,BAT,31,L,,0,0,0,0.59,0,0,1,0
+911,Mark Sibley,AR,37,R,SPIN,1,0,0,0.547,0,0,0,0
+912,Zak Salt,AR,29,R,SPIN,1,0,0,0.421,0,0,0,0
+913,Mohammed Siraj,AR,18,L,PACE,0,1,1,0.282,1,0,0,0
+914,Brydon Bethell,WK,30,R,,0,0,1,0.535,0,0,0,0
+915,Aaron Inglis,WK,34,R,,0,0,0,0.437,0,0,1,1
+916,Neil Nicholls,WK,20,R,,0,0,0,0.139,0,0,0,0
+917,Kagiso Steyn,BAT,20,R,,0,0,0,0.399,0,0,1,1
+918,Shadab Rauf,BAT,23,R,,0,0,0,0.44,0,0,1,0
+919,Chamika Liyanage,BAT,35,R,,0,0,1,0.654,0,0,0,0
+920,Kieron Pollard,BOWL,29,R,SPIN,1,0,1,0.314,1,1,0,0
+921,Jos Wood,BAT,38,R,,0,0,0,0.582,0,0,0,1
+922,Ben Root,AR,36,L,SPIN,1,0,0,0.535,0,0,0,0
+923,Adil Salt,BOWL,29,R,SPIN,1,0,0,0.384,0,0,0,0
+924,Jason Anderson,BOWL,32,L,PACE,0,1,0,0.49,1,1,0,0
+925,Kuldeep Gill,BAT,24,R,,0,0,1,0.42,0,0,1,0
+926,Jamie Bethell,BAT,19,R,,0,0,0,0.323,0,0,0,0
+927,David Labuschagne,BAT,26,R,,0,0,0,0.45,0,0,0,0
+928,Mitchell Duffy,AR,30,L,PACE,0,1,0,0.652,0,0,0,0
+929,Dale Bavuma,BOWL,21,R,SPIN,1,0,0,0.346,0,0,0,0
+930,Salman Khushdil,BOWL,22,L,PACE,0,1,0,0.527,1,0,0,0
+931,Maheesh Rajitha,BAT,18,R,,0,0,1,0.218,0,0,1,0
+932,Dwayne Mayers,BAT,33,R,,0,0,0,0.34,0,0,0,1
+933,Jos Pope,BOWL,36,R,PACE,0,1,0,0.676,1,0,0,0
+934,Adil Stokes,AR,35,R,SPIN,1,0,0,0.823,1,1,0,0
+935,James Archer,AR,25,R,PACE,0,1,0,0.539,0,0,0,0
+936,Matt Archer,BAT,30,R,,0,0,0,0.451,0,0,1,1
+937,Shubman Bishnoi,WK,38,R,,0,0,0,0.689,0,0,1,0
+938,Craig Pope,BAT,30,R,,0,0,0,0.468,0,0,0,0
+939,Jake Lyon,AR,24,R,SPIN,1,0,0,0.151,1,1,0,1
+940,Daryl Nicholls,BAT,25,R,,0,0,1,0.499,0,0,0,1
+941,Marco Parnell,BAT,33,R,,0,0,0,0.628,0,0,1,1
+942,Danish Zaman,AR,27,R,SPIN,1,0,1,0.362,0,0,0,0
+943,Nuwan Asalanka,BAT,35,R,,0,0,0,0.634,0,0,1,1
+944,Jayden Athanaze,BOWL,36,R,PACE,0,1,0,0.743,1,0,0,0
+945,Jason Archer,BOWL,18,R,PACE,0,1,0,0.288,1,1,0,0
+946,Adil Roy,BAT,33,L,,0,0,0,0.496,0,0,1,1
+947,Craig Bairstow,BOWL,25,R,SPIN,1,0,0,0.246,0,0,0,0
+948,Jason Lawrence,AR,28,R,PACE,0,1,0,0.566,0,0,0,0
+949,Rinku Gaikwad,AR,23,L,PACE,0,1,1,0.47,1,0,0,0
+950,Ollie Salt,BAT,25,R,,0,0,0,0.231,0,0,1,1
+951,Matthew Agar,BOWL,24,R,SPIN,1,0,0,0.357,1,1,0,0
+952,Martin Sears,BAT,19,L,,0,0,1,0.073,0,0,0,0
+953,Ryan de Kock,BAT,34,L,,0,0,0,0.377,0,0,1,1
+954,Danish Khurram,BAT,21,R,,0,0,1,0.334,0,0,1,1
+955,Bhanuka Hasaranga,WK,25,R,,0,0,1,0.396,0,0,1,1
+956,Kevin Sammy,AR,22,R,PACE,0,1,1,0.421,0,0,0,1
+957,Sam Crawley,AR,21,L,PACE,0,1,1,0.271,1,0,0,0
+958,Craig Ahmed,BOWL,25,L,SPIN,1,0,0,0.385,1,1,0,0
+959,Rehan Broad,BOWL,37,R,PACE,0,1,0,0.624,1,1,0,0
+960,Chris Sibley,BOWL,37,R,SPIN,1,0,1,0.565,1,1,0,0
+961,Tilak Pant,BOWL,26,R,SPIN,1,0,0,0.48,1,1,0,0
+962,Stuart Ali,BOWL,28,R,PACE,0,1,0,0.488,0,0,0,0
+963,Usman Labuschagne,BAT,38,R,,0,0,0,0.552,0,0,0,0
+964,Jacob Sodhi,BAT,22,R,,0,0,0,0.287,0,0,0,0
+965,Tabraiz Maharaj,WK,37,R,,0,0,0,0.637,0,0,1,0
+966,Mohammad Nawaz,BOWL,20,R,PACE,0,1,0,0.413,1,1,0,0
+967,Maheesh Gunathilaka,WK,22,R,,0,0,1,0.206,0,0,0,0
+968,Rovman Seales,BAT,25,R,,0,0,1,0.318,0,0,0,0
+969,Jonny Stokes,BOWL,18,R,PACE,0,1,0,0.175,0,0,0,0
+970,Moeen Crawley,BAT,35,R,,0,0,0,0.602,0,0,1,1
+971,Craig Ali,BAT,35,L,,0,0,0,0.562,0,0,0,0
+972,Jason Salt,BAT,26,R,,0,0,0,0.488,0,0,0,0
+973,Deepak Varma,BAT,35,R,,0,0,0,0.532,0,0,1,1
+974,Ben Buttler,AR,34,R,PACE,0,1,0,0.689,1,1,0,0
+975,Cooper Stoinis,BAT,34,R,,0,0,0,0.642,0,0,0,0
+976,Rachin Young,BOWL,34,R,PACE,0,1,0,0.364,0,0,0,0
+977,Tabraiz Hendricks,BOWL,30,R,SPIN,1,0,0,0.496,1,1,0,0
+978,Wahab Masood,BOWL,20,R,PACE,0,1,0,0.332,0,0,0,0
+979,Asitha Mendis,BOWL,37,R,PACE,0,1,0,0.678,0,1,0,0
+980,Rahkeem Pollard,BAT,30,R,,0,0,0,0.534,0,0,1,1
+981,Harry Roy,WK,36,R,,0,0,0,0.641,0,0,1,0
+982,Harry Potts,AR,38,R,PACE,0,1,0,0.845,0,0,0,0
+983,Matt Broad,BOWL,21,R,PACE,0,1,0,0.324,1,0,0,0
+984,Brydon Brook,BOWL,26,R,SPIN,1,0,0,0.431,1,1,0,0
+985,Rishabh Sharma,BAT,22,R,,0,0,1,0.396,0,0,0,0
+986,Moeen Lawrence,AR,19,R,SPIN,1,0,0,0.02,0,0,0,0
+987,Adam Zampa,BAT,38,R,,0,0,0,0.667,0,0,0,1
+988,Lockie Nicholls,BAT,37,R,,0,0,0,0.653,0,0,1,1
+989,Marco Rabada,BAT,37,L,,0,0,1,0.327,0,0,1,0
+990,Faheem Shafique,AR,36,L,SPIN,1,0,1,0.722,1,1,0,0
+991,Dushmantha Gunathilaka,BOWL,31,L,SPIN,1,0,0,0.422,0,0,0,0
+992,Rahkeem Seales,BOWL,28,R,PACE,0,1,0,0.547,1,1,0,0
+993,Jonny Curran,AR,38,R,PACE,0,1,0,0.702,0,0,0,0
+994,Craig Broad,BAT,29,R,,0,0,0,0.346,0,0,0,0
+995,Mark Crawley,AR,31,R,SPIN,1,0,0,0.512,0,0,0,0
+996,Sam Curran,BOWL,22,R,SPIN,1,0,0,0.406,1,1,0,0
+997,Rohit Kohli,BOWL,33,R,PACE,0,1,1,0.663,0,1,0,0
+998,Chris Ahmed,BAT,35,R,,0,0,1,0.381,0,0,1,1
+999,David Green,WK,32,R,,0,0,0,0.569,0,0,1,0
+1000,Michael Bracewell,BAT,28,R,,0,0,1,0.334,0,0,0,0
+1001,Hashim Coetzee,BAT,22,R,,0,0,0,0.444,0,0,0,0
+1002,Zafar Shakeel,BOWL,18,R,SPIN,1,0,0,0.152,0,0,0,0
+1003,Charith de Silva,BAT,31,L,,0,0,1,0.426,0,0,1,1
+1004,Obed Hope,BAT,32,R,,0,0,0,0.504,0,0,0,0
+1005,Stuart Sibley,BOWL,34,R,PACE,0,1,0,0.706,0,1,0,0
+1006,Jason Rashid,BOWL,37,R,SPIN,1,0,0,0.606,1,1,0,0
+1007,Jamie Curran,AR,28,R,SPIN,1,0,0,0.598,1,1,0,0
+1008,Adil Buttler,BAT,35,R,,0,0,0,0.757,0,0,0,0
+1009,Shreyas Chahar,BOWL,33,R,SPIN,1,0,0,0.408,0,0,0,0
+1010,Jamie Ahmed,BOWL,23,R,PACE,0,1,0,0.356,0,0,0,0
+1011,Ryan Hazlewood,BOWL,35,R,SPIN,1,0,0,0.516,1,1,0,0
+1012,Finn Mitchell,BOWL,19,R,PACE,0,1,0,0.393,1,1,0,0
+1013,Ryan Klaasen,BOWL,30,L,SPIN,1,0,0,0.323,1,1,0,0
+1014,Shaheen Khushdil,WK,37,R,,0,0,0,0.536,0,0,0,0
+1015,Nuwan Mendis,BAT,31,R,,0,0,0,0.598,0,0,1,0
+1016,Kyle Hosein,BAT,37,R,,0,0,0,0.538,0,0,0,0
+1017,Rehan Curran,BOWL,19,R,SPIN,1,0,1,0.146,1,0,0,0
+1018,Jamie Pope,AR,29,R,PACE,0,1,0,0.497,0,0,0,0
+1019,Jack Bethell,BAT,34,R,,0,0,1,0.62,0,0,0,0
+1020,Moeen Salt,BOWL,31,L,SPIN,1,0,0,0.453,1,1,0,0
+1021,Prithvi Varma,AR,36,R,SPIN,1,0,0,0.636,1,1,1,1
+1022,Jofra Crawley,BOWL,27,R,PACE,0,1,1,0.402,0,0,0,0
+1023,Marcus Turner,WK,32,R,,0,0,0,0.568,0,0,1,1
+1024,Finn Conway,BOWL,26,L,PACE,0,1,0,0.409,1,0,0,0
+1025,Gerald Ngidi,BOWL,36,L,SPIN,1,0,0,0.461,0,0,0,0
+1026,Faheem Butt,BAT,20,L,,0,0,0,0.463,0,0,1,1
+1027,Kasun Lakmal,WK,23,R,,0,0,1,0.264,0,0,0,0
+1028,Kemar Carty,BAT,20,R,,0,0,0,0.037,0,0,0,0
+1029,Harry Ahmed,BOWL,32,R,SPIN,1,0,1,0.476,0,0,0,0
+1030,Liam Woakes,BOWL,22,L,PACE,0,1,0,0.446,0,0,0,0
+1031,Zak Sibley,BOWL,24,R,PACE,0,1,1,0.498,1,1,0,0
+1032,Dom Overton,BOWL,35,R,PACE,0,1,1,0.744,0,0,0,0
+1033,Rinku Tiwary,BOWL,25,R,PACE,0,1,0,0.33,0,0,0,0
+1034,Dom Pope,AR,21,R,PACE,0,1,0,0.219,0,0,0,0
+1035,Josh Inglis,BOWL,18,R,SPIN,1,0,0,0.142,0,0,0,0
+1036,Martin Williamson,BOWL,22,R,SPIN,1,0,0,0.234,1,0,0,0
+1037,Temba de Kock,BAT,37,R,,0,0,0,0.496,0,0,1,1
+1038,Shadab Afridi,BOWL,29,L,PACE,0,1,1,0.6,1,0,0,0
+1039,Dimuth Asalanka,BOWL,38,R,PACE,0,1,1,0.888,1,1,0,0
+1040,Nicholas Mayers,BAT,22,L,,0,0,0,0.377,0,0,0,0
+1041,Harry Stokes,BAT,25,R,,0,0,0,0.323,0,0,1,1
+1042,Sam Roy,BOWL,21,L,PACE,0,1,0,0.343,1,1,0,0
+1043,Stuart Carse,BOWL,26,R,PACE,0,1,0,0.411,0,0,0,0
+1044,Jos Sibley,BOWL,29,L,SPIN,1,0,0,0.422,0,0,0,0
+1045,Shreyas Varma,BAT,34,R,,0,0,0,0.528,0,0,0,0
+1046,Jos Bethell,BAT,25,R,,0,0,0,0.379,0,0,1,0
+1047,Usman Agar,BAT,34,R,,0,0,0,0.569,0,0,0,0
+1048,Neil Kuggeleijn,AR,31,R,PACE,0,1,0,0.592,1,1,0,1
+1049,Lungi Rabada,AR,24,R,PACE,0,1,0,0.464,0,1,1,1
+1050,Abrar Rizwan,BAT,37,R,,0,0,0,0.606,0,0,1,0
+1051,Dilshan de Silva,BOWL,27,L,PACE,0,1,0,0.529,1,1,0,0
+1052,Darren Athanaze,BAT,21,R,,0,0,1,0.432,0,0,1,1
+1053,Brydon Carse,BAT,38,R,,0,0,1,0.632,0,0,0,0
+1054,Liam Broad,BAT,37,R,,0,0,0,0.619,0,0,1,1
+1055,Jofra Roy,BAT,19,L,,0,0,0,0.257,0,0,1,1
+1056,Rehan Rashid,BOWL,36,L,PACE,0,1,0,0.472,0,0,0,0
+1057,Sanju Varma,AR,37,R,PACE,0,1,0,0.683,0,0,0,0
+1058,Adil Sibley,BAT,35,L,,0,0,0,0.438,0,0,1,0
+1059,Sean Conway,BOWL,23,R,SPIN,1,0,0,0.401,0,0,0,0
+1060,Michael Young,BOWL,31,L,PACE,0,1,0,0.489,1,0,0,0
+1061,Keshav Rabada,WK,29,L,,0,0,0,0.486,0,0,0,0
+1062,Usman Nawaz,BOWL,31,R,PACE,0,1,0,0.5,0,0,0,0
+1063,Suranga Lakmal,BAT,30,R,,0,0,0,0.471,0,0,0,0
+1064,Roston Powell,BOWL,31,R,PACE,0,1,0,0.648,1,1,0,0
+1065,Jack Woakes,BAT,28,R,,0,0,0,0.35,0,0,0,0
+1066,Harry Curran,WK,32,L,,0,0,0,0.507,0,0,0,0
+1067,Jonny Lawrence,BOWL,29,R,SPIN,1,0,0,0.476,1,1,0,0
+1068,Tom Overton,BOWL,18,R,PACE,0,1,0,0.273,0,0,0,0
+1069,Ruturaj Gaikwad,BAT,18,L,,0,0,1,0.372,0,0,1,0
+1070,Mark Bairstow,BOWL,38,R,PACE,0,1,1,0.54,0,0,0,0
+1071,Glenn Richardson,AR,37,R,PACE,0,1,0,0.579,1,0,0,0
+1072,Henry Nicholls,BOWL,30,R,SPIN,1,0,1,0.51,1,1,0,0
+1073,Tony Miller,BOWL,21,R,PACE,0,1,0,0.554,1,1,0,0
+1074,Fakhar Khan,AR,34,R,PACE,0,1,0,0.666,1,1,0,0
+1075,Wanindu Mathews,AR,21,R,PACE,0,1,0,0.208,0,0,0,1
+1076,Alzarri Joseph,BAT,25,R,,0,0,0,0.548,0,0,0,1
+1077,Stuart Curran,BOWL,24,R,PACE,0,1,0,0.428,0,0,0,0
+1078,Craig Carse,BOWL,18,R,SPIN,1,0,1,0.095,0,0,0,0
+1079,Mark Roy,BOWL,34,R,PACE,0,1,0,0.646,1,1,0,0
+1080,Tom Broad,BAT,28,R,,0,0,0,0.366,0,0,0,0
+1081,Ishan Siraj,BAT,24,R,,0,0,0,0.398,0,0,1,1
+1082,Moeen Root,AR,28,R,PACE,0,1,0,0.513,1,0,1,1
+1083,Mitchell Cummins,AR,18,L,PACE,0,1,0,0.248,0,0,0,0
+1084,Colin Ferguson,AR,27,R,SPIN,1,0,0,0.375,1,1,1,1
+1085,Lizaad Elgar,WK,28,R,,0,0,0,0.482,0,0,1,0
+1086,Saim Nawaz,BOWL,25,L,PACE,0,1,1,0.457,1,0,0,0
+1087,Maheesh Chameera,AR,35,R,SPIN,1,0,0,0.558,0,0,0,0
+1088,Odean Carty,AR,23,R,PACE,0,1,0,0.498,0,0,0,0
+1089,James Bairstow,BOWL,20,R,PACE,0,1,1,0.135,0,0,0,0
+1090,Brydon Rashid,BOWL,29,R,SPIN,1,0,0,0.412,0,0,0,0
+1091,Brydon Stokes,BAT,36,R,,0,0,0,0.573,0,0,0,0
+1092,Jack Broad,BOWL,25,L,PACE,0,1,0,0.578,1,0,0,0
+1093,Virat Sharma,BAT,18,L,,0,0,0,0.089,0,0,0,0
+1094,Ollie Broad,BAT,38,R,,0,0,0,0.466,0,0,0,0
+1095,Josh Labuschagne,BOWL,27,R,PACE,0,1,0,0.542,1,1,0,0
+1096,Ben Wagner,BOWL,21,R,PACE,0,1,0,0.267,0,0,0,0
+1097,Lungi de Zorzi,BAT,30,R,,0,0,0,0.319,0,0,1,0
+1098,Usman Khan,AR,24,R,SPIN,1,0,0,0.273,0,0,0,0
+1099,Thisara Gunathilaka,AR,37,R,PACE,0,1,0,0.659,1,0,0,0
+1100,Kevin Powell,BAT,24,L,,0,0,0,0.284,0,0,0,0
+1101,Brydon Pope,BAT,29,R,,0,0,0,0.34,0,0,0,0
+1102,Ollie Rashid,BAT,29,R,,0,0,0,0.541,0,0,0,0
+1103,Joe Wood,AR,23,R,SPIN,1,0,0,0.28,0,0,0,0
+1104,James Overton,AR,28,R,PACE,0,1,1,0.57,1,0,0,0
+1105,KL Tiwary,BAT,20,L,,0,0,0,0.359,0,0,1,1
+1106,Ollie Carse,AR,31,R,PACE,0,1,0,0.501,1,1,0,0
+1107,Alex Head,BAT,33,R,,0,0,0,0.551,0,0,1,1
+1108,Martin Kuggeleijn,BOWL,37,L,SPIN,1,0,0,0.658,1,1,0,0
+1109,Rassie Parnell,WK,24,L,,0,0,0,0.247,0,0,0,0
+1110,Abrar Afridi,BAT,23,R,,0,0,1,0.18,0,0,1,1
+1111,Dasun Asalanka,BAT,29,R,,0,0,0,0.356,0,0,1,0
+1112,Fabian Chase,BOWL,32,L,PACE,0,1,0,0.598,0,1,0,0
+1113,Chris Pope,BOWL,38,L,PACE,0,1,0,0.818,0,0,0,0
+1114,Jason Woakes,AR,18,R,PACE,0,1,1,0.498,1,1,0,0
+1115,James Buttler,WK,23,L,,0,0,0,0.387,0,0,1,0
+1116,Chris Crawley,BAT,23,R,,0,0,0,0.269,0,0,0,0
+1117,Rohit Yadav,BAT,23,R,,0,0,0,0.234,0,0,1,1
+1118,Stuart Ahmed,AR,27,L,SPIN,1,0,1,0.402,0,0,0,0
+1119,Matthew Conway,BAT,36,R,,0,0,0,0.731,0,0,1,1
+1120,Devon Williamson,AR,18,R,SPIN,1,0,1,0.067,0,0,0,0
+1121,Reeza Markram,BOWL,35,L,PACE,0,1,1,0.655,0,0,0,0
+1122,Naseem Iftikhar,BAT,30,L,,0,0,0,0.426,0,0,0,0
+1123,Wanindu Rajapaksa,AR,30,L,SPIN,1,0,1,0.537,0,0,0,0
+1124,Obed Thomas,BAT,32,R,,0,0,0,0.399,0,0,0,0
+1125,Chris Stokes,BOWL,20,L,PACE,0,1,0,0.308,0,0,0,0
+1126,Liam Curran,BOWL,33,R,SPIN,1,0,0,0.328,0,0,0,0
+1127,Ben Salt,BOWL,23,R,SPIN,1,0,1,0.107,0,0,0,0
+1128,Zak Bairstow,BOWL,28,R,PACE,0,1,0,0.833,1,1,0,0
+1129,Prithvi Kohli,BOWL,32,L,SPIN,1,0,0,0.563,1,1,0,0
+1130,Sam Overton,WK,30,L,,0,0,0,0.633,0,0,1,1
+1131,Tim Boland,WK,24,L,,0,0,0,0.475,0,0,0,0
+1132,Matt O'Rourke,BOWL,26,R,PACE,0,1,1,0.314,0,0,0,0
+1133,Gerald du Plessis,BAT,28,R,,0,0,0,0.388,0,0,0,0
+1134,Sarfaraz Hassan,BOWL,18,R,SPIN,1,0,0,0.02,0,0,0,0
+1135,Asitha Lakmal,WK,33,R,,0,0,1,0.531,0,0,0,0
+1136,Shimron Hope,BAT,20,R,,0,0,1,0.02,0,0,0,0
+1137,Sam Potts,BOWL,27,R,PACE,0,1,0,0.295,0,0,0,0
+1138,Jonny Buttler,BOWL,31,L,SPIN,1,0,0,0.471,1,1,0,0
+1139,Jamie Sibley,BAT,19,R,,0,0,0,0.214,0,0,0,0
+1140,Tom Sibley,BOWL,38,L,PACE,0,1,0,0.721,1,1,0,0
+1141,Sanju Gaikwad,BAT,25,R,,0,0,0,0.221,0,0,0,0
+1142,Rehan Stokes,AR,18,R,PACE,0,1,0,0.262,0,0,0,0
+1143,Aaron Maxwell,AR,31,R,SPIN,1,0,1,0.564,0,0,0,0
+1144,Trent Chapman,AR,29,R,PACE,0,1,0,0.534,0,0,0,0
+1145,Kagiso de Zorzi,BOWL,31,R,SPIN,1,0,1,0.482,1,1,0,0
+1146,Haris Rizwan,BAT,33,R,,0,0,1,0.481,0,0,1,0
+1147,Charith Perera,BOWL,27,R,PACE,0,1,0,0.331,0,0,0,0
+1148,Fabian Gayle,AR,35,R,SPIN,1,0,0,0.557,0,0,0,0
+1149,Jofra Curran,BOWL,25,R,PACE,0,1,0,0.348,1,1,0,0
+1150,Craig Lawrence,AR,29,R,SPIN,1,0,1,0.519,0,0,0,0
+1151,Dom Potts,BAT,21,R,,0,0,0,0.286,0,0,0,0
+1152,Ben Curran,AR,31,R,PACE,0,1,0,0.635,0,0,0,0
+1153,Deepak Bishnoi,BAT,23,R,,0,0,0,0.368,0,0,0,0
+1154,Sam Carse,BAT,32,R,,0,0,0,0.442,0,0,1,0
+1155,Lance Inglis,BOWL,34,R,PACE,0,1,0,0.617,1,1,0,0
+1156,Neil Taylor,BAT,36,R,,0,0,0,0.473,0,0,1,1
+1157,Ryan Bavuma,BAT,37,L,,0,0,0,0.709,0,0,0,0
+1158,Usama Ahmed,BAT,20,R,,0,0,0,0.263,0,0,1,0
+1159,Dasun Chameera,BOWL,20,R,PACE,0,1,1,0.197,0,0,0,0
+1160,Kieran Holder,AR,37,R,SPIN,1,0,1,0.626,0,0,0,0
+1161,Stuart Salt,BAT,25,R,,0,0,1,0.403,0,0,0,0
+1162,Jofra Wood,BOWL,18,R,SPIN,1,0,0,0.118,0,0,0,0
+1163,Jack Bairstow,AR,24,L,SPIN,1,0,0,0.28,1,0,1,0
+1164,Jack Rashid,BAT,35,R,,0,0,0,0.526,0,0,0,0
+1165,Jasprit Rahul,BAT,25,R,,0,0,0,0.457,0,0,1,1
+1166,Craig Root,AR,19,R,PACE,0,1,0,0.273,0,0,0,0
+1167,Mitchell Zampa,AR,33,R,PACE,0,1,1,0.561,0,0,0,0
+1168,Finn Wagner,BOWL,22,R,SPIN,1,0,0,0.208,1,0,0,0
+1169,David Elgar,AR,25,R,PACE,0,1,0,0.521,1,1,0,0
+1170,Sarfaraz Saleem,BAT,18,R,,0,0,1,0.213,0,0,0,0
+1171,Kasun Karunaratne,BOWL,30,L,SPIN,1,0,0,0.351,0,0,0,0
+1172,Jason Gayle,BOWL,27,R,SPIN,1,0,0,0.416,0,0,0,0
+1173,Harry Lawrence,BAT,36,L,,0,0,1,0.475,0,0,0,0
+1174,Jofra Woakes,BOWL,25,R,PACE,0,1,0,0.366,0,1,0,0
+1175,Tom Root,BOWL,22,L,SPIN,1,0,0,0.322,0,0,0,0
+1176,Jack Ahmed,BOWL,21,R,SPIN,1,0,0,0.184,1,0,0,0
+1177,Suryakumar Chahal,BOWL,22,R,PACE,0,1,1,0.346,1,1,0,0
+1178,Ollie Potts,BAT,27,L,,0,0,0,0.212,0,0,0,0
+1179,Tim Carey,BAT,19,R,,0,0,0,0.221,0,0,0,0
+1180,Tim Sodhi,BAT,26,L,,0,0,0,0.463,0,0,0,0
+1181,Aiden Philander,BOWL,35,L,SPIN,1,0,0,0.526,0,1,0,0
+1182,Usama Shakeel,BAT,34,R,,0,0,1,0.507,0,0,1,0
+1183,Chamika Perera,BAT,31,R,,0,0,0,0.561,0,0,0,0
+1184,Kevin Walsh,BAT,36,R,,0,0,0,0.439,0,0,0,1
+1185,Jonny Roy,BAT,34,L,,0,0,0,0.544,0,0,0,0
+1186,Chris Root,AR,31,L,PACE,0,1,0,0.617,0,0,0,0
+1187,Rehan Lawrence,BOWL,36,R,PACE,0,1,0,0.84,0,0,0,0
+1188,Zak Rashid,WK,20,R,,0,0,0,0.109,0,0,0,0
+1189,Prasidh Mukesh,BAT,35,R,,0,0,0,0.587,0,0,0,0
+1190,Moeen Buttler,BOWL,24,R,PACE,0,1,0,0.501,1,1,0,0
+1191,Marnus Khawaja,BOWL,33,R,PACE,0,1,1,0.668,0,0,0,0
+1192,Blair Southee,BOWL,37,L,PACE,0,1,1,0.655,1,1,0,0
+1193,Ryan Markram,AR,28,R,SPIN,1,0,0,0.651,1,0,0,0
+1194,Agha Ayub,WK,19,L,,0,0,0,0.313,0,0,0,0
+1195,Kasun Udana,AR,25,R,PACE,0,1,0,0.408,0,0,0,0
+1196,Kemar Mayers,BAT,26,R,,0,0,0,0.412,0,0,1,1
+1197,Jason Bethell,BAT,37,R,,0,0,0,0.635,0,0,0,0
+1198,Matt Buttler,BOWL,37,L,PACE,0,1,1,0.651,1,1,0,0
+1199,Adil Broad,BAT,29,R,,0,0,0,0.481,0,0,1,0
+1200,James Pope,BOWL,37,R,PACE,0,1,0,0.785,1,1,0,0
+1201,Virat Sundar,BOWL,27,R,SPIN,1,0,1,0.631,1,1,0,0
+1202,Jonny Woakes,BOWL,26,L,PACE,0,1,0,0.544,1,0,0,0
+1203,Usman Head,AR,35,R,PACE,0,1,0,0.685,0,1,0,0
+1204,Mark Blundell,BOWL,32,R,SPIN,1,0,0,0.437,1,1,0,0
+1205,Dean Miller,BAT,28,L,,0,0,0,0.491,0,0,1,0
+1206,Asif Irfan,BAT,27,L,,0,0,1,0.209,0,0,0,0
+1207,Wanindu Lakmal,BOWL,32,R,PACE,0,1,0,0.699,1,0,0,0
+1208,Jason Holder,BOWL,33,R,SPIN,1,0,0,0.517,1,0,0,0
+1209,Stuart Buttler,BAT,28,R,,0,0,0,0.251,0,0,1,1
+1210,Moeen Curran,BOWL,18,R,SPIN,1,0,1,0.375,0,0,0,0
+1211,Jos Anderson,BOWL,20,R,PACE,0,1,0,0.189,0,0,0,0
+1212,James Curran,AR,21,R,PACE,0,1,0,0.39,1,1,1,0
+1213,Washington Yadav,BOWL,27,R,SPIN,1,0,0,0.552,1,1,0,0
+1214,Ben Lawrence,BOWL,30,R,SPIN,1,0,1,0.405,1,1,0,0
+1215,Jake Zampa,BAT,34,R,,0,0,0,0.601,0,0,0,0
+1216,Blair Tickner,BOWL,22,R,SPIN,1,0,0,0.269,1,1,0,0
+1217,Temba Miller,BAT,34,R,,0,0,1,0.629,0,0,1,1
+1218,Shaheen Shakeel,BOWL,31,R,PACE,0,1,0,0.719,1,1,0,0
+1219,Dushmantha Perera,BOWL,19,L,PACE,0,1,0,0.22,0,0,0,0
+1220,Obed Seales,BAT,25,R,,0,0,0,0.102,0,0,0,0
+1221,Jos Overton,BAT,24,R,,0,0,0,0.388,0,0,0,0
+1222,Matt Bethell,BAT,36,R,,0,0,0,0.592,0,0,0,0
+1223,Brydon Overton,AR,37,R,PACE,0,1,0,0.767,0,0,0,0
+1224,James Brook,BOWL,35,R,SPIN,1,0,0,0.512,1,0,0,0
+1225,Ruturaj Bumrah,BAT,29,R,,0,0,0,0.278,0,0,0,0
+1226,James Rashid,AR,28,L,PACE,0,1,0,0.558,1,1,1,0
+1227,Matthew Head,BOWL,24,R,PACE,0,1,1,0.639,1,1,0,0
+1228,Michael Tickner,BOWL,34,R,PACE,0,1,0,0.665,1,1,0,0
+1229,Tony Markram,AR,19,R,SPIN,1,0,0,0.273,0,0,0,0
+1230,Usama Khushdil,BAT,23,R,,0,0,0,0.137,0,0,0,0
+1231,Niroshan Embuldeniya,BAT,20,L,,0,0,0,0.282,0,0,0,0
+1232,Kieran Motie,BOWL,28,R,SPIN,1,0,0,0.372,0,0,0,0
+1233,Chris Brook,BAT,24,L,,0,0,0,0.477,0,0,1,1
+1234,Rehan Buttler,BOWL,22,L,PACE,0,1,0,0.209,0,0,0,0
+1235,Stuart Woakes,BAT,25,R,,0,0,0,0.437,0,0,1,1
+1236,Jofra Ali,BAT,36,R,,0,0,1,0.653,0,0,0,0
+1237,Washington Gaikwad,BAT,29,R,,0,0,1,0.534,0,0,1,0
+1238,Jos Brook,BOWL,35,L,PACE,0,1,1,0.486,1,1,0,0
+1239,Peter Carey,BAT,37,R,,0,0,0,0.486,0,0,1,1
+1240,Martin Phillips,BAT,36,R,,0,0,0,0.57,0,0,1,0
+1241,Marco Amla,AR,25,L,SPIN,1,0,0,0.327,1,1,1,0
+1242,Faheem Hassan,BAT,36,L,,0,0,1,0.567,0,0,0,0
+1243,Charith Hasaranga,BAT,37,R,,0,0,1,0.622,0,0,1,0
+1244,Shamarh Powell,BAT,38,R,,0,0,1,0.608,0,0,1,1
+1245,Jason Ali,BAT,25,R,,0,0,0,0.162,0,0,0,0
+1246,James Lawrence,BAT,22,R,,0,0,1,0.356,0,0,0,0
+1247,Sam Stokes,BOWL,30,L,PACE,0,1,0,0.467,1,1,0,0
+1248,Ollie Bairstow,BAT,37,R,,0,0,1,0.568,0,0,1,0
+1249,Deepak Yadav,AR,36,R,SPIN,1,0,0,0.53,0,0,0,0
+1250,Stuart Roy,AR,29,L,SPIN,1,0,0,0.484,0,1,1,1
+1251,Marcus Short,BAT,21,R,,0,0,0,0.462,0,0,0,0
+1252,Tom Sodhi,BAT,26,R,,0,0,1,0.284,0,0,0,0
+1253,Faf Maharaj,BAT,32,R,,0,0,0,0.594,0,0,0,0
+1254,Shaheen Shah,BOWL,29,R,PACE,0,1,0,0.616,1,1,0,0
+1255,Dinesh Karunaratne,BAT,25,L,,0,0,0,0.345,0,0,0,0
+1256,Rovman Pooran,AR,25,R,PACE,0,1,0,0.51,0,1,1,0
+1257,Rehan Salt,BOWL,19,R,SPIN,1,0,1,0.32,1,0,0,0
+1258,Mark Wood,AR,24,R,PACE,0,1,0,0.421,0,0,0,0
+1259,Jack Potts,BOWL,32,L,PACE,0,1,0,0.733,1,1,0,0
+1260,Joe Woakes,WK,23,R,,0,0,1,0.154,0,0,1,1
+1261,Umesh Siraj,BAT,38,L,,0,0,0,0.568,0,0,0,0
+1262,Zak Woakes,BOWL,19,L,SPIN,1,0,0,0.154,0,1,0,0
+1263,Usman Wade,BAT,30,R,,0,0,0,0.389,0,0,0,0
+1264,Kane Sears,WK,28,L,,0,0,0,0.303,0,0,0,0
+1265,Ryan Elgar,BOWL,35,R,PACE,0,1,0,0.587,0,0,0,0
+1266,Faheem Khan,AR,36,R,PACE,0,1,0,0.695,0,0,0,0
+1267,Suranga Liyanage,BAT,29,R,,0,0,0,0.462,0,0,1,0
+1268,Hayden Seales,WK,31,L,,0,0,0,0.493,0,0,1,0
+1269,Craig Overton,BOWL,32,L,PACE,0,1,1,0.706,1,1,0,0
+1270,Jonny Sibley,BOWL,28,L,PACE,0,1,1,0.544,1,1,0,0
+1271,Jonny Bethell,WK,21,L,,0,0,0,0.156,0,0,0,0
+1272,Moeen Woakes,BOWL,27,R,PACE,0,1,0,0.399,0,0,0,0
+1273,Kuldeep Bishnoi,BOWL,23,L,SPIN,1,0,1,0.321,1,1,0,0
+1274,Craig Potts,BOWL,27,L,SPIN,1,0,1,0.32,0,0,0,0
+1275,Alex Abbott,BAT,30,R,,0,0,0,0.418,0,0,0,0
+1276,Jacob Blundell,BAT,22,R,,0,0,0,0.457,0,0,0,0
+1277,Quinton Steyn,BAT,23,R,,0,0,0,0.376,0,0,1,1
+1278,Imam Shah,BAT,35,L,,0,0,0,0.474,0,0,0,0
+1279,Suranga Chameera,AR,25,R,PACE,0,1,0,0.587,0,0,1,1
+1280,Kavem Holder,BOWL,22,R,PACE,0,1,0,0.224,1,1,0,0
+1281,Stuart Broad,BAT,32,R,,0,0,1,0.505,0,0,0,0
+1282,Matt Ali,BOWL,33,R,SPIN,1,0,0,0.465,1,1,0,0
+1283,Liam Overton,BOWL,35,R,SPIN,1,0,0,0.697,1,1,0,0
+1284,Ben Rashid,BOWL,33,R,PACE,0,1,0,0.68,1,1,0,0
+1285,KL Rahul,AR,38,L,SPIN,1,0,1,0.565,0,0,0,0
+1286,Zak Roy,AR,30,R,SPIN,1,0,0,0.639,0,0,0,0
+1287,David Warner,BOWL,24,L,PACE,0,1,0,0.398,1,1,0,0
+1288,Blair Bracewell,BAT,36,R,,0,0,0,0.416,0,0,0,0
+1289,Marco Miller,BOWL,23,L,PACE,0,1,0,0.517,1,0,0,0
+1290,Haris Khan,BOWL,24,R,PACE,0,1,1,0.481,0,0,0,0
+1291,Suranga Nissanka,BOWL,35,R,PACE,0,1,0,0.627,1,1,0,0
+1292,Kyle Joseph,BOWL,36,R,SPIN,1,0,1,0.678,0,1,0,0
+1293,Mark Pope,BOWL,25,R,PACE,0,1,0,0.484,1,1,0,0
+1294,Ollie Roy,BAT,33,R,,0,0,0,0.476,0,0,1,1
+1295,Tom Wood,BAT,37,L,,0,0,0,0.613,0,0,0,0
+1296,Joe Ali,BAT,34,R,,0,0,0,0.559,0,0,0,0
+1297,Rinku Patel,BAT,18,R,,0,0,0,0.242,0,0,0,0
+1298,Sam Anderson,BAT,31,R,,0,0,0,0.579,0,0,1,0
+1299,Steve Tye,BOWL,21,R,SPIN,1,0,0,0.086,0,0,0,0
+1300,Michael Latham,BOWL,35,R,SPIN,1,0,0,0.472,0,0,0,0
+1301,Lizaad Jansen,BAT,19,R,,0,0,1,0.284,0,0,0,0
+1302,Naseem Khan,BOWL,38,R,PACE,0,1,0,0.631,0,0,0,0
+1303,Dhananjaya Fernando,BOWL,21,L,PACE,0,1,0,0.223,0,0,0,0
+1304,Odean Pollard,BAT,26,R,,0,0,1,0.403,0,0,1,1
+1305,Jos Ahmed,AR,22,R,PACE,0,1,1,0.387,0,0,0,0
+1306,Dom Ali,AR,35,R,SPIN,1,0,0,0.717,1,1,1,1
+1307,Sam Bethell,BOWL,26,R,PACE,0,1,0,0.4,0,0,0,0
+1308,Zak Potts,BOWL,33,R,PACE,0,1,0,0.764,0,0,0,0
+1309,Tilak Chahal,BAT,19,L,,0,0,0,0.146,0,0,1,0
+1310,Jamie Roy,WK,27,R,,0,0,0,0.479,0,0,0,1
+1311,Andrew Maxwell,BOWL,37,R,PACE,0,1,0,0.592,1,0,0,0
+1312,Adam Taylor,AR,37,L,PACE,0,1,0,0.76,0,0,0,0
+1313,Wayne Mulder,BOWL,22,R,SPIN,1,0,0,0.423,0,0,0,0
+1314,Yasir Abbasi,BAT,26,L,,0,0,1,0.53,0,0,0,0
+1315,Lahiru Vandersay,BAT,26,R,,0,0,1,0.167,0,0,1,0
+1316,Akeal Hosein,BOWL,29,R,PACE,0,1,1,0.547,1,0,0,0
+1317,Ben Pope,BOWL,29,L,PACE,0,1,0,0.471,1,1,0,0
+1318,Dom Brook,BAT,20,L,,0,0,0,0.342,0,0,1,1
+1319,Jos Carse,BOWL,34,L,PACE,0,1,0,0.45,0,0,0,0
+1320,Adil Pope,AR,22,R,PACE,0,1,0,0.367,0,0,0,0
+1321,Umesh Bawa,BOWL,24,L,PACE,0,1,0,0.359,0,0,0,0
+1322,Jason Bairstow,BOWL,35,R,SPIN,1,0,0,0.521,1,1,0,0
+1323,Andrew Lyon,BAT,32,R,,0,0,0,0.463,0,0,1,1
+1324,Ross Henry,AR,26,R,SPIN,1,0,0,0.407,1,1,0,0
+1325,David Fortuin,BAT,37,R,,0,0,0,0.568,0,0,1,1
+1326,Shaheen Abbasi,AR,26,R,PACE,0,1,0,0.504,0,0,0,0
+1327,Chaturanga Rajapaksa,BAT,29,R,,0,0,0,0.666,0,0,0,0
+1328,Jayden Holder,BOWL,23,L,PACE,0,1,0,0.507,1,1,0,0
+1329,Moeen Roy,BAT,21,L,,0,0,1,0.197,0,0,0,0
+1330,Moeen Wood,BAT,28,L,,0,0,0,0.373,0,0,1,1
+1331,Brydon Wood,AR,29,R,PACE,0,1,0,0.491,0,0,0,0
+1332,Sam Salt,BOWL,34,L,SPIN,1,0,1,0.694,1,1,0,0
+1333,Prithvi Kishan,BOWL,26,R,SPIN,1,0,0,0.326,0,0,0,0
+1334,Harry Rashid,WK,36,R,,0,0,0,0.588,0,0,0,0
+1335,Andrew Smith,WK,30,L,,0,0,0,0.466,0,0,1,0
+1336,Ish Mitchell,AR,19,R,PACE,0,1,0,0.466,0,1,1,0
+1337,Rassie Jansen,BAT,33,R,,0,0,0,0.585,0,0,1,0
+1338,Abrar Mir,BOWL,30,R,PACE,0,1,1,0.491,1,1,0,0
+1339,Wanindu Dananjaya,AR,26,R,SPIN,1,0,1,0.391,0,1,0,0
+1340,Roston Gayle,BAT,27,L,,0,0,0,0.296,0,0,0,0
+1341,Zak Bethell,BAT,24,R,,0,0,0,0.371,0,0,0,0
+1342,Jack Anderson,AR,30,R,PACE,0,1,0,0.532,0,1,0,0
+1343,Chris Ali,BOWL,29,R,SPIN,1,0,1,0.47,1,1,0,0
+1344,Mark Broad,BOWL,27,R,PACE,0,1,0,0.547,1,1,0,0
+1345,Rohit Mukesh,WK,23,L,,0,0,0,0.307,0,0,0,0
+1346,Rehan Bethell,BOWL,26,L,SPIN,1,0,1,0.42,0,0,0,0
+1347,Adam Agar,BOWL,28,L,SPIN,1,0,0,0.382,1,0,0,0
+1348,Jacob O'Rourke,BAT,27,L,,0,0,0,0.398,0,0,0,0
+1349,Marco Coetzee,BOWL,24,R,SPIN,1,0,0,0.378,0,0,0,0
+1350,Abrar Zaman,BAT,30,L,,0,0,0,0.547,0,0,0,0
+1351,Dhananjaya Mathews,AR,22,R,PACE,0,1,0,0.49,0,0,0,0
+1352,Kavem Hosein,AR,28,R,PACE,0,1,0,0.435,0,0,1,1
+1353,Tom Bairstow,BAT,20,R,,0,0,0,0.27,0,0,1,1
+1354,Liam Ali,BAT,27,R,,0,0,1,0.361,0,0,0,0
+1355,Chris Wood,AR,34,L,PACE,0,1,0,0.718,0,0,1,0
+1356,Mark Root,BAT,35,R,,0,0,1,0.362,0,0,0,0
+1357,Sanju Kohli,BOWL,32,L,PACE,0,1,0,0.669,0,1,0,0
+1358,Ben Roy,BOWL,33,R,SPIN,1,0,1,0.641,0,1,0,0
+1359,Tim Khawaja,BOWL,19,R,SPIN,1,0,0,0.272,1,0,0,0
+1360,Ross Wagner,BAT,25,L,,0,0,1,0.478,0,0,1,0
+1361,Tony Ngidi,BOWL,31,R,PACE,0,1,0,0.653,1,1,0,0
+1362,Zafar Hassan,BAT,34,R,,0,0,0,0.464,0,0,0,0
+1363,Dhananjaya Vandersay,BOWL,30,R,SPIN,1,0,0,0.444,0,0,0,0
+1364,Dwayne Joseph,BAT,35,L,,0,0,0,0.521,0,0,0,0
+1365,Matt Curran,BOWL,23,L,PACE,0,1,1,0.344,0,0,0,0
+1366,Chris Woakes,BOWL,21,R,PACE,0,1,1,0.458,1,1,0,0
+1367,Dom Buttler,BAT,19,R,,0,0,1,0.4,0,0,0,0
+1368,Craig Archer,BAT,30,R,,0,0,0,0.494,0,0,1,0
+1369,Rohit Bumrah,BAT,31,R,,0,0,1,0.523,0,0,0,0
+1370,Joe Salt,BAT,23,R,,0,0,0,0.35,0,0,1,1
+1371,Pat Inglis,BAT,34,R,,0,0,0,0.555,0,0,0,0
+1372,Doug Ravindra,WK,33,R,,0,0,0,0.615,0,0,1,1
+1373,Temba Jansen,BOWL,25,R,PACE,0,1,0,0.312,0,0,0,0
+1374,Mohammad Ayub,AR,23,R,SPIN,1,0,0,0.237,1,1,0,0
+1375,Akila Karunaratne,WK,33,R,,0,0,0,0.431,0,0,0,0
+1376,Fabian Mayers,BAT,32,R,,0,0,0,0.607,0,0,1,0
+1377,Jack Pope,BOWL,21,L,PACE,0,1,0,0.402,1,1,0,0
+1378,Jack Salt,AR,23,R,SPIN,1,0,0,0.374,1,1,1,1
+1379,Rehan Potts,BOWL,28,L,SPIN,1,0,0,0.453,1,0,0,0
+1380,Craig Curran,BOWL,28,R,PACE,0,1,0,0.513,1,0,0,0
+1381,Rohit Kishan,BOWL,21,R,PACE,0,1,1,0.412,1,1,0,0
+1382,Chris Buttler,BAT,37,R,,0,0,1,0.703,0,0,1,0
+1383,Travis Short,BOWL,26,R,PACE,0,1,0,0.618,0,0,0,0
+1384,Mark Tickner,WK,26,R,,0,0,0,0.358,0,0,1,0
+1385,Temba Shamsi,WK,19,L,,0,0,0,0.148,0,0,0,0
+1386,Haris Abbasi,BAT,36,L,,0,0,0,0.609,0,0,1,1
+1387,Pathum Asalanka,BOWL,22,R,SPIN,1,0,0,0.448,1,1,0,0
+1388,Kieron Bravo,BAT,38,R,,0,0,0,0.671,0,0,0,0
+1389,Brydon Roy,AR,28,L,PACE,0,1,0,0.367,0,0,0,0
+1390,Jack Sibley,BAT,36,R,,0,0,0,0.549,0,0,0,0
+1391,Harry Archer,AR,21,R,PACE,0,1,1,0.306,0,0,0,0
+1392,Jason Buttler,AR,21,L,PACE,0,1,0,0.456,0,0,0,0
+1393,Suryakumar Yadav,BAT,34,R,,0,0,0,0.562,0,0,0,0
+1394,Harry Wood,BAT,35,R,,0,0,0,0.533,0,0,1,0
+1395,Cooper Inglis,AR,29,R,PACE,0,1,0,0.518,1,0,0,0
+1396,Devon Sodhi,BAT,18,R,,0,0,0,0.24,0,0,1,0
+1397,Keshav Steyn,BOWL,37,R,SPIN,1,0,0,0.905,1,1,0,0
+1398,Wahab Zaman,AR,26,L,PACE,0,1,0,0.588,1,1,1,0
+1399,Dushmantha Theekshana,BOWL,37,R,PACE,0,1,0,0.765,1,1,0,0
+1400,Shamarh Athanaze,BOWL,36,L,PACE,0,1,0,0.755,1,0,0,0
+1401,Jason Wood,BOWL,35,L,PACE,0,1,1,0.58,0,0,0,0
+1402,Sam Wood,BAT,32,L,,0,0,1,0.607,0,0,1,1
+1403,Brydon Broad,WK,32,R,,0,0,0,0.55,0,0,0,0
+1404,Jack Roy,BAT,29,R,,0,0,0,0.561,0,0,0,0
+1405,Shreyas Tiwary,BAT,18,R,,0,0,0,0.221,0,0,1,1
+1406,Joe Bairstow,BAT,26,R,,0,0,0,0.287,0,0,0,0
+1407,Marnus Wade,WK,33,L,,0,0,0,0.6,0,0,0,0
+1408,Rachin Ravindra,BAT,35,R,,0,0,0,0.658,0,0,1,0
+1409,Reeza van der Dussen,AR,29,L,PACE,0,1,0,0.612,0,0,0,0
+1410,Shan Khan,BOWL,32,R,PACE,0,1,1,0.596,0,0,0,0
+1411,Charith Embuldeniya,AR,18,R,PACE,0,1,0,0.299,0,0,0,0
+1412,Sunil Chase,WK,27,R,,0,0,1,0.317,0,0,1,1
+1413,Joe Brook,AR,28,L,SPIN,1,0,0,0.399,0,0,0,0
+1414,Jonny Brook,WK,36,R,,0,0,0,0.411,0,0,0,0
+1415,Stuart Lawrence,BAT,24,R,,0,0,1,0.317,0,0,0,0
+1416,Jofra Bethell,AR,22,L,SPIN,1,0,0,0.236,1,1,1,0
+1417,Rohit Patel,BOWL,25,R,PACE,0,1,0,0.504,1,1,0,0
+1418,Mark Crawley 1418,BOWL,21,R,PACE,0,1,1,0.332,1,0,0,0
+1419,Steve Boland,AR,29,R,PACE,0,1,0,0.522,0,0,0,0
+1420,Tim Wagner,WK,31,R,,0,0,0,0.379,0,0,0,0
+1421,Temba du Plessis,BOWL,34,R,PACE,0,1,0,0.582,1,1,0,0
+1422,Fakhar Nawaz,BOWL,38,R,PACE,0,1,0,0.847,0,0,0,0
+1423,Bhanuka Perera,BOWL,19,R,SPIN,1,0,0,0.228,0,0,0,0
+1424,Darren Gayle,BOWL,23,R,SPIN,1,0,0,0.324,1,1,0,0
+1425,Mark Rashid,BAT,24,R,,0,0,1,0.357,0,0,0,0
+1426,Chris Potts,BOWL,23,R,PACE,0,1,0,0.238,0,0,0,0
+1427,Moeen Rashid 1427,BAT,35,R,,0,0,0,0.451,0,0,0,0
+1428,Ben Broad 1428,BAT,20,R,,0,0,0,0.382,0,0,1,1
+1429,Jasprit Gaikwad,AR,18,R,PACE,0,1,0,0.299,0,0,0,0
+1430,Jamie Archer 1430,BOWL,36,R,PACE,0,1,1,0.568,0,0,0,0
+1431,Nathan Wade,AR,38,R,PACE,0,1,0,0.808,0,0,0,0
+1432,Ross Williamson,BOWL,22,L,PACE,0,1,0,0.376,0,0,0,0
+1433,Rassie Rickelton,BAT,24,L,,0,0,1,0.326,0,0,0,0
+1434,Fakhar Khushdil,BAT,28,R,,0,0,1,0.417,0,0,1,1
+1435,Bhanuka Embuldeniya,BAT,29,R,,0,0,1,0.57,0,0,1,1
+1436,Odean Hetmyer,WK,38,R,,0,0,0,0.652,0,0,0,0
+1437,Liam Potts,BAT,26,L,,0,0,0,0.326,0,0,0,0
+1438,Sam Rashid 1438,BOWL,18,R,PACE,0,1,0,0.368,0,0,0,0
+1439,Ben Bethell 1439,AR,26,R,PACE,0,1,0,0.255,0,0,0,0
+1440,Harry Brook,WK,29,R,,0,0,1,0.395,0,0,0,0
+1441,Rinku Chahar,BAT,28,R,,0,0,0,0.601,0,0,0,0
+1442,Stuart Wood,BAT,28,R,,0,0,0,0.417,0,0,0,0
+1443,Ryan Lyon,BAT,37,L,,0,0,1,0.396,0,0,1,1
+1444,Colin Boult,BAT,34,L,,0,0,1,0.632,0,0,1,1
+1445,Faf Amla,BAT,23,R,,0,0,0,0.394,0,0,1,0
+1446,Mohammad Mir,BOWL,25,R,SPIN,1,0,1,0.444,0,0,0,0
+1447,Dhananjaya Perera,AR,32,R,PACE,0,1,0,0.522,0,0,0,0
+1448,Kieran Brooks,BOWL,26,R,PACE,0,1,0,0.649,1,1,0,0
+1449,Ben Brook,BOWL,26,R,SPIN,1,0,0,0.457,0,0,0,0
+1450,James Brook 1450,BAT,21,R,,0,0,1,0.215,0,0,0,0
+1451,Ben Overton,AR,23,L,PACE,0,1,1,0.409,0,0,0,0
+1452,Tom Roy,BOWL,33,L,PACE,0,1,0,0.639,0,0,0,0
+1453,Yuzvendra Tiwary,AR,35,R,PACE,0,1,0,0.565,0,0,0,0
+1454,Matt Rashid 1454,WK,34,R,,0,0,0,0.587,0,0,0,0
+1455,Andrew Cummins,BAT,24,R,,0,0,0,0.477,0,0,0,0
+1456,Devon Sears,BAT,20,R,,0,0,1,0.18,0,0,1,1
+1457,Anrich Markram,BAT,21,R,,0,0,0,0.385,0,0,1,1
+1458,Usman Gul,BOWL,26,R,PACE,0,1,1,0.394,0,0,0,0
+1459,Angelo Asalanka,WK,28,R,,0,0,0,0.386,0,0,0,0
+1460,Darren Joseph,BAT,36,L,,0,0,0,0.572,0,0,1,1
+1461,Chris Carse,AR,36,R,SPIN,1,0,0,0.623,0,0,0,0
+1462,Chris Roy 1462,BOWL,18,R,SPIN,1,0,1,0.305,1,0,0,0
+1463,Matt Pope 1463,BAT,32,R,,0,0,0,0.351,0,0,0,0
+1464,Jos Woakes 1464,BAT,24,L,,0,0,0,0.412,0,0,1,1
+1465,Rishabh Samson,BOWL,22,R,SPIN,1,0,0,0.363,1,1,0,0
+1466,Moeen Ali 1466,BOWL,29,R,SPIN,1,0,1,0.458,0,0,0,0
+1467,Mitchell Stoinis,BOWL,18,R,PACE,0,1,1,0.251,1,0,0,0
+1468,Lockie Ferguson,BAT,25,R,,0,0,1,0.248,0,0,1,0
+1469,Lizaad Markram,BOWL,29,L,PACE,0,1,0,0.434,1,1,0,0
+1470,Haris Iftikhar,BAT,23,R,,0,0,1,0.215,0,0,0,0
+1471,Kusal Fernando,AR,30,L,PACE,0,1,0,0.608,1,0,0,0
+1472,Alzarri Chase,BAT,27,R,,0,0,0,0.287,0,0,0,0
+1473,Sam Stokes 1473,BAT,34,R,,0,0,0,0.495,0,0,0,0
+1474,Jack Woakes 1474,BOWL,21,R,SPIN,1,0,0,0.43,1,1,0,0
+1475,Sam Ali 1475,BOWL,19,R,SPIN,1,0,1,0.141,1,1,0,0
+1476,Adil Buttler 1476,BOWL,29,R,SPIN,1,0,1,0.355,1,1,0,0
+1477,Ishan Yadav,BOWL,23,R,PACE,0,1,0,0.449,0,0,0,0
+1478,Jack Wood 1478,WK,32,R,,0,0,0,0.48,0,0,0,0
+1479,Tim Smith,BOWL,19,L,SPIN,1,0,1,0.324,1,1,0,0
+1480,Blair Phillips,BOWL,30,L,PACE,0,1,1,0.595,1,0,0,0
+1481,Keshav Williams,BOWL,38,R,PACE,0,1,1,0.804,1,0,0,0
+1482,Sarfaraz Nawaz,BAT,19,R,,0,0,0,0.228,0,0,0,0
+1483,Kusal Nissanka,BOWL,24,L,PACE,0,1,0,0.481,1,1,0,0
+1484,Odean Shepherd,BAT,35,R,,0,0,1,0.455,0,0,0,1
+1485,Sam Bairstow 1485,BOWL,29,L,SPIN,1,0,1,0.332,0,0,0,0
+1486,Matt Curran 1486,BAT,21,R,,0,0,0,0.25,0,0,0,0
+1487,Craig Overton 1487,WK,22,L,,0,0,0,0.212,0,0,0,0
+1488,Jonny Anderson 1488,BOWL,34,R,SPIN,1,0,0,0.506,0,1,0,0
+1489,Tilak Samson,AR,36,R,PACE,0,1,0,0.72,0,0,0,0
+1490,Craig Brook 1490,BOWL,25,R,PACE,0,1,1,0.582,1,1,0,0
+1491,Matthew Short,BAT,27,R,,0,0,0,0.212,0,0,0,0
+1492,Ben Nicholls,AR,34,L,SPIN,1,0,0,0.618,1,0,1,1
+1493,Vernon de Zorzi,BOWL,21,L,PACE,0,1,0,0.236,0,0,0,0
+1494,Mohammad Shafique,AR,22,R,PACE,0,1,1,0.257,0,0,0,0
+1495,Maheesh Vandersay,BOWL,34,R,PACE,0,1,0,0.621,0,0,0,0
+1496,Jayden Walsh,BOWL,21,R,SPIN,1,0,0,0.268,0,0,0,0
+1497,Moeen Crawley 1497,AR,34,R,SPIN,1,0,0,0.496,1,0,0,1
+1498,Jonny Potts 1498,BOWL,28,R,SPIN,1,0,0,0.335,0,0,0,0
+1499,Moeen Lawrence 1499,BAT,38,L,,0,0,0,0.739,0,0,1,1
+1500,James Archer 1500,BOWL,18,L,SPIN,1,0,0,0.136,0,0,0,0
+1501,Ruturaj Shaw,BOWL,37,R,PACE,0,1,1,0.897,1,0,0,0
+1502,James Sibley,WK,22,R,,0,0,1,0.342,0,0,0,0
+1503,Tim Labuschagne,BAT,18,R,,0,0,0,0.168,0,0,0,0
+1504,Ben Conway,BOWL,33,R,PACE,0,1,1,0.643,0,0,0,0
+1505,Marco Elgar,AR,29,R,PACE,0,1,0,0.62,1,1,1,1
+1506,Fakhar Azam,BOWL,35,R,PACE,0,1,0,0.756,1,0,0,0
+1507,Kasun Vandersay,BOWL,20,R,SPIN,1,0,1,0.206,0,0,0,0
+1508,Kevin Hope,BOWL,19,R,SPIN,1,0,0,0.237,0,0,0,0
+1509,Jamie Rashid 1509,BAT,29,L,,0,0,0,0.334,0,0,1,1
+1510,Liam Crawley 1510,BOWL,36,R,PACE,0,1,0,0.679,0,0,0,0
+1511,Adil Bairstow 1511,BAT,26,R,,0,0,0,0.278,0,0,0,0
+1512,Jason Carse 1512,BAT,34,R,,0,0,1,0.626,0,0,0,0
+1513,Ishan Gaikwad,BOWL,37,L,PACE,0,1,0,0.699,1,1,0,0
+1514,Jason Ali 1514,BOWL,36,R,PACE,0,1,0,0.647,1,1,0,0
+1515,Usman Philippe,AR,28,R,SPIN,1,0,0,0.09,0,0,0,0
+1516,Devon Munro,BAT,32,R,,0,0,1,0.514,0,0,0,0
+1517,Wiaan de Zorzi,BAT,29,R,,0,0,0,0.5,0,0,0,0
+1518,Shoaib Ahmed,WK,32,R,,0,0,0,0.552,0,0,0,1
+1519,Sachith Kumara,BAT,29,L,,0,0,0,0.426,0,0,0,0
+1520,Rahkeem Powell,BAT,29,R,,0,0,0,0.269,0,0,0,0
+1521,Harry Brook 1521,BAT,27,R,,0,0,0,0.317,0,0,0,1
+1522,Jonny Anderson 1522,BOWL,31,R,SPIN,1,0,0,0.44,0,0,0,0
+1523,Jonny Carse 1523,AR,33,L,SPIN,1,0,0,0.574,0,0,0,0
+1524,Rehan Curran 1524,AR,37,L,PACE,0,1,0,0.733,1,0,0,1
+1525,Kuldeep Kohli,BOWL,30,L,PACE,0,1,1,0.695,1,0,0,0
+1526,Jason Archer 1526,BAT,20,R,,0,0,0,0.352,0,0,0,0
+1527,Ryan Boland,BAT,30,L,,0,0,0,0.405,0,0,1,1
+1528,Ross Phillips,BOWL,24,R,PACE,0,1,0,0.428,0,0,0,0
+1529,Faf Jansen,BAT,18,R,,0,0,0,0.254,0,0,1,1
+1530,Naseem Ayub,BAT,19,R,,0,0,1,0.219,0,0,0,0
+1531,Thisara Rajapaksa,BAT,30,L,,0,0,1,0.44,0,0,0,0
+1532,Jayden Chase,BAT,37,R,,0,0,1,0.63,0,0,0,0
+1533,Joe Potts 1533,BOWL,28,R,PACE,0,1,0,0.539,0,0,0,0
+1534,Jonny Potts 1534,BOWL,27,R,SPIN,1,0,0,0.482,1,1,0,0
+1535,Tom Root 1535,BAT,19,R,,0,0,0,0.211,0,0,0,1
+1536,Craig Lawrence 1536,BOWL,32,R,PACE,0,1,1,0.62,0,1,0,0
+1537,Prithvi Iyer,AR,19,R,SPIN,1,0,0,0.111,0,0,0,0
+1538,Craig Rashid 1538,BOWL,35,L,PACE,0,1,1,0.684,1,1,0,0
+1539,Scott Carey,AR,35,R,PACE,0,1,0,0.572,0,0,0,0
+1540,Kane Conway,BOWL,38,R,PACE,0,1,0,0.629,0,0,0,0
+1541,Tony Coetzee,AR,23,R,SPIN,1,0,1,0.325,1,1,0,0
+1542,Naseem Khushdil,BAT,21,R,,0,0,0,0.305,0,0,0,0
+1543,Charith Chandimal,BAT,24,L,,0,0,0,0.353,0,0,1,1
+1544,Rahkeem Carty,BAT,34,R,,0,0,0,0.479,0,0,1,0
+1545,Harry Pope 1545,BOWL,22,R,PACE,0,1,1,0.605,1,1,0,0
+1546,Jonny Bairstow 1546,BOWL,36,R,PACE,0,1,0,0.609,1,0,0,0
+1547,Jonny Pope 1547,BAT,21,L,,0,0,1,0.318,0,0,1,0
+1548,Zak Buttler 1548,BOWL,19,R,SPIN,1,0,0,0.025,0,0,0,0
+1549,Virat Kohli,BAT,22,L,,0,0,0,0.198,0,0,0,0
+1550,Chris Anderson 1550,BAT,33,R,,0,0,0,0.382,0,0,1,1
+1551,Ryan Turner,BAT,30,R,,0,0,0,0.424,0,0,0,1
+1552,Doug Young,BOWL,25,R,SPIN,1,0,1,0.46,1,1,0,0
+1553,Anrich de Kock,BAT,31,R,,0,0,1,0.328,0,0,1,1
+1554,Sarfaraz Irfan,BAT,31,R,,0,0,1,0.472,0,0,1,0
+1555,Thisara de Silva,BAT,29,R,,0,0,1,0.352,0,0,1,0
+1556,Jayden Bravo,AR,28,L,PACE,0,1,0,0.448,0,0,0,0
+1557,Jofra Root 1557,AR,20,L,SPIN,1,0,0,0.151,0,0,0,0
+1558,Harry Broad 1558,BOWL,23,L,SPIN,1,0,1,0.581,1,1,0,0
+1559,Jofra Salt 1559,BOWL,29,R,SPIN,1,0,0,0.604,1,1,0,0
+1560,Craig Root 1560,AR,20,R,SPIN,1,0,1,0.315,0,0,0,1
+1561,Ruturaj Bishnoi,WK,27,L,,0,0,0,0.379,0,0,0,0
+1562,Jamie Ahmed 1562,BOWL,20,R,PACE,0,1,0,0.327,0,0,0,0
+1563,Nathan Smith,AR,34,R,PACE,0,1,0,0.46,0,0,0,0
+1564,Kane Munro,AR,20,L,SPIN,1,0,0,0.471,1,0,0,0
+1565,Hashim Markram,AR,19,R,PACE,0,1,0,0.48,1,0,0,0
+1566,Naseem Butt,BOWL,31,R,SPIN,1,0,0,0.384,1,0,0,0
+1567,Angelo Chandimal,BAT,22,L,,0,0,0,0.37,0,0,0,0
+1568,Andre Joseph,BAT,25,R,,0,0,0,0.187,0,0,0,0
+1569,Jason Curran 1569,BOWL,24,R,SPIN,1,0,0,0.399,0,1,0,0
+1570,Mark Lawrence 1570,BOWL,22,R,SPIN,1,0,0,0.26,1,0,0,0
+1571,Rehan Potts 1571,BOWL,33,R,PACE,0,1,0,0.632,0,0,0,0
+1572,Mark Archer 1572,BOWL,32,L,PACE,0,1,1,0.679,1,1,0,0
+1573,Mohammed Jadeja,BOWL,23,R,PACE,0,1,0,0.374,1,1,0,0
+1574,Dom Crawley 1574,AR,32,R,SPIN,1,0,0,0.507,1,1,1,0
+1575,Andrew Wade,BAT,32,L,,0,0,0,0.29,0,0,0,0
+1576,Lockie Ravindra,BAT,29,R,,0,0,0,0.546,0,0,1,1
+1577,Gerald de Zorzi,AR,30,L,SPIN,1,0,0,0.465,1,1,0,0
+1578,Saim Zaman,AR,37,R,SPIN,1,0,0,0.594,0,0,0,0
+1579,Kasun Mathews,WK,27,R,,0,0,0,0.675,0,0,1,1
+1580,Jason Walsh,AR,26,R,PACE,0,1,0,0.337,0,0,0,0
+1581,Harry Pope 1581,AR,29,R,SPIN,1,0,0,0.484,0,0,0,0
+1582,Stuart Crawley 1582,BAT,35,L,,0,0,0,0.607,0,0,1,0
+1583,Matt Anderson 1583,BOWL,32,L,PACE,0,1,0,0.777,1,1,0,0
+1584,Moeen Broad 1584,BAT,19,L,,0,0,0,0.184,0,0,1,1
+1585,Axar Chahar,BOWL,27,R,PACE,0,1,0,0.533,0,0,0,0
+1586,Sam Rashid 1586,AR,33,L,PACE,0,1,1,0.66,1,1,0,1
+1587,Cameron Khawaja,BAT,22,R,,0,0,0,0.424,0,0,1,0
+1588,Michael Wagner,BOWL,38,L,PACE,0,1,0,0.802,0,1,0,0
+1589,Temba Maharaj,BAT,34,R,,0,0,0,0.527,0,0,0,0
+1590,Abrar Ayub,BAT,35,L,,0,0,0,0.568,0,0,1,1
+1591,Thisara Fernando,BAT,19,R,,0,0,0,0.203,0,0,0,1
+1592,Kyle Walsh,BAT,30,R,,0,0,1,0.485,0,0,1,1
+1593,Ben Curran 1593,WK,29,L,,0,0,1,0.291,0,0,1,1
+1594,Stuart Pope 1594,BOWL,31,R,SPIN,1,0,0,0.345,0,0,0,0
+1595,Rehan Overton 1595,AR,35,R,PACE,0,1,0,0.665,0,0,0,0
+1596,Chris Broad 1596,BOWL,25,L,SPIN,1,0,1,0.362,1,0,0,0
+1597,Rinku Bumrah,BAT,29,R,,0,0,0,0.501,0,0,0,0
+1598,Mark Ahmed 1598,BAT,32,R,,0,0,0,0.36,0,0,1,1
+1599,Peter Conway,AR,33,R,PACE,0,1,1,0.67,0,0,0,0
+1600,Ben Sears,BAT,34,R,,0,0,0,0.53,0,0,0,0
+1601,Andile Bavuma,AR,25,R,PACE,0,1,0,0.452,0,0,0,0
+1602,Agha Rizwan,BAT,38,L,,0,0,0,0.782,0,0,1,0
+1603,Suranga Vandersay,BOWL,18,L,SPIN,1,0,0,0.233,0,1,0,0
+1604,Kieron Joseph,AR,28,R,PACE,0,1,0,0.588,1,1,0,0
+1605,Jofra Wood 1605,BAT,30,R,,0,0,0,0.598,0,0,1,1
+1606,Mark Bairstow 1606,BAT,19,R,,0,0,0,0.167,0,0,1,1
+1607,Jamie Overton 1607,WK,27,L,,0,0,0,0.449,0,0,1,0
+1608,Jason Sibley 1608,BAT,30,R,,0,0,0,0.27,0,0,1,0
+1609,Sanju Jadeja,BOWL,30,R,SPIN,1,0,1,0.511,1,1,0,0
+1610,James Sibley 1610,BOWL,20,L,SPIN,1,0,0,0.387,1,1,0,0
+1611,Adam Tye,BAT,23,L,,0,0,0,0.414,0,0,1,0
+1612,Tom Ferguson,AR,23,R,PACE,0,1,0,0.448,0,0,0,0
+1613,Wayne Hendricks,AR,31,R,PACE,0,1,0,0.558,0,0,0,0
+1614,Tayyab Rizwan,BAT,24,R,,0,0,0,0.376,0,0,0,0
+1615,Sachith Nissanka,AR,30,R,PACE,0,1,0,0.539,0,0,0,0
+1616,Jayden Carty,BAT,33,R,,0,0,0,0.688,0,0,1,1
+1617,Craig Lawrence 1617,BAT,34,R,,0,0,1,0.746,0,0,0,0
+1618,Jos Archer 1618,BOWL,21,R,PACE,0,1,1,0.441,1,0,0,0
+1619,Ollie Rashid 1619,WK,36,R,,0,0,1,0.467,0,0,0,0
+1620,Matt Lawrence 1620,BAT,21,R,,0,0,0,0.325,0,0,1,0
+1621,Yuzvendra Yadav,BAT,18,R,,0,0,0,0.347,0,0,1,1
+1622,Ben Wood 1622,BOWL,18,L,PACE,0,1,0,0.131,0,0,0,0
+1623,Marnus Starc,AR,22,R,SPIN,1,0,0,0.313,1,1,1,0
+1624,Mitchell Williamson,BAT,36,L,,0,0,1,0.457,0,0,0,0
+1625,Quinton Klaasen,BOWL,22,R,SPIN,1,0,1,0.328,1,0,0,0
+1626,Abrar Ahmed,BOWL,32,R,PACE,0,1,0,0.731,1,1,0,0
+1627,Kusal Kumara,BAT,26,L,,0,0,1,0.395,0,0,0,0
+1628,Sunil Hosein,BAT,18,R,,0,0,1,0.219,0,0,1,1
+1629,Liam Bethell 1629,BAT,27,R,,0,0,0,0.743,0,0,0,1
+1630,Matt Pope 1630,BOWL,18,R,SPIN,1,0,1,0.145,0,0,0,0
+1631,Jamie Ahmed 1631,BOWL,27,R,PACE,0,1,0,0.294,0,0,0,0
+1632,James Overton 1632,AR,29,R,SPIN,1,0,0,0.28,0,0,0,0
+1633,Rishabh Bawa,BOWL,28,R,SPIN,1,0,0,0.297,1,1,0,0
+1634,Jos Bethell 1634,BOWL,23,R,PACE,0,1,0,0.224,0,0,0,0
+1635,Travis Abbott,WK,34,R,,0,0,0,0.534,0,0,0,0
+1636,Ben Taylor,BOWL,30,R,PACE,0,1,1,0.399,0,0,0,0
+1637,Gerald Mulder,BOWL,23,R,PACE,0,1,0,0.574,1,1,0,0
+1638,Faheem Mir,AR,27,R,PACE,0,1,0,0.623,1,1,0,1
+1639,Nuwan Gunathilaka,BAT,20,R,,0,0,0,0.223,0,0,1,1
+1640,Kevin Chase,BOWL,37,R,SPIN,1,0,0,0.712,0,0,0,0
+1641,Brydon Stokes 1641,BOWL,33,R,PACE,0,1,0,0.622,1,1,0,0
+1642,Chris Bairstow 1642,BAT,24,R,,0,0,0,0.183,0,0,0,1
+1643,Brydon Bethell 1643,BOWL,32,R,SPIN,1,0,1,0.626,0,0,0,0
+1644,Chris Buttler 1644,BAT,32,R,,0,0,0,0.529,0,0,0,0
+1645,Hardik Tiwary,BAT,30,R,,0,0,0,0.387,0,0,0,0
+1646,Matt Buttler 1646,BOWL,19,L,PACE,0,1,0,0.32,1,1,0,0
+1647,Alex Maxwell,BAT,36,L,,0,0,0,0.673,0,0,1,0
+1648,Matt Williamson,AR,38,R,SPIN,1,0,1,0.654,0,0,0,0
+1649,Ryan Fortuin,AR,38,R,PACE,0,1,0,0.7,0,0,0,0
+1650,Naseem Zaman,AR,38,R,SPIN,1,0,0,0.549,0,0,0,0
+1651,Suranga Shanaka,BAT,37,L,,0,0,0,0.542,0,0,0,0
+1652,Hayden Brooks,BAT,33,L,,0,0,1,0.451,0,0,1,1
+1653,Jonny Lawrence 1653,BAT,19,R,,0,0,0,0.328,0,0,1,1
+1654,Chris Woakes 1654,BAT,27,R,,0,0,0,0.441,0,0,0,0
+1655,James Archer 1655,WK,23,R,,0,0,1,0.41,0,0,1,1
+1656,Mark Bethell 1656,BOWL,22,L,PACE,0,1,0,0.431,1,1,0,0
+1657,Rohit Gaikwad,BAT,35,L,,0,0,0,0.523,0,0,0,0
+1658,Harry Root 1658,AR,35,R,PACE,0,1,0,0.699,0,0,0,0
+1659,Cooper Labuschagne,BOWL,28,R,PACE,0,1,0,0.544,1,1,0,0
+1660,Henry Ravindra,BAT,33,R,,0,0,1,0.574,0,0,0,0
+1661,Faf van der Dussen,BAT,20,R,,0,0,0,0.308,0,0,0,0
+1662,Salman Mir,BOWL,22,L,SPIN,1,0,1,0.471,1,1,0,0
+1663,Dinesh Dananjaya,AR,36,R,PACE,0,1,0,0.739,1,1,1,1
+1664,Andre Carty,BAT,27,R,,0,0,0,0.5,0,0,0,1
+1665,Rehan Archer 1665,AR,29,R,SPIN,1,0,0,0.413,1,1,0,0
+1666,Liam Potts 1666,AR,27,R,SPIN,1,0,0,0.317,0,0,0,0
+1667,Chris Bethell 1667,AR,22,L,SPIN,1,0,0,0.324,0,0,1,0
+1668,Sam Anderson 1668,BAT,35,R,,0,0,0,0.576,0,0,1,0
+1669,Ravindra Sharma,BAT,33,L,,0,0,0,0.648,0,0,1,1
+1670,Zak Broad 1670,AR,32,R,SPIN,1,0,0,0.342,0,0,0,0
+1671,Aaron Smith,BAT,25,R,,0,0,0,0.456,0,0,1,1
+1672,Rachin Williamson,BOWL,31,R,PACE,0,1,1,0.56,0,0,0,0
+1673,Tony Parnell,BOWL,38,R,SPIN,1,0,0,0.626,0,0,0,0
+1674,Babar Rizwan,BAT,31,R,,0,0,0,0.434,0,0,1,0
+1675,Suranga Rajitha,AR,28,R,SPIN,1,0,0,0.393,0,0,1,1
+1676,Kevin Shepherd,AR,23,R,PACE,0,1,1,0.385,0,0,0,0
+1677,Matt Potts 1677,BOWL,28,R,PACE,0,1,0,0.37,1,1,0,0
+1678,Chris Anderson 1678,BOWL,25,R,PACE,0,1,0,0.527,1,1,0,0
+1679,Brydon Salt 1679,AR,30,R,PACE,0,1,0,0.372,0,0,0,0
+1680,Jos Brook 1680,BOWL,18,L,SPIN,1,0,0,0.025,0,0,0,0
+1681,Washington Rahul,BOWL,21,L,PACE,0,1,1,0.545,1,1,0,0
+1682,James Brook 1682,AR,34,R,SPIN,1,0,0,0.515,1,0,1,0
+1683,Cooper Cummins,BOWL,25,L,SPIN,1,0,1,0.318,1,0,0,0
+1684,Ish Duffy,BAT,27,L,,0,0,0,0.341,0,0,1,0
+1685,Wiaan Rabada,BAT,29,L,,0,0,0,0.57,0,0,1,1
+1686,Saud Aslam,BAT,27,R,,0,0,0,0.438,0,0,1,1
+1687,Dhananjaya Udana,BOWL,33,R,SPIN,1,0,0,0.622,0,0,0,0
+1688,Shai Seales,BOWL,23,R,PACE,0,1,0,0.336,1,1,0,0
+1689,Joe Sibley 1689,BOWL,33,L,SPIN,1,0,0,0.541,1,1,0,0
+1690,Moeen Buttler 1690,BOWL,22,L,PACE,0,1,0,0.546,1,1,0,0
+1691,Ollie Crawley 1691,AR,25,R,SPIN,1,0,0,0.544,1,1,1,1
+1692,Moeen Sibley 1692,AR,30,R,PACE,0,1,0,0.413,1,1,1,0
+1693,Rohit Dube,BAT,36,L,,0,0,1,0.649,0,0,1,1
+1694,Jamie Buttler 1694,BOWL,22,L,PACE,0,1,0,0.595,1,1,0,0
+1695,Tim Abbott,BOWL,30,R,SPIN,1,0,0,0.604,0,1,0,0
+1696,Ross Mitchell,BOWL,19,R,PACE,0,1,0,0.235,0,0,0,0
+1697,Keshav Klaasen,BAT,19,R,,0,0,0,0.165,0,0,0,0
+1698,Saud Zaman,AR,34,R,PACE,0,1,0,0.623,1,0,0,0
+1699,Bhanuka Mathews,WK,33,R,,0,0,1,0.543,0,0,0,0
+1700,Jason Hosein,BOWL,25,L,PACE,0,1,0,0.418,0,0,0,0
+1701,Jos Overton 1701,AR,31,L,SPIN,1,0,1,0.435,0,0,0,0
+1702,Rehan Rashid 1702,WK,25,R,,0,0,0,0.176,0,0,0,0
+1703,Sam Rashid 1703,BAT,23,R,,0,0,1,0.219,0,0,0,0
+1704,Jason Anderson 1704,BOWL,27,R,PACE,0,1,0,0.548,1,1,0,0
+1705,Umesh Kohli,BOWL,24,R,SPIN,1,0,1,0.363,1,1,0,0
+1706,Jos Rashid 1706,WK,35,R,,0,0,0,0.625,0,0,1,1
+1707,Jake Wade,BAT,26,R,,0,0,0,0.352,0,0,1,1
+1708,Adam Chapman,BOWL,24,R,SPIN,1,0,0,0.307,1,1,0,0
+1709,Wayne Fortuin,AR,29,R,SPIN,1,0,0,0.603,1,1,1,1
+1710,Sarfaraz Rauf,BAT,33,R,,0,0,0,0.527,0,0,0,0
+1711,Wanindu de Silva,AR,23,L,PACE,0,1,0,0.609,1,1,1,1
+1712,Rahkeem Narine,BOWL,37,R,SPIN,1,0,0,0.729,1,1,0,0
+1713,Moeen Lawrence 1713,WK,27,R,,0,0,0,0.28,0,0,0,0
+1714,Harry Anderson 1714,AR,31,L,PACE,0,1,0,0.569,0,0,0,0
+1715,Jofra Bethell 1715,BAT,38,R,,0,0,1,0.676,0,0,1,0
+1716,Ollie Buttler 1716,AR,27,R,SPIN,1,0,0,0.492,1,0,0,0
+1717,Ishan Tiwary,BAT,22,R,,0,0,0,0.358,0,0,0,0
+1718,Ollie Anderson 1718,BOWL,33,R,PACE,0,1,0,0.651,1,1,0,0
+1719,David Carey,BOWL,18,R,SPIN,1,0,0,0.272,1,1,0,0
+1720,Matt Phillips,AR,27,R,PACE,0,1,0,0.683,1,0,0,0
+1721,Lungi Shamsi,BAT,38,R,,0,0,0,0.585,0,0,0,0
+1722,Imam Khan,BAT,26,R,,0,0,0,0.395,0,0,1,0
+1723,Wanindu Karunaratne,BOWL,32,R,PACE,0,1,0,0.679,1,1,0,0
+1724,Rahkeem Chase,BOWL,29,R,SPIN,1,0,0,0.531,0,1,0,0
+1725,Sam Salt 1725,BOWL,22,R,SPIN,1,0,0,0.268,0,0,0,0
+1726,Chris Archer 1726,BAT,24,R,,0,0,1,0.369,0,0,0,0
+1727,Jamie Curran 1727,BAT,28,L,,0,0,0,0.367,0,0,1,1
+1728,Joe Potts 1728,AR,20,R,PACE,0,1,0,0.298,1,0,0,0
+1729,Rinku Bawa,BAT,26,R,,0,0,0,0.43,0,0,0,0
+1730,Jack Rashid 1730,BOWL,26,R,PACE,0,1,1,0.597,1,1,0,0
+1731,Pat Labuschagne,WK,35,R,,0,0,0,0.658,0,0,1,1
+1732,Trent Bracewell,BAT,20,L,,0,0,0,0.277,0,0,1,1
+1733,Andile Maharaj,BOWL,35,R,PACE,0,1,1,0.752,1,1,0,0
+1734,Yasir Masood,BAT,26,R,,0,0,0,0.505,0,0,0,0
+1735,Dimuth Udana,AR,31,L,SPIN,1,0,0,0.538,0,0,0,0
+1736,Roston Seales,BOWL,29,L,PACE,0,1,0,0.606,0,0,0,0
+1737,Chris Buttler 1737,AR,24,R,SPIN,1,0,0,0.282,0,0,0,0
+1738,James Crawley 1738,BAT,37,R,,0,0,0,0.621,0,0,0,0
+1739,Jos Broad 1739,BOWL,22,R,SPIN,1,0,0,0.336,1,1,0,0
+1740,Rehan Rashid 1740,AR,18,R,PACE,0,1,0,0.379,1,1,1,0
+1741,Sanju Sundar,BAT,33,R,,0,0,0,0.483,0,0,0,0
+1742,Joe Curran 1742,BAT,31,R,,0,0,0,0.479,0,0,1,1
+1743,Mitchell Conway,BAT,36,L,,0,0,0,0.492,0,0,1,0
+1744,Colin Southee,WK,27,R,,0,0,0,0.394,0,0,1,1
+1745,Rassie Maharaj,BOWL,18,R,PACE,0,1,0,0.34,0,0,0,0
+1746,Usman Butt,BOWL,18,R,PACE,0,1,0,0.421,1,1,0,0
+1747,Suranga Theekshana,BOWL,27,R,PACE,0,1,0,0.563,0,0,0,0
+1748,Akeal Russell,BOWL,23,R,SPIN,1,0,0,0.263,1,1,0,0
+1749,Ben Bethell 1749,BOWL,37,L,PACE,0,1,0,0.881,1,1,0,0
+1750,Sam Carse 1750,BOWL,20,R,SPIN,1,0,0,0.424,1,1,0,0
+1751,Jofra Wood 1751,BOWL,36,R,SPIN,1,0,0,0.606,0,0,0,0
+1752,Jos Anderson 1752,BAT,22,R,,0,0,1,0.133,0,0,0,0
+1753,Prithvi Gaikwad,AR,20,R,SPIN,1,0,1,0.195,0,0,0,0
+1754,Jack Anderson 1754,AR,23,R,PACE,0,1,1,0.343,1,1,0,1
+1755,Jake Warner,BAT,21,L,,0,0,0,0.34,0,0,1,0
+1756,Adam Blundell,BOWL,26,R,PACE,0,1,0,0.411,0,0,0,0
+1757,Andile Elgar,BAT,24,R,,0,0,0,0.415,0,0,1,1
+1758,Mohammad Khushdil,WK,29,L,,0,0,0,0.284,0,0,0,0
+1759,Dinesh Asalanka,AR,29,R,SPIN,1,0,0,0.416,1,1,0,0
+1760,Dwayne Thomas,AR,18,L,PACE,0,1,0,0.311,1,0,1,0
+1761,Jonny Overton 1761,BAT,20,R,,0,0,0,0.348,0,0,1,0
+1762,Dom Crawley 1762,BAT,21,R,,0,0,0,0.183,0,0,0,0
+1763,Jamie Curran 1763,BAT,22,L,,0,0,0,0.396,0,0,0,0
+1764,Jamie Ali 1764,BAT,19,R,,0,0,0,0.167,0,0,1,1
+1765,Virat Pandya,BAT,24,R,,0,0,0,0.413,0,0,1,1
+1766,Tom Archer 1766,BAT,29,R,,0,0,1,0.592,0,0,0,0
+1767,David Khawaja,WK,24,R,,0,0,0,0.398,0,0,1,0
+1768,Devon Young,BAT,24,R,,0,0,0,0.277,0,0,0,0
+1769,Andile Markram,BAT,27,R,,0,0,0,0.471,0,0,1,0
+1770,Usman Azam,AR,29,R,PACE,0,1,0,0.489,0,0,0,0
+1771,Dinesh Mendis,BOWL,24,R,PACE,0,1,0,0.641,1,1,0,0
+1772,Rovman Pollard,AR,22,R,PACE,0,1,0,0.465,1,1,0,0
+1773,Tom Curran 1773,BOWL,26,R,SPIN,1,0,1,0.308,0,0,0,0
+1774,Tom Ali 1774,AR,18,R,PACE,0,1,0,0.454,1,1,0,0
+1775,Mark Wood 1775,BOWL,28,R,PACE,0,1,0,0.508,0,0,0,0
+1776,Matt Ali 1776,BOWL,37,R,PACE,0,1,0,0.56,0,0,0,0
+1777,KL Samson,BOWL,26,R,PACE,0,1,1,0.427,0,0,0,0
+1778,Jofra Ali 1778,BOWL,20,R,PACE,0,1,0,0.635,1,1,0,0
+1779,Lance Warner,BAT,32,R,,0,0,1,0.562,0,0,0,0
+1780,Will Taylor,BOWL,20,R,SPIN,1,0,0,0.322,1,1,0,0
+1781,Wiaan Klaasen,BAT,22,R,,0,0,0,0.302,0,0,1,1
+1782,Asif Rizwan,AR,21,L,PACE,0,1,1,0.384,1,0,1,1
+1783,Kasun Chameera,BAT,36,L,,0,0,0,0.526,0,0,0,0
+1784,Jayden Seales,BAT,38,R,,0,0,0,0.562,0,0,0,0
+1785,Jason Salt 1785,BAT,29,L,,0,0,1,0.427,0,0,1,1
+1786,Ollie Sibley 1786,AR,30,L,SPIN,1,0,0,0.455,0,0,0,0
+1787,Jason Archer 1787,BAT,31,R,,0,0,0,0.69,0,0,1,0
+1788,Harry Woakes 1788,BOWL,30,L,SPIN,1,0,1,0.485,1,1,0,0
+1789,Yuzvendra Sundar,AR,29,R,PACE,0,1,1,0.635,1,1,0,0
+1790,Jos Wood 1790,BAT,38,R,,0,0,1,0.545,0,0,1,1
+1791,Steve Warner,AR,33,R,PACE,0,1,1,0.529,0,0,0,0
+1792,Tim Kuggeleijn,BAT,19,R,,0,0,0,0.371,0,0,0,0
+1793,Dale du Plessis,BAT,26,R,,0,0,1,0.297,0,0,1,1
+1794,Tayyab Ahmed,BOWL,38,L,PACE,0,1,0,0.856,0,1,0,0
+1795,Angelo Mendis,AR,26,R,PACE,0,1,0,0.455,0,0,0,0
+1796,Obed Narine,BAT,22,R,,0,0,0,0.252,0,0,1,1
+1797,Adil Buttler 1797,BOWL,36,R,PACE,0,1,1,0.684,1,1,0,0
+1798,James Crawley 1798,BAT,31,R,,0,0,0,0.683,0,0,1,1
+1799,Zak Wood 1799,BOWL,29,L,PACE,0,1,1,0.478,0,0,0,0
+1800,Jack Carse 1800,BOWL,26,L,PACE,0,1,0,0.479,1,1,0,0
+1801,Arshdeep Siraj,BOWL,20,R,SPIN,1,0,0,0.272,0,0,0,0
+1802,Zak Curran 1802,BOWL,26,R,PACE,0,1,0,0.465,1,1,0,0
+1803,Nathan Hazlewood,BAT,27,R,,0,0,0,0.396,0,0,0,0
+1804,Will Tickner,BOWL,37,R,SPIN,1,0,0,0.664,1,1,0,0
+1805,Faf Shamsi,BOWL,24,L,SPIN,1,0,0,0.315,1,1,0,0
+1806,Fakhar Abbasi,BOWL,21,L,SPIN,1,0,0,0.141,0,0,0,0
+1807,Dilshan Fernando,BAT,26,R,,0,0,0,0.319,0,0,1,1
+1808,Nicholas Pollard,BOWL,38,R,PACE,0,1,0,0.642,0,0,0,0
+1809,Matt Curran 1809,BOWL,28,R,PACE,0,1,0,0.428,0,0,0,0
+1810,Joe Bethell 1810,BAT,25,R,,0,0,0,0.254,0,0,1,0
+1811,Harry Potts 1811,BAT,32,R,,0,0,0,0.527,0,0,1,1
+1812,Jonny Ali 1812,BOWL,31,R,PACE,0,1,0,0.668,1,1,0,0
+1813,Hardik Rahul,BOWL,24,R,PACE,0,1,0,0.53,1,0,0,0
+1814,Matt Crawley 1814,BAT,38,L,,0,0,0,0.692,0,0,0,0
+1815,Scott Smith,AR,30,R,PACE,0,1,0,0.482,0,0,0,0
+1816,Doug Latham,BOWL,19,R,SPIN,1,0,0,0.359,0,0,0,0
+1817,Anrich Steyn,AR,26,R,PACE,0,1,0,0.331,0,0,0,0
+1818,Yasir Ayub,BOWL,37,R,PACE,0,1,0,0.749,0,0,0,0
+1819,Lahiru Gunathilaka,BOWL,26,R,PACE,0,1,0,0.43,0,0,0,0
+1820,Jason Hetmyer,BOWL,29,R,SPIN,1,0,0,0.474,1,0,0,0
+1821,Sam Stokes 1821,AR,30,R,SPIN,1,0,1,0.446,0,0,0,0
+1822,Stuart Roy 1822,BOWL,32,R,PACE,0,1,0,0.657,1,1,0,0
+1823,Ben Curran 1823,BOWL,36,R,SPIN,1,0,0,0.522,0,0,0,0
+1824,Liam Brook 1824,BOWL,21,R,SPIN,1,0,1,0.407,0,1,0,0
+1825,Rohit Shaw,BOWL,28,R,PACE,0,1,0,0.618,0,1,0,0
+1826,Craig Pope 1826,BAT,29,R,,0,0,0,0.292,0,0,0,0
+1827,Adam Abbott,BOWL,21,R,SPIN,1,0,1,0.289,1,0,0,0
+1828,Daryl Sears,BOWL,32,R,SPIN,1,0,0,0.372,0,0,0,0
+1829,Reeza Coetzee,AR,20,L,PACE,0,1,1,0.529,1,0,1,0
+1830,Babar Ahmed,BOWL,27,L,PACE,0,1,0,0.464,0,0,0,0
+1831,Dinesh de Silva,BOWL,24,R,PACE,0,1,0,0.481,0,0,0,0
+1832,Kemar McCoy,WK,21,R,,0,0,0,0.291,0,0,0,0
+1833,Craig Crawley 1833,BOWL,35,R,SPIN,1,0,0,0.677,1,1,0,0
+1834,Chris Curran 1834,BAT,23,L,,0,0,1,0.383,0,0,0,0
+1835,Jack Bairstow 1835,BAT,23,R,,0,0,0,0.427,0,0,1,1
+1836,Jos Woakes 1836,BAT,35,L,,0,0,0,0.526,0,0,1,0
+1837,Rishabh Jadeja,BAT,36,R,,0,0,0,0.39,0,0,0,0
+1838,Tom Crawley 1838,BOWL,18,R,SPIN,1,0,0,0.115,1,1,0,0
+1839,Peter Cummins,AR,23,R,PACE,0,1,0,0.378,0,0,0,0
+1840,Ben Henry,BOWL,32,R,PACE,0,1,1,0.334,0,0,0,0
+1841,Temba Klaasen,BAT,34,L,,0,0,0,0.534,0,0,0,0
+1842,Danish Rizwan,BOWL,38,R,SPIN,1,0,1,0.551,1,0,0,0
+1843,Niroshan Lakmal,BAT,29,R,,0,0,0,0.455,0,0,0,1
+1844,Rahkeem Shepherd,WK,18,R,,0,0,0,0.191,0,0,0,0
+1845,Stuart Broad 1845,BAT,36,R,,0,0,0,0.54,0,0,0,0
+1846,Rehan Rashid 1846,BOWL,21,R,PACE,0,1,0,0.585,1,1,0,0
+1847,Liam Lawrence 1847,BAT,20,R,,0,0,0,0.286,0,0,1,1
+1848,Moeen Anderson 1848,BOWL,32,R,PACE,0,1,0,0.559,1,1,0,0
+1849,Rishabh Bumrah,BOWL,30,R,PACE,0,1,1,0.516,0,0,0,0
+1850,Jonny Ali 1850,BOWL,19,L,SPIN,1,0,1,0.18,0,0,0,0
+1851,Mitchell Tye,BAT,21,R,,0,0,1,0.231,0,0,0,0
+1852,Adam Ferguson,AR,30,L,SPIN,1,0,1,0.45,1,1,0,0
+1853,Reeza Klaasen,BOWL,23,L,SPIN,1,0,1,0.34,0,0,0,0
+1854,Usama Rizwan,BOWL,32,R,SPIN,1,0,0,0.588,1,1,0,0
+1855,Sachith Theekshana,AR,26,R,PACE,0,1,0,0.448,0,0,0,0
+1856,Rovman Hosein,WK,30,L,,0,0,1,0.438,0,0,1,1
+1857,Ben Potts 1857,BAT,27,R,,0,0,1,0.37,0,0,1,0
+1858,Harry Crawley 1858,BAT,25,R,,0,0,1,0.384,0,0,1,1
+1859,Harry Buttler 1859,BAT,25,R,,0,0,1,0.304,0,0,1,0
+1860,Adil Woakes 1860,BAT,32,R,,0,0,0,0.518,0,0,0,0
+1861,Arshdeep Kohli,BOWL,28,R,PACE,0,1,1,0.541,0,1,0,0
+1862,James Brook 1862,WK,30,L,,0,0,1,0.384,0,0,0,0
+1863,Sean Zampa,WK,30,R,,0,0,0,0.433,0,0,0,0
+1864,Blair Duffy,BOWL,22,L,PACE,0,1,1,0.456,1,1,0,0
+1865,Lizaad Ngidi,BOWL,37,R,PACE,0,1,0,0.696,0,0,0,0
+1866,Yasir Azam,AR,29,R,SPIN,1,0,1,0.384,0,0,0,0
+1867,Pathum Dickwella,AR,33,R,SPIN,1,0,0,0.516,1,1,0,0
+1868,Darren Holder,BAT,36,R,,0,0,1,0.716,0,0,1,1
+1869,Matt Carse 1869,BOWL,37,R,SPIN,1,0,0,0.809,0,0,0,0
+1870,Jamie Crawley 1870,AR,32,R,SPIN,1,0,0,0.673,1,1,1,1
+1871,Zak Ali 1871,BAT,34,R,,0,0,0,0.446,0,0,0,0
+1872,Mark Curran 1872,BOWL,27,R,PACE,0,1,0,0.536,1,1,0,0
+1873,Sanju Sharma,WK,33,R,,0,0,0,0.48,0,0,1,0
+1874,Jason Overton 1874,WK,24,R,,0,0,1,0.386,0,0,1,0
+1875,Josh Zampa,AR,32,R,PACE,0,1,0,0.493,0,0,0,0
+1876,Daryl Duffy,AR,19,R,PACE,0,1,1,0.353,0,0,0,0
+1877,Heinrich Elgar,BAT,37,R,,0,0,0,0.504,0,0,0,0
+1878,Shoaib Zaman,BAT,23,R,,0,0,0,0.283,0,0,0,0
+1879,Dasun Embuldeniya,BOWL,31,R,PACE,0,1,1,0.604,1,0,0,0
+1880,Jayden Hetmyer,BOWL,18,R,SPIN,1,0,0,0.144,1,1,0,0
+1881,Matt Crawley 1881,BOWL,21,R,SPIN,1,0,0,0.193,0,0,0,0
+1882,Jofra Curran 1882,BOWL,38,R,SPIN,1,0,1,0.44,0,0,0,0
+1883,Adil Ahmed 1883,BOWL,35,R,SPIN,1,0,1,0.334,0,0,0,0
+1884,Dom Anderson 1884,BOWL,22,R,PACE,0,1,0,0.458,0,0,0,0
+1885,Rohit Rahul,BAT,20,L,,0,0,1,0.329,0,0,1,0
+1886,Moeen Rashid 1886,BAT,35,L,,0,0,0,0.609,0,0,0,0
+1887,Nathan Stoinis,BAT,38,R,,0,0,0,0.675,0,0,0,0
+1888,Daryl Wagner,BAT,21,R,,0,0,0,0.114,0,0,0,1
+1889,Dean Maharaj,AR,31,R,PACE,0,1,0,0.443,0,0,0,0
+1890,Salman Ayub,BOWL,23,L,SPIN,1,0,0,0.172,0,0,0,0
+1891,Niroshan Rajapaksa,BAT,33,R,,0,0,1,0.263,0,0,0,0
+1892,Darren Carty,BOWL,26,R,SPIN,1,0,0,0.294,0,1,0,0
+1893,Chris Crawley 1893,BOWL,20,R,SPIN,1,0,0,0.343,1,0,0,0
+1894,Jack Woakes 1894,BAT,24,R,,0,0,0,0.397,0,0,0,0
+1895,Jonny Buttler 1895,BAT,29,R,,0,0,0,0.447,0,0,0,0
+1896,Moeen Carse 1896,BAT,34,R,,0,0,0,0.605,0,0,0,0
+1897,Umesh Varma,BOWL,18,R,PACE,0,1,1,0.226,0,0,0,0
+1898,Moeen Crawley 1898,BAT,38,R,,0,0,0,0.627,0,0,0,0
+1899,Nathan Starc,BAT,31,L,,0,0,0,0.529,0,0,1,1
+1900,Tom Santner,BAT,36,L,,0,0,0,0.382,0,0,0,0
+1901,Rassie Williams,BOWL,37,R,SPIN,1,0,0,0.316,1,0,0,0
+1902,Danish Iftikhar,BAT,21,R,,0,0,0,0.376,0,0,0,0
+1903,Lahiru Rajitha,AR,19,R,SPIN,1,0,1,0.245,0,0,0,0
+1904,Nicholas Hosein,BAT,34,L,,0,0,0,0.704,0,0,1,0
+1905,James Bethell 1905,BOWL,21,R,SPIN,1,0,0,0.387,0,0,0,0
+1906,Jamie Pope 1906,BOWL,21,R,PACE,0,1,0,0.31,0,0,0,0
+1907,Sam Salt 1907,BOWL,27,L,PACE,0,1,0,0.563,1,1,0,0
+1908,Sam Sibley 1908,BAT,37,R,,0,0,0,0.502,0,0,0,1
+1909,Ishan Sundar,AR,34,R,PACE,0,1,0,0.677,1,1,0,0
+1910,Jos Salt 1910,AR,28,R,SPIN,1,0,1,0.489,1,1,1,1
+1911,Ryan Head,BAT,22,R,,0,0,0,0.353,0,0,1,0
+1912,Ish Phillips,BAT,25,R,,0,0,0,0.407,0,0,1,1
+1913,Kagiso du Plessis,AR,32,R,SPIN,1,0,0,0.58,1,1,0,0
+1914,Danish Shafique,BOWL,21,L,PACE,0,1,1,0.231,0,0,0,0
+1915,Kusal Dananjaya,BAT,29,R,,0,0,0,0.614,0,0,0,0
+1916,Obed Russell,BAT,18,L,,0,0,0,0.246,0,0,0,0
+1917,Ben Potts 1917,BOWL,24,L,SPIN,1,0,1,0.432,1,1,0,0
+1918,Mark Ali 1918,BOWL,23,R,SPIN,1,0,0,0.268,0,0,0,0
+1919,Jamie Woakes 1919,BOWL,32,L,PACE,0,1,1,0.542,0,0,0,0
+1920,Dom Crawley 1920,WK,37,R,,0,0,0,0.48,0,0,0,0
+1921,Hardik Gaikwad,BOWL,21,R,SPIN,1,0,0,0.27,1,0,0,0
+1922,Brydon Crawley 1922,BAT,34,R,,0,0,1,0.42,0,0,1,1
+1923,Mitchell Hazlewood,BOWL,31,R,SPIN,1,0,0,0.478,1,1,0,0
+1924,Mitchell Blundell,BAT,38,L,,0,0,0,0.767,0,0,0,1
+1925,Tabraiz Miller,BAT,37,R,,0,0,0,0.573,0,0,0,0
+1926,Usman Khushdil,BAT,20,R,,0,0,1,0.31,0,0,1,1
+1927,Sachith Fernando,BAT,33,R,,0,0,1,0.646,0,0,1,0
+1928,Kavem McCoy,BOWL,30,R,PACE,0,1,0,0.515,1,1,0,0
+1929,Zak Sibley 1929,BAT,20,R,,0,0,1,0.252,0,0,1,1
+1930,Adil Anderson 1930,BOWL,23,R,PACE,0,1,0,0.441,0,0,0,0
+1931,Jonny Bairstow 1931,BOWL,37,L,SPIN,1,0,0,0.499,0,0,0,0
+1932,Craig Bethell 1932,BOWL,29,R,SPIN,1,0,0,0.503,1,0,0,0
+1933,Prithvi Sundar,AR,25,L,PACE,0,1,0,0.478,0,0,0,0
+1934,Chris Lawrence 1934,AR,24,R,SPIN,1,0,1,0.347,0,0,0,0
+1935,Pat Philippe,BOWL,35,R,SPIN,1,0,0,0.49,1,1,0,0
+1936,Mark Santner,BAT,23,R,,0,0,0,0.2,0,0,1,1
+1937,David de Kock,BOWL,21,R,PACE,0,1,0,0.288,0,0,0,0
+1938,Yasir Rauf,BOWL,30,L,PACE,0,1,1,0.542,1,0,0,0
+1939,Chaturanga Liyanage,BAT,38,R,,0,0,1,0.852,0,0,1,0
+1940,Kieron Narine,BAT,21,R,,0,0,0,0.221,0,0,1,0
+1941,Jack Crawley 1941,BAT,23,L,,0,0,0,0.328,0,0,1,1
+1942,Jos Sibley 1942,BOWL,27,R,PACE,0,1,0,0.459,1,1,0,0
+1943,Jonny Potts 1943,BOWL,22,R,SPIN,1,0,0,0.163,0,0,0,0
+1944,Mark Brook 1944,BAT,31,L,,0,0,1,0.386,0,0,1,0
+1945,Virat Varma,AR,23,R,SPIN,1,0,0,0.262,0,0,0,0
+1946,Dom Curran 1946,AR,20,L,PACE,0,1,0,0.451,0,0,0,0
+1947,Sean Turner,BAT,23,R,,0,0,0,0.282,0,0,0,1
+1948,Kane Henry,AR,37,L,PACE,0,1,0,0.726,0,0,0,0
+1949,Quinton Nortje,BAT,37,R,,0,0,1,0.56,0,0,1,1
+1950,Salman Shakeel,AR,28,R,SPIN,1,0,0,0.3,1,0,1,1
+1951,Lahiru Chandimal,WK,26,R,,0,0,0,0.557,0,0,0,0
+1952,Fabian Pooran,BAT,35,L,,0,0,0,0.681,0,0,0,0
+1953,Moeen Broad 1953,AR,22,R,PACE,0,1,1,0.206,0,0,0,0
+1954,Moeen Bethell 1954,WK,31,L,,0,0,1,0.495,0,0,1,0
+1955,Adil Overton 1955,AR,32,R,SPIN,1,0,0,0.389,0,0,0,0
+1956,Moeen Curran 1956,WK,32,R,,0,0,0,0.549,0,0,1,1
+1957,Virat Iyer,BOWL,22,L,PACE,0,1,0,0.407,1,1,0,0
+1958,Jack Wood 1958,BAT,33,R,,0,0,0,0.458,0,0,1,0
+1959,Nathan Lyon,AR,30,R,PACE,0,1,0,0.746,1,1,0,0
+1960,Mark Latham,BOWL,36,R,PACE,0,1,1,0.713,0,1,0,0
+1961,David Rabada,BOWL,21,R,PACE,0,1,1,0.311,1,0,0,0
+1962,Imam Zaman,BOWL,30,R,PACE,0,1,0,0.51,0,0,0,0
+1963,Dinesh Udana,BOWL,35,R,SPIN,1,0,0,0.496,1,1,0,0
+1964,Kavem Russell,BAT,23,R,,0,0,0,0.295,0,0,1,1
+1965,Jos Buttler 1965,BOWL,33,R,SPIN,1,0,0,0.336,0,0,0,0
+1966,Jack Crawley 1966,BAT,20,R,,0,0,0,0.135,0,0,0,0
+1967,Jack Lawrence 1967,BOWL,33,R,PACE,0,1,0,0.625,1,1,0,0
+1968,Rehan Roy 1968,AR,30,R,SPIN,1,0,1,0.393,0,0,0,0
+1969,Mohammed Gaikwad,BOWL,22,R,SPIN,1,0,0,0.196,0,0,0,0
+1970,Joe Wood 1970,BOWL,19,R,SPIN,1,0,1,0.298,1,1,0,0
+1971,Sean Short,BAT,33,R,,0,0,0,0.379,0,0,0,0
+1972,Doug Nicholls,WK,23,R,,0,0,0,0.287,0,0,0,0
+1973,Marco Steyn,BOWL,28,R,PACE,0,1,0,0.617,0,0,0,0
+1974,Salman Khurram,BAT,19,L,,0,0,1,0.377,0,0,0,0
+1975,Sachith Vandersay,BAT,38,R,,0,0,0,0.714,0,0,1,1
+1976,Sunil Russell,BAT,29,R,,0,0,0,0.356,0,0,1,1
+1977,Craig Bairstow 1977,BOWL,37,R,SPIN,1,0,0,0.566,0,0,0,0
+1978,Moeen Wood 1978,WK,21,R,,0,0,0,0.378,0,0,0,0
+1979,Ollie Lawrence 1979,BOWL,22,L,PACE,0,1,0,0.291,1,1,0,0
+1980,Liam Rashid 1980,BAT,30,L,,0,0,0,0.445,0,0,1,0
+1981,Axar Kishan,AR,30,L,SPIN,1,0,0,0.274,0,0,0,0
+1982,Liam Carse 1982,BAT,34,R,,0,0,1,0.425,0,0,1,1
+1983,Andrew Hazlewood,AR,37,R,SPIN,1,0,0,0.558,0,0,0,0
+1984,Mitchell Santner,BAT,35,R,,0,0,0,0.693,0,0,1,1
+1985,Ryan Shamsi,BOWL,20,R,PACE,0,1,0,0.531,1,1,0,0
+1986,Usman Shah,AR,24,R,SPIN,1,0,0,0.395,1,0,0,0
+1987,Wanindu Vandersay,BAT,37,R,,0,0,1,0.667,0,0,1,0
+1988,Rovman Hope,BOWL,29,R,SPIN,1,0,0,0.541,1,1,0,0
+1989,Jamie Stokes 1989,WK,36,L,,0,0,0,0.637,0,0,0,0
+1990,Ben Crawley 1990,BAT,29,R,,0,0,1,0.567,0,0,0,1
+1991,Stuart Pope 1991,BAT,19,R,,0,0,0,0.186,0,0,0,0
+1992,Jason Brook 1992,BOWL,27,L,SPIN,1,0,0,0.514,1,1,0,0
+1993,Shubman Kohli,BAT,35,R,,0,0,0,0.585,0,0,1,1
+1994,Jos Rashid 1994,BAT,31,R,,0,0,0,0.565,0,0,1,1
+1995,Sean Lyon,BOWL,20,R,PACE,0,1,0,0.438,0,0,0,0
+1996,Mark Ferguson,BOWL,22,R,SPIN,1,0,0,0.175,1,1,0,0
+1997,Tabraiz du Plessis,BAT,35,R,,0,0,0,0.558,0,0,0,0
+1998,Saim Khushdil,BAT,38,R,,0,0,0,0.811,0,0,1,1
+1999,Bhanuka Theekshana,AR,33,R,SPIN,1,0,1,0.512,0,0,0,0
+2000,Kemar Chase,BOWL,20,R,SPIN,1,0,0,0.38,1,1,0,0

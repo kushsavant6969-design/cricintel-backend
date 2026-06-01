@@ -1,0 +1,2001 @@
+player_id,player_name,contract_type,base_salary_gbp,performance_bonus_gbp,total_package_gbp,contract_length_years,contract_status,release_clause_gbp,value_score,risk_score,salary_band
+1,Ravindra Varma,Domestic,58000,9000,67000,1,Active,37000,74.2,11.29,Strong squad asset
+2,Dom Woakes,Academy,122000,19000,141000,2,Active,133000,78.7,38.79,High-value starter
+3,Cameron Zampa,Domestic,112000,7000,119000,2,Active,123000,81.1,18.31,High-value starter
+4,Mitchell Tickner,Academy,106000,15000,121000,2,Active,76000,76.0,33.15,High-value starter
+5,Gerald Elgar,Academy,50000,4000,54000,1,Expiring,62000,65.1,16.95,Strong squad asset
+6,Usama Abbasi,Academy,50000,5000,55000,1,Active,35000,68.6,9.47,Strong squad asset
+7,Dushmantha Mathews,Domestic,82000,5000,87000,2,Active,110000,78.8,5.71,High-value starter
+8,Kemar Shepherd,Domestic,118000,18000,136000,3,Active,173000,78.6,23.06,High-value starter
+9,Jonny Salt,Domestic,66000,8000,74000,2,Active,73000,70.3,6.97,Strong squad asset
+10,Zak Stokes,Academy,69000,5000,74000,2,Active,80000,74.2,20.49,Strong squad asset
+11,Brydon Archer,Overseas,45000,7000,52000,1,Released,60000,68.2,9.07,Strong squad asset
+12,Stuart Stokes,Domestic,78000,7000,85000,1,Active,67000,74.6,7.19,Strong squad asset
+13,Ruturaj Sharma,Domestic,117000,9000,126000,2,Active,168000,78.9,27.44,High-value starter
+14,Liam Salt,Academy,52000,7000,59000,1,Active,38000,71.7,10.72,Strong squad asset
+15,Nathan Conway,Domestic,51000,4000,55000,2,Expiring,60000,74.6,35.54,Strong squad asset
+16,Neil Sodhi,Domestic,51000,7000,58000,1,Active,65000,66.1,9.18,Strong squad asset
+17,Faf Parnell,Domestic,55000,9000,64000,1,Active,31000,74.2,33.49,Strong squad asset
+18,Saim Aslam,Domestic,63000,9000,72000,2,Active,89000,70.6,15.06,Strong squad asset
+19,Niroshan Udana,Domestic,60000,5000,65000,2,Active,63000,73.4,18.39,Strong squad asset
+20,Fabian Thomas,Academy,93000,12000,105000,3,Expiring,83000,83.3,21.29,High-value starter
+21,Jonny Anderson,Overseas,107000,21000,128000,2,Active,106000,78.2,26.5,High-value starter
+22,Jofra Brook,Domestic,49000,3000,52000,1,Active,57000,69.4,10.44,Strong squad asset
+23,Zak Curran,Overseas,55000,5000,60000,1,Active,53000,67.6,17.6,Strong squad asset
+24,Harry Ali,Academy,96000,17000,113000,2,Active,117000,78.8,26.5,High-value starter
+25,Shreyas Dube,Overseas,100000,16000,116000,2,Active,79000,75.9,22.36,High-value starter
+26,Jack Ali,Domestic,72000,8000,80000,1,Released,99000,67.7,8.66,Strong squad asset
+27,Alex Zampa,Academy,88000,14000,102000,3,Active,53000,78.1,21.61,High-value starter
+28,Tom Phillips,Academy,150000,18000,168000,3,Active,131000,91.3,15.23,Elite / overseas-standard
+29,Wayne Ngidi,Academy,65000,12000,77000,1,Expiring,92000,73.5,14.04,Strong squad asset
+30,Agha Afridi,Domestic,82000,4000,86000,2,Expiring,113000,80.3,24.58,High-value starter
+31,Suranga Karunaratne,Domestic,107000,6000,113000,3,Expiring,154000,82.7,24.28,High-value starter
+32,Kavem Gayle,Domestic,24000,3000,27000,1,Active,35000,60.2,32.47,Development / squad
+33,Jos Ali,Domestic,47000,7000,54000,1,Expiring,31000,68.7,13.01,Strong squad asset
+34,Ollie Buttler,Overseas,78000,15000,93000,2,Expiring,97000,69.0,15.39,Strong squad asset
+35,Ben Broad,Academy,123000,11000,134000,2,Released,141000,81.0,22.63,High-value starter
+36,Matt Wood,Academy,165000,19000,184000,3,Active,93000,86.7,12.7,Elite / overseas-standard
+37,Shreyas Bishnoi,Academy,55000,7000,62000,1,Active,27000,72.1,10.28,Strong squad asset
+38,Moeen Archer,Domestic,48000,2000,50000,1,Active,39000,74.5,21.07,Strong squad asset
+39,David Hazlewood,Overseas,68000,8000,76000,1,Active,67000,67.7,9.52,Strong squad asset
+40,Daryl Chapman,Academy,99000,18000,117000,2,Active,96000,82.1,23.04,High-value starter
+41,Heinrich Shamsi,Domestic,49000,8000,57000,1,Active,29000,69.7,16.32,Strong squad asset
+42,Tayyab Gul,Domestic,102000,11000,113000,3,Active,125000,79.2,15.01,High-value starter
+43,Lahiru Chameera,Domestic,81000,8000,89000,1,Active,110000,75.3,27.24,High-value starter
+44,Darren Brooks,Domestic,42000,3000,45000,1,Active,26000,60.7,15.11,Development / squad
+45,Moeen Sibley,Overseas,91000,8000,99000,1,Active,129000,75.6,14.69,High-value starter
+46,Zak Carse,Academy,109000,7000,116000,2,Active,113000,77.9,7.36,High-value starter
+47,Jamie Lawrence,Domestic,55000,10000,65000,1,Active,36000,74.0,32.39,Strong squad asset
+48,Sam Sibley,Domestic,63000,5000,68000,2,Active,35000,70.0,17.2,Strong squad asset
+49,Suryakumar Sharma,Domestic,64000,12000,76000,2,Active,82000,73.3,36.35,Strong squad asset
+50,Jamie Brook,Overseas,51000,4000,55000,2,Active,62000,74.4,13.17,Strong squad asset
+51,Alex Turner,Domestic,78000,6000,84000,2,Active,43000,66.2,16.14,Strong squad asset
+52,Kane Ravindra,Academy,39000,5000,44000,1,Active,21000,63.1,12.36,Development / squad
+53,Heinrich Williams,Academy,122000,22000,144000,3,Active,67000,76.9,18.19,High-value starter
+54,Usama Aslam,Domestic,120000,7000,127000,1,Active,163000,79.3,23.65,High-value starter
+55,Akila Kumara,Domestic,65000,12000,77000,2,Active,70000,72.8,30.76,Strong squad asset
+56,Shimron Hetmyer,Academy,121000,7000,128000,2,Active,128000,81.5,19.58,High-value starter
+57,Joe Anderson,Overseas,48000,9000,57000,2,Active,58000,72.9,15.91,Strong squad asset
+58,Mark Brook,Domestic,88000,9000,97000,2,Active,70000,84.5,19.47,High-value starter
+59,Sam Brook,Domestic,21000,3000,24000,1,Expiring,10000,63.9,14.33,Development / squad
+60,Sam Pope,Domestic,56000,7000,63000,1,Active,35000,73.6,4.88,Strong squad asset
+61,Ishan Kohli,Domestic,97000,17000,114000,3,Active,63000,79.1,27.0,High-value starter
+62,Joe Roy,Academy,54000,10000,64000,2,Active,55000,73.8,35.18,Strong squad asset
+63,Lance Short,Academy,74000,4000,78000,2,Expiring,56000,72.8,19.98,Strong squad asset
+64,Jacob Nicholls,Academy,57000,7000,64000,1,Active,62000,74.0,13.67,Strong squad asset
+65,Temba Rickelton,Overseas,92000,7000,99000,2,Active,70000,80.8,11.18,High-value starter
+66,Haris Khushdil,Domestic,104000,19000,123000,3,Active,61000,82.6,26.56,High-value starter
+67,Dimuth Nissanka,Domestic,86000,4000,90000,3,Active,54000,81.7,24.22,High-value starter
+68,Shimron Holder,Domestic,40000,2000,42000,1,Active,48000,61.9,14.65,Development / squad
+69,Dom Crawley,Academy,21000,1000,22000,1,Active,29000,63.7,7.32,Development / squad
+70,Jonny Root,Academy,124000,6000,130000,1,Active,130000,75.9,24.72,High-value starter
+71,James Ahmed,Overseas,72000,4000,76000,2,Active,100000,72.0,9.39,Strong squad asset
+72,Jack Brook,Domestic,88000,7000,95000,2,Active,53000,77.5,20.98,High-value starter
+73,Mohammed Chahal,Academy,80000,12000,92000,2,Expiring,58000,76.0,14.66,High-value starter
+74,Dom Wood,Overseas,73000,14000,87000,1,Active,100000,71.4,16.37,Strong squad asset
+75,Usman Richardson,Domestic,69000,11000,80000,1,Active,98000,72.5,14.52,Strong squad asset
+76,Mitchell Wagner,Academy,38000,6000,44000,1,Active,29000,62.8,12.34,Development / squad
+77,Reeza Rabada,Academy,39000,2000,41000,1,Expiring,52000,63.8,22.69,Development / squad
+78,Fakhar Zaman,Domestic,83000,14000,97000,1,Active,66000,75.2,34.25,High-value starter
+79,Maheesh Chandimal,Domestic,96000,5000,101000,2,Active,79000,79.3,23.99,High-value starter
+80,Rovman Mayers,Domestic,85000,8000,93000,1,Active,100000,78.4,9.1,High-value starter
+81,Jos Lawrence,Domestic,118000,7000,125000,3,Released,80000,79.8,32.15,High-value starter
+82,Harry Overton,Domestic,108000,7000,115000,2,Active,132000,77.4,19.13,High-value starter
+83,Matt Stokes,Domestic,56000,7000,63000,2,Active,49000,72.8,9.81,Strong squad asset
+84,Mark Lawrence,Overseas,47000,6000,53000,1,Active,56000,65.9,6.5,Strong squad asset
+85,Prasidh Bawa,Academy,55000,10000,65000,1,Active,67000,72.3,6.07,Strong squad asset
+86,Stuart Archer,Academy,56000,8000,64000,1,Active,52000,66.0,15.67,Strong squad asset
+87,Nathan Agar,Academy,112000,10000,122000,3,Active,136000,77.6,29.41,High-value starter
+88,Matt Kuggeleijn,Academy,108000,10000,118000,3,Active,97000,81.3,23.66,High-value starter
+89,Andile Ngidi,Domestic,42000,5000,47000,1,Active,48000,61.2,9.66,Development / squad
+90,Babar Azam,Academy,148000,24000,172000,3,Active,158000,85.2,17.76,Elite / overseas-standard
+91,Sachith Liyanage,Academy,130000,22000,152000,3,Active,92000,90.3,6.85,Elite / overseas-standard
+92,Fabian Brooks,Domestic,69000,8000,77000,2,Active,69000,73.3,37.63,Strong squad asset
+93,Sam Bairstow,Academy,71000,4000,75000,1,Active,80000,70.3,34.77,Strong squad asset
+94,Harry Broad,Domestic,64000,11000,75000,2,Active,75000,73.9,39.0,Strong squad asset
+95,Ollie Curran,Domestic,71000,12000,83000,1,Active,38000,67.0,13.61,Strong squad asset
+96,James Root,Academy,102000,18000,120000,3,Active,93000,81.3,25.04,High-value starter
+97,Umesh Patel,Academy,63000,9000,72000,1,Active,46000,72.1,13.51,Strong squad asset
+98,Liam Carse,Academy,59000,9000,68000,1,Expiring,80000,65.4,17.33,Strong squad asset
+99,Tim Philippe,Domestic,45000,3000,48000,1,Active,53000,71.1,6.27,Strong squad asset
+100,Jacob Southee,Domestic,48000,6000,54000,2,Expiring,29000,70.0,6.56,Strong squad asset
+101,Reeza Amla,Domestic,81000,12000,93000,2,Released,88000,82.4,8.21,High-value starter
+102,Faheem Iftikhar,Academy,108000,18000,126000,3,Expiring,100000,80.6,20.08,High-value starter
+103,Niroshan Theekshana,Domestic,56000,9000,65000,2,Active,42000,74.6,14.79,Strong squad asset
+104,Nicholas Hetmyer,Domestic,32000,5000,37000,1,Active,40000,60.9,10.66,Development / squad
+105,Adil Anderson,Overseas,120000,17000,137000,2,Active,69000,83.0,8.88,High-value starter
+106,Adil Carse,Domestic,91000,8000,99000,3,Active,94000,77.9,31.02,High-value starter
+107,Adil Rashid,Overseas,59000,4000,63000,1,Active,38000,72.4,39.87,Strong squad asset
+108,Ben Stokes,Domestic,113000,12000,125000,2,Active,109000,82.1,13.46,High-value starter
+109,Tilak Mukesh,Domestic,53000,9000,62000,1,Active,67000,71.4,21.15,Strong squad asset
+110,Joe Overton,Academy,47000,5000,52000,1,Active,40000,74.0,25.03,Strong squad asset
+111,David Zampa,Domestic,93000,12000,105000,3,Active,120000,77.3,30.73,High-value starter
+112,Rachin Boult,Domestic,50000,4000,54000,1,Active,26000,72.0,9.38,Strong squad asset
+113,Gerald Rabada,Overseas,77000,11000,88000,2,Active,94000,65.4,5.82,Strong squad asset
+114,Tayyab Shafique,Domestic,116000,22000,138000,3,Active,163000,84.4,19.71,High-value starter
+115,Dilshan Vandersay,Academy,67000,9000,76000,1,Active,76000,65.2,17.77,Strong squad asset
+116,Roston Shepherd,Domestic,119000,9000,128000,1,Active,98000,77.2,29.57,High-value starter
+117,James Potts,Domestic,116000,11000,127000,3,Expiring,90000,82.3,24.12,High-value starter
+118,Matt Woakes,Overseas,88000,7000,95000,3,Active,45000,83.3,24.61,High-value starter
+119,Jason Roy,Domestic,120000,10000,130000,2,Active,174000,82.6,30.04,High-value starter
+120,Joe Curran,Domestic,104000,20000,124000,2,Active,54000,81.4,27.77,High-value starter
+121,Hardik Sundar,Overseas,116000,9000,125000,2,Active,71000,82.5,15.68,High-value starter
+122,Jonny Potts,Overseas,76000,9000,85000,1,Active,66000,68.7,26.99,Strong squad asset
+123,Travis Richardson,Domestic,56000,10000,66000,1,Active,29000,74.3,8.91,Strong squad asset
+124,Devon Tickner,Domestic,22000,3000,25000,1,Expiring,19000,62.5,32.83,Development / squad
+125,Reeza Ngidi,Overseas,52000,3000,55000,1,Active,58000,70.2,8.5,Strong squad asset
+126,Usman Saleem,Academy,99000,16000,115000,2,Expiring,108000,77.7,21.18,High-value starter
+127,Pathum Kumara,Domestic,73000,12000,85000,1,Active,39000,68.4,14.56,Strong squad asset
+128,Alzarri Sammy,Academy,75000,7000,82000,2,Active,63000,73.1,6.36,Strong squad asset
+129,Ollie Root,Overseas,45000,7000,52000,2,Active,65000,71.1,15.15,Strong squad asset
+130,Chris Bethell,Overseas,102000,15000,117000,2,Active,125000,76.6,12.94,High-value starter
+131,Jamie Ali,Academy,59000,10000,69000,2,Active,58000,74.4,5.58,Strong squad asset
+132,Rehan Wood,Academy,89000,12000,101000,3,Active,66000,79.5,7.65,High-value starter
+133,Shubman Jadeja,Domestic,130000,23000,153000,2,Active,125000,86.5,30.99,Elite / overseas-standard
+134,Jamie Potts,Domestic,56000,3000,59000,2,Expiring,38000,70.2,17.19,Strong squad asset
+135,Marcus Warner,Overseas,172000,17000,189000,2,Active,134000,85.4,9.66,Elite / overseas-standard
+136,Kane Taylor,Academy,28000,4000,32000,1,Active,14000,62.7,7.63,Development / squad
+137,Ryan Nortje,Domestic,32000,2000,34000,1,Active,31000,60.7,23.47,Development / squad
+138,Naseem Saleem,Domestic,69000,10000,79000,1,Active,68000,66.2,27.26,Strong squad asset
+139,Dimuth Rajapaksa,Domestic,96000,9000,105000,1,Active,71000,78.3,24.67,High-value starter
+140,Darren Bravo,Overseas,79000,11000,90000,1,Active,83000,68.0,11.62,Strong squad asset
+141,Brydon Salt,Domestic,123000,24000,147000,3,Active,104000,79.9,33.92,High-value starter
+142,Brydon Root,Overseas,137000,12000,149000,3,Active,85000,85.8,22.17,Elite / overseas-standard
+143,Brydon Potts,Domestic,62000,4000,66000,1,Active,78000,72.3,9.64,Strong squad asset
+144,Chris Rashid,Domestic,140000,11000,151000,2,Active,171000,85.2,27.66,Elite / overseas-standard
+145,Jasprit Iyer,Domestic,92000,16000,108000,3,Active,79000,77.9,21.73,High-value starter
+146,Stuart Pope,Domestic,46000,7000,53000,2,Active,25000,71.9,10.13,Strong squad asset
+147,Scott Labuschagne,Academy,66000,6000,72000,1,Expiring,75000,66.7,8.1,Strong squad asset
+148,Ross O'Rourke,Domestic,150000,27000,177000,3,Active,145000,86.1,27.29,Elite / overseas-standard
+149,Temba Fortuin,Domestic,82000,6000,88000,3,Active,118000,80.9,26.29,High-value starter
+150,Wahab Ahmed,Domestic,54000,3000,57000,1,Active,53000,66.6,17.45,Strong squad asset
+151,Dasun Mendis,Domestic,120000,8000,128000,1,Active,96000,79.7,16.25,High-value starter
+152,Kevin Hetmyer,Domestic,90000,12000,102000,2,Active,98000,77.4,31.57,High-value starter
+153,Jason Curran,Academy,50000,5000,55000,1,Expiring,39000,68.1,6.2,Strong squad asset
+154,Jos Root,Domestic,62000,8000,70000,2,Active,90000,73.0,15.48,Strong squad asset
+155,Jack Crawley,Overseas,79000,15000,94000,1,Active,56000,70.8,10.06,Strong squad asset
+156,Jason Potts,Domestic,90000,7000,97000,2,Active,59000,75.7,20.33,High-value starter
+157,Arshdeep Bumrah,Domestic,68000,10000,78000,2,Active,36000,72.5,7.04,Strong squad asset
+158,Harry Bairstow,Academy,114000,10000,124000,3,Expiring,65000,79.5,25.39,High-value starter
+159,Marcus Smith,Overseas,136000,25000,161000,2,Active,153000,85.2,15.77,Elite / overseas-standard
+160,Ross Ravindra,Domestic,112000,7000,119000,1,Active,72000,76.5,26.26,High-value starter
+161,Vernon Mulder,Domestic,96000,5000,101000,2,Active,77000,77.4,7.25,High-value starter
+162,Tayyab Khushdil,Overseas,108000,12000,120000,3,Active,86000,81.1,14.27,High-value starter
+163,Thisara Hasaranga,Domestic,67000,12000,79000,1,Active,66000,66.7,10.37,Strong squad asset
+164,Roston Brooks,Overseas,63000,8000,71000,1,Expiring,77000,73.1,12.0,Strong squad asset
+165,Jofra Salt,Domestic,84000,5000,89000,2,Released,112000,78.5,17.09,High-value starter
+166,Ollie Stokes,Overseas,40000,5000,45000,1,Released,59000,63.5,11.45,Development / squad
+167,Zak Root,Overseas,94000,12000,106000,2,Active,63000,77.0,27.18,High-value starter
+168,Dom Root,Overseas,88000,16000,104000,3,Active,95000,81.5,10.91,High-value starter
+169,Rishabh Sundar,Domestic,46000,5000,51000,2,Active,37000,70.8,22.76,Strong squad asset
+170,Jofra Buttler,Overseas,65000,11000,76000,1,Active,77000,72.8,11.57,Strong squad asset
+171,Marnus Tye,Overseas,68000,6000,74000,1,Expiring,89000,65.4,17.01,Strong squad asset
+172,Neil Ravindra,Domestic,80000,5000,85000,2,Active,49000,81.0,4.02,High-value starter
+173,Tabraiz de Zorzi,Domestic,62000,11000,73000,1,Active,31000,65.5,6.66,Strong squad asset
+174,Imam Rizwan,Overseas,52000,5000,57000,2,Active,44000,74.7,10.31,Strong squad asset
+175,Kasun de Silva,Academy,67000,7000,74000,2,Active,51000,71.0,6.89,Strong squad asset
+176,Odean Gayle,Domestic,51000,9000,60000,1,Active,61000,70.0,11.0,Strong squad asset
+177,Craig Crawley,Domestic,69000,13000,82000,1,Active,51000,72.3,25.08,Strong squad asset
+178,Rehan Root,Domestic,58000,7000,65000,1,Active,34000,75.0,13.77,Strong squad asset
+179,Jonny Ali,Domestic,77000,14000,91000,1,Active,50000,71.8,13.88,Strong squad asset
+180,Jamie Wood,Academy,86000,13000,99000,2,Active,84000,81.1,26.55,High-value starter
+181,Tilak Gill,Domestic,95000,11000,106000,2,Active,65000,77.1,8.4,High-value starter
+182,Ollie Crawley,Overseas,48000,8000,56000,1,Active,61000,68.4,32.56,Strong squad asset
+183,Aaron Boland,Domestic,121000,23000,144000,2,Active,159000,78.1,37.7,High-value starter
+184,Colin Blundell,Academy,75000,7000,82000,2,Active,112000,71.9,25.5,Strong squad asset
+185,Gerald Markram,Domestic,54000,6000,60000,2,Active,44000,74.9,18.12,Strong squad asset
+186,Salman Shah,Overseas,109000,12000,121000,3,Active,75000,78.8,25.32,High-value starter
+187,Pathum Rajitha,Overseas,73000,9000,82000,1,Active,93000,68.6,8.12,Strong squad asset
+188,Kyle Motie,Domestic,64000,10000,74000,1,Active,83000,65.3,9.44,Strong squad asset
+189,Jason Brook,Academy,151000,25000,176000,3,Active,98000,88.6,14.87,Elite / overseas-standard
+190,Mark Ahmed,Domestic,26000,1000,27000,1,Released,21000,64.5,15.32,Development / squad
+191,Jamie Carse,Domestic,84000,5000,89000,2,Expiring,43000,82.1,17.44,High-value starter
+192,Tom Brook,Domestic,76000,13000,89000,1,Released,43000,68.6,7.23,Strong squad asset
+193,Prasidh Iyer,Domestic,42000,4000,46000,1,Active,48000,63.8,15.12,Development / squad
+194,Tom Potts,Academy,108000,19000,127000,3,Active,88000,81.2,24.83,High-value starter
+195,Steve Green,Academy,56000,3000,59000,2,Active,63000,73.3,16.26,Strong squad asset
+196,Mark Taylor,Domestic,57000,11000,68000,1,Active,53000,65.5,7.3,Strong squad asset
+197,Tabraiz Rickelton,Overseas,70000,11000,81000,1,Active,42000,74.9,24.94,Strong squad asset
+198,Asif Zaman,Academy,120000,11000,131000,2,Active,98000,82.8,24.33,High-value starter
+199,Suranga Mendis,Domestic,76000,7000,83000,1,Active,56000,65.8,10.79,Strong squad asset
+200,Nicholas Athanaze,Domestic,72000,9000,81000,1,Active,48000,67.6,15.4,Strong squad asset
+201,Matt Overton,Overseas,67000,9000,76000,1,Active,79000,72.7,33.39,Strong squad asset
+202,Jamie Salt,Domestic,47000,8000,55000,1,Active,45000,65.6,9.78,Strong squad asset
+203,Matt Rashid,Domestic,24000,2000,26000,1,Active,33000,63.2,25.78,Development / squad
+204,Craig Wood,Domestic,42000,7000,49000,1,Active,27000,63.5,17.89,Development / squad
+205,Hardik Chahal,Domestic,66000,12000,78000,1,Released,52000,66.9,19.81,Strong squad asset
+206,Liam Archer,Overseas,80000,12000,92000,2,Active,64000,75.0,7.41,High-value starter
+207,Matthew Starc,Domestic,48000,8000,56000,1,Active,42000,67.0,10.89,Strong squad asset
+208,Daryl Boult,Academy,68000,6000,74000,2,Active,35000,73.2,21.68,Strong squad asset
+209,Marco Hendricks,Domestic,45000,2000,47000,2,Expiring,57000,73.2,11.17,Strong squad asset
+210,Saim Rizwan,Academy,87000,14000,101000,1,Active,122000,75.5,25.76,High-value starter
+211,Isuru Kumara,Academy,104000,17000,121000,2,Active,71000,81.0,20.93,High-value starter
+212,Fabian Bravo,Academy,111000,18000,129000,3,Active,131000,76.5,23.72,High-value starter
+213,Tom Ali,Academy,67000,4000,71000,1,Active,36000,74.0,8.69,Strong squad asset
+214,Mark Overton,Domestic,90000,12000,102000,3,Active,53000,77.9,20.63,High-value starter
+215,Jofra Ahmed,Overseas,112000,11000,123000,3,Active,78000,81.4,23.01,High-value starter
+216,James Crawley,Overseas,53000,6000,59000,2,Expiring,70000,70.3,32.0,Strong squad asset
+217,Rinku Siraj,Overseas,56000,4000,60000,1,Active,54000,66.0,6.71,Strong squad asset
+218,Liam Crawley,Academy,71000,12000,83000,2,Active,68000,67.5,5.89,Strong squad asset
+219,Steve Smith,Domestic,109000,17000,126000,1,Active,128000,77.5,16.99,High-value starter
+220,Colin Latham,Academy,74000,7000,81000,2,Active,38000,66.6,38.05,Strong squad asset
+221,Wiaan du Plessis,Overseas,68000,8000,76000,1,Active,79000,72.5,7.11,Strong squad asset
+222,Danish Afridi,Academy,105000,20000,125000,3,Active,77000,79.6,17.19,High-value starter
+223,Dinesh Chameera,Academy,84000,15000,99000,1,Active,118000,80.2,23.6,High-value starter
+224,Shai Bravo,Academy,57000,3000,60000,1,Active,80000,71.2,10.67,Strong squad asset
+225,Harry Anderson,Overseas,54000,7000,61000,2,Active,29000,72.2,11.75,Strong squad asset
+226,Matt Ahmed,Overseas,90000,8000,98000,2,Active,53000,81.7,9.75,High-value starter
+227,Jonny Archer,Overseas,79000,8000,87000,1,Active,114000,68.1,23.02,Strong squad asset
+228,Jason Overton,Academy,97000,15000,112000,2,Active,88000,77.0,23.02,High-value starter
+229,Rishabh Bishnoi,Domestic,120000,17000,137000,2,Expiring,93000,76.2,33.3,High-value starter
+230,Jamie Crawley,Academy,67000,7000,74000,1,Active,97000,67.7,17.66,Strong squad asset
+231,Matthew Stoinis,Domestic,72000,14000,86000,2,Active,100000,66.1,17.76,Strong squad asset
+232,Neil Chapman,Overseas,102000,6000,108000,3,Active,149000,80.2,15.65,High-value starter
+233,Reeza Nortje,Domestic,34000,2000,36000,1,Active,38000,61.9,14.51,Development / squad
+234,Agha Nawaz,Domestic,102000,17000,119000,2,Active,63000,80.0,26.02,High-value starter
+235,Nuwan Chameera,Domestic,88000,15000,103000,2,Active,95000,78.0,24.47,High-value starter
+236,Alzarri Russell,Domestic,112000,18000,130000,1,Active,122000,81.4,22.04,High-value starter
+237,Matt Anderson,Domestic,92000,18000,110000,2,Active,119000,78.4,26.33,High-value starter
+238,Jos Stokes,Academy,126000,22000,148000,2,Active,108000,86.1,16.57,Elite / overseas-standard
+239,Jofra Root,Overseas,67000,11000,78000,1,Active,34000,66.7,15.91,Strong squad asset
+240,Brydon Anderson,Domestic,51000,3000,54000,2,Active,31000,74.8,13.29,Strong squad asset
+241,Suryakumar Iyer,Domestic,122000,14000,136000,2,Active,133000,79.0,9.24,High-value starter
+242,Jason Carse,Academy,122000,10000,132000,3,Active,149000,77.8,15.41,High-value starter
+243,Peter Short,Domestic,121000,17000,138000,3,Active,181000,81.3,6.92,High-value starter
+244,Tom Wagner,Domestic,57000,8000,65000,2,Active,80000,71.7,33.17,Strong squad asset
+245,Reeza Williams,Overseas,80000,14000,94000,2,Active,51000,84.5,21.65,High-value starter
+246,Agha Irfan,Domestic,77000,11000,88000,1,Active,93000,73.6,14.5,Strong squad asset
+247,Pathum Rajapaksa,Overseas,99000,19000,118000,3,Active,94000,80.8,32.83,High-value starter
+248,Kyle Holder,Domestic,123000,20000,143000,2,Active,142000,76.8,27.01,High-value starter
+249,Liam Bairstow,Academy,78000,12000,90000,1,Active,74000,70.2,13.17,Strong squad asset
+250,Joe Root,Domestic,118000,11000,129000,2,Active,108000,79.8,24.98,High-value starter
+251,Ollie Wood,Domestic,93000,10000,103000,1,Active,81000,82.4,26.93,High-value starter
+252,Chris Archer,Overseas,58000,8000,66000,1,Active,34000,69.8,15.26,Strong squad asset
+253,Suryakumar Kishan,Domestic,118000,13000,131000,1,Active,102000,80.7,8.2,High-value starter
+254,Jack Stokes,Academy,56000,3000,59000,1,Released,59000,68.8,8.21,Strong squad asset
+255,Andrew Boland,Academy,50000,3000,53000,1,Active,58000,66.3,12.05,Strong squad asset
+256,Devon Kuggeleijn,Overseas,64000,11000,75000,2,Active,93000,74.8,27.6,Strong squad asset
+257,Hashim Klaasen,Domestic,122000,7000,129000,2,Active,79000,75.6,16.66,High-value starter
+258,Asif Saleem,Overseas,69000,5000,74000,2,Active,92000,68.4,8.55,Strong squad asset
+259,Maheesh Mathews,Domestic,34000,2000,36000,1,Active,24000,57.8,26.02,Development / squad
+260,Kieran Sammy,Overseas,129000,22000,151000,3,Released,170000,86.5,28.17,Elite / overseas-standard
+261,Tom Woakes,Academy,107000,20000,127000,1,Active,82000,75.4,11.81,High-value starter
+262,Brydon Buttler,Domestic,124000,19000,143000,1,Active,104000,77.4,7.47,High-value starter
+263,Jamie Buttler,Overseas,49000,3000,52000,1,Active,56000,68.1,10.48,Strong squad asset
+264,Mark Anderson,Domestic,63000,4000,67000,1,Active,33000,67.0,12.66,Strong squad asset
+265,Mohammed Tiwary,Domestic,119000,13000,132000,2,Active,103000,83.0,20.23,High-value starter
+266,Jonny Rashid,Academy,70000,6000,76000,1,Expiring,76000,66.2,7.75,Strong squad asset
+267,Marnus Inglis,Domestic,69000,5000,74000,1,Active,37000,67.3,15.91,Strong squad asset
+268,Daryl Ferguson,Domestic,111000,12000,123000,1,Active,122000,79.0,9.63,High-value starter
+269,Hashim Ngidi,Domestic,57000,4000,61000,2,Active,48000,69.6,12.25,Strong squad asset
+270,Zafar Zaman,Overseas,93000,8000,101000,1,Active,91000,78.0,14.49,High-value starter
+271,Dhananjaya Dickwella,Overseas,40000,6000,46000,1,Active,35000,64.1,15.19,Development / squad
+272,Dwayne Athanaze,Academy,40000,2000,42000,1,Active,57000,58.9,15.92,Development / squad
+273,Tom Ahmed,Domestic,75000,7000,82000,1,Active,74000,70.5,10.87,Strong squad asset
+274,Jamie Bairstow,Overseas,121000,9000,130000,3,Active,145000,79.1,31.78,High-value starter
+275,Sam Rashid,Domestic,103000,11000,114000,2,Active,96000,78.5,24.25,High-value starter
+276,Adil Potts,Domestic,102000,18000,120000,3,Active,109000,75.4,32.53,High-value starter
+277,Yuzvendra Dube,Domestic,72000,4000,76000,2,Active,59000,74.5,6.93,Strong squad asset
+278,Matt Lawrence,Academy,109000,20000,129000,3,Active,146000,77.4,21.28,High-value starter
+279,Andrew Tye,Domestic,111000,15000,126000,1,Active,99000,77.8,11.09,High-value starter
+280,Daryl Ravindra,Academy,115000,11000,126000,2,Active,76000,75.7,6.68,High-value starter
+281,Rassie Philander,Overseas,76000,9000,85000,1,Active,96000,72.1,8.98,Strong squad asset
+282,Agha Saleem,Academy,95000,18000,113000,3,Active,61000,80.6,5.27,High-value starter
+283,Maheesh Perera,Domestic,96000,8000,104000,1,Active,62000,77.3,4.83,High-value starter
+284,Fabian Pollard,Academy,22000,1000,23000,1,Released,24000,64.4,18.09,Development / squad
+285,Dom Roy,Academy,106000,17000,123000,2,Active,150000,80.9,21.39,High-value starter
+286,Zak Anderson,Overseas,81000,14000,95000,2,Active,52000,76.6,18.81,High-value starter
+287,Zak Buttler,Domestic,31000,3000,34000,1,Active,40000,64.2,22.29,Development / squad
+288,Zak Ahmed,Overseas,63000,8000,71000,1,Active,36000,66.5,16.37,Strong squad asset
+289,Ravindra Yadav,Domestic,92000,5000,97000,3,Active,72000,77.3,33.57,High-value starter
+290,Zak Wood,Academy,106000,14000,120000,1,Active,114000,76.4,12.0,High-value starter
+291,Mitchell Maxwell,Domestic,46000,8000,54000,1,Active,31000,72.8,12.93,Strong squad asset
+292,Henry Conway,Academy,46000,3000,49000,2,Active,27000,71.2,12.35,Strong squad asset
+293,Dean Steyn,Overseas,117000,23000,140000,3,Active,134000,82.9,20.93,High-value starter
+294,Saim Butt,Domestic,57000,4000,61000,1,Active,53000,66.0,8.87,Strong squad asset
+295,Kasun Asalanka,Domestic,85000,9000,94000,2,Active,77000,77.6,18.38,High-value starter
+296,Obed Gayle,Academy,103000,14000,117000,3,Active,118000,82.1,19.23,High-value starter
+297,Stuart Brook,Domestic,71000,7000,78000,1,Active,62000,65.5,6.68,Strong squad asset
+298,Jack Lawrence,Overseas,89000,14000,103000,2,Active,125000,78.2,28.11,High-value starter
+299,Sam Ali,Domestic,108000,6000,114000,2,Active,153000,82.7,20.3,High-value starter
+300,Ben Anderson,Academy,47000,7000,54000,2,Active,51000,72.1,34.14,Strong squad asset
+301,Rishabh Pandya,Domestic,82000,10000,92000,2,Active,67000,84.0,17.62,High-value starter
+302,Jofra Pope,Academy,63000,9000,72000,1,Expiring,94000,68.7,26.24,Strong squad asset
+303,Peter Khawaja,Academy,152000,22000,174000,2,Active,78000,86.0,18.68,Elite / overseas-standard
+304,Kane Blundell,Domestic,108000,20000,128000,3,Active,136000,75.6,34.85,High-value starter
+305,Lungi Fortuin,Domestic,112000,22000,134000,2,Active,89000,83.6,7.56,High-value starter
+306,Saud Khan,Academy,123000,20000,143000,2,Active,170000,81.8,33.11,High-value starter
+307,Angelo Hasaranga,Academy,63000,6000,69000,1,Active,39000,74.9,28.35,Strong squad asset
+308,Sunil McCoy,Overseas,94000,6000,100000,3,Active,112000,77.4,25.08,High-value starter
+309,Matt Brook,Academy,72000,12000,84000,1,Active,67000,66.7,11.9,Strong squad asset
+310,Tom Lawrence,Domestic,54000,5000,59000,1,Active,79000,65.6,9.63,Strong squad asset
+311,Moeen Potts,Academy,99000,16000,115000,2,Active,73000,79.2,26.22,High-value starter
+312,Harry Root,Domestic,83000,8000,91000,3,Expiring,123000,82.2,18.29,High-value starter
+313,Shubman Yadav,Overseas,45000,7000,52000,2,Active,45000,72.4,12.27,Strong squad asset
+314,Jamie Rashid,Domestic,78000,15000,93000,1,Active,101000,66.6,11.9,Strong squad asset
+315,Cooper Turner,Domestic,40000,7000,47000,1,Active,39000,61.0,17.74,Development / squad
+316,Kane Boult,Overseas,69000,9000,78000,2,Active,92000,73.2,10.0,Strong squad asset
+317,Tony Maharaj,Overseas,59000,5000,64000,1,Active,45000,68.2,27.06,Strong squad asset
+318,Agha Shakeel,Overseas,133000,23000,156000,2,Active,187000,86.0,24.61,Elite / overseas-standard
+319,Dinesh Lakmal,Domestic,50000,9000,59000,2,Active,44000,70.9,25.22,Strong squad asset
+320,Kieran Bravo,Domestic,53000,5000,58000,2,Active,38000,70.9,15.4,Strong squad asset
+321,Matt Crawley,Domestic,104000,18000,122000,2,Active,134000,77.2,23.52,High-value starter
+322,Chris Anderson,Domestic,112000,10000,122000,2,Active,133000,80.7,33.67,High-value starter
+323,Jos Bairstow,Academy,68000,8000,76000,1,Active,95000,69.6,13.53,Strong squad asset
+324,Jofra Potts,Overseas,92000,8000,100000,1,Active,96000,78.0,17.1,High-value starter
+325,Prasidh Shaw,Domestic,122000,20000,142000,2,Active,75000,76.2,27.91,High-value starter
+326,Dom Curran,Domestic,70000,10000,80000,1,Active,39000,74.9,24.73,Strong squad asset
+327,Marcus Maxwell,Academy,104000,13000,117000,3,Active,111000,77.4,19.36,High-value starter
+328,Colin Williamson,Academy,66000,4000,70000,1,Active,73000,71.3,15.57,Strong squad asset
+329,Tony Mulder,Academy,98000,11000,109000,2,Active,57000,79.7,18.28,High-value starter
+330,Sarfaraz Rizwan,Domestic,53000,10000,63000,2,Active,68000,71.6,8.89,Strong squad asset
+331,Nuwan Udana,Domestic,96000,17000,113000,2,Active,85000,82.5,16.92,High-value starter
+332,Jayden Mayers,Domestic,38000,6000,44000,2,Active,21000,63.9,20.65,Development / squad
+333,Liam Wood,Academy,45000,6000,51000,1,Active,48000,74.7,31.95,Strong squad asset
+334,Jason Pope,Domestic,49000,2000,51000,2,Active,64000,72.3,22.17,Strong squad asset
+335,Brydon Crawley,Academy,46000,5000,51000,1,Active,52000,71.7,7.31,Strong squad asset
+336,Ollie Ali,Domestic,81000,12000,93000,2,Expiring,43000,81.6,26.33,High-value starter
+337,Rishabh Siraj,Domestic,74000,4000,78000,1,Active,40000,69.8,11.39,Strong squad asset
+338,Jos Salt,Academy,111000,12000,123000,3,Active,108000,78.7,18.97,High-value starter
+339,Marcus Carey,Academy,101000,7000,108000,1,Active,129000,78.2,11.64,High-value starter
+340,Kane Duffy,Overseas,48000,4000,52000,2,Active,44000,69.0,13.51,Strong squad asset
+341,Reeza Jansen,Academy,102000,11000,113000,3,Released,85000,82.2,6.39,High-value starter
+342,Yasir Shakeel,Domestic,31000,3000,34000,1,Active,44000,64.3,12.39,Development / squad
+343,Thisara Karunaratne,Overseas,51000,8000,59000,2,Active,29000,74.6,28.65,Strong squad asset
+344,Roston Sammy,Overseas,60000,7000,67000,1,Active,34000,69.1,34.4,Strong squad asset
+345,Jofra Anderson,Domestic,97000,11000,108000,3,Active,64000,82.3,5.65,High-value starter
+346,Dom Bethell,Domestic,107000,12000,119000,2,Active,151000,75.7,26.43,High-value starter
+347,Ben Wood,Overseas,35000,4000,39000,1,Active,39000,63.1,13.13,Development / squad
+348,Brydon Ali,Domestic,127000,19000,146000,2,Active,128000,88.2,13.51,Elite / overseas-standard
+349,Suryakumar Pant,Domestic,96000,6000,102000,2,Active,123000,78.2,31.29,High-value starter
+350,Rehan Carse,Domestic,66000,3000,69000,1,Active,57000,73.2,9.77,Strong squad asset
+351,Steve Philippe,Overseas,102000,19000,121000,3,Active,66000,77.1,24.99,High-value starter
+352,Kane Ferguson,Domestic,74000,7000,81000,2,Active,79000,70.4,12.51,Strong squad asset
+353,Wayne Amla,Domestic,109000,10000,119000,3,Active,159000,76.8,29.78,High-value starter
+354,Usama Khurram,Academy,87000,6000,93000,1,Active,122000,79.5,25.45,High-value starter
+355,Sachith Embuldeniya,Overseas,83000,7000,90000,2,Active,78000,78.3,22.68,High-value starter
+356,Dwayne Brooks,Academy,67000,12000,79000,2,Active,41000,74.2,31.77,Strong squad asset
+357,Joe Stokes,Overseas,81000,9000,90000,2,Expiring,76000,77.8,9.15,High-value starter
+358,Joe Crawley,Academy,106000,20000,126000,1,Released,123000,80.8,7.52,High-value starter
+359,Jason Ahmed,Overseas,122000,16000,138000,2,Active,97000,82.5,18.53,High-value starter
+360,Stuart Rashid,Overseas,105000,16000,121000,1,Expiring,119000,77.2,28.18,High-value starter
+361,Rishabh Pant,Academy,58000,4000,62000,2,Released,74000,73.2,22.28,Strong squad asset
+362,Stuart Bairstow,Domestic,36000,6000,42000,1,Active,37000,58.3,25.03,Development / squad
+363,Adam Short,Domestic,61000,7000,68000,1,Released,38000,65.6,10.55,Strong squad asset
+364,Henry Duffy,Overseas,33000,6000,39000,1,Active,29000,58.5,25.7,Development / squad
+365,Anrich Miller,Academy,77000,8000,85000,2,Active,82000,74.6,24.29,Strong squad asset
+366,Salman Aslam,Domestic,97000,14000,111000,2,Active,114000,76.5,26.2,High-value starter
+367,Akila Chameera,Overseas,123000,8000,131000,2,Active,129000,81.5,16.34,High-value starter
+368,Kavem Walsh,Domestic,120000,13000,133000,2,Expiring,66000,79.2,33.26,High-value starter
+369,Jack Root,Overseas,51000,6000,57000,1,Active,33000,70.1,7.38,Strong squad asset
+370,Jofra Lawrence,Domestic,47000,9000,56000,1,Active,36000,72.9,5.64,Strong squad asset
+371,Tom Buttler,Domestic,84000,6000,90000,2,Released,65000,83.5,23.62,High-value starter
+372,Joe Rashid,Academy,20000,1000,21000,1,Active,20000,61.4,14.06,Development / squad
+373,Jasprit Kohli,Domestic,48000,6000,54000,1,Active,32000,70.5,11.82,Strong squad asset
+374,Ollie Brook,Academy,68000,3000,71000,2,Expiring,39000,71.4,19.93,Strong squad asset
+375,David Philippe,Overseas,21000,4000,25000,1,Active,16000,60.9,13.99,Development / squad
+376,Michael Conway,Domestic,56000,9000,65000,1,Active,63000,68.1,15.67,Strong squad asset
+377,Dale Rickelton,Academy,74000,9000,83000,2,Active,59000,72.4,23.65,Strong squad asset
+378,Babar Khushdil,Overseas,45000,3000,48000,1,Active,40000,70.7,15.1,Strong squad asset
+379,Niroshan de Silva,Overseas,73000,4000,77000,2,Active,68000,69.7,36.78,Strong squad asset
+380,Jayden Gayle,Domestic,92000,7000,99000,2,Active,74000,76.9,21.9,High-value starter
+381,Jason Sibley,Overseas,85000,13000,98000,3,Expiring,125000,77.2,25.58,High-value starter
+382,Rehan Sibley,Domestic,111000,14000,125000,1,Active,82000,75.2,19.11,High-value starter
+383,Chris Overton,Domestic,108000,12000,120000,1,Active,59000,75.4,17.24,High-value starter
+384,Moeen Stokes,Academy,119000,13000,132000,2,Released,166000,79.1,18.6,High-value starter
+385,Sanju Chahal,Overseas,38000,6000,44000,1,Expiring,46000,64.8,9.39,Development / squad
+386,Jofra Stokes,Domestic,40000,6000,46000,1,Active,40000,64.6,16.67,Development / squad
+387,Scott Conway,Domestic,92000,11000,103000,3,Active,82000,77.2,20.78,High-value starter
+388,Trent Williamson,Overseas,51000,9000,60000,2,Active,43000,71.7,11.89,Strong squad asset
+389,Lizaad Parnell,Domestic,71000,8000,79000,1,Expiring,81000,70.4,9.0,Strong squad asset
+390,Tayyab Mir,Domestic,116000,15000,131000,2,Active,107000,77.9,26.5,High-value starter
+391,Charith Vandersay,Academy,124000,13000,137000,3,Active,67000,82.7,25.31,High-value starter
+392,Jason Russell,Domestic,30000,4000,34000,1,Active,31000,59.8,29.22,Development / squad
+393,Mark Carse,Domestic,96000,12000,108000,2,Active,74000,81.1,17.08,High-value starter
+394,Adil Wood,Domestic,72000,14000,86000,1,Active,93000,70.5,37.03,Strong squad asset
+395,Chris Roy,Overseas,56000,5000,61000,1,Expiring,70000,68.3,8.83,Strong squad asset
+396,Rehan Ahmed,Academy,77000,9000,86000,1,Active,41000,72.2,33.9,Strong squad asset
+397,Yuzvendra Rahul,Academy,118000,11000,129000,1,Active,112000,78.0,10.64,High-value starter
+398,Matt Roy,Domestic,60000,11000,71000,1,Active,53000,71.5,5.7,Strong squad asset
+399,Cameron Head,Academy,113000,11000,124000,3,Active,116000,82.6,28.36,High-value starter
+400,Martin Mitchell,Overseas,113000,13000,126000,3,Active,93000,77.9,23.48,High-value starter
+401,Lizaad Fortuin,Domestic,48000,6000,54000,1,Active,58000,74.3,6.29,Strong squad asset
+402,Mohammad Rizwan,Academy,120000,14000,134000,1,Released,153000,75.1,19.43,High-value starter
+403,Dasun Rajapaksa,Academy,62000,3000,65000,1,Active,63000,74.1,16.48,Strong squad asset
+404,Sunil Seales,Domestic,73000,12000,85000,2,Active,78000,70.0,8.68,Strong squad asset
+405,James Ali,Domestic,94000,4000,98000,1,Active,61000,75.8,8.22,High-value starter
+406,Mark Salt,Overseas,120000,13000,133000,2,Active,170000,80.2,17.86,High-value starter
+407,Zak Broad,Academy,29000,4000,33000,1,Active,29000,60.8,25.25,Development / squad
+408,Sam Archer,Academy,80000,9000,89000,2,Active,116000,76.2,14.65,High-value starter
+409,Deepak Kohli,Domestic,42000,7000,49000,1,Active,35000,61.3,13.93,Development / squad
+410,Adil Crawley,Academy,84000,10000,94000,2,Released,65000,75.7,14.66,High-value starter
+411,Usman Carey,Domestic,94000,17000,111000,3,Released,119000,81.9,26.1,High-value starter
+412,Adam Munro,Academy,122000,19000,141000,2,Active,103000,84.6,20.82,High-value starter
+413,Andile Mulder,Academy,43000,3000,46000,1,Active,50000,59.1,23.75,Development / squad
+414,Saim Abbasi,Domestic,105000,18000,123000,2,Released,136000,76.9,14.56,High-value starter
+415,Asitha Dananjaya,Overseas,67000,3000,70000,2,Released,38000,68.7,6.69,Strong squad asset
+416,Dwayne Russell,Academy,60000,5000,65000,2,Active,42000,71.2,9.84,Strong squad asset
+417,Joe Pope,Overseas,55000,10000,65000,2,Active,35000,67.2,13.99,Strong squad asset
+418,Adil Bairstow,Domestic,94000,5000,99000,1,Expiring,68000,79.2,13.51,High-value starter
+419,Craig Sibley,Domestic,68000,4000,72000,1,Active,66000,68.8,14.91,Strong squad asset
+420,Dom Carse,Overseas,113000,5000,118000,1,Active,161000,77.6,22.15,High-value starter
+421,Tilak Chahar,Academy,72000,13000,85000,2,Expiring,70000,68.9,35.2,Strong squad asset
+422,Rehan Crawley,Domestic,72000,7000,79000,1,Active,101000,69.8,22.4,Strong squad asset
+423,Aaron Warner,Domestic,48000,7000,55000,1,Active,59000,67.7,14.1,Strong squad asset
+424,Will Chapman,Domestic,62000,6000,68000,1,Active,88000,69.3,13.55,Strong squad asset
+425,Lizaad Philander,Overseas,82000,16000,98000,1,Active,81000,78.5,28.38,High-value starter
+426,Shan Rizwan,Domestic,104000,5000,109000,3,Active,63000,79.3,10.35,High-value starter
+427,Suranga Udana,Overseas,60000,11000,71000,1,Active,89000,69.2,12.2,Strong squad asset
+428,Kavem Mayers,Domestic,119000,21000,140000,3,Active,82000,76.3,19.56,High-value starter
+429,Dom Lawrence,Domestic,57000,5000,62000,1,Active,65000,65.6,9.73,Strong squad asset
+430,Moeen Broad,Domestic,49000,7000,56000,1,Active,52000,74.6,13.75,Strong squad asset
+431,Jonny Overton,Overseas,86000,6000,92000,1,Expiring,120000,76.7,23.79,High-value starter
+432,Rehan Anderson,Academy,114000,11000,125000,3,Active,67000,78.7,9.97,High-value starter
+433,Axar Jadeja,Overseas,107000,13000,120000,2,Expiring,54000,81.3,23.06,High-value starter
+434,Harry Salt,Domestic,48000,5000,53000,2,Active,39000,70.6,21.26,Strong squad asset
+435,Marcus Khawaja,Domestic,47000,6000,53000,1,Active,26000,73.5,7.18,Strong squad asset
+436,Doug O'Rourke,Domestic,37000,4000,41000,1,Active,43000,62.8,13.58,Development / squad
+437,Kagiso Miller,Academy,47000,3000,50000,2,Expiring,37000,71.7,24.47,Strong squad asset
+438,Mohammad Saleem,Overseas,116000,9000,125000,2,Active,75000,80.6,18.29,High-value starter
+439,Dinesh Shanaka,Domestic,69000,10000,79000,2,Expiring,86000,70.1,36.1,Strong squad asset
+440,Rovman Russell,Domestic,83000,12000,95000,1,Active,106000,80.5,10.25,High-value starter
+441,Dom Salt,Academy,83000,12000,95000,2,Active,88000,77.7,13.15,High-value starter
+442,Ben Sibley,Domestic,79000,13000,92000,1,Expiring,55000,69.5,10.41,Strong squad asset
+443,Ollie Pope,Domestic,96000,9000,105000,1,Active,59000,76.4,7.37,High-value starter
+444,Adil Archer,Overseas,57000,4000,61000,1,Active,33000,67.2,14.93,Strong squad asset
+445,Mohammed Pant,Academy,40000,4000,44000,1,Active,25000,65.0,14.69,Development / squad
+446,Stuart Potts,Domestic,122000,16000,138000,2,Active,143000,76.8,27.22,High-value starter
+447,David Turner,Domestic,79000,12000,91000,1,Active,103000,67.6,17.33,Strong squad asset
+448,Will Boult,Academy,162000,9000,171000,2,Active,194000,86.8,29.03,Elite / overseas-standard
+449,Anrich Fortuin,Domestic,58000,11000,69000,1,Active,45000,69.3,6.53,Strong squad asset
+450,Babar Khurram,Domestic,83000,13000,96000,1,Released,95000,75.5,18.98,High-value starter
+451,Chaturanga Chameera,Domestic,72000,7000,79000,1,Expiring,68000,66.3,12.49,Strong squad asset
+452,Roston Chase,Overseas,64000,6000,70000,2,Active,74000,70.0,20.55,Strong squad asset
+453,Rehan Roy,Overseas,146000,21000,167000,2,Active,99000,85.7,17.13,Elite / overseas-standard
+454,Jos Woakes,Overseas,42000,5000,47000,1,Active,51000,62.1,21.84,Development / squad
+455,Brydon Ahmed,Overseas,85000,14000,99000,1,Active,125000,78.9,7.01,High-value starter
+456,Sam Ahmed,Academy,62000,9000,71000,2,Active,54000,69.6,13.99,Strong squad asset
+457,Shubman Gaikwad,Domestic,45000,5000,50000,1,Active,30000,74.6,10.6,Strong squad asset
+458,Ollie Anderson,Domestic,61000,10000,71000,1,Active,77000,73.8,22.34,Strong squad asset
+459,Travis Turner,Domestic,82000,6000,88000,1,Active,43000,76.2,10.65,High-value starter
+460,Trent Latham,Domestic,85000,13000,98000,2,Active,62000,78.2,20.25,High-value starter
+461,Reeza Elgar,Domestic,130000,9000,139000,2,Released,95000,88.3,24.69,Elite / overseas-standard
+462,Shadab Ayub,Overseas,36000,6000,42000,1,Active,38000,63.8,9.86,Development / squad
+463,Wanindu Embuldeniya,Overseas,71000,6000,77000,2,Expiring,105000,73.8,7.2,Strong squad asset
+464,Dwayne Shepherd,Domestic,154000,14000,168000,2,Active,223000,86.4,17.1,Elite / overseas-standard
+465,Stuart Overton,Academy,123000,18000,141000,1,Active,67000,81.2,21.92,High-value starter
+466,Jamie Stokes,Academy,143000,21000,164000,3,Active,117000,85.5,17.89,Elite / overseas-standard
+467,Ollie Overton,Domestic,92000,6000,98000,3,Active,115000,77.8,30.25,High-value starter
+468,Tom Archer,Overseas,75000,6000,81000,2,Active,101000,69.9,16.58,Strong squad asset
+469,Tilak Iyer,Overseas,25000,1000,26000,1,Active,13000,64.2,23.4,Development / squad
+470,Joe Potts,Domestic,173000,23000,196000,3,Active,128000,85.3,23.25,Elite / overseas-standard
+471,Marcus Lyon,Domestic,80000,11000,91000,2,Expiring,107000,79.5,35.56,High-value starter
+472,Mark Boult,Academy,123000,19000,142000,1,Active,94000,77.9,15.35,High-value starter
+473,Anrich Elgar,Academy,46000,6000,52000,1,Active,26000,65.4,10.46,Strong squad asset
+474,Shadab Shakeel,Domestic,76000,6000,82000,1,Expiring,61000,73.5,13.08,Strong squad asset
+475,Asitha Karunaratne,Domestic,63000,12000,75000,1,Released,38000,71.2,8.66,Strong squad asset
+476,Shai Chase,Domestic,79000,14000,93000,1,Active,95000,66.5,13.31,Strong squad asset
+477,Moeen Carse,Domestic,83000,11000,94000,2,Active,73000,75.1,35.23,High-value starter
+478,Liam Stokes,Academy,64000,9000,73000,1,Active,55000,72.6,21.1,Strong squad asset
+479,Tom Pope,Domestic,123000,7000,130000,3,Released,119000,82.1,19.2,High-value starter
+480,Ben Potts,Domestic,103000,10000,113000,3,Active,109000,81.8,19.18,High-value starter
+481,Rohit Pant,Overseas,108000,17000,125000,1,Active,113000,76.4,20.06,High-value starter
+482,Sam Woakes,Domestic,69000,5000,74000,2,Active,60000,67.5,18.99,Strong squad asset
+483,Tim Turner,Domestic,100000,13000,113000,1,Expiring,83000,76.7,34.48,High-value starter
+484,Trent Kuggeleijn,Academy,66000,9000,75000,2,Active,44000,65.0,22.49,Strong squad asset
+485,Temba Amla,Domestic,65000,4000,69000,2,Active,44000,69.0,11.24,Strong squad asset
+486,Fakhar Butt,Academy,120000,6000,126000,1,Active,173000,76.0,22.81,High-value starter
+487,Dasun Perera,Domestic,82000,9000,91000,1,Active,59000,77.7,23.98,High-value starter
+488,Kieran Shepherd,Academy,54000,3000,57000,1,Active,51000,65.6,15.76,Strong squad asset
+489,Chris Curran,Overseas,122000,17000,139000,2,Active,136000,80.9,24.39,High-value starter
+490,Ben Archer,Academy,76000,9000,85000,2,Active,79000,72.2,12.28,Strong squad asset
+491,Jonny Bairstow,Domestic,60000,7000,67000,1,Active,88000,73.3,32.21,Strong squad asset
+492,Matt Pope,Overseas,107000,13000,120000,2,Active,99000,78.2,21.21,High-value starter
+493,KL Siraj,Domestic,92000,17000,109000,2,Active,68000,82.1,25.5,High-value starter
+494,Jonny Crawley,Domestic,51000,4000,55000,2,Active,44000,70.1,14.06,Strong squad asset
+495,Matthew Wade,Overseas,100000,11000,111000,2,Active,119000,77.8,8.63,High-value starter
+496,Ben Chapman,Academy,95000,16000,111000,2,Active,141000,76.6,22.04,High-value starter
+497,Kagiso Fortuin,Domestic,65000,7000,72000,1,Active,63000,71.4,41.11,Strong squad asset
+498,Saud Mir,Academy,47000,3000,50000,1,Active,43000,74.3,29.29,Strong squad asset
+499,Sachith Shanaka,Domestic,19000,2000,21000,1,Expiring,11000,53.9,29.1,Depth option
+500,Kemar Roach,Overseas,174000,14000,188000,2,Expiring,207000,87.8,19.31,Elite / overseas-standard
+501,Harry Pope,Academy,37000,4000,41000,1,Active,21000,64.8,25.38,Development / squad
+502,Jack Overton,Academy,104000,13000,117000,2,Active,148000,79.4,20.68,High-value starter
+503,Stuart Root,Domestic,93000,18000,111000,2,Active,116000,77.9,23.6,High-value starter
+504,Joe Bethell,Domestic,116000,11000,127000,2,Active,123000,76.6,28.98,High-value starter
+505,Washington Sharma,Academy,110000,20000,130000,3,Active,138000,79.3,22.56,High-value starter
+506,Dom Ahmed,Academy,87000,13000,100000,1,Active,128000,80.4,10.34,High-value starter
+507,David Maxwell,Overseas,42000,2000,44000,1,Active,56000,63.9,15.45,Development / squad
+508,Finn Bracewell,Academy,117000,19000,136000,3,Released,104000,83.2,21.66,High-value starter
+509,Heinrich Philander,Overseas,122000,6000,128000,3,Active,182000,80.4,20.36,High-value starter
+510,Shan Aslam,Domestic,38000,3000,41000,1,Active,33000,63.7,11.3,Development / squad
+511,Wanindu Hasaranga,Domestic,66000,10000,76000,1,Active,38000,68.9,17.68,Strong squad asset
+512,Shimron Joseph,Domestic,59000,9000,68000,2,Active,38000,66.9,24.11,Strong squad asset
+513,Mark Potts,Overseas,77000,12000,89000,1,Active,46000,72.9,13.27,Strong squad asset
+514,Dom Sibley,Domestic,41000,7000,48000,1,Active,51000,62.3,16.32,Development / squad
+515,Harry Buttler,Domestic,21000,1000,22000,1,Active,19000,63.8,7.56,Development / squad
+516,Stuart Bethell,Overseas,45000,2000,47000,2,Active,47000,68.2,15.79,Strong squad asset
+517,Rinku Sharma,Domestic,58000,3000,61000,2,Active,74000,71.7,8.64,Strong squad asset
+518,James Wood,Academy,116000,14000,130000,2,Active,77000,77.5,25.69,High-value starter
+519,Pat Khawaja,Domestic,79000,7000,86000,1,Active,44000,66.2,15.34,Strong squad asset
+520,Colin Mitchell,Domestic,50000,5000,55000,2,Active,28000,73.3,27.15,Strong squad asset
+521,Marco Williams,Domestic,106000,16000,122000,2,Active,118000,79.0,14.9,High-value starter
+522,Usman Abbasi,Domestic,58000,4000,62000,2,Active,51000,75.0,6.0,Strong squad asset
+523,Suranga Kumara,Overseas,78000,13000,91000,2,Active,65000,73.0,14.6,Strong squad asset
+524,Jason Powell,Domestic,167000,16000,183000,2,Expiring,117000,85.7,18.92,Elite / overseas-standard
+525,Jos Archer,Domestic,74000,5000,79000,1,Active,60000,68.0,8.66,Strong squad asset
+526,Tom Stokes,Overseas,61000,11000,72000,2,Active,50000,68.6,10.49,Strong squad asset
+527,Jofra Overton,Domestic,30000,5000,35000,1,Active,18000,64.1,25.98,Development / squad
+528,Jos Buttler,Academy,54000,10000,64000,1,Active,68000,70.4,9.3,Strong squad asset
+529,KL Pant,Academy,46000,5000,51000,1,Active,43000,72.8,15.64,Strong squad asset
+530,Craig Woakes,Academy,75000,4000,79000,2,Active,97000,69.8,9.8,Strong squad asset
+531,Josh Green,Domestic,116000,16000,132000,2,Active,134000,76.2,27.4,High-value starter
+532,Trent Boult,Overseas,124000,20000,144000,2,Active,184000,77.2,25.72,High-value starter
+533,Heinrich Coetzee,Overseas,79000,10000,89000,2,Active,112000,73.8,23.12,Strong squad asset
+534,Saim Ahmed,Academy,104000,5000,109000,2,Released,124000,79.3,12.13,High-value starter
+535,Asitha Dickwella,Academy,39000,5000,44000,1,Expiring,23000,59.1,17.1,Development / squad
+536,Shamarh Roach,Overseas,78000,6000,84000,1,Active,51000,69.9,7.53,Strong squad asset
+537,Moeen Bethell,Academy,118000,23000,141000,1,Active,106000,75.9,22.38,High-value starter
+538,Joe Sibley,Overseas,53000,8000,61000,1,Released,49000,69.2,15.96,Strong squad asset
+539,Ollie Woakes,Domestic,60000,3000,63000,1,Active,74000,66.5,17.21,Strong squad asset
+540,Jos Roy,Domestic,85000,9000,94000,2,Active,100000,82.9,22.71,High-value starter
+541,Shreyas Pant,Overseas,122000,12000,134000,1,Active,73000,75.8,8.79,High-value starter
+542,Adil Curran,Domestic,107000,7000,114000,3,Expiring,68000,77.4,35.2,High-value starter
+543,Jake Richardson,Domestic,90000,10000,100000,3,Active,88000,80.9,20.86,High-value starter
+544,Mark Bracewell,Overseas,68000,4000,72000,2,Active,64000,65.1,23.7,Strong squad asset
+545,Rassie Mulder,Domestic,155000,8000,163000,2,Active,81000,90.1,7.04,Elite / overseas-standard
+546,Usama Zaman,Academy,96000,6000,102000,3,Active,137000,75.2,34.07,High-value starter
+547,Pathum Perera,Academy,85000,6000,91000,2,Active,90000,84.3,18.74,High-value starter
+548,Jason Seales,Domestic,36000,3000,39000,1,Active,24000,62.6,8.78,Development / squad
+549,Jack Buttler,Domestic,103000,5000,108000,3,Active,71000,84.3,23.13,High-value starter
+550,Jamie Root,Domestic,114000,5000,119000,2,Active,88000,75.1,22.78,High-value starter
+551,Craig Bethell,Academy,151000,9000,160000,2,Expiring,103000,87.6,20.44,Elite / overseas-standard
+552,Chris Broad,Overseas,74000,7000,81000,1,Active,56000,66.9,14.2,Strong squad asset
+553,Virat Jadeja,Domestic,64000,8000,72000,1,Active,70000,65.3,10.52,Strong squad asset
+554,Adil Woakes,Academy,64000,6000,70000,1,Active,54000,66.1,10.75,Strong squad asset
+555,Nathan Richardson,Domestic,75000,10000,85000,1,Active,90000,65.3,12.12,Strong squad asset
+556,Michael Sears,Overseas,30000,2000,32000,1,Active,17000,64.3,7.5,Development / squad
+557,Reeza Maharaj,Domestic,49000,3000,52000,1,Active,33000,67.8,24.76,Strong squad asset
+558,Shoaib Abbasi,Overseas,81000,10000,91000,1,Active,51000,77.0,16.6,High-value starter
+559,Pathum Vandersay,Domestic,113000,8000,121000,3,Active,134000,83.6,30.05,High-value starter
+560,Kieron Seales,Academy,107000,8000,115000,1,Active,73000,76.0,16.85,High-value starter
+561,Adil Brook,Overseas,37000,6000,43000,1,Active,50000,64.7,13.42,Development / squad
+562,Craig Salt,Overseas,52000,6000,58000,1,Active,45000,70.8,15.85,Strong squad asset
+563,Joe Lawrence,Domestic,49000,7000,56000,2,Active,65000,74.4,15.03,Strong squad asset
+564,Rehan Overton,Domestic,125000,7000,132000,3,Active,157000,85.1,21.84,Elite / overseas-standard
+565,Arshdeep Gaikwad,Domestic,95000,8000,103000,3,Active,63000,81.8,18.55,High-value starter
+566,Adil Lawrence,Academy,106000,17000,123000,2,Active,111000,77.8,27.12,High-value starter
+567,Peter Green,Overseas,58000,7000,65000,1,Active,60000,71.2,20.52,Strong squad asset
+568,Ben Ferguson,Overseas,60000,7000,67000,2,Active,75000,73.2,10.6,Strong squad asset
+569,Quinton Shamsi,Domestic,42000,5000,47000,1,Released,25000,63.2,5.25,Development / squad
+570,Asif Ayub,Domestic,95000,17000,112000,2,Active,72000,83.2,18.59,High-value starter
+571,Chaturanga Vandersay,Domestic,32000,3000,35000,1,Released,40000,64.2,14.2,Development / squad
+572,Kieron Chase,Domestic,72000,12000,84000,1,Active,61000,72.9,23.92,Strong squad asset
+573,Rehan Brook,Domestic,97000,13000,110000,2,Active,127000,78.6,21.33,High-value starter
+574,Jonny Wood,Academy,107000,10000,117000,2,Active,111000,76.6,24.28,High-value starter
+575,Joe Ahmed,Academy,118000,11000,129000,3,Active,171000,82.3,9.65,High-value starter
+576,Rehan Ali,Domestic,122000,23000,145000,2,Active,173000,76.2,26.06,High-value starter
+577,Ravindra Bumrah,Overseas,86000,15000,101000,3,Active,117000,82.2,25.33,High-value starter
+578,Rehan Bairstow,Domestic,77000,5000,82000,1,Active,57000,67.3,18.28,Strong squad asset
+579,Aaron Short,Domestic,102000,7000,109000,3,Active,115000,82.4,25.59,High-value starter
+580,Martin Blundell,Domestic,54000,3000,57000,2,Active,68000,70.7,5.94,Strong squad asset
+581,Andile Parnell,Academy,100000,16000,116000,3,Active,137000,85.0,21.73,High-value starter
+582,Fakhar Rizwan,Domestic,124000,12000,136000,2,Active,157000,75.3,26.3,High-value starter
+583,Charith Nissanka,Academy,102000,19000,121000,1,Active,122000,78.2,5.56,High-value starter
+584,Rovman Roach,Academy,94000,10000,104000,2,Released,124000,82.8,16.39,High-value starter
+585,Ben Bairstow,Domestic,108000,10000,118000,2,Active,113000,81.9,14.85,High-value starter
+586,Jos Potts,Overseas,53000,7000,60000,1,Active,44000,70.4,33.81,Strong squad asset
+587,James Salt,Academy,47000,7000,54000,1,Active,52000,65.3,16.86,Strong squad asset
+588,Zak Crawley,Domestic,49000,3000,52000,2,Expiring,46000,69.5,16.38,Strong squad asset
+589,Rinku Sundar,Domestic,49000,3000,52000,1,Active,30000,73.6,13.81,Strong squad asset
+590,Moeen Brook,Overseas,50000,7000,57000,1,Active,71000,65.6,16.96,Strong squad asset
+591,Josh Starc,Domestic,49000,7000,56000,2,Active,42000,74.5,20.42,Strong squad asset
+592,Kane Kuggeleijn,Overseas,108000,6000,114000,1,Active,132000,79.0,16.9,High-value starter
+593,Tony Philander,Domestic,51000,7000,58000,1,Active,25000,70.9,11.26,Strong squad asset
+594,Yasir Aslam,Domestic,95000,6000,101000,2,Active,112000,79.7,17.9,High-value starter
+595,Angelo Shanaka,Domestic,76000,11000,87000,1,Active,113000,70.6,10.23,Strong squad asset
+596,Nicholas Hope,Academy,61000,4000,65000,2,Active,53000,72.8,7.45,Strong squad asset
+597,Dom Anderson,Domestic,110000,10000,120000,2,Expiring,70000,81.3,24.8,High-value starter
+598,Mark Stokes,Academy,133000,26000,159000,2,Active,137000,85.8,23.92,Elite / overseas-standard
+599,Jonny Ahmed,Domestic,24000,3000,27000,1,Active,20000,62.8,13.48,Development / squad
+600,Rehan Archer,Academy,81000,13000,94000,1,Expiring,90000,80.0,22.65,High-value starter
+601,Prithvi Pant,Domestic,50000,8000,58000,1,Active,30000,66.2,20.1,Strong squad asset
+602,James Broad,Academy,92000,14000,106000,2,Active,85000,80.1,32.85,High-value starter
+603,Alex Warner,Overseas,87000,7000,94000,1,Active,65000,76.4,9.85,High-value starter
+604,Finn Ravindra,Academy,83000,4000,87000,3,Active,114000,78.0,25.51,High-value starter
+605,Temba Hendricks,Overseas,49000,6000,55000,1,Active,61000,69.3,10.42,Strong squad asset
+606,Sarfaraz Butt,Academy,100000,5000,105000,2,Expiring,145000,75.7,22.35,High-value starter
+607,Chamika Karunaratne,Overseas,89000,9000,98000,2,Active,101000,77.2,21.86,High-value starter
+608,Kavem Athanaze,Overseas,57000,7000,64000,1,Released,84000,73.4,10.24,Strong squad asset
+609,Adil Ali,Domestic,102000,11000,113000,3,Active,93000,83.0,24.28,High-value starter
+610,Jofra Rashid,Overseas,69000,11000,80000,1,Released,87000,67.4,37.42,Strong squad asset
+611,Jack Curran,Academy,81000,4000,85000,1,Active,43000,77.1,35.05,High-value starter
+612,Tom Bethell,Domestic,115000,14000,129000,1,Active,115000,75.2,32.67,High-value starter
+613,Ravindra Siraj,Overseas,66000,7000,73000,1,Active,38000,69.5,9.67,Strong squad asset
+614,Matt Salt,Domestic,47000,2000,49000,1,Active,66000,68.3,6.69,Strong squad asset
+615,Sean Maxwell,Academy,119000,11000,130000,1,Active,150000,78.6,8.92,High-value starter
+616,Daryl Young,Domestic,121000,18000,139000,1,Active,162000,75.4,30.34,High-value starter
+617,Aiden Coetzee,Domestic,82000,5000,87000,2,Active,78000,75.7,21.79,High-value starter
+618,Fakhar Shafique,Domestic,54000,8000,62000,1,Active,36000,71.5,8.13,Strong squad asset
+619,Wanindu Shanaka,Academy,73000,5000,78000,1,Active,72000,69.4,21.63,Strong squad asset
+620,Kieran Hosein,Academy,71000,9000,80000,2,Active,53000,70.7,9.08,Strong squad asset
+621,Jos Curran,Domestic,88000,14000,102000,3,Expiring,108000,77.0,23.6,High-value starter
+622,Jamie Broad,Domestic,89000,8000,97000,2,Active,91000,80.6,31.75,High-value starter
+623,Liam Ahmed,Domestic,29000,4000,33000,1,Active,16000,64.9,14.6,Development / squad
+624,Liam Lawrence,Academy,101000,10000,111000,3,Active,107000,82.7,17.81,High-value starter
+625,Ravindra Patel,Domestic,35000,2000,37000,1,Active,48000,64.6,10.23,Development / squad
+626,Tom Rashid,Domestic,96000,15000,111000,2,Active,130000,82.8,15.95,High-value starter
+627,Adam Maxwell,Overseas,100000,8000,108000,2,Active,88000,79.6,16.88,High-value starter
+628,Tom Blundell,Overseas,71000,5000,76000,1,Expiring,96000,66.5,11.58,Strong squad asset
+629,Dean de Kock,Domestic,46000,4000,50000,2,Active,56000,73.3,21.29,Strong squad asset
+630,Asif Khurram,Domestic,91000,12000,103000,2,Active,106000,80.1,16.94,High-value starter
+631,Angelo Rajapaksa,Overseas,112000,8000,120000,2,Active,165000,81.8,9.33,High-value starter
+632,Kieran Mayers,Overseas,120000,7000,127000,3,Active,93000,76.3,39.88,High-value starter
+633,Jos Rashid,Domestic,62000,6000,68000,1,Active,31000,68.0,17.54,Strong squad asset
+634,Ben Ahmed,Domestic,63000,8000,71000,1,Active,70000,68.3,13.03,Strong squad asset
+635,James Carse,Domestic,48000,5000,53000,1,Released,71000,69.0,10.59,Strong squad asset
+636,Joe Buttler,Domestic,31000,4000,35000,1,Active,40000,63.7,14.57,Development / squad
+637,Kuldeep Varma,Overseas,103000,5000,108000,2,Active,75000,81.7,26.55,High-value starter
+638,Jofra Bairstow,Academy,90000,15000,105000,3,Expiring,130000,82.3,16.54,High-value starter
+639,Scott Abbott,Academy,92000,9000,101000,1,Active,74000,79.3,18.63,High-value starter
+640,Neil Young,Academy,58000,11000,69000,1,Active,84000,73.6,17.54,Strong squad asset
+641,Dean Markram,Overseas,80000,12000,92000,2,Active,113000,81.7,22.93,High-value starter
+642,Naseem Shah,Academy,56000,10000,66000,2,Active,69000,71.9,24.03,Strong squad asset
+643,Dushmantha Rajitha,Overseas,52000,7000,59000,1,Active,59000,68.3,8.46,Strong squad asset
+644,Hayden Roach,Domestic,56000,7000,63000,2,Active,65000,71.2,7.71,Strong squad asset
+645,Adil Root,Domestic,85000,7000,92000,1,Expiring,121000,75.7,13.54,High-value starter
+646,Jamie Woakes,Academy,120000,20000,140000,2,Active,114000,80.4,15.83,High-value starter
+647,Moeen Anderson,Domestic,65000,12000,77000,1,Active,82000,69.2,30.5,Strong squad asset
+648,Jofra Broad,Overseas,158000,11000,169000,2,Active,152000,86.5,17.49,Elite / overseas-standard
+649,Virat Kishan,Domestic,115000,14000,129000,3,Released,81000,80.8,31.3,High-value starter
+650,Liam Rashid,Domestic,62000,7000,69000,1,Expiring,36000,66.1,4.87,Strong squad asset
+651,Marcus Hazlewood,Academy,48000,7000,55000,2,Active,64000,74.4,29.92,Strong squad asset
+652,Adam Kuggeleijn,Domestic,63000,4000,67000,1,Active,92000,70.0,16.64,Strong squad asset
+653,Hashim Parnell,Academy,65000,3000,68000,2,Active,85000,72.5,33.41,Strong squad asset
+654,Zafar Aslam,Domestic,71000,3000,74000,1,Active,67000,69.3,14.71,Strong squad asset
+655,Akila Udana,Domestic,99000,11000,110000,1,Active,63000,75.9,24.0,High-value starter
+656,Jason Motie,Domestic,85000,14000,99000,1,Released,53000,79.1,5.74,High-value starter
+657,Jason Broad,Domestic,54000,8000,62000,2,Expiring,31000,68.4,9.75,Strong squad asset
+658,Ollie Bethell,Academy,57000,5000,62000,1,Active,29000,67.2,16.04,Strong squad asset
+659,Liam Sibley,Domestic,109000,20000,129000,2,Active,68000,80.3,23.35,High-value starter
+660,Sam Lawrence,Domestic,153000,8000,161000,3,Active,102000,88.5,25.18,Elite / overseas-standard
+661,Kuldeep Patel,Academy,57000,6000,63000,1,Active,56000,66.9,12.37,Strong squad asset
+662,Adil Ahmed,Academy,124000,14000,138000,3,Active,174000,77.6,33.42,High-value starter
+663,Adam Philippe,Overseas,66000,6000,72000,2,Expiring,35000,69.4,14.8,Strong squad asset
+664,Mitchell Chapman,Overseas,25000,3000,28000,1,Active,19000,62.7,23.56,Development / squad
+665,Wayne de Zorzi,Domestic,48000,8000,56000,1,Active,28000,65.2,12.34,Strong squad asset
+666,Shan Saleem,Domestic,50000,5000,55000,2,Active,64000,70.0,21.5,Strong squad asset
+667,Charith Dananjaya,Academy,91000,18000,109000,1,Active,47000,78.0,10.6,High-value starter
+668,Kemar Sammy,Academy,50000,5000,55000,2,Active,49000,69.5,10.92,Strong squad asset
+669,Craig Brook,Domestic,51000,4000,55000,2,Active,55000,71.3,14.69,Strong squad asset
+670,Brydon Bairstow,Domestic,92000,5000,97000,2,Released,94000,79.2,16.69,High-value starter
+671,James Woakes,Overseas,51000,8000,59000,1,Released,75000,68.3,11.68,Strong squad asset
+672,Ollie Ahmed,Domestic,120000,17000,137000,2,Active,157000,78.5,22.09,High-value starter
+673,Rinku Kishan,Domestic,47000,6000,53000,1,Released,41000,70.6,11.88,Strong squad asset
+674,Harry Sibley,Domestic,103000,8000,111000,2,Active,127000,82.0,23.29,High-value starter
+675,Aaron Tye,Academy,98000,5000,103000,3,Active,141000,80.1,34.21,High-value starter
+676,Daryl Blundell,Academy,124000,23000,147000,2,Active,162000,78.5,16.65,High-value starter
+677,Andile Jansen,Academy,48000,4000,52000,2,Active,28000,66.1,16.8,Strong squad asset
+678,Wahab Azam,Academy,97000,8000,105000,1,Active,48000,78.3,19.99,High-value starter
+679,Nuwan Chandimal,Overseas,44000,8000,52000,1,Active,27000,58.2,24.39,Development / squad
+680,Akeal McCoy,Overseas,75000,14000,89000,1,Active,61000,71.6,12.41,Strong squad asset
+681,Moeen Bairstow,Domestic,40000,2000,42000,1,Active,25000,59.9,18.74,Development / squad
+682,Harry Crawley,Overseas,54000,9000,63000,1,Expiring,78000,71.8,11.87,Strong squad asset
+683,Craig Rashid,Academy,50000,9000,59000,2,Active,30000,69.9,12.64,Strong squad asset
+684,Zak Archer,Overseas,110000,10000,120000,3,Released,135000,82.6,22.78,High-value starter
+685,Prasidh Sundar,Academy,121000,23000,144000,2,Active,81000,76.2,18.5,High-value starter
+686,Mark Bethell,Domestic,64000,9000,73000,2,Active,56000,74.0,12.44,Strong squad asset
+687,Mitchell Agar,Domestic,105000,8000,113000,3,Active,126000,77.1,28.25,High-value starter
+688,Henry Williamson,Academy,54000,5000,59000,1,Released,79000,70.4,13.03,Strong squad asset
+689,Hashim Bavuma,Domestic,114000,16000,130000,2,Expiring,167000,78.6,34.29,High-value starter
+690,Saud Ahmed,Academy,134000,18000,152000,2,Expiring,85000,87.1,22.49,Elite / overseas-standard
+691,Dilshan Shanaka,Domestic,56000,5000,61000,1,Active,63000,69.2,14.36,Strong squad asset
+692,Andre Sammy,Academy,99000,14000,113000,2,Active,82000,77.2,32.7,High-value starter
+693,James Bethell,Domestic,102000,8000,110000,2,Active,86000,83.5,6.35,High-value starter
+694,Jason Root,Overseas,53000,8000,61000,1,Active,49000,66.3,11.28,Strong squad asset
+695,Dom Rashid,Domestic,85000,15000,100000,3,Active,74000,84.0,6.01,High-value starter
+696,James Anderson,Overseas,66000,8000,74000,1,Active,64000,67.7,26.44,Strong squad asset
+697,KL Pandya,Domestic,55000,6000,61000,1,Active,29000,74.6,36.59,Strong squad asset
+698,Harry Carse,Domestic,65000,5000,70000,1,Active,54000,72.5,33.14,Strong squad asset
+699,Glenn Turner,Domestic,86000,13000,99000,3,Active,120000,81.7,23.33,High-value starter
+700,Matt Young,Domestic,61000,8000,69000,1,Active,59000,68.8,14.16,Strong squad asset
+701,Aiden Fortuin,Domestic,63000,12000,75000,1,Active,87000,73.6,13.49,Strong squad asset
+702,Shan Iftikhar,Overseas,46000,2000,48000,1,Active,67000,72.3,10.29,Strong squad asset
+703,Angelo Kumara,Domestic,56000,8000,64000,1,Active,68000,67.5,12.92,Strong squad asset
+704,Fabian Motie,Academy,86000,7000,93000,2,Active,47000,75.2,10.25,High-value starter
+705,Zak Overton,Domestic,47000,2000,49000,2,Active,27000,71.6,16.03,Strong squad asset
+706,Tom Crawley,Domestic,124000,8000,132000,2,Active,141000,77.7,23.64,High-value starter
+707,Mark Woakes,Domestic,94000,16000,110000,2,Active,84000,77.5,31.5,High-value starter
+708,Ben Bethell,Overseas,73000,13000,86000,2,Active,83000,73.6,6.6,Strong squad asset
+709,Mohammed Samson,Domestic,91000,9000,100000,2,Active,62000,75.3,26.11,High-value starter
+710,Jonny Carse,Domestic,110000,12000,122000,2,Active,147000,83.3,25.38,High-value starter
+711,Pat Wade,Domestic,71000,11000,82000,1,Active,41000,72.0,20.82,Strong squad asset
+712,Henry Blundell,Academy,106000,11000,117000,2,Active,77000,78.3,13.06,High-value starter
+713,Wayne Coetzee,Overseas,101000,17000,118000,2,Active,92000,80.0,7.98,High-value starter
+714,Faheem Saleem,Overseas,98000,13000,111000,3,Active,78000,84.8,7.27,High-value starter
+715,Dimuth Gunathilaka,Academy,95000,5000,100000,3,Active,96000,84.6,16.94,High-value starter
+716,Dwayne Hosein,Overseas,171000,11000,182000,2,Active,115000,89.4,10.69,Elite / overseas-standard
+717,Moeen Rashid,Domestic,117000,20000,137000,2,Active,108000,79.5,25.29,High-value starter
+718,Jonny Broad,Academy,78000,8000,86000,1,Released,87000,69.9,9.67,Strong squad asset
+719,Tom Carse,Domestic,85000,15000,100000,2,Expiring,48000,76.5,21.4,High-value starter
+720,Sam Buttler,Domestic,70000,9000,79000,1,Active,94000,70.0,10.39,Strong squad asset
+721,Deepak Pant,Domestic,171000,28000,199000,3,Active,174000,85.7,20.05,Elite / overseas-standard
+722,Ben Woakes,Domestic,51000,5000,56000,2,Active,55000,67.6,42.36,Strong squad asset
+723,Marnus Carey,Domestic,47000,8000,55000,1,Active,28000,66.3,7.56,Strong squad asset
+724,Devon O'Rourke,Overseas,38000,3000,41000,1,Active,32000,63.8,18.95,Development / squad
+725,Aiden Rickelton,Overseas,65000,7000,72000,1,Active,64000,66.3,15.28,Strong squad asset
+726,Salman Saleem,Academy,41000,4000,45000,1,Active,37000,61.2,22.68,Development / squad
+727,Sachith de Silva,Academy,49000,6000,55000,1,Active,26000,72.5,14.29,Strong squad asset
+728,Kyle Pooran,Academy,72000,6000,78000,2,Active,102000,65.6,9.77,Strong squad asset
+729,Brydon Sibley,Domestic,89000,8000,97000,3,Active,72000,81.4,27.27,High-value starter
+730,James Roy,Academy,87000,13000,100000,3,Released,63000,78.5,26.48,High-value starter
+731,Tom Anderson,Academy,87000,10000,97000,2,Active,66000,75.1,11.58,High-value starter
+732,Moeen Pope,Domestic,73000,10000,83000,1,Active,68000,65.1,6.65,Strong squad asset
+733,Suryakumar Gaikwad,Domestic,68000,10000,78000,1,Active,92000,69.5,8.87,Strong squad asset
+734,Ollie Lawrence,Academy,63000,10000,73000,1,Active,76000,74.7,13.98,Strong squad asset
+735,Usman Smith,Domestic,57000,4000,61000,1,Expiring,78000,65.6,19.09,Strong squad asset
+736,Trent Sears,Overseas,168000,12000,180000,2,Expiring,117000,85.9,19.41,Elite / overseas-standard
+737,Vernon du Plessis,Domestic,29000,2000,31000,1,Active,41000,61.3,19.65,Development / squad
+738,Haris Azam,Academy,73000,5000,78000,1,Active,70000,65.7,9.02,Strong squad asset
+739,Nuwan Rajitha,Academy,60000,11000,71000,2,Active,44000,68.3,45.71,Strong squad asset
+740,Shamarh Mayers,Academy,96000,11000,107000,3,Released,93000,81.3,21.44,High-value starter
+741,Jos Broad,Domestic,61000,4000,65000,2,Expiring,76000,69.2,15.57,Strong squad asset
+742,Chris Lawrence,Academy,55000,3000,58000,1,Active,30000,68.2,15.44,Strong squad asset
+743,Jamie Overton,Domestic,113000,16000,129000,1,Active,86000,77.2,26.38,High-value starter
+744,Zak Brook,Academy,102000,5000,107000,2,Active,129000,76.1,5.5,High-value starter
+745,Sanju Iyer,Domestic,90000,16000,106000,2,Active,99000,79.8,26.61,High-value starter
+746,Ben Crawley,Domestic,120000,10000,130000,1,Active,96000,77.8,30.85,High-value starter
+747,Usman Lyon,Domestic,58000,10000,68000,2,Expiring,55000,71.8,13.08,Strong squad asset
+748,Mitchell Latham,Domestic,104000,9000,113000,1,Active,116000,75.4,37.74,High-value starter
+749,Marco Shamsi,Domestic,76000,9000,85000,1,Active,102000,74.7,6.18,Strong squad asset
+750,Faheem Afridi,Academy,108000,15000,123000,2,Active,86000,80.2,18.55,High-value starter
+751,Kusal Karunaratne,Domestic,49000,2000,51000,1,Released,55000,69.5,8.22,Strong squad asset
+752,Shamarh Hetmyer,Domestic,43000,3000,46000,1,Active,59000,64.2,23.06,Development / squad
+753,Mark Curran,Domestic,66000,4000,70000,2,Active,92000,69.2,6.8,Strong squad asset
+754,Matt Root,Academy,95000,9000,104000,3,Active,49000,77.8,25.3,High-value starter
+755,Matt Carse,Domestic,86000,7000,93000,3,Active,76000,84.8,18.9,High-value starter
+756,Moeen Ali,Academy,72000,11000,83000,1,Active,49000,73.4,11.4,Strong squad asset
+757,Deepak Chahal,Academy,66000,10000,76000,1,Active,75000,66.7,14.53,Strong squad asset
+758,Liam Buttler,Overseas,63000,11000,74000,2,Active,63000,73.2,21.05,Strong squad asset
+759,Marnus Agar,Overseas,76000,13000,89000,1,Expiring,51000,73.2,12.22,Strong squad asset
+760,Rachin Santner,Overseas,115000,13000,128000,2,Active,140000,81.3,26.26,High-value starter
+761,Keshav Parnell,Academy,50000,9000,59000,1,Active,36000,73.9,26.21,Strong squad asset
+762,Shaheen Ahmed,Academy,55000,9000,64000,1,Active,76000,71.7,8.21,Strong squad asset
+763,Kusal Mathews,Domestic,53000,4000,57000,1,Active,71000,69.9,11.86,Strong squad asset
+764,Dwayne Hetmyer,Domestic,71000,12000,83000,2,Active,102000,68.9,15.54,Strong squad asset
+765,Tom Curran,Domestic,81000,14000,95000,1,Active,110000,80.3,26.0,High-value starter
+766,Rehan Woakes,Academy,64000,6000,70000,2,Active,86000,69.4,4.31,Strong squad asset
+767,Craig Stokes,Domestic,39000,7000,46000,1,Active,58000,60.8,25.16,Development / squad
+768,Chris Bairstow,Domestic,75000,5000,80000,1,Expiring,51000,68.8,5.93,Strong squad asset
+769,Washington Kishan,Domestic,56000,5000,61000,1,Released,45000,66.9,12.25,Strong squad asset
+770,Jamie Anderson,Domestic,116000,13000,129000,1,Active,147000,78.3,24.29,High-value starter
+771,Marnus Smith,Overseas,22000,3000,25000,1,Active,28000,58.4,13.87,Development / squad
+772,Trent Munro,Domestic,118000,16000,134000,2,Active,106000,84.0,21.67,High-value starter
+773,Aiden Bavuma,Domestic,49000,2000,51000,2,Active,60000,74.0,9.49,Strong squad asset
+774,Faheem Gul,Overseas,97000,17000,114000,2,Active,100000,82.6,21.39,High-value starter
+775,Dilshan Dickwella,Domestic,39000,5000,44000,1,Active,29000,64.8,16.55,Development / squad
+776,Kieron Powell,Domestic,132000,9000,141000,3,Active,143000,85.4,7.22,Elite / overseas-standard
+777,Liam Roy,Domestic,90000,15000,105000,2,Active,71000,83.4,19.44,High-value starter
+778,Zak Pope,Domestic,112000,20000,132000,2,Released,94000,75.2,15.27,High-value starter
+779,Craig Buttler,Domestic,112000,18000,130000,3,Active,157000,80.1,28.52,High-value starter
+780,Sam Broad,Overseas,108000,5000,113000,2,Active,160000,79.3,21.56,High-value starter
+781,Tilak Bishnoi,Domestic,37000,5000,42000,1,Active,24000,58.2,10.02,Development / squad
+782,Ben Carse,Overseas,104000,16000,120000,3,Active,91000,75.8,29.47,High-value starter
+783,Cameron Abbott,Overseas,137000,22000,159000,3,Active,149000,85.0,25.63,Elite / overseas-standard
+784,Will Wagner,Academy,95000,6000,101000,1,Active,52000,75.3,14.48,High-value starter
+785,Heinrich de Zorzi,Domestic,51000,5000,56000,1,Active,38000,72.4,5.29,Strong squad asset
+786,Wahab Irfan,Academy,42000,3000,45000,1,Active,47000,63.0,9.37,Development / squad
+787,Thisara Lakmal,Domestic,106000,15000,121000,2,Active,81000,80.7,25.47,High-value starter
+788,Roston Mayers,Domestic,59000,10000,69000,1,Active,71000,68.3,16.69,Strong squad asset
+789,Joe Broad,Domestic,100000,6000,106000,2,Active,69000,82.3,8.87,High-value starter
+790,Chris Salt,Overseas,122000,20000,142000,1,Active,179000,76.7,12.38,High-value starter
+791,Jofra Carse,Domestic,50000,7000,57000,1,Active,26000,68.6,15.7,Strong squad asset
+792,Liam Bethell,Domestic,65000,9000,74000,2,Active,47000,73.8,33.7,Strong squad asset
+793,Yuzvendra Bishnoi,Academy,62000,3000,65000,1,Active,66000,71.5,8.83,Strong squad asset
+794,Matt Potts,Domestic,66000,12000,78000,2,Active,37000,70.5,4.23,Strong squad asset
+795,Steve Hazlewood,Overseas,45000,7000,52000,1,Expiring,51000,71.1,10.76,Strong squad asset
+796,Martin Ferguson,Overseas,41000,4000,45000,1,Released,31000,62.5,10.63,Development / squad
+797,Quinton Markram,Domestic,43000,2000,45000,1,Active,23000,64.3,25.88,Development / squad
+798,Naseem Shakeel,Domestic,64000,10000,74000,2,Active,79000,70.2,15.67,Strong squad asset
+799,Pathum Chandimal,Domestic,111000,5000,116000,2,Active,127000,76.1,27.04,High-value starter
+800,Alzarri Pooran,Domestic,121000,22000,143000,3,Released,92000,82.6,17.11,High-value starter
+801,Dom Stokes,Domestic,111000,19000,130000,2,Active,99000,79.6,30.73,High-value starter
+802,Liam Pope,Overseas,50000,4000,54000,2,Active,67000,71.4,7.36,Strong squad asset
+803,Harry Woakes,Academy,105000,19000,124000,3,Active,66000,78.6,16.28,High-value starter
+804,Craig Roy,Overseas,107000,21000,128000,2,Active,64000,83.8,19.39,High-value starter
+805,Shreyas Pandya,Academy,59000,7000,66000,1,Active,55000,65.1,8.31,Strong squad asset
+806,Matt Bairstow,Domestic,70000,9000,79000,2,Expiring,96000,69.8,8.85,Strong squad asset
+807,Alex Hazlewood,Domestic,122000,22000,144000,1,Active,111000,76.3,19.85,High-value starter
+808,Mark Henry,Domestic,43000,2000,45000,1,Active,22000,63.8,17.3,Development / squad
+809,Dale Mulder,Academy,100000,18000,118000,2,Active,118000,76.8,30.03,High-value starter
+810,Agha Zaman,Academy,48000,3000,51000,1,Active,35000,67.4,9.34,Strong squad asset
+811,Niroshan Chandimal,Overseas,79000,11000,90000,2,Active,51000,71.3,9.51,Strong squad asset
+812,Jayden Brooks,Academy,40000,7000,47000,1,Active,20000,63.1,19.0,Development / squad
+813,Jofra Archer,Academy,49000,8000,57000,1,Expiring,67000,72.2,8.11,Strong squad asset
+814,Moeen Overton,Domestic,121000,11000,132000,2,Active,94000,76.4,28.13,High-value starter
+815,Brydon Curran,Academy,75000,10000,85000,1,Active,55000,71.8,5.86,Strong squad asset
+816,Matt Sibley,Domestic,63000,10000,73000,2,Active,85000,72.2,20.46,Strong squad asset
+817,Rohit Jadeja,Domestic,106000,7000,113000,2,Active,122000,80.5,28.79,High-value starter
+818,Craig Anderson,Domestic,97000,10000,107000,2,Active,48000,78.0,10.34,High-value starter
+819,Travis Lyon,Academy,82000,15000,97000,1,Active,113000,77.7,9.4,High-value starter
+820,Doug Sears,Overseas,56000,8000,64000,1,Active,47000,68.3,15.37,Strong squad asset
+821,Dale Amla,Domestic,116000,20000,136000,1,Active,147000,77.5,6.67,High-value starter
+822,Shadab Khurram,Academy,80000,11000,91000,3,Active,49000,80.3,27.64,High-value starter
+823,Kusal Lakmal,Domestic,95000,9000,104000,1,Active,139000,77.4,17.09,High-value starter
+824,Nicholas Russell,Overseas,58000,7000,65000,2,Active,35000,72.1,27.15,Strong squad asset
+825,Jonny Pope,Domestic,104000,7000,111000,1,Active,127000,80.9,18.5,High-value starter
+826,Jack Carse,Overseas,77000,6000,83000,1,Active,47000,70.2,15.32,Strong squad asset
+827,Harry Bethell,Domestic,95000,11000,106000,3,Active,115000,77.8,27.56,High-value starter
+828,Adil Bethell,Domestic,57000,9000,66000,1,Active,64000,67.9,13.09,Strong squad asset
+829,Prasidh Kohli,Domestic,113000,13000,126000,2,Active,113000,78.4,29.01,High-value starter
+830,Ollie Archer,Domestic,60000,7000,67000,2,Active,86000,72.8,14.77,Strong squad asset
+831,Aaron Head,Academy,90000,15000,105000,3,Expiring,107000,76.9,23.66,High-value starter
+832,Will Kuggeleijn,Academy,60000,10000,70000,1,Active,69000,73.3,26.73,Strong squad asset
+833,Wayne Elgar,Academy,86000,15000,101000,2,Active,95000,75.2,24.69,High-value starter
+834,Salman Rizwan,Overseas,87000,7000,94000,2,Released,127000,83.6,25.94,High-value starter
+835,Chaturanga Perera,Domestic,102000,7000,109000,3,Active,141000,78.5,17.23,High-value starter
+836,Darren Hosein,Academy,98000,12000,110000,3,Active,121000,80.3,27.94,High-value starter
+837,Mark Archer,Domestic,121000,9000,130000,2,Active,143000,79.7,18.13,High-value starter
+838,Sam Root,Academy,57000,3000,60000,1,Active,84000,68.3,13.84,Strong squad asset
+839,Liam Root,Academy,106000,13000,119000,2,Active,128000,78.9,30.62,High-value starter
+840,Liam Anderson,Academy,108000,13000,121000,3,Active,126000,81.7,20.61,High-value starter
+841,Washington Samson,Academy,45000,7000,52000,2,Active,35000,71.2,6.58,Strong squad asset
+842,Dom Broad,Domestic,68000,8000,76000,2,Active,43000,71.3,34.24,Strong squad asset
+843,Ryan Maxwell,Domestic,88000,7000,95000,2,Active,130000,80.5,26.85,High-value starter
+844,Tom Southee,Domestic,123000,21000,144000,3,Active,97000,80.3,35.55,High-value starter
+845,Anrich Hendricks,Overseas,50000,5000,55000,1,Active,55000,71.7,8.69,Strong squad asset
+846,Babar Zaman,Academy,98000,14000,112000,2,Active,99000,80.9,22.89,High-value starter
+847,Dimuth Hasaranga,Academy,83000,12000,95000,2,Expiring,73000,79.2,6.2,High-value starter
+848,Jason Hope,Overseas,124000,24000,148000,3,Active,154000,75.3,29.9,High-value starter
+849,Adil Overton,Academy,62000,11000,73000,1,Expiring,58000,71.8,14.37,Strong squad asset
+850,Jack Archer,Academy,65000,10000,75000,1,Active,81000,68.6,10.62,Strong squad asset
+851,Zak Ali,Overseas,47000,6000,53000,1,Active,59000,69.0,12.18,Strong squad asset
+852,Brydon Woakes,Domestic,71000,8000,79000,1,Released,40000,69.7,9.25,Strong squad asset
+853,Virat Dube,Overseas,89000,14000,103000,1,Active,48000,77.4,10.54,High-value starter
+854,Moeen Ahmed,Academy,120000,10000,130000,3,Active,161000,82.3,9.15,High-value starter
+855,Nathan Cummins,Overseas,52000,2000,54000,1,Active,74000,70.0,11.55,Strong squad asset
+856,Doug Kuggeleijn,Overseas,88000,6000,94000,2,Active,48000,82.7,20.68,High-value starter
+857,Faf Steyn,Domestic,81000,13000,94000,3,Active,46000,80.0,25.18,High-value starter
+858,Salman Zaman,Overseas,101000,13000,114000,3,Released,103000,82.3,21.3,High-value starter
+859,Lahiru Shanaka,Domestic,34000,4000,38000,1,Active,28000,64.0,24.26,Development / squad
+860,Kieran Hope,Academy,82000,8000,90000,1,Active,58000,79.2,27.13,High-value starter
+861,Rehan Pope,Academy,114000,19000,133000,3,Released,58000,76.8,25.12,High-value starter
+862,Stuart Anderson,Domestic,100000,8000,108000,3,Active,141000,84.1,9.59,High-value starter
+863,Mark Ali,Domestic,103000,15000,118000,2,Active,145000,76.7,16.32,High-value starter
+864,Ollie Sibley,Domestic,99000,8000,107000,1,Active,51000,79.2,17.24,High-value starter
+865,Jasprit Samson,Academy,30000,5000,35000,1,Active,39000,61.0,12.35,Development / squad
+866,Jason Crawley,Domestic,105000,5000,110000,3,Expiring,72000,81.2,11.23,High-value starter
+867,Adam Inglis,Overseas,86000,16000,102000,1,Active,125000,78.1,5.35,High-value starter
+868,Henry Southee,Academy,134000,8000,142000,2,Active,170000,86.1,17.53,Elite / overseas-standard
+869,Aiden Steyn,Overseas,75000,13000,88000,2,Active,99000,74.6,3.85,Strong squad asset
+870,Imam Saleem,Overseas,78000,14000,92000,1,Active,72000,69.7,15.64,Strong squad asset
+871,Sachith Dananjaya,Academy,58000,8000,66000,1,Active,70000,74.1,31.44,Strong squad asset
+872,Shamarh Walsh,Domestic,26000,1000,27000,1,Active,33000,60.8,31.49,Development / squad
+873,Zak Lawrence,Overseas,67000,9000,76000,1,Active,50000,70.6,6.39,Strong squad asset
+874,Stuart Crawley,Domestic,59000,8000,67000,2,Active,30000,72.7,20.41,Strong squad asset
+875,Ben Ali,Academy,81000,4000,85000,2,Active,45000,81.2,23.62,High-value starter
+876,Joe Carse,Overseas,50000,7000,57000,1,Active,71000,74.7,27.3,Strong squad asset
+877,Tilak Jadeja,Domestic,160000,26000,186000,2,Active,93000,85.5,18.22,Elite / overseas-standard
+878,Liam Brook,Domestic,68000,7000,75000,2,Active,66000,67.1,13.51,Strong squad asset
+879,Tim Zampa,Overseas,81000,5000,86000,1,Active,105000,80.3,23.85,High-value starter
+880,Ben O'Rourke,Academy,89000,6000,95000,3,Active,125000,77.2,27.53,High-value starter
+881,Quinton Amla,Overseas,90000,17000,107000,3,Active,123000,82.8,21.78,High-value starter
+882,Faheem Rizwan,Domestic,68000,3000,71000,1,Active,60000,72.0,26.36,Strong squad asset
+883,Niroshan Hasaranga,Domestic,80000,6000,86000,1,Active,98000,76.8,7.46,High-value starter
+884,Kyle Hetmyer,Domestic,84000,15000,99000,2,Expiring,53000,82.2,22.01,High-value starter
+885,Jack Wood,Domestic,72000,10000,82000,1,Active,44000,75.0,5.76,Strong squad asset
+886,Jason Stokes,Overseas,51000,9000,60000,1,Expiring,76000,71.9,10.58,Strong squad asset
+887,Jamie Archer,Academy,67000,8000,75000,2,Active,38000,67.4,25.67,Strong squad asset
+888,James Stokes,Domestic,90000,14000,104000,1,Active,74000,76.6,7.61,High-value starter
+889,Yuzvendra Pant,Domestic,48000,7000,55000,1,Active,37000,65.2,15.02,Strong squad asset
+890,Dom Archer,Overseas,90000,16000,106000,2,Active,85000,83.1,20.34,High-value starter
+891,Travis Stoinis,Academy,70000,9000,79000,2,Active,60000,68.0,21.67,Strong squad asset
+892,Matt Taylor,Domestic,74000,5000,79000,2,Active,95000,72.3,6.94,Strong squad asset
+893,Gerald Maharaj,Domestic,74000,13000,87000,2,Active,91000,73.9,20.62,Strong squad asset
+894,Abrar Irfan,Domestic,58000,6000,64000,2,Active,57000,71.1,8.62,Strong squad asset
+895,Niroshan Fernando,Overseas,110000,8000,118000,2,Active,147000,76.8,21.24,High-value starter
+896,Shamarh Seales,Overseas,89000,16000,105000,1,Active,109000,78.0,13.23,High-value starter
+897,Jofra Sibley,Academy,93000,5000,98000,1,Active,93000,76.1,11.91,High-value starter
+898,Jos Crawley,Domestic,76000,13000,89000,1,Active,96000,67.5,4.06,Strong squad asset
+899,Tom Salt,Domestic,45000,5000,50000,1,Active,67000,71.2,14.86,Strong squad asset
+900,Dom Bairstow,Academy,83000,13000,96000,3,Active,60000,83.7,20.18,High-value starter
+901,Jasprit Sundar,Domestic,89000,10000,99000,2,Active,79000,77.2,20.45,High-value starter
+902,Mark Buttler,Academy,20000,1000,21000,1,Active,29000,62.5,19.07,Development / squad
+903,Ryan Warner,Academy,51000,3000,54000,1,Active,54000,69.9,11.64,Strong squad asset
+904,Daryl O'Rourke,Overseas,106000,17000,123000,2,Active,91000,78.7,24.23,High-value starter
+905,Dean Ngidi,Domestic,59000,5000,64000,1,Active,43000,74.3,15.26,Strong squad asset
+906,Agha Mir,Academy,120000,22000,142000,2,Active,116000,83.4,20.49,High-value starter
+907,Maheesh Karunaratne,Domestic,73000,4000,77000,2,Active,44000,71.7,35.22,Strong squad asset
+908,Akeal Shepherd,Academy,56000,5000,61000,2,Active,37000,70.8,14.55,Strong squad asset
+909,Joe Archer,Domestic,54000,7000,61000,2,Expiring,31000,71.5,7.55,Strong squad asset
+910,Brydon Lawrence,Domestic,29000,3000,32000,1,Expiring,29000,62.7,11.52,Development / squad
+911,Mark Sibley,Domestic,106000,13000,119000,2,Active,117000,80.4,28.97,High-value starter
+912,Zak Salt,Academy,54000,9000,63000,1,Active,39000,68.7,15.48,Strong squad asset
+913,Mohammed Siraj,Overseas,108000,8000,116000,2,Active,93000,80.2,23.89,High-value starter
+914,Brydon Bethell,Overseas,30000,4000,34000,1,Active,21000,61.1,13.25,Development / squad
+915,Aaron Inglis,Academy,104000,6000,110000,2,Active,101000,75.8,14.13,High-value starter
+916,Neil Nicholls,Academy,30000,2000,32000,1,Active,15000,63.7,15.37,Development / squad
+917,Kagiso Steyn,Domestic,27000,3000,30000,1,Active,30000,64.7,26.77,Development / squad
+918,Shadab Rauf,Academy,122000,8000,130000,1,Active,173000,77.0,8.27,High-value starter
+919,Chamika Liyanage,Overseas,71000,9000,80000,2,Active,36000,65.4,23.83,Strong squad asset
+920,Kieron Pollard,Overseas,86000,16000,102000,3,Active,95000,83.7,22.48,High-value starter
+921,Jos Wood,Domestic,75000,5000,80000,2,Active,82000,68.9,12.89,Strong squad asset
+922,Ben Root,Academy,101000,15000,116000,1,Active,123000,76.8,13.62,High-value starter
+923,Adil Salt,Domestic,120000,16000,136000,2,Active,105000,77.9,25.01,High-value starter
+924,Jason Anderson,Domestic,115000,6000,121000,2,Active,162000,82.0,20.11,High-value starter
+925,Kuldeep Gill,Overseas,59000,10000,69000,2,Active,39000,67.7,12.27,Strong squad asset
+926,Jamie Bethell,Academy,45000,5000,50000,1,Active,44000,72.3,11.07,Strong squad asset
+927,David Labuschagne,Academy,54000,7000,61000,1,Active,77000,69.3,6.47,Strong squad asset
+928,Mitchell Duffy,Academy,104000,11000,115000,2,Expiring,124000,78.4,9.08,High-value starter
+929,Dale Bavuma,Domestic,108000,20000,128000,3,Active,137000,83.0,26.7,High-value starter
+930,Salman Khushdil,Academy,91000,15000,106000,2,Expiring,121000,81.3,19.51,High-value starter
+931,Maheesh Rajitha,Overseas,49000,5000,54000,1,Active,62000,68.4,11.51,Strong squad asset
+932,Dwayne Mayers,Domestic,40000,3000,43000,1,Expiring,36000,63.5,15.33,Development / squad
+933,Jos Pope,Domestic,124000,19000,143000,2,Active,133000,80.8,21.53,High-value starter
+934,Adil Stokes,Academy,103000,5000,108000,2,Active,122000,80.4,20.01,High-value starter
+935,James Archer,Domestic,87000,9000,96000,2,Active,100000,79.2,11.15,High-value starter
+936,Matt Archer,Domestic,26000,2000,28000,1,Active,27000,62.5,10.05,Development / squad
+937,Shubman Bishnoi,Academy,45000,4000,49000,1,Active,56000,71.5,11.25,Strong squad asset
+938,Craig Pope,Academy,77000,12000,89000,2,Active,67000,69.5,15.66,Strong squad asset
+939,Jake Lyon,Domestic,85000,16000,101000,2,Active,108000,79.9,24.45,High-value starter
+940,Daryl Nicholls,Overseas,65000,10000,75000,2,Expiring,75000,70.6,7.29,Strong squad asset
+941,Marco Parnell,Domestic,92000,15000,107000,1,Expiring,55000,79.0,6.62,High-value starter
+942,Danish Zaman,Overseas,64000,10000,74000,2,Active,71000,73.8,11.94,Strong squad asset
+943,Nuwan Asalanka,Domestic,67000,7000,74000,1,Active,87000,73.8,7.82,Strong squad asset
+944,Jayden Athanaze,Domestic,117000,22000,139000,1,Active,65000,77.8,18.62,High-value starter
+945,Jason Archer,Domestic,135000,8000,143000,2,Active,119000,87.1,18.02,Elite / overseas-standard
+946,Adil Roy,Domestic,45000,6000,51000,1,Active,54000,67.5,12.9,Strong squad asset
+947,Craig Bairstow,Domestic,86000,12000,98000,2,Active,60000,76.8,28.87,High-value starter
+948,Jason Lawrence,Domestic,120000,6000,126000,3,Active,121000,82.7,13.11,High-value starter
+949,Rinku Gaikwad,Overseas,75000,10000,85000,1,Active,64000,73.8,32.68,Strong squad asset
+950,Ollie Salt,Domestic,65000,4000,69000,1,Active,58000,74.5,10.9,Strong squad asset
+951,Matthew Agar,Domestic,107000,14000,121000,3,Active,132000,77.6,33.57,High-value starter
+952,Martin Sears,Overseas,68000,4000,72000,1,Active,53000,66.9,17.73,Strong squad asset
+953,Ryan de Kock,Domestic,51000,9000,60000,2,Active,56000,69.9,12.8,Strong squad asset
+954,Danish Khurram,Overseas,77000,6000,83000,1,Expiring,82000,68.7,13.57,Strong squad asset
+955,Bhanuka Hasaranga,Overseas,59000,4000,63000,2,Active,62000,68.3,13.63,Strong squad asset
+956,Kevin Sammy,Overseas,97000,9000,106000,3,Active,98000,82.3,3.86,High-value starter
+957,Sam Crawley,Overseas,103000,18000,121000,3,Active,110000,80.0,11.13,High-value starter
+958,Craig Ahmed,Domestic,82000,11000,93000,3,Active,103000,84.3,29.18,High-value starter
+959,Rehan Broad,Academy,50000,5000,55000,2,Active,26000,73.3,29.65,Strong squad asset
+960,Chris Sibley,Overseas,113000,10000,123000,1,Active,145000,81.0,23.62,High-value starter
+961,Tilak Pant,Academy,47000,7000,54000,1,Active,42000,73.1,26.33,Strong squad asset
+962,Stuart Ali,Academy,66000,8000,74000,2,Active,50000,70.9,28.02,Strong squad asset
+963,Usman Labuschagne,Domestic,53000,3000,56000,1,Active,70000,65.5,16.1,Strong squad asset
+964,Jacob Sodhi,Domestic,29000,3000,32000,1,Active,23000,63.8,23.59,Development / squad
+965,Tabraiz Maharaj,Academy,55000,4000,59000,1,Expiring,65000,70.2,9.85,Strong squad asset
+966,Mohammad Nawaz,Domestic,96000,15000,111000,2,Active,71000,79.8,25.57,High-value starter
+967,Maheesh Gunathilaka,Overseas,70000,5000,75000,2,Active,52000,73.2,7.46,Strong squad asset
+968,Rovman Seales,Overseas,55000,4000,59000,2,Active,78000,72.0,18.52,Strong squad asset
+969,Jonny Stokes,Academy,105000,5000,110000,3,Expiring,153000,81.9,24.75,High-value starter
+970,Moeen Crawley,Domestic,61000,8000,69000,2,Active,90000,68.3,13.28,Strong squad asset
+971,Craig Ali,Domestic,109000,8000,117000,2,Active,110000,78.5,16.32,High-value starter
+972,Jason Salt,Domestic,77000,6000,83000,1,Active,42000,65.8,7.17,Strong squad asset
+973,Deepak Varma,Domestic,70000,13000,83000,2,Active,59000,72.1,9.74,Strong squad asset
+974,Ben Buttler,Domestic,89000,17000,106000,2,Active,85000,81.1,8.18,High-value starter
+975,Cooper Stoinis,Academy,46000,2000,48000,1,Active,40000,67.2,9.21,Strong squad asset
+976,Rachin Young,Domestic,91000,9000,100000,1,Expiring,62000,78.3,28.48,High-value starter
+977,Tabraiz Hendricks,Domestic,65000,5000,70000,2,Released,54000,74.1,33.9,Strong squad asset
+978,Wahab Masood,Domestic,82000,9000,91000,1,Active,102000,77.5,24.01,High-value starter
+979,Asitha Mendis,Domestic,102000,9000,111000,3,Active,64000,79.6,30.61,High-value starter
+980,Rahkeem Pollard,Domestic,65000,10000,75000,1,Active,68000,74.4,11.67,Strong squad asset
+981,Harry Roy,Domestic,28000,2000,30000,1,Active,34000,64.0,23.39,Development / squad
+982,Harry Potts,Domestic,114000,8000,122000,2,Active,170000,77.1,9.29,High-value starter
+983,Matt Broad,Domestic,84000,7000,91000,3,Active,89000,77.6,21.56,High-value starter
+984,Brydon Brook,Domestic,83000,12000,95000,3,Active,109000,83.9,18.18,High-value starter
+985,Rishabh Sharma,Overseas,38000,4000,42000,1,Active,36000,63.3,7.42,Development / squad
+986,Moeen Lawrence,Domestic,102000,10000,112000,2,Active,146000,79.2,26.31,High-value starter
+987,Adam Zampa,Domestic,69000,3000,72000,2,Active,94000,74.0,7.86,Strong squad asset
+988,Lockie Nicholls,Academy,60000,4000,64000,1,Active,68000,69.5,10.16,Strong squad asset
+989,Marco Rabada,Overseas,53000,4000,57000,1,Active,45000,66.3,15.83,Strong squad asset
+990,Faheem Shafique,Overseas,116000,19000,135000,3,Active,67000,82.5,8.28,High-value starter
+991,Dushmantha Gunathilaka,Domestic,115000,16000,131000,3,Active,76000,79.1,26.17,High-value starter
+992,Rahkeem Seales,Domestic,111000,16000,127000,3,Active,149000,76.7,39.97,High-value starter
+993,Jonny Curran,Domestic,92000,6000,98000,1,Active,75000,80.1,24.53,High-value starter
+994,Craig Broad,Domestic,34000,5000,39000,1,Active,30000,60.9,16.93,Development / squad
+995,Mark Crawley,Domestic,57000,9000,66000,2,Active,54000,73.9,13.49,Strong squad asset
+996,Sam Curran,Domestic,84000,14000,98000,1,Active,61000,75.9,32.55,High-value starter
+997,Rohit Kohli,Overseas,121000,23000,144000,2,Active,70000,79.4,19.84,High-value starter
+998,Chris Ahmed,Overseas,49000,5000,54000,1,Active,70000,66.6,12.05,Strong squad asset
+999,David Green,Academy,78000,4000,82000,2,Active,79000,71.3,8.33,Strong squad asset
+1000,Michael Bracewell,Overseas,31000,6000,37000,1,Active,34000,63.7,16.42,Development / squad
+1001,Hashim Coetzee,Academy,88000,16000,104000,1,Active,64000,76.8,8.17,High-value starter
+1002,Zafar Shakeel,Domestic,63000,9000,72000,2,Active,84000,71.8,16.26,Strong squad asset
+1003,Charith de Silva,Overseas,75000,4000,79000,1,Active,106000,73.7,8.66,Strong squad asset
+1004,Obed Hope,Domestic,70000,13000,83000,2,Active,54000,73.1,6.33,Strong squad asset
+1005,Stuart Sibley,Domestic,165000,32000,197000,3,Active,111000,85.3,26.21,Elite / overseas-standard
+1006,Jason Rashid,Academy,109000,17000,126000,3,Expiring,101000,83.4,23.28,High-value starter
+1007,Jamie Curran,Domestic,111000,13000,124000,3,Active,65000,82.9,30.9,High-value starter
+1008,Adil Buttler,Domestic,41000,4000,45000,1,Active,32000,62.9,9.13,Development / squad
+1009,Shreyas Chahar,Academy,53000,9000,62000,1,Active,44000,71.8,37.25,Strong squad asset
+1010,Jamie Ahmed,Academy,62000,3000,65000,2,Expiring,89000,72.6,30.88,Strong squad asset
+1011,Ryan Hazlewood,Domestic,89000,4000,93000,3,Active,70000,81.5,26.11,High-value starter
+1012,Finn Mitchell,Domestic,124000,16000,140000,2,Active,171000,81.1,23.73,High-value starter
+1013,Ryan Klaasen,Domestic,122000,10000,132000,3,Active,139000,78.1,23.93,High-value starter
+1014,Shaheen Khushdil,Domestic,81000,7000,88000,2,Active,59000,78.9,15.34,High-value starter
+1015,Nuwan Mendis,Academy,37000,6000,43000,1,Active,29000,59.8,6.91,Development / squad
+1016,Kyle Hosein,Academy,77000,9000,86000,1,Active,52000,66.3,8.6,Strong squad asset
+1017,Rehan Curran,Overseas,51000,3000,54000,1,Active,57000,71.1,31.74,Strong squad asset
+1018,Jamie Pope,Domestic,105000,16000,121000,2,Active,86000,79.7,28.51,High-value starter
+1019,Jack Bethell,Overseas,77000,4000,81000,1,Active,52000,74.2,16.18,Strong squad asset
+1020,Moeen Salt,Domestic,126000,11000,137000,2,Active,154000,86.4,21.11,Elite / overseas-standard
+1021,Prithvi Varma,Domestic,111000,8000,119000,2,Active,93000,83.2,21.56,High-value starter
+1022,Jofra Crawley,Overseas,55000,9000,64000,2,Active,47000,72.2,43.5,Strong squad asset
+1023,Marcus Turner,Domestic,77000,4000,81000,1,Active,49000,70.6,10.61,Strong squad asset
+1024,Finn Conway,Domestic,123000,7000,130000,3,Active,85000,78.0,24.02,High-value starter
+1025,Gerald Ngidi,Domestic,122000,21000,143000,2,Active,154000,79.9,28.05,High-value starter
+1026,Faheem Butt,Domestic,31000,3000,34000,1,Released,23000,65.0,8.9,Development / squad
+1027,Kasun Lakmal,Overseas,75000,14000,89000,1,Active,92000,69.9,14.56,Strong squad asset
+1028,Kemar Carty,Domestic,41000,5000,46000,1,Released,39000,64.3,16.29,Development / squad
+1029,Harry Ahmed,Overseas,56000,8000,64000,1,Active,46000,71.0,26.52,Strong squad asset
+1030,Liam Woakes,Academy,117000,22000,139000,1,Active,88000,75.9,25.44,High-value starter
+1031,Zak Sibley,Overseas,81000,6000,87000,2,Expiring,110000,78.5,31.75,High-value starter
+1032,Dom Overton,Overseas,65000,12000,77000,1,Active,60000,71.3,17.2,Strong squad asset
+1033,Rinku Tiwary,Domestic,90000,15000,105000,1,Active,80000,80.9,26.07,High-value starter
+1034,Dom Pope,Domestic,85000,16000,101000,1,Active,101000,76.5,26.38,High-value starter
+1035,Josh Inglis,Domestic,83000,13000,96000,1,Active,82000,80.0,12.17,High-value starter
+1036,Martin Williamson,Academy,111000,6000,117000,3,Active,72000,79.3,23.9,High-value starter
+1037,Temba de Kock,Academy,28000,4000,32000,1,Active,20000,62.3,16.37,Development / squad
+1038,Shadab Afridi,Overseas,112000,19000,131000,3,Active,77000,82.0,25.19,High-value starter
+1039,Dimuth Asalanka,Overseas,82000,8000,90000,3,Active,114000,81.0,32.96,High-value starter
+1040,Nicholas Mayers,Domestic,56000,8000,64000,1,Active,58000,67.7,12.85,Strong squad asset
+1041,Harry Stokes,Domestic,63000,8000,71000,2,Active,51000,69.0,8.27,Strong squad asset
+1042,Sam Roy,Domestic,115000,20000,135000,3,Active,156000,84.0,19.2,High-value starter
+1043,Stuart Carse,Domestic,94000,12000,106000,2,Active,124000,81.7,29.04,High-value starter
+1044,Jos Sibley,Domestic,108000,5000,113000,3,Active,94000,81.4,23.47,High-value starter
+1045,Shreyas Varma,Domestic,42000,7000,49000,1,Active,36000,63.2,12.18,Development / squad
+1046,Jos Bethell,Domestic,66000,10000,76000,1,Active,68000,71.5,12.33,Strong squad asset
+1047,Usman Agar,Domestic,25000,1000,26000,1,Active,31000,62.7,15.59,Development / squad
+1048,Neil Kuggeleijn,Academy,126000,11000,137000,2,Active,103000,87.2,11.06,Elite / overseas-standard
+1049,Lungi Rabada,Academy,119000,17000,136000,1,Active,171000,80.1,24.61,High-value starter
+1050,Abrar Rizwan,Domestic,45000,8000,53000,1,Active,44000,66.7,13.73,Strong squad asset
+1051,Dilshan de Silva,Domestic,119000,16000,135000,2,Active,137000,82.7,20.98,High-value starter
+1052,Darren Athanaze,Overseas,63000,3000,66000,2,Active,76000,74.0,21.46,Strong squad asset
+1053,Brydon Carse,Overseas,77000,14000,91000,1,Active,76000,73.8,7.04,Strong squad asset
+1054,Liam Broad,Domestic,72000,12000,84000,1,Active,76000,68.2,23.24,Strong squad asset
+1055,Jofra Roy,Domestic,79000,13000,92000,2,Active,88000,72.5,13.15,Strong squad asset
+1056,Rehan Rashid,Academy,95000,5000,100000,2,Active,137000,78.8,28.01,High-value starter
+1057,Sanju Varma,Domestic,114000,18000,132000,1,Active,78000,81.6,15.57,High-value starter
+1058,Adil Sibley,Academy,59000,8000,67000,1,Active,73000,71.8,14.27,Strong squad asset
+1059,Sean Conway,Academy,101000,6000,107000,2,Active,86000,76.8,16.2,High-value starter
+1060,Michael Young,Academy,108000,16000,124000,2,Expiring,72000,76.3,24.33,High-value starter
+1061,Keshav Rabada,Domestic,75000,9000,84000,1,Active,86000,68.0,14.07,Strong squad asset
+1062,Usman Nawaz,Domestic,124000,22000,146000,3,Active,185000,82.4,11.32,High-value starter
+1063,Suranga Lakmal,Domestic,71000,7000,78000,1,Active,94000,69.1,9.43,Strong squad asset
+1064,Roston Powell,Academy,59000,5000,64000,2,Active,51000,71.8,31.16,Strong squad asset
+1065,Jack Woakes,Academy,59000,11000,70000,1,Active,86000,69.6,17.57,Strong squad asset
+1066,Harry Curran,Domestic,38000,7000,45000,1,Active,20000,62.0,10.62,Development / squad
+1067,Jonny Lawrence,Academy,53000,2000,55000,2,Active,73000,71.4,43.6,Strong squad asset
+1068,Tom Overton,Domestic,48000,9000,57000,1,Active,39000,73.9,23.96,Strong squad asset
+1069,Ruturaj Gaikwad,Overseas,57000,10000,67000,2,Active,61000,67.5,13.32,Strong squad asset
+1070,Mark Bairstow,Overseas,92000,5000,97000,2,Active,60000,83.7,22.89,High-value starter
+1071,Glenn Richardson,Domestic,93000,17000,110000,3,Active,70000,80.2,24.04,High-value starter
+1072,Henry Nicholls,Overseas,90000,5000,95000,2,Active,127000,80.2,26.81,High-value starter
+1073,Tony Miller,Academy,81000,7000,88000,2,Active,80000,79.0,32.94,High-value starter
+1074,Fakhar Khan,Academy,80000,11000,91000,1,Active,104000,77.9,18.67,High-value starter
+1075,Wanindu Mathews,Domestic,124000,20000,144000,3,Expiring,103000,77.4,24.47,High-value starter
+1076,Alzarri Joseph,Domestic,59000,6000,65000,1,Expiring,80000,65.2,7.5,Strong squad asset
+1077,Stuart Curran,Domestic,58000,9000,67000,1,Active,82000,67.0,7.85,Strong squad asset
+1078,Craig Carse,Overseas,68000,3000,71000,2,Active,55000,70.4,36.67,Strong squad asset
+1079,Mark Roy,Domestic,89000,11000,100000,2,Active,48000,83.3,22.39,High-value starter
+1080,Tom Broad,Academy,78000,15000,93000,1,Released,97000,65.5,11.14,Strong squad asset
+1081,Ishan Siraj,Domestic,72000,8000,80000,1,Active,46000,71.0,10.03,Strong squad asset
+1082,Moeen Root,Domestic,48000,5000,53000,2,Active,50000,74.9,36.96,Strong squad asset
+1083,Mitchell Cummins,Domestic,98000,10000,108000,2,Active,117000,76.7,11.15,High-value starter
+1084,Colin Ferguson,Domestic,119000,15000,134000,2,Active,137000,78.5,33.16,High-value starter
+1085,Lizaad Elgar,Academy,78000,11000,89000,1,Active,58000,69.8,13.45,Strong squad asset
+1086,Saim Nawaz,Overseas,101000,9000,110000,2,Active,119000,76.0,19.99,High-value starter
+1087,Maheesh Chameera,Domestic,107000,16000,123000,2,Active,90000,82.8,24.58,High-value starter
+1088,Odean Carty,Domestic,87000,12000,99000,2,Active,70000,75.6,6.68,High-value starter
+1089,James Bairstow,Overseas,124000,17000,141000,2,Released,116000,75.6,26.6,High-value starter
+1090,Brydon Rashid,Domestic,136000,7000,143000,2,Active,95000,86.4,25.32,Elite / overseas-standard
+1091,Brydon Stokes,Domestic,77000,5000,82000,1,Active,45000,69.3,15.62,Strong squad asset
+1092,Jack Broad,Domestic,109000,20000,129000,2,Expiring,149000,85.0,22.5,High-value starter
+1093,Virat Sharma,Domestic,107000,10000,117000,2,Active,86000,76.5,10.32,High-value starter
+1094,Ollie Broad,Domestic,32000,1000,33000,1,Active,33000,61.4,4.9,Development / squad
+1095,Josh Labuschagne,Academy,90000,11000,101000,2,Active,88000,84.0,23.73,High-value starter
+1096,Ben Wagner,Academy,87000,13000,100000,1,Active,94000,77.9,27.25,High-value starter
+1097,Lungi de Zorzi,Domestic,52000,3000,55000,1,Active,67000,68.2,28.65,Strong squad asset
+1098,Usman Khan,Domestic,88000,10000,98000,2,Expiring,49000,77.8,24.32,High-value starter
+1099,Thisara Gunathilaka,Academy,115000,20000,135000,3,Active,156000,79.6,35.92,High-value starter
+1100,Kevin Powell,Domestic,57000,10000,67000,1,Active,41000,72.9,8.15,Strong squad asset
+1101,Brydon Pope,Academy,47000,9000,56000,2,Active,38000,67.5,19.5,Strong squad asset
+1102,Ollie Rashid,Domestic,78000,6000,84000,1,Released,82000,73.7,11.25,Strong squad asset
+1103,Joe Wood,Domestic,119000,10000,129000,2,Active,99000,80.6,15.32,High-value starter
+1104,James Overton,Overseas,121000,19000,140000,2,Active,143000,80.5,19.76,High-value starter
+1105,KL Tiwary,Academy,79000,7000,86000,2,Released,116000,67.7,9.77,Strong squad asset
+1106,Ollie Carse,Domestic,87000,12000,99000,2,Expiring,120000,77.2,9.59,High-value starter
+1107,Alex Head,Domestic,58000,11000,69000,1,Expiring,42000,66.5,9.8,Strong squad asset
+1108,Martin Kuggeleijn,Domestic,114000,16000,130000,2,Active,100000,79.5,20.45,High-value starter
+1109,Rassie Parnell,Academy,37000,5000,42000,1,Active,26000,64.0,15.95,Development / squad
+1110,Abrar Afridi,Overseas,50000,4000,54000,1,Active,73000,70.5,15.72,Strong squad asset
+1111,Dasun Asalanka,Academy,40000,3000,43000,1,Active,28000,56.0,14.6,Development / squad
+1112,Fabian Chase,Academy,52000,6000,58000,1,Active,70000,69.0,44.62,Strong squad asset
+1113,Chris Pope,Academy,90000,14000,104000,2,Active,57000,75.1,20.96,High-value starter
+1114,Jason Woakes,Overseas,104000,15000,119000,2,Active,68000,78.1,24.19,High-value starter
+1115,James Buttler,Academy,65000,8000,73000,1,Active,44000,72.6,12.29,Strong squad asset
+1116,Chris Crawley,Academy,65000,3000,68000,1,Active,95000,72.7,23.68,Strong squad asset
+1117,Rohit Yadav,Domestic,48000,5000,53000,2,Expiring,66000,71.2,10.06,Strong squad asset
+1118,Stuart Ahmed,Overseas,75000,5000,80000,2,Active,47000,74.3,23.96,Strong squad asset
+1119,Matthew Conway,Academy,138000,19000,157000,2,Active,153000,91.4,7.63,Elite / overseas-standard
+1120,Devon Williamson,Overseas,49000,4000,53000,1,Active,28000,74.3,19.13,Strong squad asset
+1121,Reeza Markram,Overseas,76000,5000,81000,2,Active,73000,73.3,12.2,Strong squad asset
+1122,Naseem Iftikhar,Academy,78000,8000,86000,1,Expiring,77000,67.1,5.68,Strong squad asset
+1123,Wanindu Rajapaksa,Overseas,118000,8000,126000,1,Active,107000,76.0,20.17,High-value starter
+1124,Obed Thomas,Domestic,40000,7000,47000,1,Released,28000,62.9,15.95,Development / squad
+1125,Chris Stokes,Domestic,109000,6000,115000,1,Expiring,161000,80.0,24.89,High-value starter
+1126,Liam Curran,Academy,104000,10000,114000,3,Active,77000,83.1,30.06,High-value starter
+1127,Ben Salt,Overseas,83000,13000,96000,3,Active,109000,80.4,27.35,High-value starter
+1128,Zak Bairstow,Domestic,98000,13000,111000,3,Active,107000,81.4,17.24,High-value starter
+1129,Prithvi Kohli,Academy,96000,6000,102000,2,Active,132000,79.8,33.62,High-value starter
+1130,Sam Overton,Academy,54000,7000,61000,1,Released,29000,73.5,10.68,Strong squad asset
+1131,Tim Boland,Domestic,38000,4000,42000,1,Active,20000,61.0,9.16,Development / squad
+1132,Matt O'Rourke,Overseas,102000,11000,113000,2,Expiring,129000,77.2,23.88,High-value starter
+1133,Gerald du Plessis,Domestic,22000,2000,24000,1,Active,24000,64.5,13.41,Development / squad
+1134,Sarfaraz Hassan,Academy,89000,11000,100000,1,Active,118000,78.5,27.1,High-value starter
+1135,Asitha Lakmal,Overseas,68000,4000,72000,2,Active,46000,71.5,8.46,Strong squad asset
+1136,Shimron Hope,Overseas,47000,5000,52000,1,Active,24000,70.4,17.46,Strong squad asset
+1137,Sam Potts,Academy,74000,13000,87000,2,Expiring,102000,68.1,37.38,Strong squad asset
+1138,Jonny Buttler,Domestic,149000,14000,163000,2,Active,180000,85.3,8.0,Elite / overseas-standard
+1139,Jamie Sibley,Academy,61000,9000,70000,1,Active,73000,70.6,10.54,Strong squad asset
+1140,Tom Sibley,Domestic,106000,13000,119000,3,Active,136000,84.3,22.19,High-value starter
+1141,Sanju Gaikwad,Domestic,73000,9000,82000,1,Active,48000,72.5,14.37,Strong squad asset
+1142,Rehan Stokes,Academy,95000,17000,112000,2,Expiring,62000,76.3,17.14,High-value starter
+1143,Aaron Maxwell,Overseas,110000,8000,118000,1,Active,101000,75.5,12.73,High-value starter
+1144,Trent Chapman,Academy,64000,10000,74000,2,Active,72000,72.1,27.06,Strong squad asset
+1145,Kagiso de Zorzi,Overseas,92000,16000,108000,2,Released,46000,81.4,20.04,High-value starter
+1146,Haris Rizwan,Overseas,41000,6000,47000,1,Active,40000,63.9,13.59,Development / squad
+1147,Charith Perera,Academy,115000,19000,134000,2,Active,114000,83.7,11.97,High-value starter
+1148,Fabian Gayle,Domestic,68000,9000,77000,1,Active,61000,67.7,16.85,Strong squad asset
+1149,Jofra Curran,Academy,118000,16000,134000,2,Active,123000,82.8,24.06,High-value starter
+1150,Craig Lawrence,Overseas,75000,4000,79000,1,Active,86000,72.9,13.68,Strong squad asset
+1151,Dom Potts,Domestic,69000,4000,73000,1,Active,74000,65.8,13.59,Strong squad asset
+1152,Ben Curran,Domestic,74000,13000,87000,2,Active,67000,72.3,21.42,Strong squad asset
+1153,Deepak Bishnoi,Domestic,69000,5000,74000,1,Active,80000,65.6,10.56,Strong squad asset
+1154,Sam Carse,Domestic,68000,11000,79000,1,Active,36000,69.4,15.45,Strong squad asset
+1155,Lance Inglis,Domestic,155000,16000,171000,3,Active,87000,87.2,21.38,Elite / overseas-standard
+1156,Neil Taylor,Domestic,71000,12000,83000,1,Active,68000,66.2,12.8,Strong squad asset
+1157,Ryan Bavuma,Domestic,23000,3000,26000,1,Active,23000,62.8,27.19,Development / squad
+1158,Usama Ahmed,Academy,75000,6000,81000,1,Active,41000,65.8,11.12,Strong squad asset
+1159,Dasun Chameera,Overseas,75000,9000,84000,1,Active,107000,69.2,16.33,Strong squad asset
+1160,Kieran Holder,Overseas,81000,9000,90000,2,Active,61000,77.7,13.23,High-value starter
+1161,Stuart Salt,Overseas,40000,5000,45000,1,Active,57000,58.0,11.35,Development / squad
+1162,Jofra Wood,Academy,85000,13000,98000,2,Active,111000,79.1,36.3,High-value starter
+1163,Jack Bairstow,Academy,56000,5000,61000,1,Active,34000,74.7,18.05,Strong squad asset
+1164,Jack Rashid,Academy,71000,12000,83000,2,Active,50000,73.0,14.42,Strong squad asset
+1165,Jasprit Rahul,Domestic,50000,2000,52000,2,Active,65000,67.3,9.68,Strong squad asset
+1166,Craig Root,Domestic,116000,16000,132000,1,Active,87000,75.0,17.3,High-value starter
+1167,Mitchell Zampa,Overseas,74000,7000,81000,1,Active,60000,73.8,28.13,Strong squad asset
+1168,Finn Wagner,Domestic,150000,22000,172000,2,Active,183000,85.6,24.2,Elite / overseas-standard
+1169,David Elgar,Domestic,80000,6000,86000,2,Active,113000,78.1,19.68,High-value starter
+1170,Sarfaraz Saleem,Overseas,92000,17000,109000,2,Active,105000,80.1,8.37,High-value starter
+1171,Kasun Karunaratne,Domestic,66000,9000,75000,2,Expiring,68000,74.2,11.57,Strong squad asset
+1172,Jason Gayle,Domestic,124000,20000,144000,3,Active,154000,77.7,25.71,High-value starter
+1173,Harry Lawrence,Overseas,67000,11000,78000,1,Active,82000,66.0,11.37,Strong squad asset
+1174,Jofra Woakes,Domestic,54000,7000,61000,1,Active,58000,66.8,34.11,Strong squad asset
+1175,Tom Root,Domestic,108000,6000,114000,2,Active,144000,80.0,23.45,High-value starter
+1176,Jack Ahmed,Domestic,63000,9000,72000,2,Active,67000,74.4,34.74,Strong squad asset
+1177,Suryakumar Chahal,Overseas,163000,12000,175000,3,Active,209000,87.2,22.78,Elite / overseas-standard
+1178,Ollie Potts,Academy,48000,8000,56000,2,Active,37000,67.5,17.3,Strong squad asset
+1179,Tim Carey,Domestic,71000,8000,79000,1,Active,67000,68.7,8.93,Strong squad asset
+1180,Tim Sodhi,Domestic,63000,8000,71000,2,Active,55000,72.9,17.88,Strong squad asset
+1181,Aiden Philander,Domestic,123000,23000,146000,2,Active,64000,80.6,34.34,High-value starter
+1182,Usama Shakeel,Overseas,28000,3000,31000,1,Active,19000,64.4,15.76,Development / squad
+1183,Chamika Perera,Academy,108000,19000,127000,2,Active,89000,79.7,7.38,High-value starter
+1184,Kevin Walsh,Academy,121000,18000,139000,1,Active,148000,78.5,17.3,High-value starter
+1185,Jonny Roy,Domestic,48000,5000,53000,1,Expiring,29000,68.6,13.54,Strong squad asset
+1186,Chris Root,Domestic,122000,18000,140000,3,Active,71000,79.9,10.25,High-value starter
+1187,Rehan Lawrence,Domestic,69000,4000,73000,2,Active,85000,71.6,20.25,Strong squad asset
+1188,Zak Rashid,Domestic,47000,6000,53000,1,Active,65000,65.6,17.14,Strong squad asset
+1189,Prasidh Mukesh,Domestic,55000,4000,59000,2,Active,45000,65.2,8.37,Strong squad asset
+1190,Moeen Buttler,Academy,111000,7000,118000,3,Active,85000,80.8,18.06,High-value starter
+1191,Marnus Khawaja,Overseas,47000,9000,56000,1,Active,28000,71.0,26.0,Strong squad asset
+1192,Blair Southee,Overseas,106000,14000,120000,2,Active,152000,79.8,20.51,High-value starter
+1193,Ryan Markram,Academy,95000,8000,103000,2,Active,105000,76.2,7.4,High-value starter
+1194,Agha Ayub,Academy,66000,7000,73000,2,Active,64000,73.7,10.03,Strong squad asset
+1195,Kasun Udana,Domestic,82000,8000,90000,2,Active,73000,78.5,25.49,High-value starter
+1196,Kemar Mayers,Academy,75000,7000,82000,2,Active,52000,75.0,9.97,Strong squad asset
+1197,Jason Bethell,Academy,44000,7000,51000,1,Active,62000,59.6,11.55,Development / squad
+1198,Matt Buttler,Overseas,123000,16000,139000,3,Active,160000,82.7,21.86,High-value starter
+1199,Adil Broad,Academy,71000,8000,79000,1,Active,84000,67.3,10.51,Strong squad asset
+1200,James Pope,Domestic,85000,7000,92000,3,Active,115000,82.8,17.42,High-value starter
+1201,Virat Sundar,Overseas,114000,21000,135000,3,Active,136000,79.5,18.75,High-value starter
+1202,Jonny Woakes,Domestic,81000,9000,90000,3,Active,79000,75.2,31.7,High-value starter
+1203,Usman Head,Domestic,45000,5000,50000,2,Active,57000,74.6,20.94,Strong squad asset
+1204,Mark Blundell,Academy,94000,6000,100000,2,Active,121000,76.6,25.92,High-value starter
+1205,Dean Miller,Academy,62000,9000,71000,2,Active,64000,70.4,18.27,Strong squad asset
+1206,Asif Irfan,Overseas,71000,9000,80000,2,Active,52000,67.3,15.42,Strong squad asset
+1207,Wanindu Lakmal,Domestic,110000,11000,121000,2,Active,144000,80.4,15.57,High-value starter
+1208,Jason Holder,Domestic,100000,13000,113000,3,Active,119000,82.9,23.44,High-value starter
+1209,Stuart Buttler,Academy,54000,8000,62000,1,Active,65000,70.4,15.45,Strong squad asset
+1210,Moeen Curran,Overseas,79000,5000,84000,2,Active,65000,70.9,15.07,Strong squad asset
+1211,Jos Anderson,Domestic,99000,7000,106000,1,Released,56000,78.8,25.56,High-value starter
+1212,James Curran,Academy,100000,17000,117000,2,Active,87000,80.2,19.72,High-value starter
+1213,Washington Yadav,Academy,87000,12000,99000,3,Active,114000,84.9,19.76,High-value starter
+1214,Ben Lawrence,Overseas,115000,18000,133000,2,Active,109000,78.6,22.28,High-value starter
+1215,Jake Zampa,Domestic,111000,15000,126000,2,Active,78000,82.0,9.87,High-value starter
+1216,Blair Tickner,Domestic,52000,7000,59000,2,Expiring,41000,73.1,31.27,Strong squad asset
+1217,Temba Miller,Overseas,47000,7000,54000,3,Expiring,70000,74.4,21.03,Strong squad asset
+1218,Shaheen Shakeel,Academy,110000,21000,131000,2,Active,69000,84.0,18.06,High-value starter
+1219,Dushmantha Perera,Domestic,67000,7000,74000,2,Active,37000,69.6,28.24,Strong squad asset
+1220,Obed Seales,Domestic,92000,16000,108000,2,Expiring,67000,75.8,15.13,High-value starter
+1221,Jos Overton,Academy,78000,7000,85000,2,Active,68000,66.0,22.57,Strong squad asset
+1222,Matt Bethell,Academy,50000,4000,54000,1,Active,31000,65.4,9.83,Strong squad asset
+1223,Brydon Overton,Domestic,99000,17000,116000,2,Active,148000,75.5,6.9,High-value starter
+1224,James Brook,Domestic,122000,6000,128000,2,Active,78000,79.9,33.56,High-value starter
+1225,Ruturaj Bumrah,Domestic,30000,4000,34000,1,Released,19000,63.2,17.97,Development / squad
+1226,James Rashid,Academy,156000,26000,182000,2,Expiring,217000,85.1,18.97,Elite / overseas-standard
+1227,Matthew Head,Overseas,58000,8000,66000,2,Active,53000,73.3,29.37,Strong squad asset
+1228,Michael Tickner,Domestic,92000,9000,101000,3,Active,101000,84.3,19.53,High-value starter
+1229,Tony Markram,Academy,124000,10000,134000,2,Active,112000,78.2,13.87,High-value starter
+1230,Usama Khushdil,Academy,59000,8000,67000,1,Active,31000,65.5,15.91,Strong squad asset
+1231,Niroshan Embuldeniya,Academy,76000,8000,84000,2,Active,111000,69.0,9.76,Strong squad asset
+1232,Kieran Motie,Domestic,53000,8000,61000,1,Active,72000,73.8,33.73,Strong squad asset
+1233,Chris Brook,Domestic,135000,17000,152000,3,Active,149000,89.1,8.72,Elite / overseas-standard
+1234,Rehan Buttler,Domestic,46000,6000,52000,1,Active,53000,70.3,36.05,Strong squad asset
+1235,Stuart Woakes,Academy,67000,3000,70000,2,Active,85000,69.3,8.74,Strong squad asset
+1236,Jofra Ali,Overseas,29000,3000,32000,1,Active,28000,62.4,25.13,Development / squad
+1237,Washington Gaikwad,Overseas,118000,13000,131000,3,Released,153000,83.6,5.48,High-value starter
+1238,Jos Brook,Overseas,101000,7000,108000,2,Active,110000,76.5,19.85,High-value starter
+1239,Peter Carey,Academy,78000,13000,91000,2,Active,88000,70.7,10.44,Strong squad asset
+1240,Martin Phillips,Academy,24000,1000,25000,1,Active,35000,62.6,10.48,Development / squad
+1241,Marco Amla,Domestic,119000,14000,133000,2,Active,68000,84.0,18.94,High-value starter
+1242,Faheem Hassan,Overseas,72000,6000,78000,2,Active,55000,73.3,9.56,Strong squad asset
+1243,Charith Hasaranga,Overseas,71000,3000,74000,2,Active,47000,72.8,5.47,Strong squad asset
+1244,Shamarh Powell,Overseas,74000,10000,84000,1,Active,70000,67.4,8.8,Strong squad asset
+1245,Jason Ali,Domestic,71000,11000,82000,1,Active,48000,73.2,14.62,Strong squad asset
+1246,James Lawrence,Overseas,35000,4000,39000,1,Active,51000,63.7,8.75,Development / squad
+1247,Sam Stokes,Academy,85000,16000,101000,2,Active,84000,75.1,34.62,High-value starter
+1248,Ollie Bairstow,Overseas,46000,7000,53000,2,Active,43000,69.3,10.13,Strong squad asset
+1249,Deepak Yadav,Domestic,77000,10000,87000,1,Active,42000,74.8,25.37,Strong squad asset
+1250,Stuart Roy,Domestic,107000,6000,113000,2,Active,104000,78.3,19.41,High-value starter
+1251,Marcus Short,Domestic,39000,6000,45000,1,Active,40000,64.9,13.52,Development / squad
+1252,Tom Sodhi,Overseas,61000,6000,67000,1,Active,59000,66.8,11.76,Strong squad asset
+1253,Faf Maharaj,Domestic,22000,2000,24000,1,Active,17000,63.0,9.36,Development / squad
+1254,Shaheen Shah,Domestic,131000,19000,150000,3,Released,154000,87.6,18.51,Elite / overseas-standard
+1255,Dinesh Karunaratne,Domestic,37000,2000,39000,1,Active,31000,64.8,15.21,Development / squad
+1256,Rovman Pooran,Academy,99000,18000,117000,3,Expiring,82000,83.5,5.85,High-value starter
+1257,Rehan Salt,Overseas,89000,15000,104000,3,Active,96000,82.8,24.9,High-value starter
+1258,Mark Wood,Academy,102000,16000,118000,2,Active,111000,80.5,16.04,High-value starter
+1259,Jack Potts,Academy,82000,8000,90000,2,Active,55000,81.0,16.83,High-value starter
+1260,Joe Woakes,Overseas,65000,8000,73000,1,Active,86000,70.2,13.26,Strong squad asset
+1261,Umesh Siraj,Domestic,92000,5000,97000,1,Active,87000,75.7,14.44,High-value starter
+1262,Zak Woakes,Academy,72000,6000,78000,1,Active,37000,72.8,41.53,Strong squad asset
+1263,Usman Wade,Domestic,55000,10000,65000,1,Active,73000,71.2,11.08,Strong squad asset
+1264,Kane Sears,Academy,60000,11000,71000,1,Active,66000,71.4,14.62,Strong squad asset
+1265,Ryan Elgar,Academy,45000,7000,52000,2,Active,58000,73.1,23.61,Strong squad asset
+1266,Faheem Khan,Domestic,83000,12000,95000,2,Active,80000,77.8,12.57,High-value starter
+1267,Suranga Liyanage,Domestic,58000,8000,66000,1,Expiring,45000,69.4,14.12,Strong squad asset
+1268,Hayden Seales,Academy,61000,11000,72000,2,Active,50000,68.7,14.98,Strong squad asset
+1269,Craig Overton,Overseas,66000,11000,77000,1,Active,37000,73.6,27.05,Strong squad asset
+1270,Jonny Sibley,Overseas,55000,5000,60000,2,Active,80000,74.3,20.7,Strong squad asset
+1271,Jonny Bethell,Domestic,69000,8000,77000,2,Active,98000,74.0,16.09,Strong squad asset
+1272,Moeen Woakes,Domestic,118000,17000,135000,2,Active,122000,76.5,34.65,High-value starter
+1273,Kuldeep Bishnoi,Overseas,115000,9000,124000,3,Active,162000,83.2,18.41,High-value starter
+1274,Craig Potts,Overseas,81000,5000,86000,2,Active,86000,76.6,13.91,High-value starter
+1275,Alex Abbott,Domestic,61000,3000,64000,2,Active,70000,74.8,16.28,Strong squad asset
+1276,Jacob Blundell,Domestic,48000,7000,55000,1,Active,57000,70.6,7.64,Strong squad asset
+1277,Quinton Steyn,Academy,90000,4000,94000,3,Active,114000,76.3,22.45,High-value starter
+1278,Imam Shah,Domestic,79000,8000,87000,2,Active,103000,70.9,13.87,Strong squad asset
+1279,Suranga Chameera,Academy,49000,4000,53000,1,Active,58000,74.2,23.13,Strong squad asset
+1280,Kavem Holder,Domestic,102000,13000,115000,3,Expiring,87000,81.0,25.66,High-value starter
+1281,Stuart Broad,Overseas,35000,5000,40000,1,Active,39000,60.8,18.55,Development / squad
+1282,Matt Ali,Domestic,111000,14000,125000,1,Released,64000,77.7,20.09,High-value starter
+1283,Liam Overton,Domestic,105000,15000,120000,3,Active,56000,77.6,32.58,High-value starter
+1284,Ben Rashid,Academy,80000,6000,86000,3,Active,111000,84.1,18.3,High-value starter
+1285,KL Rahul,Overseas,56000,6000,62000,2,Expiring,52000,68.5,12.87,Strong squad asset
+1286,Zak Roy,Domestic,103000,5000,108000,1,Active,154000,75.1,9.94,High-value starter
+1287,David Warner,Domestic,83000,8000,91000,2,Active,94000,82.7,22.63,High-value starter
+1288,Blair Bracewell,Domestic,57000,7000,64000,1,Active,54000,66.9,18.21,Strong squad asset
+1289,Marco Miller,Domestic,81000,8000,89000,1,Active,98000,76.0,6.8,High-value starter
+1290,Haris Khan,Overseas,128000,8000,136000,3,Active,149000,85.8,25.58,Elite / overseas-standard
+1291,Suranga Nissanka,Academy,97000,17000,114000,2,Active,120000,76.8,24.46,High-value starter
+1292,Kyle Joseph,Overseas,49000,9000,58000,2,Active,31000,74.0,33.73,Strong squad asset
+1293,Mark Pope,Domestic,105000,19000,124000,2,Active,77000,84.5,21.84,High-value starter
+1294,Ollie Roy,Domestic,69000,5000,74000,1,Active,55000,69.1,23.35,Strong squad asset
+1295,Tom Wood,Domestic,73000,10000,83000,1,Active,41000,72.2,10.48,Strong squad asset
+1296,Joe Ali,Domestic,52000,3000,55000,1,Active,58000,65.9,21.66,Strong squad asset
+1297,Rinku Patel,Domestic,24000,4000,28000,1,Active,31000,59.2,16.17,Development / squad
+1298,Sam Anderson,Domestic,48000,3000,51000,2,Active,50000,67.3,7.74,Strong squad asset
+1299,Steve Tye,Domestic,108000,17000,125000,3,Active,90000,83.4,24.7,High-value starter
+1300,Michael Latham,Domestic,111000,7000,118000,1,Active,132000,76.0,24.09,High-value starter
+1301,Lizaad Jansen,Overseas,46000,6000,52000,1,Active,65000,69.6,12.74,Strong squad asset
+1302,Naseem Khan,Domestic,77000,5000,82000,1,Active,85000,69.9,32.89,Strong squad asset
+1303,Dhananjaya Fernando,Domestic,46000,2000,48000,1,Active,23000,69.5,24.62,Strong squad asset
+1304,Odean Pollard,Overseas,63000,11000,74000,1,Active,68000,70.6,6.39,Strong squad asset
+1305,Jos Ahmed,Overseas,111000,12000,123000,2,Active,141000,81.4,13.15,High-value starter
+1306,Dom Ali,Domestic,168000,12000,180000,2,Active,159000,87.2,16.17,Elite / overseas-standard
+1307,Sam Bethell,Domestic,69000,9000,78000,1,Active,46000,71.4,30.87,Strong squad asset
+1308,Zak Potts,Academy,116000,22000,138000,3,Active,148000,81.5,27.4,High-value starter
+1309,Tilak Chahal,Domestic,56000,2000,58000,2,Active,34000,68.4,14.88,Strong squad asset
+1310,Jamie Roy,Academy,40000,7000,47000,1,Active,54000,64.5,9.3,Development / squad
+1311,Andrew Maxwell,Domestic,47000,7000,54000,1,Active,36000,72.9,22.13,Strong squad asset
+1312,Adam Taylor,Domestic,120000,20000,140000,2,Active,176000,81.1,25.87,High-value starter
+1313,Wayne Mulder,Domestic,33000,4000,37000,1,Active,46000,63.9,20.52,Development / squad
+1314,Yasir Abbasi,Overseas,40000,2000,42000,1,Active,28000,64.5,6.72,Development / squad
+1315,Lahiru Vandersay,Overseas,60000,5000,65000,1,Active,83000,68.7,14.28,Strong squad asset
+1316,Akeal Hosein,Overseas,108000,6000,114000,2,Active,153000,78.8,26.05,High-value starter
+1317,Ben Pope,Domestic,103000,17000,120000,2,Active,63000,77.7,22.14,High-value starter
+1318,Dom Brook,Academy,70000,8000,78000,1,Active,64000,74.0,7.36,Strong squad asset
+1319,Jos Carse,Domestic,83000,13000,96000,3,Active,49000,78.7,28.62,High-value starter
+1320,Adil Pope,Domestic,82000,8000,90000,2,Active,79000,76.9,24.98,High-value starter
+1321,Umesh Bawa,Domestic,91000,16000,107000,3,Active,129000,78.9,27.52,High-value starter
+1322,Jason Bairstow,Domestic,87000,9000,96000,3,Active,106000,75.3,37.68,High-value starter
+1323,Andrew Lyon,Domestic,119000,9000,128000,2,Active,141000,79.8,15.91,High-value starter
+1324,Ross Henry,Domestic,89000,6000,95000,2,Expiring,85000,79.0,25.76,High-value starter
+1325,David Fortuin,Domestic,123000,10000,133000,1,Active,80000,77.3,9.59,High-value starter
+1326,Shaheen Abbasi,Academy,56000,10000,66000,1,Expiring,32000,74.9,26.17,Strong squad asset
+1327,Chaturanga Rajapaksa,Domestic,88000,12000,100000,2,Active,68000,77.6,7.0,High-value starter
+1328,Jayden Holder,Academy,72000,13000,85000,2,Active,67000,73.1,28.5,Strong squad asset
+1329,Moeen Roy,Overseas,68000,12000,80000,1,Active,44000,74.9,9.84,Strong squad asset
+1330,Moeen Wood,Domestic,62000,12000,74000,1,Active,60000,68.5,8.46,Strong squad asset
+1331,Brydon Wood,Academy,64000,3000,67000,1,Active,62000,70.3,15.5,Strong squad asset
+1332,Sam Salt,Overseas,112000,13000,125000,2,Active,118000,81.9,16.82,High-value starter
+1333,Prithvi Kishan,Academy,90000,14000,104000,2,Expiring,56000,80.9,35.72,High-value starter
+1334,Harry Rashid,Domestic,79000,6000,85000,1,Released,40000,68.1,14.17,Strong squad asset
+1335,Andrew Smith,Academy,79000,7000,86000,1,Active,107000,65.5,9.38,Strong squad asset
+1336,Ish Mitchell,Domestic,109000,13000,122000,1,Active,131000,77.4,7.95,High-value starter
+1337,Rassie Jansen,Domestic,24000,4000,28000,1,Active,23000,62.7,24.44,Development / squad
+1338,Abrar Mir,Overseas,110000,19000,129000,2,Active,153000,84.5,22.93,High-value starter
+1339,Wanindu Dananjaya,Overseas,83000,10000,93000,2,Active,103000,75.1,24.97,High-value starter
+1340,Roston Gayle,Academy,46000,2000,48000,1,Expiring,56000,71.6,12.7,Strong squad asset
+1341,Zak Bethell,Domestic,26000,3000,29000,1,Expiring,22000,61.7,10.91,Development / squad
+1342,Jack Anderson,Domestic,100000,10000,110000,1,Active,54000,78.4,22.45,High-value starter
+1343,Chris Ali,Overseas,119000,9000,128000,3,Active,67000,75.7,30.12,High-value starter
+1344,Mark Broad,Domestic,112000,22000,134000,2,Active,68000,82.4,20.19,High-value starter
+1345,Rohit Mukesh,Academy,70000,13000,83000,2,Active,102000,71.1,13.56,Strong squad asset
+1346,Rehan Bethell,Overseas,99000,16000,115000,1,Active,81000,79.5,27.74,High-value starter
+1347,Adam Agar,Academy,95000,14000,109000,3,Active,53000,78.4,24.38,High-value starter
+1348,Jacob O'Rourke,Domestic,57000,6000,63000,1,Active,75000,69.1,13.37,Strong squad asset
+1349,Marco Coetzee,Academy,124000,16000,140000,2,Active,173000,77.5,16.37,High-value starter
+1350,Abrar Zaman,Academy,46000,4000,50000,2,Active,54000,74.2,13.59,Strong squad asset
+1351,Dhananjaya Mathews,Domestic,75000,13000,88000,1,Active,43000,75.0,17.55,Strong squad asset
+1352,Kavem Hosein,Domestic,65000,12000,77000,1,Active,43000,74.9,30.01,Strong squad asset
+1353,Tom Bairstow,Academy,60000,4000,64000,1,Active,42000,70.5,8.7,Strong squad asset
+1354,Liam Ali,Overseas,38000,7000,45000,1,Active,34000,63.4,14.65,Development / squad
+1355,Chris Wood,Domestic,101000,10000,111000,1,Active,115000,78.1,15.2,High-value starter
+1356,Mark Root,Overseas,41000,3000,44000,1,Active,56000,63.6,13.19,Development / squad
+1357,Sanju Kohli,Academy,120000,17000,137000,2,Active,101000,81.5,19.98,High-value starter
+1358,Ben Roy,Overseas,59000,7000,66000,2,Active,60000,74.8,17.52,Strong squad asset
+1359,Tim Khawaja,Domestic,92000,8000,100000,3,Active,118000,82.2,24.52,High-value starter
+1360,Ross Wagner,Overseas,65000,10000,75000,1,Active,56000,67.6,11.0,Strong squad asset
+1361,Tony Ngidi,Domestic,121000,8000,129000,2,Active,176000,77.6,28.63,High-value starter
+1362,Zafar Hassan,Academy,52000,6000,58000,1,Active,35000,74.4,17.43,Strong squad asset
+1363,Dhananjaya Vandersay,Domestic,108000,9000,117000,1,Active,88000,76.3,33.39,High-value starter
+1364,Dwayne Joseph,Domestic,67000,7000,74000,1,Active,47000,67.8,6.67,Strong squad asset
+1365,Matt Curran,Overseas,112000,16000,128000,2,Released,72000,82.8,22.41,High-value starter
+1366,Chris Woakes,Overseas,85000,11000,96000,3,Active,68000,82.3,17.75,High-value starter
+1367,Dom Buttler,Overseas,70000,7000,77000,1,Active,45000,66.0,20.05,Strong squad asset
+1368,Craig Archer,Domestic,76000,5000,81000,2,Released,79000,67.9,6.89,Strong squad asset
+1369,Rohit Bumrah,Overseas,51000,7000,58000,2,Active,71000,67.2,19.35,Strong squad asset
+1370,Joe Salt,Academy,53000,8000,61000,1,Expiring,44000,70.7,9.02,Strong squad asset
+1371,Pat Inglis,Academy,78000,9000,87000,1,Active,91000,71.2,10.86,Strong squad asset
+1372,Doug Ravindra,Domestic,51000,2000,53000,1,Active,36000,69.8,4.45,Strong squad asset
+1373,Temba Jansen,Domestic,74000,7000,81000,2,Active,51000,73.2,23.73,Strong squad asset
+1374,Mohammad Ayub,Domestic,102000,8000,110000,2,Active,137000,84.2,19.33,High-value starter
+1375,Akila Karunaratne,Academy,53000,5000,58000,1,Active,58000,71.6,14.3,Strong squad asset
+1376,Fabian Mayers,Academy,75000,14000,89000,1,Expiring,64000,65.7,6.5,Strong squad asset
+1377,Jack Pope,Academy,100000,17000,117000,2,Active,87000,83.1,22.56,High-value starter
+1378,Jack Salt,Domestic,150000,15000,165000,3,Released,206000,87.7,5.52,Elite / overseas-standard
+1379,Rehan Potts,Domestic,96000,15000,111000,2,Active,143000,78.8,27.27,High-value starter
+1380,Craig Curran,Domestic,106000,7000,113000,3,Active,148000,84.8,25.0,High-value starter
+1381,Rohit Kishan,Overseas,87000,6000,93000,3,Active,50000,79.9,21.03,High-value starter
+1382,Chris Buttler,Overseas,58000,5000,63000,1,Released,59000,66.0,22.13,Strong squad asset
+1383,Travis Short,Domestic,78000,14000,92000,2,Active,68000,75.0,9.45,Strong squad asset
+1384,Mark Tickner,Domestic,26000,2000,28000,1,Expiring,23000,61.0,23.53,Development / squad
+1385,Temba Shamsi,Academy,67000,7000,74000,1,Active,94000,67.9,13.01,Strong squad asset
+1386,Haris Abbasi,Domestic,28000,2000,30000,1,Active,29000,63.1,23.18,Development / squad
+1387,Pathum Asalanka,Domestic,163000,28000,191000,2,Active,172000,86.4,18.72,Elite / overseas-standard
+1388,Kieron Bravo,Domestic,23000,1000,24000,1,Active,15000,60.2,21.55,Development / squad
+1389,Brydon Roy,Academy,123000,21000,144000,2,Active,141000,81.7,18.99,High-value starter
+1390,Jack Sibley,Domestic,60000,4000,64000,2,Expiring,68000,69.6,11.71,Strong squad asset
+1391,Harry Archer,Overseas,90000,6000,96000,2,Active,134000,81.5,28.97,High-value starter
+1392,Jason Buttler,Academy,83000,13000,96000,1,Active,88000,76.2,22.78,High-value starter
+1393,Suryakumar Yadav,Domestic,50000,7000,57000,1,Active,59000,70.2,7.02,Strong squad asset
+1394,Harry Wood,Domestic,63000,7000,70000,1,Active,84000,68.3,11.34,Strong squad asset
+1395,Cooper Inglis,Academy,141000,8000,149000,2,Active,194000,85.0,10.66,Elite / overseas-standard
+1396,Devon Sodhi,Domestic,74000,5000,79000,1,Active,68000,68.8,7.82,Strong squad asset
+1397,Keshav Steyn,Domestic,60000,5000,65000,2,Active,86000,69.1,41.56,Strong squad asset
+1398,Wahab Zaman,Academy,91000,7000,98000,1,Active,113000,78.2,6.99,High-value starter
+1399,Dushmantha Theekshana,Domestic,107000,18000,125000,3,Active,85000,77.8,36.91,High-value starter
+1400,Shamarh Athanaze,Domestic,111000,14000,125000,2,Active,71000,79.7,8.31,High-value starter
+1401,Jason Wood,Overseas,50000,3000,53000,1,Active,63000,69.5,27.13,Strong squad asset
+1402,Sam Wood,Overseas,50000,5000,55000,2,Expiring,30000,72.1,9.61,Strong squad asset
+1403,Brydon Broad,Academy,46000,3000,49000,1,Active,64000,69.7,8.06,Strong squad asset
+1404,Jack Roy,Academy,70000,10000,80000,1,Released,94000,68.1,4.62,Strong squad asset
+1405,Shreyas Tiwary,Domestic,68000,8000,76000,1,Active,89000,71.7,10.75,Strong squad asset
+1406,Joe Bairstow,Domestic,31000,3000,34000,1,Active,26000,64.4,17.79,Development / squad
+1407,Marnus Wade,Academy,74000,9000,83000,2,Released,49000,72.2,7.59,Strong squad asset
+1408,Rachin Ravindra,Domestic,73000,3000,76000,1,Active,52000,66.0,7.23,Strong squad asset
+1409,Reeza van der Dussen,Academy,65000,5000,70000,1,Active,40000,74.4,27.93,Strong squad asset
+1410,Shan Khan,Overseas,168000,19000,187000,2,Active,102000,87.3,24.96,Elite / overseas-standard
+1411,Charith Embuldeniya,Domestic,89000,14000,103000,1,Active,54000,76.6,11.69,High-value starter
+1412,Sunil Chase,Overseas,22000,3000,25000,1,Active,12000,63.2,27.73,Development / squad
+1413,Joe Brook,Domestic,54000,3000,57000,1,Active,27000,71.9,22.17,Strong squad asset
+1414,Jonny Brook,Domestic,46000,8000,54000,1,Active,64000,68.6,19.7,Strong squad asset
+1415,Stuart Lawrence,Overseas,63000,9000,72000,1,Active,40000,69.8,10.5,Strong squad asset
+1416,Jofra Bethell,Academy,122000,12000,134000,2,Active,122000,75.4,20.28,High-value starter
+1417,Rohit Patel,Academy,81000,10000,91000,2,Active,87000,81.4,17.54,High-value starter
+1418,Mark Crawley 1418,Overseas,49000,6000,55000,1,Active,71000,72.5,25.15,Strong squad asset
+1419,Steve Boland,Academy,100000,5000,105000,1,Active,142000,75.9,26.97,High-value starter
+1420,Tim Wagner,Domestic,77000,11000,88000,2,Active,90000,69.1,14.01,Strong squad asset
+1421,Temba du Plessis,Domestic,94000,16000,110000,2,Released,86000,85.0,19.29,High-value starter
+1422,Fakhar Nawaz,Domestic,102000,6000,108000,1,Released,63000,75.9,17.35,High-value starter
+1423,Bhanuka Perera,Academy,81000,5000,86000,2,Active,97000,84.0,25.75,High-value starter
+1424,Darren Gayle,Domestic,86000,8000,94000,2,Active,67000,78.7,20.2,High-value starter
+1425,Mark Rashid,Overseas,79000,11000,90000,1,Active,116000,65.6,7.98,Strong squad asset
+1426,Chris Potts,Domestic,123000,16000,139000,3,Active,166000,81.1,21.42,High-value starter
+1427,Moeen Rashid 1427,Domestic,45000,8000,53000,1,Active,64000,65.7,22.44,Strong squad asset
+1428,Ben Broad 1428,Domestic,43000,3000,46000,1,Released,42000,62.7,9.95,Development / squad
+1429,Jasprit Gaikwad,Domestic,108000,12000,120000,1,Active,63000,77.7,17.32,High-value starter
+1430,Jamie Archer 1430,Overseas,75000,8000,83000,1,Active,110000,73.4,35.09,Strong squad asset
+1431,Nathan Wade,Domestic,60000,6000,66000,1,Active,42000,73.0,15.56,Strong squad asset
+1432,Ross Williamson,Domestic,103000,8000,111000,2,Active,102000,78.1,30.47,High-value starter
+1433,Rassie Rickelton,Overseas,62000,10000,72000,1,Active,67000,65.3,12.93,Strong squad asset
+1434,Fakhar Khushdil,Overseas,158000,16000,174000,3,Active,229000,88.8,18.2,Elite / overseas-standard
+1435,Bhanuka Embuldeniya,Overseas,49000,6000,55000,2,Active,46000,69.9,6.26,Strong squad asset
+1436,Odean Hetmyer,Domestic,46000,4000,50000,1,Active,51000,68.2,9.34,Strong squad asset
+1437,Liam Potts,Domestic,27000,1000,28000,1,Active,35000,64.5,12.98,Development / squad
+1438,Sam Rashid 1438,Academy,111000,5000,116000,2,Active,122000,79.2,17.9,High-value starter
+1439,Ben Bethell 1439,Domestic,52000,4000,56000,2,Active,65000,71.6,26.83,Strong squad asset
+1440,Harry Brook,Overseas,110000,18000,128000,2,Active,127000,76.5,11.1,High-value starter
+1441,Rinku Chahar,Domestic,44000,5000,49000,1,Active,57000,63.4,10.19,Development / squad
+1442,Stuart Wood,Academy,22000,2000,24000,1,Released,11000,60.5,24.32,Development / squad
+1443,Ryan Lyon,Overseas,68000,12000,80000,2,Active,64000,71.3,13.98,Strong squad asset
+1444,Colin Boult,Overseas,147000,17000,164000,3,Active,99000,85.3,25.51,Elite / overseas-standard
+1445,Faf Amla,Academy,75000,5000,80000,2,Active,60000,73.9,7.63,Strong squad asset
+1446,Mohammad Mir,Overseas,51000,5000,56000,1,Active,54000,65.5,24.69,Strong squad asset
+1447,Dhananjaya Perera,Academy,111000,14000,125000,2,Active,107000,78.2,26.59,High-value starter
+1448,Kieran Brooks,Academy,117000,6000,123000,2,Active,127000,78.0,34.29,High-value starter
+1449,Ben Brook,Academy,122000,18000,140000,3,Active,95000,84.7,23.96,High-value starter
+1450,James Brook 1450,Overseas,68000,3000,71000,1,Active,90000,70.4,11.49,Strong squad asset
+1451,Ben Overton,Overseas,149000,25000,174000,3,Active,188000,87.0,24.73,Elite / overseas-standard
+1452,Tom Roy,Domestic,107000,6000,113000,2,Active,91000,77.2,25.59,High-value starter
+1453,Yuzvendra Tiwary,Domestic,119000,17000,136000,2,Active,136000,77.3,24.89,High-value starter
+1454,Matt Rashid 1454,Academy,64000,4000,68000,1,Active,87000,67.9,12.91,Strong squad asset
+1455,Andrew Cummins,Domestic,46000,4000,50000,1,Active,38000,70.4,9.59,Strong squad asset
+1456,Devon Sears,Overseas,121000,17000,138000,2,Active,122000,75.3,9.77,High-value starter
+1457,Anrich Markram,Domestic,37000,3000,40000,1,Active,40000,63.0,26.78,Development / squad
+1458,Usman Gul,Overseas,68000,7000,75000,2,Active,72000,74.8,19.57,Strong squad asset
+1459,Angelo Asalanka,Domestic,25000,1000,26000,1,Active,20000,60.9,24.98,Development / squad
+1460,Darren Joseph,Domestic,109000,15000,124000,2,Active,102000,77.3,16.13,High-value starter
+1461,Chris Carse,Academy,97000,17000,114000,3,Active,130000,83.9,12.54,High-value starter
+1462,Chris Roy 1462,Overseas,109000,10000,119000,2,Active,163000,82.7,17.11,High-value starter
+1463,Matt Pope 1463,Domestic,22000,3000,25000,1,Active,32000,60.8,15.79,Development / squad
+1464,Jos Woakes 1464,Academy,68000,6000,74000,1,Active,88000,74.3,8.69,Strong squad asset
+1465,Rishabh Samson,Domestic,79000,6000,85000,2,Active,90000,71.6,25.81,Strong squad asset
+1466,Moeen Ali 1466,Overseas,82000,10000,92000,2,Active,95000,81.0,24.89,High-value starter
+1467,Mitchell Stoinis,Overseas,123000,9000,132000,3,Active,138000,77.9,24.73,High-value starter
+1468,Lockie Ferguson,Overseas,59000,6000,65000,1,Active,40000,66.5,14.34,Strong squad asset
+1469,Lizaad Markram,Academy,119000,18000,137000,2,Expiring,128000,80.9,21.3,High-value starter
+1470,Haris Iftikhar,Overseas,72000,5000,77000,1,Released,89000,65.7,13.93,Strong squad asset
+1471,Kusal Fernando,Domestic,105000,20000,125000,2,Active,117000,78.0,11.1,High-value starter
+1472,Alzarri Chase,Domestic,38000,7000,45000,1,Active,21000,64.1,30.35,Development / squad
+1473,Sam Stokes 1473,Domestic,75000,8000,83000,1,Active,93000,72.0,7.06,Strong squad asset
+1474,Jack Woakes 1474,Domestic,98000,10000,108000,3,Expiring,138000,76.3,33.05,High-value starter
+1475,Sam Ali 1475,Overseas,94000,16000,110000,2,Active,73000,79.9,31.82,High-value starter
+1476,Adil Buttler 1476,Overseas,110000,9000,119000,2,Active,99000,80.1,22.96,High-value starter
+1477,Ishan Yadav,Domestic,116000,9000,125000,1,Active,153000,78.4,38.32,High-value starter
+1478,Jack Wood 1478,Domestic,39000,4000,43000,1,Released,35000,62.4,18.94,Development / squad
+1479,Tim Smith,Overseas,115000,9000,124000,1,Active,60000,75.3,31.3,High-value starter
+1480,Blair Phillips,Overseas,99000,14000,113000,3,Active,133000,76.3,25.66,High-value starter
+1481,Keshav Williams,Overseas,116000,19000,135000,3,Active,161000,84.4,22.69,High-value starter
+1482,Sarfaraz Nawaz,Domestic,49000,6000,55000,1,Expiring,68000,65.8,15.54,Strong squad asset
+1483,Kusal Nissanka,Domestic,152000,22000,174000,3,Expiring,136000,85.3,16.88,Elite / overseas-standard
+1484,Odean Shepherd,Overseas,20000,3000,23000,1,Active,14000,58.7,16.57,Development / squad
+1485,Sam Bairstow 1485,Overseas,94000,12000,106000,2,Active,136000,83.7,10.04,High-value starter
+1486,Matt Curran 1486,Domestic,57000,10000,67000,2,Active,35000,74.9,12.35,Strong squad asset
+1487,Craig Overton 1487,Domestic,29000,2000,31000,1,Active,25000,56.8,29.78,Development / squad
+1488,Jonny Anderson 1488,Domestic,111000,9000,120000,2,Active,79000,82.0,18.36,High-value starter
+1489,Tilak Samson,Domestic,58000,6000,64000,2,Expiring,32000,69.9,24.77,Strong squad asset
+1490,Craig Brook 1490,Overseas,100000,15000,115000,3,Active,104000,81.7,18.77,High-value starter
+1491,Matthew Short,Academy,53000,4000,57000,2,Active,68000,71.5,15.03,Strong squad asset
+1492,Ben Nicholls,Domestic,96000,11000,107000,1,Active,77000,77.3,20.5,High-value starter
+1493,Vernon de Zorzi,Academy,90000,13000,103000,2,Expiring,107000,81.3,24.84,High-value starter
+1494,Mohammad Shafique,Overseas,83000,7000,90000,1,Active,94000,79.2,30.04,High-value starter
+1495,Maheesh Vandersay,Academy,107000,7000,114000,3,Expiring,145000,77.4,27.09,High-value starter
+1496,Jayden Walsh,Domestic,110000,20000,130000,2,Active,162000,78.0,18.66,High-value starter
+1497,Moeen Crawley 1497,Domestic,107000,6000,113000,3,Active,78000,81.1,23.94,High-value starter
+1498,Jonny Potts 1498,Domestic,100000,18000,118000,2,Active,137000,81.2,27.26,High-value starter
+1499,Moeen Lawrence 1499,Domestic,58000,5000,63000,2,Active,74000,67.2,9.3,Strong squad asset
+1500,James Archer 1500,Domestic,118000,18000,136000,3,Expiring,98000,83.1,24.47,High-value starter
+1501,Ruturaj Shaw,Overseas,103000,18000,121000,2,Active,136000,76.3,17.22,High-value starter
+1502,James Sibley,Overseas,61000,7000,68000,2,Active,67000,67.4,20.54,Strong squad asset
+1503,Tim Labuschagne,Academy,45000,7000,52000,1,Active,23000,65.5,17.43,Strong squad asset
+1504,Ben Conway,Overseas,56000,3000,59000,1,Active,63000,66.3,25.24,Strong squad asset
+1505,Marco Elgar,Domestic,97000,10000,107000,2,Active,78000,81.7,22.1,High-value starter
+1506,Fakhar Azam,Domestic,97000,7000,104000,2,Active,142000,76.8,28.2,High-value starter
+1507,Kasun Vandersay,Overseas,106000,18000,124000,2,Active,137000,80.5,22.58,High-value starter
+1508,Kevin Hope,Domestic,63000,7000,70000,2,Active,47000,74.8,8.9,Strong squad asset
+1509,Jamie Rashid 1509,Domestic,66000,5000,71000,2,Active,45000,72.2,14.32,Strong squad asset
+1510,Liam Crawley 1510,Academy,114000,9000,123000,3,Expiring,162000,78.5,17.43,High-value starter
+1511,Adil Bairstow 1511,Academy,73000,10000,83000,1,Active,42000,69.8,11.52,Strong squad asset
+1512,Jason Carse 1512,Overseas,70000,5000,75000,2,Active,46000,67.4,5.25,Strong squad asset
+1513,Ishan Gaikwad,Academy,122000,13000,135000,3,Active,71000,82.7,21.7,High-value starter
+1514,Jason Ali 1514,Domestic,80000,15000,95000,2,Active,97000,76.2,29.4,High-value starter
+1515,Usman Philippe,Domestic,88000,15000,103000,3,Active,63000,83.9,28.45,High-value starter
+1516,Devon Munro,Overseas,45000,3000,48000,1,Expiring,59000,67.3,15.95,Strong squad asset
+1517,Wiaan de Zorzi,Domestic,36000,3000,39000,1,Active,22000,58.4,16.83,Development / squad
+1518,Shoaib Ahmed,Academy,76000,6000,82000,1,Active,93000,68.6,11.76,Strong squad asset
+1519,Sachith Kumara,Domestic,26000,2000,28000,1,Active,16000,63.5,20.69,Development / squad
+1520,Rahkeem Powell,Domestic,77000,6000,83000,2,Active,57000,69.6,17.06,Strong squad asset
+1521,Harry Brook 1521,Domestic,47000,2000,49000,2,Active,38000,66.4,24.85,Strong squad asset
+1522,Jonny Anderson 1522,Academy,122000,9000,131000,2,Active,112000,76.7,32.84,High-value starter
+1523,Jonny Carse 1523,Domestic,95000,6000,101000,2,Active,79000,75.6,23.86,High-value starter
+1524,Rehan Curran 1524,Domestic,130000,24000,154000,2,Released,187000,85.8,8.69,Elite / overseas-standard
+1525,Kuldeep Kohli,Overseas,101000,5000,106000,2,Active,88000,76.9,19.67,High-value starter
+1526,Jason Archer 1526,Domestic,53000,7000,60000,1,Active,73000,66.8,8.16,Strong squad asset
+1527,Ryan Boland,Academy,54000,4000,58000,1,Active,53000,72.2,10.95,Strong squad asset
+1528,Ross Phillips,Domestic,55000,3000,58000,2,Active,56000,73.4,30.6,Strong squad asset
+1529,Faf Jansen,Domestic,73000,4000,77000,1,Active,45000,73.8,15.97,Strong squad asset
+1530,Naseem Ayub,Overseas,63000,11000,74000,1,Active,78000,68.8,9.34,Strong squad asset
+1531,Thisara Rajapaksa,Overseas,55000,5000,60000,2,Expiring,61000,73.5,15.59,Strong squad asset
+1532,Jayden Chase,Overseas,66000,8000,74000,2,Active,43000,68.3,22.55,Strong squad asset
+1533,Joe Potts 1533,Domestic,70000,9000,79000,2,Expiring,79000,74.9,20.59,Strong squad asset
+1534,Jonny Potts 1534,Domestic,92000,7000,99000,3,Active,62000,76.5,35.3,High-value starter
+1535,Tom Root 1535,Domestic,59000,5000,64000,1,Active,55000,67.5,13.85,Strong squad asset
+1536,Craig Lawrence 1536,Overseas,85000,4000,89000,3,Active,102000,78.5,27.18,High-value starter
+1537,Prithvi Iyer,Domestic,88000,10000,98000,2,Active,120000,78.4,17.0,High-value starter
+1538,Craig Rashid 1538,Overseas,68000,6000,74000,1,Active,53000,74.5,33.99,Strong squad asset
+1539,Scott Carey,Academy,88000,11000,99000,1,Active,122000,79.0,8.54,High-value starter
+1540,Kane Conway,Academy,103000,20000,123000,1,Active,130000,75.3,28.44,High-value starter
+1541,Tony Coetzee,Overseas,111000,12000,123000,2,Active,140000,81.4,23.93,High-value starter
+1542,Naseem Khushdil,Academy,48000,3000,51000,1,Active,37000,66.7,15.79,Strong squad asset
+1543,Charith Chandimal,Domestic,64000,6000,70000,1,Expiring,38000,70.5,14.35,Strong squad asset
+1544,Rahkeem Carty,Domestic,53000,2000,55000,2,Active,64000,68.7,13.5,Strong squad asset
+1545,Harry Pope 1545,Overseas,173000,20000,193000,3,Released,189000,88.5,15.93,Elite / overseas-standard
+1546,Jonny Bairstow 1546,Domestic,101000,19000,120000,2,Active,146000,80.9,25.21,High-value starter
+1547,Jonny Pope 1547,Overseas,73000,14000,87000,2,Released,102000,71.0,22.12,Strong squad asset
+1548,Zak Buttler 1548,Domestic,104000,18000,122000,2,Active,81000,82.9,27.32,High-value starter
+1549,Virat Kohli,Academy,46000,2000,48000,1,Released,40000,71.5,15.09,Strong squad asset
+1550,Chris Anderson 1550,Domestic,156000,11000,167000,3,Released,213000,88.0,15.66,Elite / overseas-standard
+1551,Ryan Turner,Domestic,43000,2000,45000,1,Active,38000,63.5,12.55,Development / squad
+1552,Doug Young,Overseas,107000,9000,116000,3,Active,123000,83.8,19.08,High-value starter
+1553,Anrich de Kock,Overseas,40000,2000,42000,1,Active,37000,64.0,13.34,Development / squad
+1554,Sarfaraz Irfan,Overseas,75000,12000,87000,1,Active,88000,68.7,9.42,Strong squad asset
+1555,Thisara de Silva,Overseas,25000,1000,26000,1,Active,33000,62.9,8.94,Development / squad
+1556,Jayden Bravo,Domestic,89000,10000,99000,2,Active,68000,84.7,26.86,High-value starter
+1557,Jofra Root 1557,Domestic,107000,17000,124000,2,Active,119000,78.1,26.39,High-value starter
+1558,Harry Broad 1558,Overseas,145000,20000,165000,3,Active,146000,87.8,16.79,Elite / overseas-standard
+1559,Jofra Salt 1559,Academy,117000,9000,126000,3,Active,76000,81.3,19.39,High-value starter
+1560,Craig Root 1560,Overseas,120000,15000,135000,2,Active,70000,80.7,13.26,High-value starter
+1561,Ruturaj Bishnoi,Domestic,28000,3000,31000,1,Expiring,27000,64.0,7.68,Development / squad
+1562,Jamie Ahmed 1562,Domestic,90000,13000,103000,1,Active,67000,75.5,29.74,High-value starter
+1563,Nathan Smith,Domestic,115000,15000,130000,3,Active,162000,82.4,26.34,High-value starter
+1564,Kane Munro,Academy,92000,10000,102000,2,Active,106000,76.2,24.11,High-value starter
+1565,Hashim Markram,Domestic,117000,10000,127000,2,Active,117000,75.3,16.7,High-value starter
+1566,Naseem Butt,Academy,59000,8000,67000,1,Active,40000,69.1,31.49,Strong squad asset
+1567,Angelo Chandimal,Domestic,68000,4000,72000,2,Expiring,54000,73.2,8.74,Strong squad asset
+1568,Andre Joseph,Academy,48000,5000,53000,2,Active,40000,68.2,13.76,Strong squad asset
+1569,Jason Curran 1569,Domestic,108000,8000,116000,1,Active,119000,79.3,19.34,High-value starter
+1570,Mark Lawrence 1570,Domestic,60000,7000,67000,1,Active,37000,71.4,33.41,Strong squad asset
+1571,Rehan Potts 1571,Academy,154000,18000,172000,2,Active,210000,85.0,24.61,Elite / overseas-standard
+1572,Mark Archer 1572,Overseas,87000,8000,95000,3,Active,97000,81.9,19.97,High-value starter
+1573,Mohammed Jadeja,Domestic,113000,7000,120000,3,Active,78000,84.2,26.81,High-value starter
+1574,Dom Crawley 1574,Academy,118000,23000,141000,2,Expiring,83000,78.2,21.35,High-value starter
+1575,Andrew Wade,Academy,52000,4000,56000,1,Active,70000,72.9,7.7,Strong squad asset
+1576,Lockie Ravindra,Domestic,48000,4000,52000,1,Active,46000,69.1,14.45,Strong squad asset
+1577,Gerald de Zorzi,Domestic,81000,6000,87000,2,Active,97000,77.3,23.57,High-value starter
+1578,Saim Zaman,Domestic,108000,5000,113000,2,Active,80000,79.9,10.41,High-value starter
+1579,Kasun Mathews,Academy,66000,11000,77000,2,Active,55000,65.8,20.74,Strong squad asset
+1580,Jason Walsh,Academy,104000,18000,122000,1,Active,95000,78.5,12.26,High-value starter
+1581,Harry Pope 1581,Academy,53000,7000,60000,2,Active,79000,73.0,25.03,Strong squad asset
+1582,Stuart Crawley 1582,Domestic,97000,10000,107000,1,Active,118000,75.6,12.3,High-value starter
+1583,Matt Anderson 1583,Domestic,65000,10000,75000,2,Active,59000,73.7,42.07,Strong squad asset
+1584,Moeen Broad 1584,Academy,102000,6000,108000,2,Expiring,93000,78.1,15.93,High-value starter
+1585,Axar Chahar,Domestic,79000,9000,88000,2,Expiring,66000,73.3,26.55,Strong squad asset
+1586,Sam Rashid 1586,Overseas,86000,4000,90000,3,Active,59000,82.3,20.7,High-value starter
+1587,Cameron Khawaja,Domestic,69000,5000,74000,2,Active,97000,68.4,6.23,Strong squad asset
+1588,Michael Wagner,Academy,98000,17000,115000,2,Active,94000,80.0,21.47,High-value starter
+1589,Temba Maharaj,Domestic,30000,4000,34000,1,Active,27000,64.4,13.46,Development / squad
+1590,Abrar Ayub,Academy,70000,10000,80000,1,Active,68000,69.3,12.97,Strong squad asset
+1591,Thisara Fernando,Academy,111000,9000,120000,1,Active,65000,76.3,9.12,High-value starter
+1592,Kyle Walsh,Overseas,79000,5000,84000,2,Active,87000,67.5,24.58,Strong squad asset
+1593,Ben Curran 1593,Overseas,49000,8000,57000,1,Expiring,48000,72.3,17.05,Strong squad asset
+1594,Stuart Pope 1594,Domestic,84000,11000,95000,2,Released,72000,78.8,25.72,High-value starter
+1595,Rehan Overton 1595,Domestic,112000,16000,128000,2,Active,152000,77.7,15.04,High-value starter
+1596,Chris Broad 1596,Overseas,65000,11000,76000,1,Active,39000,72.9,29.55,Strong squad asset
+1597,Rinku Bumrah,Domestic,54000,7000,61000,1,Active,80000,72.4,10.55,Strong squad asset
+1598,Mark Ahmed 1598,Domestic,47000,7000,54000,2,Active,65000,68.9,13.8,Strong squad asset
+1599,Peter Conway,Overseas,83000,12000,95000,1,Expiring,77000,79.1,10.37,High-value starter
+1600,Ben Sears,Domestic,76000,14000,90000,2,Active,84000,67.9,11.99,Strong squad asset
+1601,Andile Bavuma,Academy,88000,4000,92000,1,Active,99000,80.8,15.0,High-value starter
+1602,Agha Rizwan,Domestic,56000,10000,66000,1,Active,44000,65.8,7.55,Strong squad asset
+1603,Suranga Vandersay,Academy,90000,11000,101000,3,Expiring,58000,82.7,18.58,High-value starter
+1604,Kieron Joseph,Domestic,95000,16000,111000,3,Active,66000,79.9,4.35,High-value starter
+1605,Jofra Wood 1605,Domestic,47000,4000,51000,2,Active,39000,70.8,12.27,Strong squad asset
+1606,Mark Bairstow 1606,Academy,63000,4000,67000,1,Active,76000,65.2,15.72,Strong squad asset
+1607,Jamie Overton 1607,Domestic,47000,6000,53000,2,Active,58000,70.4,21.44,Strong squad asset
+1608,Jason Sibley 1608,Domestic,73000,5000,78000,2,Active,103000,71.2,13.49,Strong squad asset
+1609,Sanju Jadeja,Overseas,53000,10000,63000,2,Active,62000,69.8,42.12,Strong squad asset
+1610,James Sibley 1610,Domestic,104000,7000,111000,2,Active,135000,84.5,9.71,High-value starter
+1611,Adam Tye,Domestic,75000,7000,82000,1,Active,95000,67.5,22.44,Strong squad asset
+1612,Tom Ferguson,Domestic,109000,11000,120000,2,Active,155000,78.5,15.85,High-value starter
+1613,Wayne Hendricks,Academy,63000,3000,66000,1,Active,76000,72.5,18.64,Strong squad asset
+1614,Tayyab Rizwan,Academy,56000,10000,66000,1,Released,51000,69.8,16.77,Strong squad asset
+1615,Sachith Nissanka,Academy,56000,9000,65000,2,Expiring,28000,72.7,11.97,Strong squad asset
+1616,Jayden Carty,Domestic,68000,12000,80000,1,Active,43000,70.0,7.62,Strong squad asset
+1617,Craig Lawrence 1617,Overseas,44000,4000,48000,1,Active,61000,64.6,8.99,Development / squad
+1618,Jos Archer 1618,Overseas,109000,16000,125000,3,Expiring,139000,82.1,18.04,High-value starter
+1619,Ollie Rashid 1619,Overseas,33000,3000,36000,1,Active,26000,62.2,12.64,Development / squad
+1620,Matt Lawrence 1620,Academy,112000,11000,123000,1,Active,138000,75.3,9.01,High-value starter
+1621,Yuzvendra Yadav,Academy,100000,19000,119000,2,Active,59000,81.3,4.93,High-value starter
+1622,Ben Wood 1622,Academy,47000,4000,51000,2,Active,24000,66.8,33.9,Strong squad asset
+1623,Marnus Starc,Domestic,105000,18000,123000,3,Active,96000,81.0,18.29,High-value starter
+1624,Mitchell Williamson,Overseas,78000,12000,90000,1,Active,59000,72.5,16.35,Strong squad asset
+1625,Quinton Klaasen,Overseas,87000,5000,92000,2,Active,125000,76.3,21.22,High-value starter
+1626,Abrar Ahmed,Domestic,111000,15000,126000,3,Active,93000,77.9,23.15,High-value starter
+1627,Kusal Kumara,Overseas,25000,2000,27000,1,Active,27000,59.9,15.61,Development / squad
+1628,Sunil Hosein,Overseas,33000,5000,38000,1,Expiring,38000,62.4,18.91,Development / squad
+1629,Liam Bethell 1629,Domestic,48000,4000,52000,1,Active,63000,70.4,9.0,Strong squad asset
+1630,Matt Pope 1630,Overseas,60000,9000,69000,1,Active,44000,72.3,25.66,Strong squad asset
+1631,Jamie Ahmed 1631,Academy,114000,15000,129000,2,Active,98000,78.4,23.59,High-value starter
+1632,James Overton 1632,Domestic,95000,14000,109000,1,Active,55000,75.6,24.87,High-value starter
+1633,Rishabh Bawa,Domestic,109000,19000,128000,2,Active,103000,81.5,24.81,High-value starter
+1634,Jos Bethell 1634,Academy,72000,9000,81000,2,Active,73000,73.7,17.64,Strong squad asset
+1635,Travis Abbott,Domestic,77000,13000,90000,1,Active,87000,70.5,15.33,Strong squad asset
+1636,Ben Taylor,Overseas,90000,13000,103000,2,Expiring,110000,75.7,8.19,High-value starter
+1637,Gerald Mulder,Domestic,97000,6000,103000,3,Active,117000,76.4,31.7,High-value starter
+1638,Faheem Mir,Academy,86000,10000,96000,2,Active,102000,83.5,11.24,High-value starter
+1639,Nuwan Gunathilaka,Domestic,44000,5000,49000,1,Active,63000,59.2,28.5,Development / squad
+1640,Kevin Chase,Domestic,77000,10000,87000,2,Active,47000,73.7,22.74,Strong squad asset
+1641,Brydon Stokes 1641,Domestic,63000,8000,71000,2,Active,50000,73.3,41.56,Strong squad asset
+1642,Chris Bairstow 1642,Domestic,74000,6000,80000,2,Active,47000,72.2,15.76,Strong squad asset
+1643,Brydon Bethell 1643,Overseas,63000,3000,66000,2,Expiring,87000,72.9,33.94,Strong squad asset
+1644,Chris Buttler 1644,Domestic,66000,5000,71000,1,Active,33000,67.7,9.46,Strong squad asset
+1645,Hardik Tiwary,Academy,22000,2000,24000,1,Expiring,20000,63.5,12.66,Development / squad
+1646,Matt Buttler 1646,Academy,113000,13000,126000,3,Active,99000,83.3,21.64,High-value starter
+1647,Alex Maxwell,Domestic,131000,16000,147000,2,Active,124000,86.6,12.16,Elite / overseas-standard
+1648,Matt Williamson,Overseas,117000,8000,125000,2,Active,68000,75.2,15.91,High-value starter
+1649,Ryan Fortuin,Domestic,115000,9000,124000,3,Active,119000,84.2,14.41,High-value starter
+1650,Naseem Zaman,Academy,111000,10000,121000,2,Active,73000,77.9,13.61,High-value starter
+1651,Suranga Shanaka,Academy,81000,11000,92000,1,Active,65000,75.5,14.5,High-value starter
+1652,Hayden Brooks,Overseas,55000,8000,63000,1,Active,80000,69.4,26.05,Strong squad asset
+1653,Jonny Lawrence 1653,Academy,54000,7000,61000,1,Active,57000,67.1,11.82,Strong squad asset
+1654,Chris Woakes 1654,Domestic,29000,4000,33000,1,Active,15000,62.4,11.91,Development / squad
+1655,James Archer 1655,Overseas,48000,7000,55000,1,Active,70000,68.3,15.36,Strong squad asset
+1656,Mark Bethell 1656,Domestic,122000,10000,132000,3,Active,169000,76.8,41.67,High-value starter
+1657,Rohit Gaikwad,Domestic,64000,4000,68000,1,Active,52000,67.4,7.57,Strong squad asset
+1658,Harry Root 1658,Domestic,93000,16000,109000,1,Active,87000,75.7,10.37,High-value starter
+1659,Cooper Labuschagne,Domestic,97000,17000,114000,3,Active,73000,83.3,19.45,High-value starter
+1660,Henry Ravindra,Overseas,60000,11000,71000,1,Active,47000,69.7,11.38,Strong squad asset
+1661,Faf van der Dussen,Domestic,66000,10000,76000,1,Active,95000,71.2,14.62,Strong squad asset
+1662,Salman Mir,Overseas,103000,6000,109000,2,Released,70000,76.7,29.72,High-value starter
+1663,Dinesh Dananjaya,Domestic,121000,13000,134000,2,Active,110000,83.2,19.84,High-value starter
+1664,Andre Carty,Domestic,62000,6000,68000,2,Active,38000,69.4,11.25,Strong squad asset
+1665,Rehan Archer 1665,Domestic,174000,28000,202000,2,Active,172000,85.9,20.17,Elite / overseas-standard
+1666,Liam Potts 1666,Domestic,118000,10000,128000,2,Active,124000,77.5,26.9,High-value starter
+1667,Chris Bethell 1667,Domestic,52000,2000,54000,1,Active,73000,70.5,36.64,Strong squad asset
+1668,Sam Anderson 1668,Domestic,121000,16000,137000,1,Active,72000,76.7,9.36,High-value starter
+1669,Ravindra Sharma,Domestic,130000,17000,147000,2,Active,175000,86.3,11.02,Elite / overseas-standard
+1670,Zak Broad 1670,Domestic,116000,12000,128000,1,Released,148000,75.2,26.28,High-value starter
+1671,Aaron Smith,Academy,58000,6000,64000,2,Active,55000,65.1,21.84,Strong squad asset
+1672,Rachin Williamson,Overseas,119000,17000,136000,2,Active,66000,78.5,23.11,High-value starter
+1673,Tony Parnell,Domestic,75000,10000,85000,2,Active,66000,72.7,14.85,Strong squad asset
+1674,Babar Rizwan,Academy,73000,5000,78000,2,Active,57000,73.7,8.22,Strong squad asset
+1675,Suranga Rajitha,Academy,72000,9000,81000,1,Active,42000,73.3,22.02,Strong squad asset
+1676,Kevin Shepherd,Overseas,55000,8000,63000,1,Active,67000,71.0,12.45,Strong squad asset
+1677,Matt Potts 1677,Domestic,83000,6000,89000,3,Active,108000,82.6,20.75,High-value starter
+1678,Chris Anderson 1678,Academy,145000,12000,157000,3,Active,138000,85.1,25.94,Elite / overseas-standard
+1679,Brydon Salt 1679,Academy,87000,17000,104000,1,Active,83000,81.7,13.2,High-value starter
+1680,Jos Brook 1680,Domestic,111000,20000,131000,3,Active,157000,83.6,26.44,High-value starter
+1681,Washington Rahul,Overseas,95000,4000,99000,3,Active,63000,81.4,14.96,High-value starter
+1682,James Brook 1682,Domestic,79000,10000,89000,2,Active,90000,74.1,38.02,Strong squad asset
+1683,Cooper Cummins,Overseas,108000,14000,122000,1,Expiring,142000,79.3,21.02,High-value starter
+1684,Ish Duffy,Domestic,40000,6000,46000,1,Active,52000,63.8,14.25,Development / squad
+1685,Wiaan Rabada,Domestic,49000,3000,52000,2,Active,58000,72.6,10.55,Strong squad asset
+1686,Saud Aslam,Domestic,41000,2000,43000,1,Active,28000,62.4,23.53,Development / squad
+1687,Dhananjaya Udana,Domestic,121000,19000,140000,1,Active,142000,79.1,8.36,High-value starter
+1688,Shai Seales,Domestic,101000,6000,107000,3,Active,81000,81.4,20.59,High-value starter
+1689,Joe Sibley 1689,Domestic,107000,21000,128000,2,Released,57000,81.4,19.89,High-value starter
+1690,Moeen Buttler 1690,Academy,114000,17000,131000,2,Active,79000,77.2,15.46,High-value starter
+1691,Ollie Crawley 1691,Domestic,87000,15000,102000,2,Active,86000,79.9,19.33,High-value starter
+1692,Moeen Sibley 1692,Academy,102000,16000,118000,1,Active,112000,77.5,24.17,High-value starter
+1693,Rohit Dube,Overseas,58000,3000,61000,1,Active,32000,74.4,4.9,Strong squad asset
+1694,Jamie Buttler 1694,Academy,86000,15000,101000,3,Expiring,105000,82.7,16.4,High-value starter
+1695,Tim Abbott,Domestic,96000,17000,113000,2,Active,141000,81.0,15.43,High-value starter
+1696,Ross Mitchell,Academy,83000,11000,94000,2,Active,119000,78.0,29.73,High-value starter
+1697,Keshav Klaasen,Academy,20000,3000,23000,1,Active,27000,61.2,18.57,Development / squad
+1698,Saud Zaman,Domestic,86000,15000,101000,3,Active,53000,79.9,27.03,High-value starter
+1699,Bhanuka Mathews,Overseas,123000,15000,138000,3,Active,66000,75.7,23.46,High-value starter
+1700,Jason Hosein,Domestic,152000,13000,165000,2,Active,144000,85.8,27.75,Elite / overseas-standard
+1701,Jos Overton 1701,Overseas,123000,13000,136000,2,Active,169000,79.0,16.59,High-value starter
+1702,Rehan Rashid 1702,Domestic,60000,11000,71000,1,Active,71000,67.7,16.67,Strong squad asset
+1703,Sam Rashid 1703,Overseas,55000,10000,65000,1,Active,45000,67.7,15.34,Strong squad asset
+1704,Jason Anderson 1704,Academy,102000,14000,116000,2,Active,95000,81.8,16.91,High-value starter
+1705,Umesh Kohli,Overseas,99000,13000,112000,2,Active,82000,79.3,18.02,High-value starter
+1706,Jos Rashid 1706,Domestic,48000,3000,51000,2,Active,40000,71.0,9.75,Strong squad asset
+1707,Jake Wade,Domestic,67000,8000,75000,1,Active,38000,70.7,13.76,Strong squad asset
+1708,Adam Chapman,Domestic,135000,19000,154000,3,Active,79000,86.9,18.92,Elite / overseas-standard
+1709,Wayne Fortuin,Domestic,107000,11000,118000,2,Expiring,127000,81.8,17.62,High-value starter
+1710,Sarfaraz Rauf,Domestic,36000,2000,38000,1,Active,19000,64.8,10.23,Development / squad
+1711,Wanindu de Silva,Domestic,86000,5000,91000,3,Active,47000,80.7,6.77,High-value starter
+1712,Rahkeem Narine,Domestic,47000,3000,50000,2,Active,34000,73.4,45.51,Strong squad asset
+1713,Moeen Lawrence 1713,Domestic,115000,12000,127000,1,Active,158000,75.3,14.38,High-value starter
+1714,Harry Anderson 1714,Domestic,61000,9000,70000,1,Active,32000,72.6,36.59,Strong squad asset
+1715,Jofra Bethell 1715,Overseas,82000,11000,93000,2,Active,42000,76.8,7.29,High-value starter
+1716,Ollie Buttler 1716,Academy,124000,20000,144000,1,Active,133000,75.5,22.07,High-value starter
+1717,Ishan Tiwary,Academy,47000,5000,52000,1,Active,46000,66.8,12.09,Strong squad asset
+1718,Ollie Anderson 1718,Domestic,111000,9000,120000,3,Active,62000,79.0,21.08,High-value starter
+1719,David Carey,Academy,174000,20000,194000,3,Released,218000,88.8,17.16,Elite / overseas-standard
+1720,Matt Phillips,Academy,53000,9000,62000,2,Active,34000,74.7,20.23,Strong squad asset
+1721,Lungi Shamsi,Academy,49000,4000,53000,2,Active,24000,74.6,9.03,Strong squad asset
+1722,Imam Khan,Domestic,49000,4000,53000,1,Active,51000,73.2,13.13,Strong squad asset
+1723,Wanindu Karunaratne,Domestic,140000,14000,154000,2,Released,159000,87.8,19.42,Elite / overseas-standard
+1724,Rahkeem Chase,Domestic,48000,4000,52000,1,Active,57000,72.5,25.7,Strong squad asset
+1725,Sam Salt 1725,Academy,111000,17000,128000,3,Expiring,118000,82.5,27.14,High-value starter
+1726,Chris Archer 1726,Overseas,47000,6000,53000,2,Active,31000,74.5,17.22,Strong squad asset
+1727,Jamie Curran 1727,Domestic,32000,3000,35000,2,Expiring,36000,64.9,16.37,Development / squad
+1728,Joe Potts 1728,Domestic,124000,17000,141000,1,Active,153000,77.4,22.17,High-value starter
+1729,Rinku Bawa,Domestic,40000,6000,46000,1,Active,36000,62.1,16.12,Development / squad
+1730,Jack Rashid 1730,Overseas,107000,11000,118000,1,Active,56000,75.1,26.99,High-value starter
+1731,Pat Labuschagne,Domestic,27000,1000,28000,1,Active,30000,60.7,21.67,Development / squad
+1732,Trent Bracewell,Domestic,66000,12000,78000,2,Active,51000,72.2,15.44,Strong squad asset
+1733,Andile Maharaj,Overseas,103000,18000,121000,2,Active,86000,76.1,20.25,High-value starter
+1734,Yasir Masood,Domestic,59000,4000,63000,1,Active,44000,71.0,12.56,Strong squad asset
+1735,Dimuth Udana,Domestic,49000,8000,57000,1,Active,56000,71.3,11.26,Strong squad asset
+1736,Roston Seales,Domestic,76000,7000,83000,1,Active,72000,68.9,14.31,Strong squad asset
+1737,Chris Buttler 1737,Domestic,100000,14000,114000,2,Expiring,147000,77.5,14.39,High-value starter
+1738,James Crawley 1738,Academy,51000,9000,60000,1,Expiring,28000,69.0,12.41,Strong squad asset
+1739,Jos Broad 1739,Domestic,96000,16000,112000,2,Active,84000,80.4,16.39,High-value starter
+1740,Rehan Rashid 1740,Domestic,98000,13000,111000,2,Released,72000,80.8,19.09,High-value starter
+1741,Sanju Sundar,Domestic,40000,6000,46000,1,Active,54000,64.9,16.11,Development / squad
+1742,Joe Curran 1742,Domestic,70000,6000,76000,2,Active,90000,69.6,20.45,Strong squad asset
+1743,Mitchell Conway,Academy,114000,22000,136000,2,Expiring,80000,80.3,14.65,High-value starter
+1744,Colin Southee,Domestic,45000,7000,52000,1,Active,30000,67.0,27.03,Strong squad asset
+1745,Rassie Maharaj,Academy,98000,15000,113000,3,Active,99000,80.7,26.69,High-value starter
+1746,Usman Butt,Domestic,101000,15000,116000,2,Active,99000,80.3,29.59,High-value starter
+1747,Suranga Theekshana,Domestic,45000,4000,49000,2,Active,63000,73.7,8.97,Strong squad asset
+1748,Akeal Russell,Domestic,91000,7000,98000,2,Active,124000,82.9,17.64,High-value starter
+1749,Ben Bethell 1749,Domestic,71000,6000,77000,2,Expiring,76000,74.3,28.8,Strong squad asset
+1750,Sam Carse 1750,Domestic,86000,11000,97000,3,Active,50000,78.3,17.0,High-value starter
+1751,Jofra Wood 1751,Academy,151000,15000,166000,3,Active,145000,86.4,24.24,Elite / overseas-standard
+1752,Jos Anderson 1752,Overseas,52000,5000,57000,2,Active,47000,72.0,14.02,Strong squad asset
+1753,Prithvi Gaikwad,Overseas,45000,4000,49000,2,Active,30000,73.2,19.39,Strong squad asset
+1754,Jack Anderson 1754,Overseas,90000,8000,98000,2,Active,126000,81.5,20.73,High-value starter
+1755,Jake Warner,Domestic,79000,13000,92000,1,Active,90000,69.8,13.17,Strong squad asset
+1756,Adam Blundell,Domestic,73000,4000,77000,2,Active,39000,72.5,37.18,Strong squad asset
+1757,Andile Elgar,Domestic,78000,6000,84000,1,Active,62000,66.0,25.79,Strong squad asset
+1758,Mohammad Khushdil,Domestic,62000,9000,71000,2,Released,92000,69.9,17.27,Strong squad asset
+1759,Dinesh Asalanka,Domestic,84000,13000,97000,3,Active,71000,76.8,34.8,High-value starter
+1760,Dwayne Thomas,Domestic,104000,18000,122000,3,Active,53000,79.2,20.4,High-value starter
+1761,Jonny Overton 1761,Academy,31000,3000,34000,1,Active,20000,64.6,23.15,Development / squad
+1762,Dom Crawley 1762,Domestic,74000,6000,80000,1,Active,52000,71.5,12.65,Strong squad asset
+1763,Jamie Curran 1763,Domestic,22000,2000,24000,1,Active,27000,64.0,4.86,Development / squad
+1764,Jamie Ali 1764,Domestic,62000,10000,72000,2,Active,42000,71.3,9.73,Strong squad asset
+1765,Virat Pandya,Academy,23000,2000,25000,1,Active,31000,64.0,6.34,Development / squad
+1766,Tom Archer 1766,Overseas,56000,5000,61000,1,Active,35000,71.6,8.43,Strong squad asset
+1767,David Khawaja,Domestic,70000,12000,82000,1,Active,58000,66.7,7.47,Strong squad asset
+1768,Devon Young,Domestic,61000,9000,70000,2,Active,77000,73.1,16.27,Strong squad asset
+1769,Andile Markram,Domestic,58000,8000,66000,2,Active,30000,68.0,9.76,Strong squad asset
+1770,Usman Azam,Domestic,97000,19000,116000,1,Released,103000,79.3,9.29,High-value starter
+1771,Dinesh Mendis,Domestic,100000,8000,108000,3,Active,103000,79.7,16.79,High-value starter
+1772,Rovman Pollard,Domestic,72000,4000,76000,2,Active,68000,74.9,34.64,Strong squad asset
+1773,Tom Curran 1773,Overseas,120000,7000,127000,3,Active,126000,79.4,28.33,High-value starter
+1774,Tom Ali 1774,Academy,122000,17000,139000,1,Active,85000,75.7,20.9,High-value starter
+1775,Mark Wood 1775,Domestic,115000,9000,124000,2,Active,117000,80.3,16.9,High-value starter
+1776,Matt Ali 1776,Domestic,56000,5000,61000,2,Active,46000,72.5,32.89,Strong squad asset
+1777,KL Samson,Overseas,159000,17000,176000,3,Released,100000,88.4,13.28,Elite / overseas-standard
+1778,Jofra Ali 1778,Domestic,99000,15000,114000,3,Active,138000,75.8,31.23,High-value starter
+1779,Lance Warner,Overseas,91000,6000,97000,1,Active,84000,75.5,16.84,High-value starter
+1780,Will Taylor,Domestic,74000,10000,84000,2,Expiring,80000,72.8,16.99,Strong squad asset
+1781,Wiaan Klaasen,Domestic,46000,3000,49000,2,Released,43000,74.0,15.35,Strong squad asset
+1782,Asif Rizwan,Overseas,120000,16000,136000,3,Active,99000,80.5,10.27,High-value starter
+1783,Kasun Chameera,Academy,61000,11000,72000,1,Active,65000,69.5,19.77,Strong squad asset
+1784,Jayden Seales,Academy,67000,4000,71000,1,Active,95000,67.5,13.08,Strong squad asset
+1785,Jason Salt 1785,Overseas,109000,16000,125000,3,Active,86000,82.1,7.51,High-value starter
+1786,Ollie Sibley 1786,Domestic,120000,10000,130000,1,Expiring,147000,76.4,10.4,High-value starter
+1787,Jason Archer 1787,Domestic,35000,3000,38000,1,Active,41000,60.9,20.87,Development / squad
+1788,Harry Woakes 1788,Overseas,107000,11000,118000,2,Expiring,79000,84.9,19.53,High-value starter
+1789,Yuzvendra Sundar,Overseas,82000,7000,89000,2,Active,64000,77.6,33.88,High-value starter
+1790,Jos Wood 1790,Overseas,63000,9000,72000,1,Active,45000,69.9,10.56,Strong squad asset
+1791,Steve Warner,Overseas,86000,9000,95000,2,Active,53000,77.4,10.27,High-value starter
+1792,Tim Kuggeleijn,Domestic,38000,2000,40000,1,Active,48000,60.5,5.74,Development / squad
+1793,Dale du Plessis,Overseas,32000,3000,35000,1,Active,24000,58.8,13.34,Development / squad
+1794,Tayyab Ahmed,Domestic,110000,5000,115000,1,Active,129000,77.7,19.15,High-value starter
+1795,Angelo Mendis,Domestic,81000,8000,89000,2,Active,56000,75.9,11.06,High-value starter
+1796,Obed Narine,Domestic,47000,2000,49000,1,Active,66000,65.4,13.77,Strong squad asset
+1797,Adil Buttler 1797,Overseas,112000,16000,128000,3,Active,107000,82.0,19.08,High-value starter
+1798,James Crawley 1798,Domestic,47000,6000,53000,1,Active,68000,69.4,8.45,Strong squad asset
+1799,Zak Wood 1799,Overseas,83000,10000,93000,2,Active,54000,84.3,26.59,High-value starter
+1800,Jack Carse 1800,Academy,80000,5000,85000,2,Active,82000,82.0,21.19,High-value starter
+1801,Arshdeep Siraj,Domestic,123000,7000,130000,3,Active,144000,83.6,24.58,High-value starter
+1802,Zak Curran 1802,Domestic,113000,11000,124000,2,Active,60000,75.5,35.94,High-value starter
+1803,Nathan Hazlewood,Academy,28000,3000,31000,1,Active,15000,61.9,17.16,Development / squad
+1804,Will Tickner,Domestic,55000,8000,63000,1,Active,60000,72.3,43.82,Strong squad asset
+1805,Faf Shamsi,Domestic,95000,15000,110000,2,Expiring,83000,81.6,17.44,High-value starter
+1806,Fakhar Abbasi,Domestic,114000,7000,121000,1,Active,169000,75.8,25.26,High-value starter
+1807,Dilshan Fernando,Domestic,68000,11000,79000,1,Active,38000,68.3,10.35,Strong squad asset
+1808,Nicholas Pollard,Academy,88000,6000,94000,2,Active,80000,77.4,28.02,High-value starter
+1809,Matt Curran 1809,Domestic,51000,5000,56000,1,Active,57000,74.5,24.09,Strong squad asset
+1810,Joe Bethell 1810,Domestic,48000,3000,51000,2,Active,41000,67.7,13.95,Strong squad asset
+1811,Harry Potts 1811,Domestic,109000,12000,121000,1,Active,96000,76.3,10.7,High-value starter
+1812,Jonny Ali 1812,Domestic,114000,6000,120000,2,Active,131000,75.4,18.84,High-value starter
+1813,Hardik Rahul,Domestic,91000,5000,96000,2,Active,72000,80.0,11.29,High-value starter
+1814,Matt Crawley 1814,Academy,20000,2000,22000,1,Released,24000,64.5,17.03,Development / squad
+1815,Scott Smith,Academy,47000,3000,50000,1,Released,51000,71.2,18.01,Strong squad asset
+1816,Doug Latham,Academy,78000,14000,92000,2,Active,49000,72.0,16.91,Strong squad asset
+1817,Anrich Steyn,Domestic,27000,3000,30000,1,Expiring,22000,62.9,30.99,Development / squad
+1818,Yasir Ayub,Domestic,114000,11000,125000,3,Active,123000,79.3,22.07,High-value starter
+1819,Lahiru Gunathilaka,Academy,108000,15000,123000,3,Active,117000,83.3,24.38,High-value starter
+1820,Jason Hetmyer,Domestic,97000,5000,102000,1,Active,60000,77.1,34.61,High-value starter
+1821,Sam Stokes 1821,Overseas,89000,14000,103000,2,Active,99000,76.9,9.98,High-value starter
+1822,Stuart Roy 1822,Domestic,85000,9000,94000,2,Active,55000,84.1,16.12,High-value starter
+1823,Ben Curran 1823,Academy,66000,3000,69000,1,Expiring,72000,70.5,34.54,Strong squad asset
+1824,Liam Brook 1824,Overseas,114000,18000,132000,2,Active,88000,78.2,20.93,High-value starter
+1825,Rohit Shaw,Academy,108000,18000,126000,2,Active,141000,78.9,16.38,High-value starter
+1826,Craig Pope 1826,Domestic,63000,5000,68000,1,Active,53000,66.8,12.71,Strong squad asset
+1827,Adam Abbott,Overseas,81000,10000,91000,2,Expiring,94000,80.3,23.91,High-value starter
+1828,Daryl Sears,Academy,123000,18000,141000,2,Active,168000,82.5,29.09,High-value starter
+1829,Reeza Coetzee,Overseas,72000,5000,77000,2,Active,40000,74.0,19.15,Strong squad asset
+1830,Babar Ahmed,Domestic,93000,17000,110000,2,Active,138000,79.2,37.37,High-value starter
+1831,Dinesh de Silva,Domestic,79000,5000,84000,1,Active,105000,74.6,25.28,Strong squad asset
+1832,Kemar McCoy,Domestic,66000,8000,74000,1,Active,63000,70.3,15.08,Strong squad asset
+1833,Craig Crawley 1833,Academy,65000,5000,70000,1,Active,71000,74.8,28.42,Strong squad asset
+1834,Chris Curran 1834,Overseas,38000,3000,41000,1,Active,55000,64.4,15.45,Development / squad
+1835,Jack Bairstow 1835,Domestic,73000,13000,86000,1,Active,105000,69.6,10.65,Strong squad asset
+1836,Jos Woakes 1836,Domestic,36000,3000,39000,1,Active,33000,59.7,10.74,Development / squad
+1837,Rishabh Jadeja,Domestic,85000,14000,99000,2,Active,44000,77.2,16.54,High-value starter
+1838,Tom Crawley 1838,Domestic,95000,16000,111000,3,Active,135000,77.6,26.83,High-value starter
+1839,Peter Cummins,Academy,77000,12000,89000,1,Active,74000,73.6,27.58,Strong squad asset
+1840,Ben Henry,Overseas,90000,8000,98000,3,Active,88000,82.0,24.96,High-value starter
+1841,Temba Klaasen,Domestic,58000,4000,62000,1,Active,37000,66.3,13.94,Strong squad asset
+1842,Danish Rizwan,Overseas,99000,5000,104000,2,Expiring,121000,78.7,24.68,High-value starter
+1843,Niroshan Lakmal,Domestic,99000,10000,109000,2,Active,88000,76.1,13.56,High-value starter
+1844,Rahkeem Shepherd,Academy,66000,6000,72000,1,Active,75000,67.3,13.4,Strong squad asset
+1845,Stuart Broad 1845,Academy,78000,4000,82000,1,Expiring,116000,65.6,13.66,Strong squad asset
+1846,Rehan Rashid 1846,Domestic,90000,17000,107000,2,Active,113000,80.6,16.18,High-value starter
+1847,Liam Lawrence 1847,Domestic,23000,3000,26000,1,Active,19000,61.7,25.68,Development / squad
+1848,Moeen Anderson 1848,Academy,88000,13000,101000,3,Active,101000,82.3,21.97,High-value starter
+1849,Rishabh Bumrah,Overseas,76000,12000,88000,2,Active,40000,71.0,39.17,Strong squad asset
+1850,Jonny Ali 1850,Overseas,109000,15000,124000,3,Active,130000,83.4,26.87,High-value starter
+1851,Mitchell Tye,Overseas,27000,3000,30000,1,Active,25000,63.3,11.66,Development / squad
+1852,Adam Ferguson,Overseas,116000,10000,126000,2,Active,168000,82.7,20.99,High-value starter
+1853,Reeza Klaasen,Overseas,118000,6000,124000,2,Active,135000,76.0,37.2,High-value starter
+1854,Usama Rizwan,Domestic,118000,18000,136000,2,Released,68000,78.2,28.64,High-value starter
+1855,Sachith Theekshana,Domestic,77000,5000,82000,1,Active,91000,72.8,21.53,Strong squad asset
+1856,Rovman Hosein,Overseas,53000,6000,59000,1,Active,73000,68.9,7.39,Strong squad asset
+1857,Ben Potts 1857,Overseas,71000,11000,82000,2,Active,101000,67.7,13.15,Strong squad asset
+1858,Harry Crawley 1858,Overseas,100000,6000,106000,1,Active,129000,75.2,7.39,High-value starter
+1859,Harry Buttler 1859,Overseas,74000,6000,80000,1,Active,92000,72.6,12.34,Strong squad asset
+1860,Adil Woakes 1860,Domestic,112000,22000,134000,2,Active,56000,80.1,7.32,High-value starter
+1861,Arshdeep Kohli,Overseas,114000,18000,132000,2,Active,104000,79.3,19.03,High-value starter
+1862,James Brook 1862,Overseas,36000,3000,39000,1,Active,24000,62.0,25.04,Development / squad
+1863,Sean Zampa,Domestic,51000,7000,58000,1,Active,34000,66.2,16.38,Strong squad asset
+1864,Blair Duffy,Overseas,104000,12000,116000,2,Active,71000,78.6,33.17,High-value starter
+1865,Lizaad Ngidi,Academy,124000,9000,133000,1,Active,94000,75.8,36.49,High-value starter
+1866,Yasir Azam,Overseas,77000,8000,85000,2,Expiring,46000,69.6,27.76,Strong squad asset
+1867,Pathum Dickwella,Domestic,81000,7000,88000,2,Active,62000,81.2,25.18,High-value starter
+1868,Darren Holder,Overseas,50000,2000,52000,2,Active,49000,67.3,8.12,Strong squad asset
+1869,Matt Carse 1869,Domestic,85000,5000,90000,1,Active,43000,80.9,6.02,High-value starter
+1870,Jamie Crawley 1870,Domestic,112000,9000,121000,2,Active,98000,82.7,16.29,High-value starter
+1871,Zak Ali 1871,Academy,73000,14000,87000,1,Active,104000,67.4,11.48,Strong squad asset
+1872,Mark Curran 1872,Domestic,89000,12000,101000,3,Active,105000,80.1,14.48,High-value starter
+1873,Sanju Sharma,Domestic,62000,10000,72000,2,Expiring,72000,71.3,11.26,Strong squad asset
+1874,Jason Overton 1874,Overseas,74000,10000,84000,2,Released,101000,73.6,10.85,Strong squad asset
+1875,Josh Zampa,Domestic,112000,13000,125000,1,Active,137000,82.0,13.93,High-value starter
+1876,Daryl Duffy,Overseas,104000,5000,109000,1,Active,107000,77.5,18.46,High-value starter
+1877,Heinrich Elgar,Domestic,65000,7000,72000,1,Active,89000,66.6,27.79,Strong squad asset
+1878,Shoaib Zaman,Academy,32000,3000,35000,1,Active,47000,63.2,14.52,Development / squad
+1879,Dasun Embuldeniya,Overseas,93000,4000,97000,3,Active,50000,77.0,34.08,High-value starter
+1880,Jayden Hetmyer,Academy,105000,12000,117000,3,Active,94000,84.6,18.93,High-value starter
+1881,Matt Crawley 1881,Domestic,69000,7000,76000,1,Expiring,98000,74.0,24.76,Strong squad asset
+1882,Jofra Curran 1882,Overseas,119000,19000,138000,1,Active,82000,79.2,14.7,High-value starter
+1883,Adil Ahmed 1883,Overseas,67000,12000,79000,1,Expiring,86000,74.8,23.08,Strong squad asset
+1884,Dom Anderson 1884,Domestic,114000,14000,128000,1,Active,151000,79.8,8.47,High-value starter
+1885,Rohit Rahul,Overseas,50000,3000,53000,2,Active,30000,66.5,10.21,Strong squad asset
+1886,Moeen Rashid 1886,Domestic,61000,4000,65000,1,Active,70000,70.6,10.28,Strong squad asset
+1887,Nathan Stoinis,Domestic,20000,1000,21000,1,Released,10000,61.2,16.75,Development / squad
+1888,Daryl Wagner,Domestic,53000,9000,62000,1,Active,38000,70.3,15.65,Strong squad asset
+1889,Dean Maharaj,Academy,112000,13000,125000,2,Expiring,69000,75.3,9.03,High-value starter
+1890,Salman Ayub,Academy,124000,17000,141000,2,Active,160000,84.3,27.03,High-value starter
+1891,Niroshan Rajapaksa,Overseas,48000,4000,52000,1,Active,51000,65.4,16.08,Strong squad asset
+1892,Darren Carty,Academy,98000,9000,107000,2,Expiring,121000,75.6,42.84,High-value starter
+1893,Chris Crawley 1893,Academy,165000,24000,189000,3,Active,223000,85.7,6.88,Elite / overseas-standard
+1894,Jack Woakes 1894,Domestic,25000,2000,27000,1,Active,14000,61.4,21.45,Development / squad
+1895,Jonny Buttler 1895,Domestic,64000,6000,70000,1,Active,44000,67.4,17.96,Strong squad asset
+1896,Moeen Carse 1896,Academy,70000,7000,77000,1,Expiring,101000,67.6,11.41,Strong squad asset
+1897,Umesh Varma,Overseas,107000,10000,117000,1,Active,73000,78.9,31.72,High-value starter
+1898,Moeen Crawley 1898,Domestic,24000,4000,28000,1,Active,20000,62.0,10.05,Development / squad
+1899,Nathan Starc,Academy,95000,14000,109000,2,Active,57000,81.9,9.57,High-value starter
+1900,Tom Santner,Domestic,72000,9000,81000,1,Active,46000,65.8,16.27,Strong squad asset
+1901,Rassie Williams,Domestic,104000,12000,116000,2,Active,114000,79.8,25.31,High-value starter
+1902,Danish Iftikhar,Academy,45000,6000,51000,1,Active,54000,72.6,8.41,Strong squad asset
+1903,Lahiru Rajitha,Overseas,114000,10000,124000,2,Released,71000,77.8,8.51,High-value starter
+1904,Nicholas Hosein,Academy,46000,6000,52000,1,Active,32000,66.2,9.47,Strong squad asset
+1905,James Bethell 1905,Academy,113000,22000,135000,2,Active,148000,78.3,19.95,High-value starter
+1906,Jamie Pope 1906,Academy,89000,7000,96000,2,Active,116000,79.5,28.3,High-value starter
+1907,Sam Salt 1907,Domestic,123000,21000,144000,2,Active,98000,79.6,31.33,High-value starter
+1908,Sam Sibley 1908,Domestic,57000,7000,64000,1,Active,67000,74.3,17.96,Strong squad asset
+1909,Ishan Sundar,Domestic,94000,10000,104000,3,Active,73000,76.9,35.08,High-value starter
+1910,Jos Salt 1910,Overseas,86000,13000,99000,1,Active,51000,78.9,22.74,High-value starter
+1911,Ryan Head,Domestic,27000,4000,31000,1,Active,35000,64.9,12.17,Development / squad
+1912,Ish Phillips,Academy,75000,7000,82000,1,Active,80000,67.7,13.71,Strong squad asset
+1913,Kagiso du Plessis,Academy,124000,15000,139000,3,Expiring,88000,79.9,5.73,High-value starter
+1914,Danish Shafique,Overseas,96000,15000,111000,1,Active,117000,79.5,37.67,High-value starter
+1915,Kusal Dananjaya,Academy,31000,2000,33000,1,Active,42000,64.2,5.2,Development / squad
+1916,Obed Russell,Domestic,70000,13000,83000,1,Active,93000,65.2,13.39,Strong squad asset
+1917,Ben Potts 1917,Overseas,119000,7000,126000,2,Released,80000,79.3,15.42,High-value starter
+1918,Mark Ali 1918,Domestic,65000,4000,69000,1,Active,54000,69.8,37.23,Strong squad asset
+1919,Jamie Woakes 1919,Overseas,58000,6000,64000,1,Active,70000,70.2,26.2,Strong squad asset
+1920,Dom Crawley 1920,Domestic,59000,3000,62000,1,Active,58000,65.3,18.36,Strong squad asset
+1921,Hardik Gaikwad,Academy,111000,17000,128000,2,Active,165000,77.8,21.82,High-value starter
+1922,Brydon Crawley 1922,Overseas,45000,7000,52000,1,Expiring,51000,65.8,30.07,Strong squad asset
+1923,Mitchell Hazlewood,Academy,107000,15000,122000,3,Active,66000,84.5,20.54,High-value starter
+1924,Mitchell Blundell,Domestic,28000,1000,29000,1,Active,39000,62.5,24.02,Development / squad
+1925,Tabraiz Miller,Domestic,72000,9000,81000,1,Released,70000,70.8,18.33,Strong squad asset
+1926,Usman Khushdil,Overseas,48000,8000,56000,1,Active,47000,69.9,11.35,Strong squad asset
+1927,Sachith Fernando,Overseas,106000,10000,116000,2,Active,87000,77.5,7.19,High-value starter
+1928,Kavem McCoy,Domestic,101000,17000,118000,2,Active,106000,81.9,21.37,High-value starter
+1929,Zak Sibley 1929,Overseas,67000,8000,75000,1,Active,66000,68.5,8.16,Strong squad asset
+1930,Adil Anderson 1930,Domestic,47000,9000,56000,1,Expiring,31000,70.9,30.04,Strong squad asset
+1931,Jonny Bairstow 1931,Academy,65000,10000,75000,1,Active,61000,73.6,23.9,Strong squad asset
+1932,Craig Bethell 1932,Domestic,105000,5000,110000,3,Active,121000,78.3,19.22,High-value starter
+1933,Prithvi Sundar,Academy,105000,9000,114000,1,Active,61000,80.4,13.62,High-value starter
+1934,Chris Lawrence 1934,Overseas,107000,13000,120000,1,Active,111000,76.3,25.58,High-value starter
+1935,Pat Philippe,Academy,110000,5000,115000,3,Active,159000,80.3,26.68,High-value starter
+1936,Mark Santner,Academy,73000,13000,86000,1,Active,75000,67.9,14.4,Strong squad asset
+1937,David de Kock,Academy,92000,11000,103000,2,Active,129000,84.8,24.9,High-value starter
+1938,Yasir Rauf,Overseas,73000,10000,83000,2,Active,86000,73.5,35.65,Strong squad asset
+1939,Chaturanga Liyanage,Overseas,32000,4000,36000,1,Active,17000,62.0,24.29,Development / squad
+1940,Kieron Narine,Domestic,47000,4000,51000,1,Active,68000,65.4,7.84,Strong squad asset
+1941,Jack Crawley 1941,Academy,21000,2000,23000,1,Active,16000,64.3,22.07,Development / squad
+1942,Jos Sibley 1942,Domestic,95000,12000,107000,3,Active,109000,81.3,22.85,High-value starter
+1943,Jonny Potts 1943,Domestic,115000,13000,128000,2,Expiring,135000,80.7,23.28,High-value starter
+1944,Mark Brook 1944,Overseas,111000,14000,125000,1,Active,136000,75.3,11.96,High-value starter
+1945,Virat Varma,Academy,115000,12000,127000,1,Active,151000,76.0,26.66,High-value starter
+1946,Dom Curran 1946,Domestic,103000,17000,120000,1,Active,132000,78.4,10.13,High-value starter
+1947,Sean Turner,Domestic,60000,3000,63000,1,Active,34000,66.4,17.25,Strong squad asset
+1948,Kane Henry,Academy,86000,5000,91000,1,Active,48000,79.0,6.54,High-value starter
+1949,Quinton Nortje,Overseas,56000,8000,64000,1,Active,46000,66.5,14.29,Strong squad asset
+1950,Salman Shakeel,Domestic,146000,26000,172000,3,Active,74000,85.3,23.24,Elite / overseas-standard
+1951,Lahiru Chandimal,Domestic,48000,9000,57000,1,Active,69000,66.5,4.67,Strong squad asset
+1952,Fabian Pooran,Domestic,25000,1000,26000,1,Active,20000,62.4,25.1,Development / squad
+1953,Moeen Broad 1953,Overseas,65000,11000,76000,1,Active,66000,68.0,13.24,Strong squad asset
+1954,Moeen Bethell 1954,Overseas,38000,5000,43000,1,Expiring,39000,62.1,27.15,Development / squad
+1955,Adil Overton 1955,Domestic,124000,9000,133000,1,Expiring,110000,77.7,15.86,High-value starter
+1956,Moeen Curran 1956,Academy,77000,11000,88000,2,Active,80000,67.2,24.27,Strong squad asset
+1957,Virat Iyer,Domestic,108000,14000,122000,3,Active,128000,81.7,20.44,High-value starter
+1958,Jack Wood 1958,Academy,59000,4000,63000,1,Active,72000,71.0,9.19,Strong squad asset
+1959,Nathan Lyon,Academy,108000,15000,123000,2,Active,137000,82.8,6.76,High-value starter
+1960,Mark Latham,Overseas,72000,11000,83000,2,Active,107000,74.5,19.29,Strong squad asset
+1961,David Rabada,Overseas,85000,10000,95000,2,Active,78000,76.3,34.26,High-value starter
+1962,Imam Zaman,Domestic,98000,14000,112000,1,Active,78000,75.6,24.93,High-value starter
+1963,Dinesh Udana,Domestic,117000,16000,133000,3,Active,86000,81.4,31.52,High-value starter
+1964,Kavem Russell,Domestic,29000,2000,31000,1,Active,36000,64.5,13.28,Development / squad
+1965,Jos Buttler 1965,Domestic,105000,20000,125000,2,Active,105000,76.7,34.22,High-value starter
+1966,Jack Crawley 1966,Domestic,65000,8000,73000,1,Active,76000,67.6,9.02,Strong squad asset
+1967,Jack Lawrence 1967,Domestic,88000,4000,92000,2,Active,117000,78.8,31.8,High-value starter
+1968,Rehan Roy 1968,Overseas,96000,15000,111000,1,Active,119000,78.7,16.61,High-value starter
+1969,Mohammed Gaikwad,Academy,56000,8000,64000,1,Expiring,83000,69.9,36.0,Strong squad asset
+1970,Joe Wood 1970,Overseas,81000,11000,92000,2,Released,95000,80.5,17.04,High-value starter
+1971,Sean Short,Academy,20000,3000,23000,1,Active,17000,61.6,14.52,Development / squad
+1972,Doug Nicholls,Domestic,40000,5000,45000,1,Released,36000,64.3,12.2,Development / squad
+1973,Marco Steyn,Domestic,54000,4000,58000,1,Released,45000,66.2,11.09,Strong squad asset
+1974,Salman Khurram,Overseas,63000,11000,74000,1,Expiring,85000,74.1,9.43,Strong squad asset
+1975,Sachith Vandersay,Domestic,27000,2000,29000,1,Active,19000,64.1,8.65,Development / squad
+1976,Sunil Russell,Academy,77000,11000,88000,1,Active,109000,68.6,12.5,Strong squad asset
+1977,Craig Bairstow 1977,Domestic,91000,16000,107000,1,Active,50000,75.8,36.56,High-value starter
+1978,Moeen Wood 1978,Academy,60000,7000,67000,1,Active,36000,74.0,12.52,Strong squad asset
+1979,Ollie Lawrence 1979,Academy,119000,9000,128000,3,Active,71000,78.8,31.69,High-value starter
+1980,Liam Rashid 1980,Domestic,74000,4000,78000,2,Active,48000,71.5,6.63,Strong squad asset
+1981,Axar Kishan,Domestic,88000,4000,92000,2,Active,66000,81.8,25.05,High-value starter
+1982,Liam Carse 1982,Overseas,73000,7000,80000,2,Active,67000,66.8,17.86,Strong squad asset
+1983,Andrew Hazlewood,Academy,147000,25000,172000,2,Active,137000,86.5,13.6,Elite / overseas-standard
+1984,Mitchell Santner,Domestic,61000,4000,65000,2,Active,30000,69.1,24.8,Strong squad asset
+1985,Ryan Shamsi,Domestic,86000,6000,92000,2,Active,76000,79.3,16.02,High-value starter
+1986,Usman Shah,Domestic,83000,6000,89000,2,Active,81000,76.4,9.96,High-value starter
+1987,Wanindu Vandersay,Overseas,70000,4000,74000,2,Active,69000,72.9,8.57,Strong squad asset
+1988,Rovman Hope,Domestic,62000,10000,72000,1,Active,55000,74.3,28.37,Strong squad asset
+1989,Jamie Stokes 1989,Domestic,60000,3000,63000,2,Active,31000,72.8,9.47,Strong squad asset
+1990,Ben Crawley 1990,Overseas,70000,7000,77000,1,Active,82000,69.9,9.8,Strong squad asset
+1991,Stuart Pope 1991,Academy,71000,12000,83000,1,Active,77000,71.3,13.41,Strong squad asset
+1992,Jason Brook 1992,Domestic,87000,10000,97000,2,Active,50000,82.4,15.86,High-value starter
+1993,Shubman Kohli,Domestic,66000,9000,75000,2,Active,45000,73.2,7.34,Strong squad asset
+1994,Jos Rashid 1994,Domestic,86000,15000,101000,2,Released,64000,75.3,5.3,High-value starter
+1995,Sean Lyon,Domestic,113000,13000,126000,2,Active,68000,78.0,8.04,High-value starter
+1996,Mark Ferguson,Domestic,109000,21000,130000,2,Active,123000,79.8,23.26,High-value starter
+1997,Tabraiz du Plessis,Domestic,43000,2000,45000,1,Active,33000,64.1,15.91,Development / squad
+1998,Saim Khushdil,Domestic,47000,5000,52000,1,Active,27000,72.7,5.47,Strong squad asset
+1999,Bhanuka Theekshana,Overseas,82000,8000,90000,1,Active,98000,75.8,26.35,High-value starter
+2000,Kemar Chase,Domestic,92000,9000,101000,2,Active,92000,85.0,18.79,High-value starter
